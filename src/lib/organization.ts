@@ -8,7 +8,7 @@ export const organization = {
   sameAs: [
     "https://t.me/dua_crypto",
     "https://github.com/dunksmaster/TokenDC",
-    "https://duacrypto.gumroad.com/l/newsletter",
+    "https://duacrypto.gumroad.com/l/newsleter",
   ],
 };
 

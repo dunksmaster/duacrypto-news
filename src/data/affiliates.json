@@ -30,7 +30,7 @@
   "newsletter": {
     "key": "newsletter",
     "name": "DuaCrypto Premium Newsletter",
-    "href": "https://duacrypto.gumroad.com/l/newsletter?wanted=true",
+    "href": "https://duacrypto.gumroad.com/l/newsleter?wanted=true",
     "goPath": "/go/newsletter",
     "description": "Premium newsletter — $10/mo on Gumroad"
   }
