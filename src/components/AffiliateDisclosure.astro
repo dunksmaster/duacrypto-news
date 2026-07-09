@@ -1,0 +1,27 @@
+---
+interface Props {
+  lang?: "en" | "sq";
+}
+
+const { lang = "en" } = Astro.props;
+
+const copy =
+  lang === "sq"
+    ? {
+        title: "Zbulim bashkëpunimi",
+        body: "Ky artikull përmban lidhje bashkëpunimi (affiliate). Nëse blini përmes tyre, DuaCrypto mund të marrë një komision pa kosto shtesë për ju. Rekomandojmë vetëm produkte që përdorim ose i besojmë.",
+      }
+    : {
+        title: "Affiliate disclosure",
+        body: "This article contains affiliate links. If you buy through them, DuaCrypto may earn a commission at no extra cost to you. We only recommend products we trust or use ourselves.",
+      };
+---
+
+<aside
+  class="affiliate-disclosure mb-8 rounded-lg border border-border bg-surface px-4 py-3 text-sm leading-relaxed text-secondary"
+  role="note"
+  aria-label={copy.title}
+>
+  <p class="mb-1 font-semibold text-dark">{copy.title}</p>
+  <p class="m-0">{copy.body}</p>
+</aside>

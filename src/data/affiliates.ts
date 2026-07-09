@@ -1,0 +1,57 @@
+/**
+ * Single source of truth for affiliate URLs on news.duacrypto.com.
+ * Posts use pretty /go/* links; update ref codes here only.
+ */
+export type AffiliateKey = "tangem" | "bitget" | "cex" | "deeper" | "newsletter";
+
+export interface AffiliatePartner {
+  key: AffiliateKey;
+  name: string;
+  href: string;
+  goPath: string;
+  description: string;
+}
+
+export const affiliates: Record<AffiliateKey, AffiliatePartner> = {
+  tangem: {
+    key: "tangem",
+    name: "Tangem",
+    href: "https://tangem.com/invite/BITCOINZAT",
+    goPath: "/go/tangem",
+    description: "Hardware wallet cards — simple self-custody",
+  },
+  bitget: {
+    key: "bitget",
+    name: "Bitget",
+    href: "https://www.bitget.com/referral/register?clacCode=GK802F53",
+    goPath: "/go/bitget",
+    description: "Crypto exchange — register and buy",
+  },
+  cex: {
+    key: "cex",
+    name: "CEX.IO",
+    href: "https://cex.io/join?c=20&a=513&o=3&s=sc&prid=referral-promo",
+    goPath: "/go/cex",
+    description: "Buy crypto with card",
+  },
+  deeper: {
+    key: "deeper",
+    name: "Deeper Network",
+    href: "https://shop.deeper.network?sca_ref=2063681.3aWn8PiBjI",
+    goPath: "/go/deeper",
+    description: "Decentralized VPN / privacy device",
+  },
+  newsletter: {
+    key: "newsletter",
+    name: "DuaCrypto Premium Newsletter",
+    href: "https://duacrypto.gumroad.com/l/newsletter?wanted=true",
+    goPath: "/go/newsletter",
+    description: "Premium newsletter — $10/mo on Gumroad",
+  },
+};
+
+export const affiliateGoPaths = Object.values(affiliates).map((a) => a.goPath);
+
+export function getAffiliateByGoPath(path: string): AffiliatePartner | undefined {
+  return Object.values(affiliates).find((a) => a.goPath === path);
+}

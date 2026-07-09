@@ -10,12 +10,20 @@ import { z } from "zod";
 
 const postsDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "content", "posts");
 
+const scoresSchema = z.object({
+  empathy: z.number().int().min(0).max(100),
+  storytelling: z.number().int().min(0).max(100),
+  cta: z.number().int().min(0).max(100),
+});
+
 const postSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   pubDate: z.coerce.date(),
   author: z.string(),
   category: z.enum(["news", "analysis", "guides", "community"]),
+  postType: z.enum(["affiliate", "news", "guide", "community"]).optional(),
+  scores: scoresSchema.optional(),
   tags: z.array(z.string()),
   image: z.string().optional(),
   draft: z.boolean(),
