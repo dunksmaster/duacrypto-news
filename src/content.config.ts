@@ -16,6 +16,8 @@ const posts = defineCollection({
     image: z.string().optional(),
     draft: z.boolean().default(false),
     aiGenerated: z.boolean().default(false),
+    lang: z.enum(["en", "sq"]).default("en"),
+    translationOf: z.string().optional(),
   }),
 });
 

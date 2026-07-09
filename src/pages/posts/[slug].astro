@@ -22,6 +22,25 @@ const allPosts = await getPublishedPosts();
 const related = allPosts
   .filter((p) => p.id !== post.id && p.data.category === post.data.category)
   .slice(0, 3);
+
+const alternates: { hreflang: string; href: string }[] = [];
+const base = Astro.site?.href ?? "https://news.duacrypto.com/";
+if (post.data.translationOf) {
+  alternates.push({
+    hreflang: "en",
+    href: new URL(`posts/${post.data.translationOf}/`, base).href,
+  });
+  alternates.push({ hreflang: "sq", href: new URL(`posts/${slug}/`, base).href });
+} else if (post.data.lang === "en") {
+  const sqSibling = allPosts.find((p) => p.data.translationOf === slug);
+  if (sqSibling) {
+    alternates.push({ hreflang: "en", href: new URL(`posts/${slug}/`, base).href });
+    alternates.push({
+      hreflang: "sq",
+      href: new URL(`posts/${postSlug(sqSibling.id)}/`, base).href,
+    });
+  }
+}
 ---
 
 <BaseLayout
@@ -32,6 +51,8 @@ const related = allPosts
   pubDate={post.data.pubDate}
   author={post.data.author}
   canonical={`${Astro.site}posts/${slug}/`}
+  lang={post.data.lang ?? "en"}
+  hreflangAlternates={alternates}
 >
   <article class="py-12">
     <div class="section-shell max-w-3xl">

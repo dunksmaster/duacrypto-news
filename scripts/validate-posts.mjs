@@ -20,6 +20,8 @@ const postSchema = z.object({
   image: z.string().optional(),
   draft: z.boolean(),
   aiGenerated: z.boolean(),
+  lang: z.enum(["en", "sq"]).optional(),
+  translationOf: z.string().optional(),
 });
 
 let count = 0;

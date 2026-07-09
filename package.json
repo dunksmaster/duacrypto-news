@@ -8,10 +8,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "validate:posts": "node scripts/validate-posts.mjs",
-    "generate:post": "node scripts/generate-post.mjs"
+    "generate:post": "node scripts/generate-post.mjs",
+    "smoke": "node scripts/smoke-test-news.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
@@ -21,5 +23,8 @@
     "tailwindcss": "^4.3.2",
     "yaml": "^2.9.0",
     "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "pagefind": "^1.5.2"
   }
 }

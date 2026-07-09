@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Search" description="Search DuaCrypto News articles.">
+  <section class="py-12">
+    <div class="section-shell max-w-3xl">
+      <h1 class="mb-6 text-4xl font-bold">Search</h1>
+      <div id="search"></div>
+      <div id="search-results"></div>
+    </div>
+  </section>
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", function () {
+      if (typeof PagefindUI === "undefined") return;
+      new PagefindUI({ element: "#search", showSubResults: true, resetStyles: false });
+    });
+  </script>
+</BaseLayout>

@@ -16,6 +16,8 @@ interface Props {
   pubDate?: Date;
   author?: string;
   canonical?: string;
+  lang?: string;
+  hreflangAlternates?: { hreflang: string; href: string }[];
 }
 
 const {
@@ -26,6 +28,8 @@ const {
   pubDate,
   author,
   canonical,
+  lang = "en",
+  hreflangAlternates = [],
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
@@ -59,13 +63,16 @@ const jsonLd =
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline src="/theme-init.js"></script>
     <link rel="icon" href="/img/duacrypto-logo.png" type="image/png" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href="/rss.xml" />
+    {hreflangAlternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -79,6 +86,7 @@ const jsonLd =
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script defer src="/js/gtag-deferred.js"></script>
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />
