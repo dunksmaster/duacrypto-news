@@ -19,13 +19,13 @@ Analysis date: 2026-07-09. Covers `TokenDC` (duacrypto.com) and `duacrypto-news`
 
 ### Gaps found ⚠️ (ordered by risk)
 1. ~~**News site has NO Content-Security-Policy**~~ ✅ Fixed — generated in prebuild, enforced in CI.
-2. **TokenDC has 17 uncommitted files** — work sitting unbacked-up on one PC. Recurring problem.
-3. **No branch protection verified** on either repo — if `main` accepts direct pushes, the "AI drafts need review" guarantee is convention, not enforcement. Also relevant: a compromised Action could push to main → auto-deploy.
-4. **No dependency security automation** — no Dependabot/`npm audit` gate. Astro + plugins + action dependencies drift into known CVEs silently.
-5. **GitHub Actions not pinned to commit SHAs** — third-party actions by tag (`@v4`) can be repointed upstream (supply-chain vector). Low likelihood, cheap fix.
-6. **No monitoring** — if the site goes down or deploy silently fails, nothing alerts. No error tracking on the future Functions.
-7. **Account-level hardening unverified** — 2FA on GitHub + Cloudflare, scoped API tokens (the Pages token should be Pages-only, not account-wide).
-8. **No backend yet** for views/clicks (planned Phase 4) — so also no rate-limiting/abuse story defined for when it lands.
+2. ~~**TokenDC has 17 uncommitted files**~~ ✅ Fixed — committed and pushed.
+3. **Branch protection unverified** on either repo — see `docs/GITHUB-SECURITY-SETUP.md`.
+4. ~~**No dependency security automation**~~ ✅ Dependabot + `npm audit --audit-level=high` in CI (both repos).
+5. ~~**GitHub Actions not pinned to commit SHAs**~~ ✅ All workflows pinned; minimum `permissions:` set.
+6. ~~**No monitoring**~~ ⚠️ CI failure → Telegram workflow added; UptimeRobot still manual (see setup doc).
+7. **Account-level hardening unverified** — 2FA + scoped API tokens (manual).
+8. **No backend yet** for views/clicks (planned Phase 4) — rate-limiting TBD when Functions land.
 
 ---
 
@@ -33,15 +33,17 @@ Analysis date: 2026-07-09. Covers `TokenDC` (duacrypto.com) and `duacrypto-news`
 
 ### Sprint S1 — this week, ~half day
 1. **CSP on news site** ✅ — `lib/site-security-headers.mjs` + `scripts/generate-headers.mjs`; enforced in CI (`CSP_ENFORCE=1`). Allowlist: `'self'`, GA/gtag, Pagefind (self), Formspree.
-2. **Commit & push the 17 pending TokenDC files.** Adopt the rule: nothing stays uncommitted overnight.
-3. **Branch protection on both repos**: require PR before merge on `main`, no force-push, no deletion. (Free on public repos; if private-free-tier, at least enable "restrict force push" via a ruleset.)
+2. **Commit & push the 17 pending TokenDC files.** ✅ Done — adopt the rule: nothing stays uncommitted overnight.
+3. **Branch protection on both repos**: require PR before merge on `main`, no force-push, no deletion. Manual — `docs/GITHUB-SECURITY-SETUP.md`.
 4. **2FA + token scoping**: verify 2FA on GitHub and Cloudflare; regenerate the Cloudflare API token scoped to `Pages:Edit` on the two projects only.
 
 ### Sprint S2 — next, ~half day
-5. **Dependabot** (`.github/dependabot.yml`, weekly, npm + github-actions ecosystems) on both repos + `npm audit --audit-level=high` step in CI.
-6. **Pin all GitHub Actions to full commit SHAs**; set workflow `permissions:` blocks to minimum (`contents: read` default).
-7. **Secret scanning**: enable GitHub secret scanning + push protection on both repos.
-8. **CODEOWNERS** file so AI-draft PRs always request your review explicitly.
+5. **Dependabot** ✅ — `.github/dependabot.yml` both repos + `npm audit --audit-level=high` in CI.
+6. **Pin all GitHub Actions to full commit SHAs** ✅ — minimum `permissions:` on all workflows.
+7. **Secret scanning**: enable GitHub secret scanning + push protection on both repos (manual — setup doc).
+8. **CODEOWNERS** ✅ — `@dunksmaster` on both repos.
+9. **PR preview URLs** ✅ — `preview.yml` deploys `pr-{n}.dc-news.pages.dev` and comments on PR.
+10. **CI failure alerts** ✅ — `ci-failure-alert.yml` → Telegram (needs secrets).
 
 ### Sprint S3 — when Phase 4 backend lands
 9. Views/likes/click Functions get: input validation (slug allowlist regex), rate limiting per IP (Cloudflare rate-limiting rule or KV counter), bot UA filtering, no PII stored (country + timestamp only — keeps GDPR trivial).
