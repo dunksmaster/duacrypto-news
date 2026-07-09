@@ -1,0 +1,8 @@
+# Topics queued for the AI draft generator (cron or manual runs).
+topics:
+  - title: "Bitcoin adoption trends in the Balkans"
+    category: analysis
+    tags: [bitcoin, balkans]
+  - title: "Lightning Network tips for Albanian merchants"
+    category: guides
+    tags: [lightning, merchants]

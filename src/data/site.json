@@ -1,0 +1,12 @@
+{
+  "mainSite": "https://duacrypto.com",
+  "siteName": "DuaCrypto News",
+  "siteDescription": "Bitcoin and Web3 news, analysis, guides, and community stories from Albania and the Balkans.",
+  "categoryLabels": {
+    "news": "News",
+    "analysis": "Analysis",
+    "guides": "Guides",
+    "community": "Community"
+  },
+  "navCategories": ["news", "analysis", "guides", "community"]
+}

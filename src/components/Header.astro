@@ -1,0 +1,120 @@
+---
+import site from "../data/site.json";
+
+const { pathname } = Astro.url;
+const MAIN_SITE = site.mainSite;
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-surface shadow-sm">
+  <div class="section-shell">
+    <div class="flex h-[75px] items-center justify-between gap-4">
+      <a href="/" class="flex shrink-0 items-center gap-2" aria-label="DuaCrypto News home">
+        <img
+          src="/img/duacrypto-logo.png"
+          alt="DuaCrypto"
+          width="379"
+          height="378"
+          class="h-10 w-auto"
+        />
+        <span class="hidden font-display text-lg font-bold text-dark sm:inline">News</span>
+      </a>
+
+      <button
+        id="nav-toggle"
+        type="button"
+        class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md p-2 text-dark lg:hidden"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        title="Toggle navigation"
+      >
+        <span class="text-xl" aria-hidden="true">☰</span>
+      </button>
+
+      <nav
+        id="nav-menu"
+        class="absolute left-0 right-0 top-[75px] hidden flex-col border-t border-border bg-surface px-4 pb-4 lg:static lg:flex lg:flex-1 lg:flex-row lg:items-center lg:justify-end lg:border-0 lg:bg-transparent lg:px-0 lg:pb-0"
+      >
+        <div class="flex flex-col lg:ml-auto lg:flex-row lg:items-center lg:gap-6">
+          <a href="/" class:list={["nav-link", { "nav-link-active": pathname === "/" }]}>Home</a>
+          <a
+            href="/category/news/"
+            class:list={["nav-link", { "nav-link-active": pathname.startsWith("/category/news") }]}
+            >News</a
+          >
+          <a
+            href="/category/analysis/"
+            class:list={["nav-link", { "nav-link-active": pathname.startsWith("/category/analysis") }]}
+            >Analysis</a
+          >
+          <a
+            href="/category/guides/"
+            class:list={["nav-link", { "nav-link-active": pathname.startsWith("/category/guides") }]}
+            >Guides</a
+          >
+          <a
+            href="/category/community/"
+            class:list={["nav-link", { "nav-link-active": pathname.startsWith("/category/community") }]}
+            >Community</a
+          >
+          <a href="/about/" class:list={["nav-link", { "nav-link-active": pathname.startsWith("/about") }]}
+            >About</a
+          >
+          <a href={MAIN_SITE} class="nav-link">Main site</a>
+        </div>
+
+        <div class="mt-4 flex items-center gap-2 lg:ml-6 lg:mt-0">
+          <button
+            type="button"
+            data-theme-toggle
+            class="theme-toggle"
+            aria-pressed="false"
+            aria-label="Switch theme"
+          >
+            <span data-theme-icon>◐</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-menu");
+  toggle?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  const themeBtn = document.querySelector("[data-theme-toggle]");
+  const icon = document.querySelector("[data-theme-icon]");
+  const root = document.documentElement;
+
+  function applyTheme(theme: "light" | "dark") {
+    const isDark = theme === "dark";
+    root.classList.toggle("dark", isDark);
+    root.setAttribute("data-theme", theme);
+    root.style.colorScheme = theme;
+    themeBtn?.setAttribute("aria-pressed", String(isDark));
+    themeBtn?.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light mode" : "Switch to dark mode",
+    );
+    if (icon) icon.textContent = isDark ? "☀" : "◐";
+    localStorage.setItem("duacrypto-theme", theme);
+  }
+
+  const stored = localStorage.getItem("duacrypto-theme");
+  const initial =
+    stored === "dark" || stored === "light"
+      ? stored
+      : window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+  applyTheme(initial);
+
+  themeBtn?.addEventListener("click", () => {
+    const next = root.classList.contains("dark") ? "light" : "dark";
+    applyTheme(next);
+  });
+</script>

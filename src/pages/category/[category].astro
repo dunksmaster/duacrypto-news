@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import { categories } from "../../content.config";
+import { getPostsByCategory } from "../../lib/posts";
+import site from "../../data/site.json";
+const CATEGORY_LABELS = site.categoryLabels;
+
+export async function getStaticPaths() {
+  return categories.map((category) => ({ params: { category } }));
+}
+
+const { category } = Astro.params;
+
+if (!category || !categories.includes(category as (typeof categories)[number])) {
+  return Astro.redirect("/404/");
+}
+
+const posts = await getPostsByCategory(category as (typeof categories)[number]);
+const label = CATEGORY_LABELS[category] ?? category;
+---
+
+<BaseLayout
+  title={`${label} — DuaCrypto News`}
+  description={`${label} articles from DuaCrypto News.`}
+  canonical={`${Astro.site}category/${category}/`}
+>
+  <section class="py-12">
+    <div class="section-shell">
+      <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">{label}</p>
+      <h1 class="mb-8 text-4xl font-bold">{label}</h1>
+      {
+        posts.length === 0 ? (
+          <p class="text-secondary">No posts in this category yet.</p>
+        ) : (
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post) => (
+              <PostCard post={post} />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,90 @@
+---
+import site from "../data/site.json";
+const MAIN_SITE = site.mainSite;
+---
+
+<footer class="bg-surface pt-12">
+  <div class="section-shell pb-10">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div class="md:col-span-2">
+        <div class="mb-3 flex items-center gap-3">
+          <img
+            src="/img/duacrypto-logo.png"
+            alt="DuaCrypto"
+            width="379"
+            height="378"
+            class="h-10 w-auto shrink-0"
+          />
+          <p class="mb-0 text-secondary">
+            DuaCrypto, founded in 2020, is proud to be the first crypto community in Albania.
+          </p>
+        </div>
+        <ul class="space-y-2 text-secondary">
+          <li>We're open to collaborations, partnerships, and creative ideas.</li>
+          <li class="break-words">
+            Reach out via email or our
+            <a
+              href="https://blockscan.com/address/2ECp5NXzGzx4R49DDnQu2nbJiVPKMzKXRHVmHrxp4Exh"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="break-all text-primary hover:underline">official wallet</a
+            >.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="mb-4 font-semibold">Get In Touch</h3>
+        <p class="mb-2 text-secondary">Tirana, Albania</p>
+        <p class="mb-2 break-words">
+          <a href="mailto:usdc@duacrypto.com" class="break-all text-primary hover:underline"
+            >usdc@duacrypto.com</a
+          >
+        </p>
+      </div>
+
+      <div>
+        <h3 class="mb-4 font-semibold">Quick Links</h3>
+        <a class="footer-link" href={`${MAIN_SITE}/about.html`}>About Us</a>
+        <a class="footer-link" href={`${MAIN_SITE}/contact.html`}>Contact Us</a>
+        <a class="footer-link" href={`${MAIN_SITE}/service.html`}>Our Services</a>
+        <a class="footer-link" href={`${MAIN_SITE}/bitcoin-for-corporations.html`}
+          >Bitcoin for Corporations</a
+        >
+        <a class="footer-link" href="/">News</a>
+        <a class="footer-link" href={`${MAIN_SITE}/donation.html`}>Donate a Book</a>
+        <a class="footer-link" href={`${MAIN_SITE}/newsletter.html`}>Newsletter</a>
+        <a class="footer-link" href={`${MAIN_SITE}/privacy.html`}>Privacy</a>
+        <a class="footer-link" href={`${MAIN_SITE}/terms.html`}>Terms</a>
+      </div>
+    </div>
+
+    <div class="mt-10 rounded-lg border border-border bg-card p-6">
+      <h3 class="mb-2 font-semibold">Stay Ahead in the Crypto Game</h3>
+      <p class="mb-4 text-secondary">Join now! Don't get left behind in the crypto revolution!</p>
+      <form action="https://formspree.io/f/xnnpkkqo" method="POST" class="flex flex-col gap-3 sm:flex-row">
+        <input
+          class="w-full rounded-md border border-border bg-page px-4 py-3 text-dark"
+          type="email"
+          name="email"
+          placeholder="Your email"
+          aria-label="Your email"
+          required
+        />
+        <button type="submit" class="btn-primary shrink-0">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="border-t border-border py-6">
+    <div class="section-shell flex flex-col items-center justify-between gap-3 text-sm text-secondary md:flex-row">
+      <p>
+        &copy; <a href={MAIN_SITE} class="text-primary hover:underline">DuaCrypto 2025</a>, All Right
+        Reserved.
+      </p>
+      <p>
+        <a href="/rss.xml" class="text-primary hover:underline">RSS</a>
+      </p>
+    </div>
+  </div>
+</footer>

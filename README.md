@@ -1,43 +1,43 @@
-# Astro Starter Kit: Minimal
+# DuaCrypto News — news.duacrypto.com
 
-```sh
-npm create astro@latest -- --template minimal
+Astro content site for DuaCrypto news, guides, and community stories.
+
+## Local development
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open http://localhost:4321
 
-## 🚀 Project Structure
+## Build
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deploy (Cloudflare Pages)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. Create GitHub repo `duacrypto-news` and push this project.
+2. Reuse TokenDC secrets: `CLOUDFLARE_PAGES_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.
+3. GitHub Actions deploys to Cloudflare Pages project **`dc-news`** on push to `main`.
+4. In Cloudflare Pages → **dc-news** → Custom domains → add **`news.duacrypto.com`**.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Content
 
-## 🧞 Commands
+Posts live in `src/content/posts/*.md` with validated frontmatter (see `src/content.config.ts`).
 
-All commands are run from the root of the project, from a terminal:
+- `npm run fix:draft` — validate all posts against schema
+- `npm run generate:post -- "Topic here"` — AI draft (local, requires `ANTHROPIC_API_KEY`)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## AI publishing
 
-## 👀 Want to learn more?
+- **Cron:** `.github/workflows/ai-draft-post.yml` opens draft PRs Mon/Wed/Fri.
+- **Interactive:** Claude Code in this repo — write markdown, review, push.
+- Merging a PR to `main` auto-deploys via GitHub Actions.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Seed posts
+
+Migrated from TokenDC `public/md/blog/` (6 posts, July 2026).

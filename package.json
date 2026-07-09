@@ -9,9 +9,17 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "validate:posts": "node scripts/validate-posts.mjs",
+    "generate:post": "node scripts/generate-post.mjs"
   },
   "dependencies": {
-    "astro": "^7.0.7"
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.7",
+    "tailwindcss": "^4.3.2",
+    "yaml": "^2.9.0",
+    "zod": "^4.4.3"
   }
 }

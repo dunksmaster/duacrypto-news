@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import site from "../../data/site.json";
+const CATEGORY_LABELS = site.categoryLabels;
+import { formatDate, postSlug, readingTime, getPublishedPosts } from "../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: postSlug(post.id) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const slug = postSlug(post.id);
+const minutes = readingTime(post.body ?? "");
+const allPosts = await getPublishedPosts();
+const related = allPosts
+  .filter((p) => p.id !== post.id && p.data.category === post.data.category)
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}
+  type="article"
+  pubDate={post.data.pubDate}
+  author={post.data.author}
+  canonical={`${Astro.site}posts/${slug}/`}
+>
+  <article class="py-12">
+    <div class="section-shell max-w-3xl">
+      <div class="mb-6 flex flex-wrap items-center gap-2">
+        <a href={`/category/${post.data.category}/`} class="category-pill">
+          {CATEGORY_LABELS[post.data.category]}
+        </a>
+        {post.data.aiGenerated && <span class="text-xs text-secondary">AI-assisted</span>}
+      </div>
+
+      <h1 class="mb-4 text-4xl font-bold leading-tight">{post.data.title}</h1>
+      <p class="mb-6 text-lg text-secondary">{post.data.description}</p>
+
+      <div class="mb-8 flex flex-wrap gap-3 border-b border-border pb-6 text-sm text-secondary">
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+        <span>·</span>
+        <span>{post.data.author}</span>
+        <span>·</span>
+        <span>{minutes} min read</span>
+      </div>
+
+      {
+        post.data.image && (
+          <img
+            src={post.data.image}
+            alt=""
+            width="1200"
+            height="630"
+            class="mb-8 w-full rounded-lg border border-border"
+            loading="eager"
+          />
+        )
+      }
+
+      <div class="post-prose space-y-4 text-dark [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_a]:text-primary [&_a]:underline [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6">
+        <Content />
+      </div>
+
+      {
+        post.data.tags.length > 0 && (
+          <div class="mt-10 flex flex-wrap gap-2 border-t border-border pt-6">
+            {post.data.tags.map((tag) => (
+              <a href={`/tags/${tag}/`} class="rounded-full bg-surface px-3 py-1 text-sm text-primary hover:underline">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </article>
+
+  {
+    related.length > 0 && (
+      <section class="border-t border-border bg-surface py-12">
+        <div class="section-shell">
+          <h2 class="mb-6 text-2xl">Related posts</h2>
+          <div class="grid gap-6 md:grid-cols-3">
+            {related.map((item) => (
+              <PostCard post={item} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

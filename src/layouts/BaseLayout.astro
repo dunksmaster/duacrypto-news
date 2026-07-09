@@ -1,0 +1,90 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import site from "../data/site.json";
+
+const SITE_NAME = site.siteName;
+const SITE_DESCRIPTION = site.siteDescription;
+const MAIN_SITE = site.mainSite;
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+  pubDate?: Date;
+  author?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  image = "/img/duacrypto-logo.png",
+  type = "website",
+  pubDate,
+  author,
+  canonical,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+
+const jsonLd =
+  type === "article" && pubDate
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: title,
+        description,
+        datePublished: pubDate.toISOString(),
+        author: { "@type": "Organization", name: author ?? "DuaCrypto" },
+        publisher: {
+          "@type": "Organization",
+          name: "DuaCrypto",
+          url: MAIN_SITE,
+        },
+        mainEntityOfPage: canonicalUrl,
+        image: ogImage,
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: Astro.site,
+        description,
+      };
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline src="/theme-init.js"></script>
+    <link rel="icon" href="/img/duacrypto-logo.png" type="image/png" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href="/rss.xml" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
