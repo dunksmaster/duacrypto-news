@@ -5,8 +5,9 @@
  * Usage:
  *   ANTHROPIC_API_KEY=... node scripts/generate-post.mjs "Topic title"
  *   ANTHROPIC_API_KEY=... node scripts/generate-post.mjs --queue
+ *   ANTHROPIC_API_KEY=... node scripts/generate-post.mjs --localize si-te-blej-bitcoin-ne-shqiperi
  */
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse as parseYaml } from "yaml";
@@ -45,7 +46,10 @@ const postSchema = z.object({
   draft: z.boolean().default(true),
   aiGenerated: z.boolean().default(true),
   lang: z.enum(["en", "sq"]).default("en"),
+  translationKey: z.string().optional(),
   translationOf: z.string().optional(),
+  targetKeyword: z.string().optional(),
+  directAnswer: z.string().optional(),
 });
 
 const STYLE_GUIDE = `You write for DuaCrypto News (news.duacrypto.com) — Albania's first Bitcoin/Web3 community.
@@ -71,6 +75,18 @@ Score profiles (include in frontmatter, self-rate honestly):
 - guide: empathy 85, storytelling 75, cta 40
 - community: empathy 90, storytelling 90, cta 50`;
 
+const LOCALIZE_GUIDE = `You LOCALIZE Albanian DuaCrypto News posts into English — never literal translation.
+
+Rules:
+- Own English target keyword (Google US/EU diaspora intent), own slug-friendly title, EUR/USD pricing — not LEK-first.
+- Albanian diaspora angle (Italy, Germany, Switzerland) where relevant.
+- Same facts and affiliate links (/go/*) but rewritten voice for English SEO.
+- Keep translationKey identical to the source post.
+- lang: en, draft: true, aiGenerated: true
+- Include targetKeyword, directAnswer, faq (2-3), howToSteps when source is a guide.
+- Link to /en/posts/ for English internal links; you may link once to the Albanian pillar with rel context.
+- Do NOT copy Albanian sentence structure or calques.`;
+
 function slugify(text) {
   return text
     .toLowerCase()
@@ -87,6 +103,98 @@ function parseFrontmatter(raw) {
   const data = parseYaml(match[1]);
   const body = match[2].trim();
   return { data, body };
+}
+
+async function callClaudeLocalize(sourceMeta, sourceBody, enKeywordHint) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) throw new Error("ANTHROPIC_API_KEY is required");
+
+  const prompt = `${LOCALIZE_GUIDE}
+
+Source Albanian post frontmatter (YAML):
+${sourceMeta}
+
+Source body (markdown):
+${sourceBody.slice(0, 12000)}
+
+Suggested English keyword: ${enKeywordHint || "derive from topic for diaspora + Albania intent"}
+
+Return ONLY a complete markdown file with YAML frontmatter for the EN localized version.
+Required frontmatter fields: title, description, pubDate (today), author, category, postType, targetKeyword, directAnswer, translationKey (same as source), lang: en, tags, draft: true, aiGenerated: true.
+Use a short English slug concept in the title (filename will be derived from title).`;
+
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+    },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 4096,
+      messages: [{ role: "user", content: prompt }],
+    }),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Anthropic API ${res.status}: ${err}`);
+  }
+
+  const json = await res.json();
+  const text = json.content?.find((c) => c.type === "text")?.text;
+  if (!text) throw new Error("Empty Claude response");
+  return text.trim();
+}
+
+function loadSourcePost(slug) {
+  const direct = join(postsDir, `${slug}.md`);
+  if (existsSync(direct)) {
+    const raw = readFileSync(direct, "utf8");
+    const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+    if (!match) throw new Error(`${slug}.md: missing frontmatter`);
+    return { slug, metaYaml: match[1], body: match[2].trim(), data: parseYaml(match[1]) };
+  }
+  const hit = readdirSync(postsDir).find((n) => n.endsWith(".md") && n.replace(/\.md$/, "") === slug);
+  if (!hit) throw new Error(`Source post not found: ${slug}`);
+  const raw = readFileSync(join(postsDir, hit), "utf8");
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!match) throw new Error(`${hit}: missing frontmatter`);
+  return { slug: hit.replace(/\.md$/, ""), metaYaml: match[1], body: match[2].trim(), data: parseYaml(match[1]) };
+}
+
+async function localizeFromSlug(slug, enKeywordHint) {
+  const source = loadSourcePost(slug);
+  if (source.data.lang === "en") {
+    throw new Error("Source post is already English — pick an Albanian (sq) pillar.");
+  }
+  if (!source.data.translationKey) {
+    console.warn("Warning: source post has no translationKey — add one before publishing the pair.");
+  }
+
+  console.log(`Localizing (not translating): ${source.slug} → English`);
+  const raw = await callClaudeLocalize(source.metaYaml, source.body, enKeywordHint);
+  const { data, body } = parseFrontmatter(raw);
+  const validated = postSchema.parse({
+    ...data,
+    lang: "en",
+    translationKey: data.translationKey ?? source.data.translationKey,
+    draft: true,
+    aiGenerated: true,
+  });
+
+  const outSlug = slugify(validated.title);
+  const filename = `${outSlug}.md`;
+  const outPath = join(postsDir, filename);
+
+  if (existsSync(outPath)) {
+    throw new Error(`File already exists: ${filename} — edit manually or pick a new title.`);
+  }
+
+  writeFileSync(outPath, buildFile(validated, body), "utf8");
+  console.log(`Wrote localized EN draft: ${outPath}`);
+  return { filename, title: validated.title, translationKey: validated.translationKey };
 }
 
 async function callClaude(topic, category, postType, tags, lang, targetKeyword) {
@@ -170,6 +278,11 @@ function buildFile(data, body) {
 `
     : "";
   const langLine = data.lang && data.lang !== "en" ? `lang: ${data.lang}\n` : "";
+  const keyLine = data.translationKey ? `translationKey: ${data.translationKey}\n` : "";
+  const kwLine = data.targetKeyword ? `targetKeyword: "${String(data.targetKeyword).replace(/"/g, '\\"')}"\n` : "";
+  const daLine = data.directAnswer
+    ? `directAnswer: "${String(data.directAnswer).replace(/"/g, '\\"')}"\n`
+    : "";
   return `---
 title: "${data.title.replace(/"/g, '\\"')}"
 description: "${data.description.replace(/"/g, '\\"')}"
@@ -177,8 +290,8 @@ pubDate: ${pubDate}
 author: "${data.author}"
 category: ${data.category}
 postType: ${data.postType ?? "news"}
-${scoresYaml}tags: ${tagsYaml}
-${langLine}draft: ${data.draft}
+${kwLine}${daLine}${scoresYaml}tags: ${tagsYaml}
+${langLine}${keyLine}draft: ${data.draft}
 aiGenerated: ${data.aiGenerated}
 ---
 
@@ -229,7 +342,20 @@ async function generateForTopic({
 }
 
 async function main() {
-  const arg = process.argv.slice(2).join(" ").trim();
+  const args = process.argv.slice(2);
+
+  if (args[0] === "--localize") {
+    const slug = args[1];
+    const keywordHint = args[2];
+    if (!slug) {
+      console.error("Usage: node scripts/generate-post.mjs --localize <sq-slug> [en-keyword-hint]");
+      process.exit(1);
+    }
+    await localizeFromSlug(slug, keywordHint);
+    return;
+  }
+
+  const arg = args.join(" ").trim();
 
   if (arg === "--queue") {
     const queuePath = join(root, "content-queue.yaml");
@@ -241,7 +367,7 @@ async function main() {
   }
 
   if (!arg) {
-    console.error("Usage: node scripts/generate-post.mjs \"Topic\" | --queue");
+    console.error('Usage: node scripts/generate-post.mjs "Topic" | --queue | --localize <sq-slug>');
     process.exit(1);
   }
 

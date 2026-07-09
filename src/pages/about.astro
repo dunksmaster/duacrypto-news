@@ -1,30 +1,36 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import site from "../data/site.json";
+import { t } from "../i18n/ui";
+
+const locale = "sq" as const;
+const strings = t(locale);
 const MAIN_SITE = site.mainSite;
 ---
 
 <BaseLayout
-  title="About DuaCrypto News"
-  description="About the DuaCrypto News site — Bitcoin and Web3 stories from Albania and the Balkans."
+  title={`${strings.about} — DuaCrypto News`}
+  description="Rreth DuaCrypto News — lajme Bitcoin dhe Web3 nga Shqipëria dhe Ballkani."
+  lang="sq"
+  locale={locale}
 >
   <section class="py-12">
     <div class="section-shell max-w-3xl">
-      <h1 class="mb-6 text-4xl font-bold">About DuaCrypto News</h1>
+      <h1 class="mb-6 text-4xl font-bold">Rreth DuaCrypto News</h1>
       <div class="space-y-4 text-secondary [&_a]:text-primary [&_a]:underline">
         <p>
-          DuaCrypto News is the editorial home for event recaps, guides, analysis, and community
-          stories from <a href={MAIN_SITE}>DuaCrypto</a> — Albania's first Bitcoin and Web3
-          community, founded in 2020.
+          DuaCrypto News është shtëpia editoriale për recap-e eventesh, udhëzues, analiza dhe
+          histori komuniteti nga <a href={MAIN_SITE}>DuaCrypto</a> — komuniteti i parë Bitcoin dhe
+          Web3 në Shqipëri, i themeluar në 2020.
         </p>
         <p>
-          We publish practical education for newcomers, enterprise insights for corporate teams, and
-          on-the-ground reporting from meetups and regional conferences across the Balkans.
+          Publikojmë edukim praktik për fillestarët, analiza për ekipet korporative dhe raportime
+          nga meetup-et dhe konferencat rajonale në Ballkan.
         </p>
         <p>
-          Want to collaborate or suggest a topic? Email
-          <a href="mailto:usdc@duacrypto.com">usdc@duacrypto.com</a> or join our
-          <a href="https://t.me/dua_crypto">Telegram community</a>.
+          Dëshironi bashkëpunim? Email
+          <a href="mailto:usdc@duacrypto.com">usdc@duacrypto.com</a> ose
+          <a href="https://t.me/dua_crypto">Telegram</a>.
         </p>
       </div>
     </div>

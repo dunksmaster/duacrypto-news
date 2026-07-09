@@ -2,7 +2,7 @@
 
 Confirmed: **news.duacrypto.com uses `ai-train=yes`** (main site stays `ai-train=no`).
 
-## Shipped
+## Shipped (SEO/GEO Week 1)
 
 | Item | Location |
 |------|----------|
@@ -16,6 +16,21 @@ Confirmed: **news.duacrypto.com uses `ai-train=yes`** (main site stays `ai-train
 | Keyword scoreboard | `docs/KEYWORDS.md` |
 | Pillar posts (clusters 1, 4, 5) | `si-te-blej-bitcoin-ne-shqiperi`, legal, scams |
 | AI generator SEO fields | `targetKeyword`, `directAnswer`, `faq` in prompt |
+
+## Shipped (Phase i18n)
+
+Bilingual routing and SEO pairing are live — see **`docs/I18N-IMPLEMENTATION.md`** for full detail.
+
+| Item | Status |
+|------|--------|
+| `/en/` URL tree | Live |
+| `translationKey` + hreflang + self-canonicals | Live |
+| `og:locale` alternates | Live |
+| Sitemap `xhtml:link` hreflang | Live (prebuild map) |
+| Localize-not-translate AI (`--localize`) | Live |
+| Pilot EN pillar | `buy-bitcoin-in-albania` |
+
+**Still open:** EN coverage for remaining SQ affiliate/pillar posts, D1 request-translation, shared Giscus by key, IT/DE locales.
 
 ## Operator (manual)
 

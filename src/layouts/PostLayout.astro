@@ -1,0 +1,235 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
+import NewsletterCTA from "../components/NewsletterCTA.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import RequestTranslation from "../components/RequestTranslation.astro";
+import type { CollectionEntry } from "astro:content";
+import site from "../data/site.json";
+import { t, localePath, type Locale } from "../i18n/ui";
+import {
+  formatDate,
+  postSlug,
+  readingTime,
+  getPublishedPosts,
+  postHref,
+  categoryHref,
+} from "../lib/posts";
+import {
+  buildHreflangAlternates,
+  buildOgLocaleAlternates,
+  findTranslationPartner,
+  getPostLocale,
+  switcherTarget,
+} from "../lib/i18n";
+import {
+  organizationJsonLd,
+  breadcrumbJsonLd,
+  faqJsonLd,
+  howToJsonLd,
+  blogPostingJsonLd,
+} from "../lib/organization";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  locale: Locale;
+}
+
+const { post, locale } = Astro.props;
+const strings = t(locale);
+const { Content } = await render(post);
+const slug = postSlug(post.id);
+const minutes = readingTime(post.body ?? "");
+const lang = getPostLocale(post);
+const isAffiliate = post.data.postType === "affiliate";
+const allPosts = await getPublishedPosts();
+const related = allPosts
+  .filter((p) => getPostLocale(p) === locale && p.id !== post.id && p.data.category === post.data.category)
+  .slice(0, 3);
+
+const base = Astro.site?.href ?? "https://news.duacrypto.com/";
+const canonical = new URL(postHref(slug, locale), base).href;
+const categoryLabel = site.categoryLabels[post.data.category];
+
+const hreflangAlternates = buildHreflangAlternates(post, allPosts, base);
+const ogLocaleInfo = buildOgLocaleAlternates(post, allPosts);
+const hasTranslation = Boolean(findTranslationPartner(post, allPosts));
+const languageSwitch = switcherTarget(post, allPosts, locale);
+
+const breadcrumbItems = [
+  { name: strings.home, url: new URL(localePath("/", locale), base).href },
+  {
+    name: categoryLabel,
+    url: new URL(categoryHref(post.data.category, locale), base).href,
+  },
+  { name: post.data.title, url: canonical },
+];
+
+const jsonLdExtra = [
+  organizationJsonLd(),
+  blogPostingJsonLd({
+    title: post.data.title,
+    description: post.data.description,
+    canonicalUrl: canonical,
+    ogImage: new URL(post.data.image ?? "/img/duacrypto-logo.png", Astro.site).href,
+    pubDate: post.data.pubDate,
+    updatedDate: post.data.updatedDate,
+    lang,
+  }),
+  breadcrumbJsonLd(breadcrumbItems),
+  ...(post.data.faq?.length ? [faqJsonLd(post.data.faq)!] : []),
+  ...(post.data.howToSteps?.length
+    ? [howToJsonLd(post.data.title, post.data.description, post.data.howToSteps)!]
+    : []),
+].filter(Boolean);
+
+const updated = post.data.updatedDate ?? post.data.pubDate;
+const mdMirror = `/md/posts/${slug}.md`;
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}
+  type="article"
+  pubDate={post.data.pubDate}
+  author={post.data.author}
+  canonical={canonical}
+  lang={lang}
+  locale={locale}
+  hreflangAlternates={hreflangAlternates}
+  ogLocale={ogLocaleInfo.locale}
+  ogLocaleAlternates={ogLocaleInfo.alternates}
+  jsonLdExtra={jsonLdExtra}
+  pagefindLang={lang}
+  switchTarget={languageSwitch}
+>
+  <article class="py-12" data-pagefind-body>
+    <div class="section-shell max-w-3xl">
+      <Breadcrumbs
+        items={[
+          { label: strings.home, href: localePath("/", locale) },
+          { label: categoryLabel, href: categoryHref(post.data.category, locale) },
+          { label: post.data.title },
+        ]}
+      />
+
+      <div class="mb-6 flex flex-wrap items-center gap-2">
+        <a href={categoryHref(post.data.category, locale)} class="category-pill">
+          {categoryLabel}
+        </a>
+        {post.data.aiGenerated && <span class="text-xs text-secondary">AI-assisted</span>}
+      </div>
+
+      <h1 class="mb-4 text-4xl font-bold leading-tight">{post.data.title}</h1>
+      <p class="mb-6 text-lg text-secondary">{post.data.description}</p>
+
+      {
+        post.data.directAnswer && (
+          <div class="direct-answer mb-8 rounded-lg border border-primary/30 bg-surface px-4 py-3 text-dark leading-relaxed">
+            <p class="m-0 font-semibold text-sm text-secondary mb-1">{strings.directAnswerLabel}</p>
+            <p class="m-0">{post.data.directAnswer}</p>
+          </div>
+        )
+      }
+
+      {isAffiliate && <AffiliateDisclosure lang={lang} />}
+
+      {!hasTranslation && (
+        <RequestTranslation
+          locale={locale}
+          postSlug={slug}
+          translationKey={post.data.translationKey ?? slug}
+          postTitle={post.data.title}
+        />
+      )}
+
+      <div class="mb-8 flex flex-wrap gap-3 border-b border-border pb-6 text-sm text-secondary">
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
+        {
+          updated.getTime() !== post.data.pubDate.getTime() && (
+            <>
+              <span>·</span>
+              <span>{strings.updated} {formatDate(updated, locale)}</span>
+            </>
+          )
+        }
+        <span>·</span>
+        <a href={localePath("/authors/dua/", locale)} class="text-primary hover:underline">{post.data.author}</a>
+        <span>·</span>
+        <span>{minutes} {strings.minRead}</span>
+        <span>·</span>
+        <a href={mdMirror} class="text-primary hover:underline" rel="alternate" type="text/markdown">
+          {strings.markdown}
+        </a>
+      </div>
+
+      {
+        post.data.image && (
+          <img
+            src={post.data.image}
+            alt={post.data.targetKeyword ?? post.data.title}
+            width="1200"
+            height="675"
+            class="mb-8 w-full rounded-lg border border-border"
+            loading="eager"
+          />
+        )
+      }
+
+      <div class="post-prose space-y-4 text-dark [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_a]:text-primary [&_a]:underline [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6">
+        <Content />
+      </div>
+
+      {
+        post.data.faq && post.data.faq.length > 0 && (
+          <section class="mt-10 border-t border-border pt-8" id="faq">
+            <h2 class="mb-4 text-2xl font-bold">{strings.faqTitle}</h2>
+            <div class="space-y-4">
+              {post.data.faq.map((item) => (
+                <details class="rounded-lg border border-border bg-surface px-4 py-3">
+                  <summary class="cursor-pointer font-semibold">{item.question}</summary>
+                  <p class="mt-2 mb-0 text-secondary leading-relaxed">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {isAffiliate && <NewsletterCTA lang={lang} />}
+
+      {
+        post.data.tags.length > 0 && (
+          <div class="mt-10 flex flex-wrap gap-2 border-t border-border pt-6">
+            {post.data.tags.map((tag) => (
+              <a
+                href={localePath(`/tags/${tag}/`, locale)}
+                class="rounded-full bg-surface px-3 py-1 text-sm text-primary hover:underline"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </article>
+
+  {
+    related.length > 0 && (
+      <section class="border-t border-border bg-surface py-12">
+        <div class="section-shell">
+          <h2 class="mb-6 text-2xl">{strings.relatedPosts}</h2>
+          <div class="grid gap-6 md:grid-cols-3">
+            {related.map((item) => (
+              <PostCard post={item} locale={locale} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

@@ -1,0 +1,44 @@
+{
+  "alternates": {
+    "/posts/2026-07-09-welcome-duacrypto-news-sq/": [
+      {
+        "href": "https://news.duacrypto.com/posts/2026-07-09-welcome-duacrypto-news-sq/",
+        "hreflang": "sq"
+      },
+      {
+        "href": "https://news.duacrypto.com/en/posts/2026-07-09-welcome-duacrypto-news/",
+        "hreflang": "en"
+      }
+    ],
+    "/en/posts/2026-07-09-welcome-duacrypto-news/": [
+      {
+        "href": "https://news.duacrypto.com/posts/2026-07-09-welcome-duacrypto-news-sq/",
+        "hreflang": "sq"
+      },
+      {
+        "href": "https://news.duacrypto.com/en/posts/2026-07-09-welcome-duacrypto-news/",
+        "hreflang": "en"
+      }
+    ],
+    "/en/posts/buy-bitcoin-in-albania/": [
+      {
+        "href": "https://news.duacrypto.com/en/posts/buy-bitcoin-in-albania/",
+        "hreflang": "en"
+      },
+      {
+        "href": "https://news.duacrypto.com/posts/si-te-blej-bitcoin-ne-shqiperi/",
+        "hreflang": "sq"
+      }
+    ],
+    "/posts/si-te-blej-bitcoin-ne-shqiperi/": [
+      {
+        "href": "https://news.duacrypto.com/en/posts/buy-bitcoin-in-albania/",
+        "hreflang": "en"
+      },
+      {
+        "href": "https://news.duacrypto.com/posts/si-te-blej-bitcoin-ne-shqiperi/",
+        "hreflang": "sq"
+      }
+    ]
+  }
+}

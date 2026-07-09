@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import site from "../data/site.json";
 import { organizationJsonLd } from "../lib/organization";
+import type { Locale } from "../i18n/ui";
 
 const SITE_NAME = site.siteName;
 const SITE_DESCRIPTION = site.siteDescription;
@@ -18,9 +19,14 @@ interface Props {
   author?: string;
   canonical?: string;
   lang?: string;
+  locale?: Locale;
   hreflangAlternates?: { hreflang: string; href: string }[];
   jsonLdExtra?: Record<string, unknown>[];
   noLargePreview?: boolean;
+  ogLocale?: string;
+  ogLocaleAlternates?: string[];
+  pagefindLang?: string;
+  switchTarget?: { href: string; available: boolean; label?: string };
 }
 
 const {
@@ -28,18 +34,22 @@ const {
   description = SITE_DESCRIPTION,
   image = "/img/duacrypto-logo.png",
   type = "website",
-  pubDate,
-  author,
   canonical,
   lang = "en",
+  locale = lang === "sq" ? "sq" : "en",
   hreflangAlternates = [],
   jsonLdExtra = [],
   noLargePreview = false,
+  ogLocale = locale === "sq" ? "sq_AL" : "en_US",
+  ogLocaleAlternates = locale === "sq" ? ["en_US"] : ["sq_AL"],
+  pagefindLang,
+  switchTarget,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
+const rssHref = locale === "en" ? "/en/rss.xml" : "/rss.xml";
 
 const graph = [
   type === "website"
@@ -59,13 +69,13 @@ const jsonLd = graph.length === 1 ? graph[0] : { "@context": "https://schema.org
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} data-pagefind-filter={`lang:${pagefindLang ?? lang}`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline src="/theme-init.js"></script>
     <link rel="icon" href="/img/duacrypto-logo.png" type="image/png" />
-    <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href={rssHref} />
     {hreflangAlternates.map((alt) => (
       <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
     ))}
@@ -76,6 +86,10 @@ const jsonLd = graph.length === 1 ? graph[0] : { "@context": "https://schema.org
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     )}
     <meta property="og:type" content={type} />
+    <meta property="og:locale" content={ogLocale} />
+    {ogLocaleAlternates.map((alt) => (
+      <meta property="og:locale:alternate" content={alt} />
+    ))}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -87,11 +101,11 @@ const jsonLd = graph.length === 1 ? graph[0] : { "@context": "https://schema.org
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script defer src="/js/gtag-deferred.js"></script>
   </head>
-  <body class="min-h-screen flex flex-col">
-    <Header />
+  <body class="min-h-screen flex flex-col" data-pagefind-filter={`lang:${pagefindLang ?? lang}`}>
+    <Header locale={locale} switchTarget={switchTarget} />
     <main class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
   </body>
 </html>

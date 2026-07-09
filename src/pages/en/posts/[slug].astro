@@ -1,13 +1,13 @@
 ---
 import { getCollection } from "astro:content";
-import PostLayout from "../../layouts/PostLayout.astro";
-import { postSlug } from "../../lib/posts";
-import { getPostLocale } from "../../lib/i18n";
+import PostLayout from "../../../layouts/PostLayout.astro";
+import { postSlug } from "../../../lib/posts";
+import { getPostLocale } from "../../../lib/i18n";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
   return posts
-    .filter((post) => getPostLocale(post) === "sq")
+    .filter((post) => getPostLocale(post) === "en")
     .map((post) => ({
       params: { slug: postSlug(post.id) },
       props: { post },
@@ -17,4 +17,4 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<PostLayout post={post} locale="sq" />
+<PostLayout post={post} locale="en" />

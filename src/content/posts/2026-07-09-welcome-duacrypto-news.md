@@ -5,6 +5,7 @@ pubDate: 2026-07-09
 author: "DuaCrypto"
 category: community
 tags: [announcement, news-site]
+translationKey: welcome-duacrypto-news-2026
 draft: false
 aiGenerated: false
 image: /img/duacrypto-logo.png

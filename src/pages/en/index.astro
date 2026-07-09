@@ -1,11 +1,11 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import PostCard from "../components/PostCard.astro";
-import { getPublishedPostsForLocale } from "../lib/posts";
-import { t, localePath } from "../i18n/ui";
-import site from "../data/site.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import { getPublishedPostsForLocale } from "../../lib/posts";
+import { t, localePath } from "../../i18n/ui";
+import site from "../../data/site.json";
 
-const locale = "sq" as const;
+const locale = "en" as const;
 const strings = t(locale);
 const CATEGORY_LABELS = site.categoryLabels;
 const NAV_CATEGORIES = site.navCategories;
@@ -17,10 +17,10 @@ const latest = posts.slice(1);
 
 <BaseLayout
   title="DuaCrypto News"
-  description={site.siteDescription}
-  lang="sq"
+  description="Bitcoin and Web3 news for the Albanian diaspora and Balkans — in English."
+  lang="en"
   locale={locale}
-  canonical={`${Astro.site}`}
+  canonical={`${Astro.site}en/`}
 >
   <section class="border-b border-border bg-surface py-16" data-pagefind-body>
     <div class="section-shell">

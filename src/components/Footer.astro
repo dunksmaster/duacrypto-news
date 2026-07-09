@@ -1,6 +1,16 @@
 ---
 import site from "../data/site.json";
+import { localePath, t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "sq" } = Astro.props;
+const strings = t(locale);
 const MAIN_SITE = site.mainSite;
+const newsHome = localePath("/", locale);
+const rssHref = locale === "en" ? "/en/rss.xml" : "/rss.xml";
 ---
 
 <footer class="bg-surface pt-12">
@@ -16,25 +26,33 @@ const MAIN_SITE = site.mainSite;
             class="h-10 w-auto shrink-0"
           />
           <p class="mb-0 text-secondary">
-            DuaCrypto, founded in 2020, is proud to be the first crypto community in Albania.
+            {locale === "sq"
+              ? "DuaCrypto, e themeluar në 2020, është komuniteti i parë kripto në Shqipëri."
+              : "DuaCrypto, founded in 2020, is proud to be the first crypto community in Albania."}
           </p>
         </div>
         <ul class="space-y-2 text-secondary">
-          <li>We're open to collaborations, partnerships, and creative ideas.</li>
+          <li>
+            {locale === "sq"
+              ? "Jemi të hapur për bashkëpunime dhe ide kreative."
+              : "We're open to collaborations, partnerships, and creative ideas."}
+          </li>
           <li class="break-words">
-            Reach out via email or our
+            {locale === "sq" ? "Na kontaktoni me email ose" : "Reach out via email or our"}
             <a
               href="https://blockscan.com/address/2ECp5NXzGzx4R49DDnQu2nbJiVPKMzKXRHVmHrxp4Exh"
               target="_blank"
               rel="noopener noreferrer"
-              class="break-all text-primary hover:underline">official wallet</a
-            >.
+              class="break-all text-primary hover:underline"
+            >
+              {locale === "sq" ? "portofolin zyrtar" : "official wallet"}
+            </a>.
           </li>
         </ul>
       </div>
 
       <div>
-        <h3 class="mb-4 font-semibold">Get In Touch</h3>
+        <h3 class="mb-4 font-semibold">{locale === "sq" ? "Kontakt" : "Get In Touch"}</h3>
         <p class="mb-2 text-secondary">Tirana, Albania</p>
         <p class="mb-2 break-words">
           <a href="mailto:usdc@duacrypto.com" class="break-all text-primary hover:underline"
@@ -44,34 +62,40 @@ const MAIN_SITE = site.mainSite;
       </div>
 
       <div>
-        <h3 class="mb-4 font-semibold">Quick Links</h3>
-        <a class="footer-link" href={`${MAIN_SITE}/about.html`}>About Us</a>
-        <a class="footer-link" href={`${MAIN_SITE}/contact.html`}>Contact Us</a>
-        <a class="footer-link" href={`${MAIN_SITE}/service.html`}>Our Services</a>
+        <h3 class="mb-4 font-semibold">{locale === "sq" ? "Lidhje" : "Quick Links"}</h3>
+        <a class="footer-link" href={`${MAIN_SITE}/about.html`}>{locale === "sq" ? "Rreth nesh" : "About Us"}</a>
+        <a class="footer-link" href={`${MAIN_SITE}/contact.html`}>{locale === "sq" ? "Kontakt" : "Contact Us"}</a>
+        <a class="footer-link" href={`${MAIN_SITE}/service.html`}>{locale === "sq" ? "Shërbimet" : "Our Services"}</a>
         <a class="footer-link" href={`${MAIN_SITE}/bitcoin-for-corporations.html`}
           >Bitcoin for Corporations</a
         >
-        <a class="footer-link" href="/">News</a>
-        <a class="footer-link" href={`${MAIN_SITE}/donation.html`}>Donate a Book</a>
+        <a class="footer-link" href={newsHome}>{strings.news}</a>
+        <a class="footer-link" href={`${MAIN_SITE}/donation.html`}>{locale === "sq" ? "Dhuroni libër" : "Donate a Book"}</a>
         <a class="footer-link" href={`${MAIN_SITE}/newsletter.html`}>Newsletter</a>
-        <a class="footer-link" href={`${MAIN_SITE}/privacy.html`}>Privacy</a>
-        <a class="footer-link" href={`${MAIN_SITE}/terms.html`}>Terms</a>
+        <a class="footer-link" href={`${MAIN_SITE}/privacy.html`}>{locale === "sq" ? "Privatësia" : "Privacy"}</a>
+        <a class="footer-link" href={`${MAIN_SITE}/terms.html`}>{locale === "sq" ? "Kushtet" : "Terms"}</a>
       </div>
     </div>
 
     <div class="mt-10 rounded-lg border border-border bg-card p-6">
-      <h3 class="mb-2 font-semibold">Stay Ahead in the Crypto Game</h3>
-      <p class="mb-4 text-secondary">Join now! Don't get left behind in the crypto revolution!</p>
+      <h3 class="mb-2 font-semibold">
+        {locale === "sq" ? "Qëndro përpara në kripto" : "Stay Ahead in the Crypto Game"}
+      </h3>
+      <p class="mb-4 text-secondary">
+        {locale === "sq"
+          ? "Regjistrohu — mos mbet pas në revolucionin kripto!"
+          : "Join now! Don't get left behind in the crypto revolution!"}
+      </p>
       <form action="https://formspree.io/f/xnnpkkqo" method="POST" class="flex flex-col gap-3 sm:flex-row">
         <input
           class="w-full rounded-md border border-border bg-page px-4 py-3 text-dark"
           type="email"
           name="email"
-          placeholder="Your email"
-          aria-label="Your email"
+          placeholder={locale === "sq" ? "Email-i juaj" : "Your email"}
+          aria-label={locale === "sq" ? "Email-i juaj" : "Your email"}
           required
         />
-        <button type="submit" class="btn-primary shrink-0">Sign Up</button>
+        <button type="submit" class="btn-primary shrink-0">{locale === "sq" ? "Regjistrohu" : "Sign Up"}</button>
       </form>
     </div>
   </div>
@@ -83,7 +107,7 @@ const MAIN_SITE = site.mainSite;
         Reserved.
       </p>
       <p>
-        <a href="/rss.xml" class="text-primary hover:underline">RSS</a>
+        <a href={rssHref} class="text-primary hover:underline">RSS</a>
       </p>
     </div>
   </div>

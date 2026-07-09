@@ -1,14 +1,34 @@
 ---
 import site from "../data/site.json";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { t, localePath, type Locale } from "../i18n/ui";
 
+interface Props {
+  locale?: Locale;
+  switchTarget?: { href: string; available: boolean; label?: string };
+}
+
+const { locale = "sq", switchTarget } = Astro.props;
+const strings = t(locale);
 const { pathname } = Astro.url;
 const MAIN_SITE = site.mainSite;
+const prefix = locale === "en" ? "/en" : "";
+
+const nav = [
+  { href: localePath("/", locale), label: strings.home, match: pathname === prefix || pathname === `${prefix}/` },
+  { href: localePath("/category/news/", locale), label: strings.news, match: pathname.includes("/category/news") },
+  { href: localePath("/category/analysis/", locale), label: strings.analysis, match: pathname.includes("/category/analysis") },
+  { href: localePath("/category/guides/", locale), label: strings.guides, match: pathname.includes("/category/guides") },
+  { href: localePath("/category/community/", locale), label: strings.community, match: pathname.includes("/category/community") },
+  { href: localePath("/search/", locale), label: strings.search, match: pathname.includes("/search") },
+  { href: localePath("/about/", locale), label: strings.about, match: pathname.includes("/about") },
+];
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-surface shadow-sm">
   <div class="section-shell">
     <div class="flex h-[75px] items-center justify-between gap-4">
-      <a href="/" class="flex shrink-0 items-center gap-2" aria-label="DuaCrypto News home">
+      <a href={localePath("/", locale)} class="flex shrink-0 items-center gap-2" aria-label="DuaCrypto News home">
         <img
           src="/img/duacrypto-logo.png"
           alt="DuaCrypto"
@@ -35,35 +55,16 @@ const MAIN_SITE = site.mainSite;
         class="absolute left-0 right-0 top-[75px] hidden flex-col border-t border-border bg-surface px-4 pb-4 lg:static lg:flex lg:flex-1 lg:flex-row lg:items-center lg:justify-end lg:border-0 lg:bg-transparent lg:px-0 lg:pb-0"
       >
         <div class="flex flex-col lg:ml-auto lg:flex-row lg:items-center lg:gap-6">
-          <a href="/" class:list={["nav-link", { "nav-link-active": pathname === "/" }]}>Home</a>
-          <a
-            href="/category/news/"
-            class:list={["nav-link", { "nav-link-active": pathname.startsWith("/category/news") }]}
-            >News</a
-          >
-          <a
-            href="/category/analysis/"
-            class:list={["nav-link", { "nav-link-active": pathname.startsWith("/category/analysis") }]}
-            >Analysis</a
-          >
-          <a
-            href="/category/guides/"
-            class:list={["nav-link", { "nav-link-active": pathname.startsWith("/category/guides") }]}
-            >Guides</a
-          >
-          <a
-            href="/category/community/"
-            class:list={["nav-link", { "nav-link-active": pathname.startsWith("/category/community") }]}
-            >Community</a
-          >
-          <a href="/search/" class:list={["nav-link", { "nav-link-active": pathname.startsWith("/search") }]}>Search</a>
-          <a href="/about/" class:list={["nav-link", { "nav-link-active": pathname.startsWith("/about") }]}
-            >About</a
-          >
-          <a href={MAIN_SITE} class="nav-link">Main site</a>
+          {nav.map((item) => (
+            <a href={item.href} class:list={["nav-link", { "nav-link-active": item.match }]}>
+              {item.label}
+            </a>
+          ))}
+          <a href={MAIN_SITE} class="nav-link">{strings.mainSite}</a>
         </div>
 
-        <div class="mt-4 flex items-center gap-2 lg:ml-6 lg:mt-0">
+        <div class="mt-4 flex items-center gap-3 lg:ml-6 lg:mt-0">
+          <LanguageSwitcher locale={locale} switchTarget={switchTarget} />
           <button
             type="button"
             data-theme-toggle

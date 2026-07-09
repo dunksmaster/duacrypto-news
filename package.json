@@ -7,13 +7,14 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/generate-md-mirrors.mjs",
+    "prebuild": "node scripts/generate-headers.mjs && node scripts/build-i18n-map.mjs && node scripts/generate-en-redirects.mjs && node scripts/generate-md-mirrors.mjs",
     "build": "astro build",
-    "postbuild": "pagefind --site dist && node scripts/ping-indexnow.mjs",
+    "postbuild": "pagefind --site dist && node scripts/ping-indexnow.mjs && node scripts/verify-security-headers.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "validate:posts": "node scripts/validate-posts.mjs",
     "generate:post": "node scripts/generate-post.mjs",
+    "generate:localize": "node scripts/generate-post.mjs --localize",
     "generate:md-mirrors": "node scripts/generate-md-mirrors.mjs",
     "ping:indexnow": "node scripts/ping-indexnow.mjs",
     "smoke": "node scripts/smoke-test-news.mjs"

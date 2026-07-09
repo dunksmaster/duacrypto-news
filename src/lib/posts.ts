@@ -1,5 +1,7 @@
 import { getCollection } from "astro:content";
 import type { Category } from "../content.config";
+import { filterPostsByLocale, type Locale } from "./i18n";
+import { localePath } from "../i18n/ui";
 
 export async function getPublishedPosts() {
   const posts = await getCollection("posts");
@@ -8,20 +10,24 @@ export async function getPublishedPosts() {
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
 
-export async function getPostsByCategory(category: Category) {
-  const posts = await getPublishedPosts();
+export async function getPublishedPostsForLocale(locale: Locale) {
+  return filterPostsByLocale(await getPublishedPosts(), locale);
+}
+
+export async function getPostsByCategory(category: Category, locale?: Locale) {
+  const posts = locale ? await getPublishedPostsForLocale(locale) : await getPublishedPosts();
   return posts.filter((post) => post.data.category === category);
 }
 
-export async function getPostsByTag(tag: string) {
-  const posts = await getPublishedPosts();
+export async function getPostsByTag(tag: string, locale?: Locale) {
+  const posts = locale ? await getPublishedPostsForLocale(locale) : await getPublishedPosts();
   return posts.filter((post) =>
     post.data.tags.some((t) => t.toLowerCase() === tag.toLowerCase()),
   );
 }
 
-export function formatDate(date: Date) {
-  return date.toLocaleDateString("en-GB", {
+export function formatDate(date: Date, locale: Locale = "en") {
+  return date.toLocaleDateString(locale === "sq" ? "sq-AL" : "en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -35,4 +41,16 @@ export function readingTime(body: string) {
 
 export function postSlug(id: string) {
   return id.replace(/\.mdx?$/, "");
+}
+
+export function postHref(slug: string, locale: Locale) {
+  return locale === "en" ? `/en/posts/${slug}/` : `/posts/${slug}/`;
+}
+
+export function categoryHref(category: string, locale: Locale) {
+  return localePath(`/category/${category}/`, locale);
+}
+
+export function tagHref(tag: string, locale: Locale) {
+  return localePath(`/tags/${tag}/`, locale);
 }

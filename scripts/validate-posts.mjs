@@ -39,6 +39,7 @@ const postSchema = z.object({
   draft: z.boolean(),
   aiGenerated: z.boolean(),
   lang: z.enum(["en", "sq"]).optional(),
+  translationKey: z.string().optional(),
   translationOf: z.string().optional(),
 });
 

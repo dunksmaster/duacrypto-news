@@ -1,12 +1,18 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { t } from "../i18n/ui";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { t } from "../../i18n/ui";
 
-const locale = "sq" as const;
+const locale = "en" as const;
 const strings = t(locale);
 ---
 
-<BaseLayout title={strings.searchTitle} description={strings.searchDescription} lang="sq" locale={locale}>
+<BaseLayout
+  title={strings.searchTitle}
+  description={strings.searchDescription}
+  lang="en"
+  locale={locale}
+  canonical={`${Astro.site}en/search/`}
+>
   <section class="py-12" data-pagefind-body>
     <div class="section-shell max-w-3xl">
       <h1 class="mb-6 text-4xl font-bold">{strings.searchTitle}</h1>
@@ -16,17 +22,12 @@ const strings = t(locale);
   </section>
   <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
   <script is:inline src="/pagefind/pagefind-ui.js"></script>
-  <script is:inline define:vars={{ filterLang: "sq" }}>
+  <script is:inline>
     window.addEventListener("DOMContentLoaded", function () {
       if (typeof PagefindUI === "undefined") return;
-      new PagefindUI({
-        element: "#search",
-        showSubResults: true,
-        resetStyles: false,
-        translations: { placeholder: "Kërko artikuj..." },
-      });
+      new PagefindUI({ element: "#search", showSubResults: true, resetStyles: false });
       document.querySelectorAll("[data-pagefind-filter]").forEach(function (el) {
-        if (!String(el.getAttribute("data-pagefind-filter")).includes("lang:sq")) {
+        if (!String(el.getAttribute("data-pagefind-filter")).includes("lang:en")) {
           el.setAttribute("data-pagefind-ignore", "true");
         }
       });

@@ -6,6 +6,7 @@ author: "DuaCrypto"
 category: community
 tags: [announcement, sq]
 lang: sq
+translationKey: welcome-duacrypto-news-2026
 translationOf: 2026-07-09-welcome-duacrypto-news
 draft: false
 aiGenerated: false

@@ -1,22 +1,24 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import site from "../data/site.json";
-const CATEGORY_LABELS = site.categoryLabels;
-import { formatDate, postSlug } from "../lib/posts";
+import { formatDate, postHref, categoryHref, tagHref } from "../lib/posts";
+import type { Locale } from "../i18n/ui";
 
 interface Props {
   post: CollectionEntry<"posts">;
   featured?: boolean;
+  locale?: Locale;
 }
 
-const { post, featured = false } = Astro.props;
-const slug = postSlug(post.id);
+const { post, featured = false, locale = "sq" } = Astro.props;
+const slug = post.id.replace(/\.mdx?$/, "");
+const CATEGORY_LABELS = site.categoryLabels;
 ---
 
 <article class:list={["post-card h-full", { "md:flex-row md:items-start md:gap-6": featured }]}>
   <div class="flex-1">
     <div class="mb-3 flex flex-wrap items-center gap-2">
-      <a href={`/category/${post.data.category}/`} class="category-pill">
+      <a href={categoryHref(post.data.category, locale)} class="category-pill">
         {CATEGORY_LABELS[post.data.category]}
       </a>
       {post.data.aiGenerated && (
@@ -24,18 +26,18 @@ const slug = postSlug(post.id);
       )}
     </div>
     <h2 class:list={["mb-2", featured ? "text-3xl" : "text-xl"]}>
-      <a href={`/posts/${slug}/`} class="hover:text-primary">{post.data.title}</a>
+      <a href={postHref(slug, locale)} class="hover:text-primary">{post.data.title}</a>
     </h2>
     <p class="mb-4 text-secondary">{post.data.description}</p>
     <div class="mt-auto flex flex-wrap items-center gap-3 text-sm text-secondary">
-      <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+      <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
       <span>·</span>
       <span>{post.data.author}</span>
     </div>
     {post.data.tags.length > 0 && (
       <div class="mt-4 flex flex-wrap gap-2">
         {post.data.tags.map((tag) => (
-          <a href={`/tags/${tag}/`} class="text-xs text-primary hover:underline">#{tag}</a>
+          <a href={tagHref(tag, locale)} class="text-xs text-primary hover:underline">#{tag}</a>
         ))}
       </div>
     )}

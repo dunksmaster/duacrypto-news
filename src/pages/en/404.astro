@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { t, localePath } from "../i18n/ui";
-import { getPublishedPostsForLocale, postHref, postSlug } from "../lib/posts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { t, localePath } from "../../i18n/ui";
+import { getPublishedPostsForLocale, postHref, postSlug } from "../../lib/posts";
 
-const locale = "sq" as const;
+const locale = "en" as const;
 const strings = t(locale);
 const posts = await getPublishedPostsForLocale(locale);
 ---
@@ -11,8 +11,9 @@ const posts = await getPublishedPostsForLocale(locale);
 <BaseLayout
   title={strings.notFoundTitle}
   description={strings.notFoundBody}
-  lang="sq"
+  lang="en"
   locale={locale}
+  canonical={`${Astro.site}en/404/`}
 >
   <section class="py-24 text-center" data-pagefind-body>
     <div class="section-shell">

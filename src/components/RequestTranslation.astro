@@ -1,0 +1,37 @@
+---
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  postSlug: string;
+  translationKey: string;
+  postTitle: string;
+}
+
+const { locale, postSlug, translationKey, postTitle } = Astro.props;
+const strings = t(locale);
+---
+
+<aside class="mb-6 rounded-lg border border-dashed border-border bg-surface px-4 py-3 text-sm text-secondary">
+  <p class="m-0 mb-2">
+    {locale === "sq" ? strings.notTranslatedYet : strings.notTranslatedYetEn}
+  </p>
+  <form
+    class="flex flex-col gap-2 sm:flex-row sm:items-center"
+    action="https://formspree.io/f/xnnpkkqo"
+    method="POST"
+  >
+    <input type="hidden" name="_subject" value={`Translation request: ${postTitle}`} />
+    <input type="hidden" name="post_slug" value={postSlug} />
+    <input type="hidden" name="translation_key" value={translationKey} />
+    <input type="hidden" name="requested_locale" value={locale === "sq" ? "en" : "sq"} />
+    <input type="hidden" name="source_page" value={`https://news.duacrypto.com${locale === "en" ? "/en" : ""}/posts/${postSlug}/`} />
+    <input
+      type="email"
+      name="email"
+      placeholder="Email (optional)"
+      class="flex-1 rounded-md border border-border bg-page px-3 py-2 text-dark text-sm"
+    />
+    <button type="submit" class="btn-primary shrink-0 text-sm">{strings.requestTranslation}</button>
+  </form>
+</aside>
