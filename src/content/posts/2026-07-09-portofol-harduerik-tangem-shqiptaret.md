@@ -11,6 +11,7 @@ scores:
   cta: 62
 tags: [tangem, portofol-harduerik, self-custody, sq, affiliate, bitcoin]
 lang: sq
+translationKey: tangem-wallet-albania-2026
 draft: false
 aiGenerated: false
 image: /img/duacrypto-logo.png

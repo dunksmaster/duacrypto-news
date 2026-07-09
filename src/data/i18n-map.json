@@ -1,5 +1,45 @@
 {
   "alternates": {
+    "/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/": [
+      {
+        "href": "https://news.duacrypto.com/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/",
+        "hreflang": "sq"
+      },
+      {
+        "href": "https://news.duacrypto.com/en/posts/bitget-signup-albania-kosovo/",
+        "hreflang": "en"
+      }
+    ],
+    "/en/posts/bitget-signup-albania-kosovo/": [
+      {
+        "href": "https://news.duacrypto.com/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/",
+        "hreflang": "sq"
+      },
+      {
+        "href": "https://news.duacrypto.com/en/posts/bitget-signup-albania-kosovo/",
+        "hreflang": "en"
+      }
+    ],
+    "/posts/2026-07-09-portofol-harduerik-tangem-shqiptaret/": [
+      {
+        "href": "https://news.duacrypto.com/posts/2026-07-09-portofol-harduerik-tangem-shqiptaret/",
+        "hreflang": "sq"
+      },
+      {
+        "href": "https://news.duacrypto.com/en/posts/tangem-hardware-wallet-albania/",
+        "hreflang": "en"
+      }
+    ],
+    "/en/posts/tangem-hardware-wallet-albania/": [
+      {
+        "href": "https://news.duacrypto.com/posts/2026-07-09-portofol-harduerik-tangem-shqiptaret/",
+        "hreflang": "sq"
+      },
+      {
+        "href": "https://news.duacrypto.com/en/posts/tangem-hardware-wallet-albania/",
+        "hreflang": "en"
+      }
+    ],
     "/posts/2026-07-09-welcome-duacrypto-news-sq/": [
       {
         "href": "https://news.duacrypto.com/posts/2026-07-09-welcome-duacrypto-news-sq/",
@@ -17,6 +57,26 @@
       },
       {
         "href": "https://news.duacrypto.com/en/posts/2026-07-09-welcome-duacrypto-news/",
+        "hreflang": "en"
+      }
+    ],
+    "/posts/a-eshte-bitcoin-i-ligjshem-ne-shqiperi/": [
+      {
+        "href": "https://news.duacrypto.com/posts/a-eshte-bitcoin-i-ligjshem-ne-shqiperi/",
+        "hreflang": "sq"
+      },
+      {
+        "href": "https://news.duacrypto.com/en/posts/is-bitcoin-legal-in-albania/",
+        "hreflang": "en"
+      }
+    ],
+    "/en/posts/is-bitcoin-legal-in-albania/": [
+      {
+        "href": "https://news.duacrypto.com/posts/a-eshte-bitcoin-i-ligjshem-ne-shqiperi/",
+        "hreflang": "sq"
+      },
+      {
+        "href": "https://news.duacrypto.com/en/posts/is-bitcoin-legal-in-albania/",
         "hreflang": "en"
       }
     ],

@@ -1,0 +1,101 @@
+---
+import site from "../data/site.json";
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  postTitle: string;
+}
+
+const { locale, postTitle } = Astro.props;
+const strings = t(locale);
+const address = site.lightningAddress?.trim();
+---
+
+{
+  address && (
+    <>
+      <button
+        type="button"
+        class="engagement-zap"
+        data-zap-btn
+        data-zap-address={address}
+        data-zap-title={postTitle}
+        title={strings.zapTitle}
+      >
+        ⚡ {strings.zap}
+      </button>
+      <div
+        id="zap-modal"
+        class="zap-modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="zap-modal-title"
+      >
+        <div class="zap-modal-backdrop" data-zap-close />
+        <div class="zap-modal-panel">
+          <h3 id="zap-modal-title" class="mb-2 text-lg font-bold">{strings.zapTitle}</h3>
+          <p class="mb-4 text-sm text-secondary">{strings.zapHint}</p>
+          <p class="mb-2 text-xs text-secondary break-all" data-zap-invoice hidden />
+          <div class="flex flex-wrap gap-2">
+            <button type="button" class="btn-primary text-sm" data-zap-copy hidden>
+              {strings.zapCopyInvoice}
+            </button>
+            <button type="button" class="btn-secondary text-sm" data-zap-close-btn>
+              {strings.zapClose}
+            </button>
+          </div>
+          <p class="mt-3 text-xs text-secondary" data-zap-error hidden />
+        </div>
+      </div>
+    </>
+  )
+}
+
+<style>
+  .engagement-zap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.875rem;
+  }
+  .engagement-zap:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  .zap-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .zap-modal.hidden {
+    display: none;
+  }
+  .zap-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 0.45);
+  }
+  .zap-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 28rem);
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 1.25rem;
+    box-shadow: 0 12px 40px rgb(0 0 0 / 0.15);
+  }
+</style>
+
+<script defer src="/js/zap.js"></script>

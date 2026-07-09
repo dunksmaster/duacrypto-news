@@ -8,5 +8,12 @@
     "guides": "Guides",
     "community": "Community"
   },
-  "navCategories": ["news", "analysis", "guides", "community"]
+  "navCategories": ["news", "analysis", "guides", "community"],
+  "lightningAddress": "",
+  "nostrPublicKey": "",
+  "nostrRelays": [
+    "wss://relay.damus.io",
+    "wss://nos.lol",
+    "wss://relay.nostr.band"
+  ]
 }

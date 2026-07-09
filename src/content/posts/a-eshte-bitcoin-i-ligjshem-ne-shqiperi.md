@@ -8,6 +8,7 @@ postType: guide
 targetKeyword: "a është bitcoin i ligjshëm në shqipëri"
 directAnswer: "Në Shqipëri, mbajtja dhe përdorimi personal i Bitcoin zakonisht nuk ndalohet në mënyrë eksplicite për individët, por kripto nuk është monedhë zyrtare dhe rregulloret/tatimet mund të ndryshojnë. Kontrollo gjithmonë burime zyrtare dhe konsulto profesionist lokal për detyrime tatimore — ky artikull është edukim, jo këshillë ligjore."
 lang: sq
+translationKey: bitcoin-legal-albania-2026
 tags: [bitcoin, shqiperi, ligj, rregullore, sq, trust]
 draft: false
 aiGenerated: false

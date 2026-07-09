@@ -1,0 +1,65 @@
+---
+import { t, localePath, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = t(locale);
+const enHref = localePath("/", "en");
+---
+
+<div
+  id="geo-banner"
+  class="geo-banner hidden"
+  role="region"
+  aria-label={strings.geoBannerLabel}
+  data-locale={locale}
+  data-en-href={enHref}
+>
+  <p class="geo-banner-text">{strings.geoBannerText}</p>
+  <div class="geo-banner-actions">
+    <a href={enHref} class="geo-banner-link">{strings.geoBannerSwitch}</a>
+    <button type="button" class="geo-banner-dismiss" data-geo-dismiss>
+      {strings.geoBannerDismiss}
+    </button>
+  </div>
+</div>
+
+<style>
+  .geo-banner {
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+    padding: 0.65rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+  }
+  .geo-banner.hidden {
+    display: none;
+  }
+  .geo-banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .geo-banner-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: underline;
+  }
+  .geo-banner-dismiss {
+    border: 0;
+    background: transparent;
+    color: var(--color-secondary);
+    cursor: pointer;
+    font: inherit;
+    text-decoration: underline;
+  }
+</style>
+
+<script defer src="/js/geo-banner.js"></script>

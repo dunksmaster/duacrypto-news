@@ -11,6 +11,7 @@ scores:
   cta: 61
 tags: [bitget, exchange, sq, affiliate, bitcoin, kosove]
 lang: sq
+translationKey: bitget-signup-albania-2026
 draft: false
 aiGenerated: false
 image: /img/duacrypto-logo.png

@@ -1,31 +1,30 @@
-# Later — deferred work (saved for when you return)
+# Deferred work — see completed items below (2026-07-09)
 
-Pick up here after GitHub/Cloudflare noise is sorted.
+## Part B — Zaps / Nostr
 
-## Part B — Zaps / Nostr (needs your keys)
-
-| Step | Blocker |
-|------|---------|
-| Zap button + LNURL modal | Alby Lightning address → add to `src/data/site.json` |
-| Nostr auto-publish | `NOSTR_NSEC` GitHub secret + `scripts/publish-nostr.mjs` |
-| ZapThreads comments | Nostr event IDs + CSP updates for relay websockets |
+| Step | Status |
+|------|--------|
+| Zap button + LNURL modal | ✅ Code live — set `lightningAddress` in `src/data/site.json` |
+| Nostr auto-publish | ✅ `scripts/publish-nostr.mjs` + workflow — set `NOSTR_NSEC` secret |
+| Nostr note links on posts | ✅ `NostrNote.astro` — set `nostrPublicKey` + run publish |
+| ZapThreads comments | ⏳ Optional — use nostr.band links for now |
 
 ## Part A — finish hardening
 
-- Cloudflare Access on `/admin/stats` + `/api/stats`
-- Rate-limit rule: 10 POST/min per IP on `/api/views/*` and `/api/likes/*`
+- Cloudflare Access on `/admin/stats` + `/api/stats` → **`docs/CLOUDFLARE-ACCESS-SETUP.md`**
+- Rate-limit POSTs → ✅ D1 in code + **`docs/CLOUDFLARE-RATE-LIMITS.md`**
 - IndexNow: re-verify Bing key (403 today)
 
 ## Geo + growth
 
-- Geo language-suggestion banner (Cloudflare Functions)
-- GSC → content queue automation
-- Weekly 5-number metrics ritual (`/admin/stats`)
+- Geo language-suggestion banner → ✅ `/api/geo` + `GeoBanner.astro`
+- GSC → content queue → ✅ `npm run import:gsc-queue`
+- EN localize posts → ✅ 3 new EN pairs (Bitget, Tangem, legal)
 
 ## Optional
 
 - `docs/POST-REDESIGN-PLAN.md` — post page visual refresh
-- Merge Dependabot PRs manually (don't auto-merge major action bumps)
+- Merge Dependabot PRs manually
 
 ## Already live (do not rebuild)
 

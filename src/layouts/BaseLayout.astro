@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import GeoBanner from "../components/GeoBanner.astro";
 import site from "../data/site.json";
 import { organizationJsonLd } from "../lib/organization";
 import type { Locale } from "../i18n/ui";
@@ -116,6 +117,7 @@ const jsonLd = graph.length === 1 ? graph[0] : { "@context": "https://schema.org
     <script defer src="/js/gtag-deferred.js"></script>
   </head>
   <body class="min-h-screen flex flex-col" data-pagefind-filter={`lang:${pagefindLang ?? lang}`}>
+    <GeoBanner locale={locale} />
     <Header locale={locale} switchTarget={switchTarget} />
     <main class="flex-1">
       <slot />

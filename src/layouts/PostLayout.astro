@@ -8,6 +8,8 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
 import RequestTranslation from "../components/RequestTranslation.astro";
 import ShareRow from "../components/ShareRow.astro";
 import EmbedCopy from "../components/EmbedCopy.astro";
+import ZapButton from "../components/ZapButton.astro";
+import NostrNote from "../components/NostrNote.astro";
 import type { CollectionEntry } from "astro:content";
 import site from "../data/site.json";
 import { t, localePath, type Locale } from "../i18n/ui";
@@ -160,6 +162,7 @@ const mdMirror = `/md/posts/${slug}.md`;
         <button type="button" class="engagement-like" data-like-btn aria-pressed="false">
           🧡 <span data-likes>0</span>
         </button>
+        <ZapButton locale={locale} postTitle={post.data.title} />
       </div>
 
       <div class="mb-8 flex flex-wrap gap-3 border-b border-border pb-6 text-sm text-secondary">
@@ -201,6 +204,7 @@ const mdMirror = `/md/posts/${slug}.md`;
 
       <ShareRow locale={locale} shareUrl={shareUrl} shareTitle={post.data.title} />
       <EmbedCopy locale={locale} embedUrl={embedUrl} postTitle={post.data.title} />
+      <NostrNote locale={locale} slug={slug} />
 
       {
         post.data.faq && post.data.faq.length > 0 && (

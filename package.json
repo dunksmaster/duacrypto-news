@@ -17,7 +17,10 @@
     "generate:localize": "node scripts/generate-post.mjs --localize",
     "generate:md-mirrors": "node scripts/generate-md-mirrors.mjs",
     "ping:indexnow": "node scripts/ping-indexnow.mjs",
-    "smoke": "node scripts/smoke-test-news.mjs"
+    "smoke": "node scripts/smoke-test-news.mjs",
+    "verify:engagement": "node scripts/verify-engagement.mjs",
+    "import:gsc-queue": "node scripts/import-gsc-queue.mjs",
+    "publish:nostr": "node scripts/publish-nostr.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.1",
@@ -31,6 +34,7 @@
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
+    "nostr-tools": "^2.10.4",
     "pagefind": "^1.5.2",
     "wrangler": "^4.100.0"
   }

@@ -1,0 +1,60 @@
+name: Publish to Nostr
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Optional post slug (leave empty for all unpublished)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Check NOSTR_NSEC
+        id: nostr
+        env:
+          NOSTR_NSEC: ${{ secrets.NOSTR_NSEC }}
+        run: |
+          if [ -z "$NOSTR_NSEC" ]; then
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::NOSTR_NSEC not set — skipping. Run: gh secret set NOSTR_NSEC -R dunksmaster/duacrypto-news"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        if: steps.nostr.outputs.ok == 'true'
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.nostr.outputs.ok == 'true'
+        run: npm ci
+
+      - name: Publish notes
+        if: steps.nostr.outputs.ok == 'true'
+        env:
+          NOSTR_NSEC: ${{ secrets.NOSTR_NSEC }}
+        run: |
+          if [ -n "${{ inputs.slug }}" ]; then
+            node scripts/publish-nostr.mjs --slug "${{ inputs.slug }}"
+          else
+            node scripts/publish-nostr.mjs
+          fi
+
+      - name: Commit nostr-events.json
+        if: steps.nostr.outputs.ok == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/nostr-events.json
+          git diff --staged --quiet || git commit -m "Nostr: publish event IDs"
+          git push

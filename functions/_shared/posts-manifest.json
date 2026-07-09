@@ -111,6 +111,16 @@
       "thumbnail": "https://news.duacrypto.com/og/bitcoin-self-custody-basics.png"
     },
     {
+      "slug": "bitget-signup-albania-kosovo",
+      "lang": "en",
+      "title": "How to Sign Up on Bitget from Albania or Kosovo",
+      "description": "Step-by-step Bitget registration, KYC, and first Bitcoin buy for Albanian and Kosovar readers — plus diaspora tips in EUR.",
+      "category": "guides",
+      "canonical": "https://news.duacrypto.com/en/posts/bitget-signup-albania-kosovo/",
+      "embedUrl": "https://news.duacrypto.com/en/embed/bitget-signup-albania-kosovo/",
+      "thumbnail": "https://news.duacrypto.com/og/bitget-signup-albania-kosovo.png"
+    },
+    {
       "slug": "buy-bitcoin-in-albania",
       "lang": "en",
       "title": "How to Buy Bitcoin in Albania — Complete Guide (2026)",
@@ -141,6 +151,16 @@
       "thumbnail": "https://news.duacrypto.com/og/donate-a-book-campaign.png"
     },
     {
+      "slug": "is-bitcoin-legal-in-albania",
+      "lang": "en",
+      "title": "Is Bitcoin Legal in Albania? — Practical Guide (2026)",
+      "description": "What Albanian and diaspora readers should know about Bitcoin legality, taxes, banks, and safe on-ramps — clear facts without legal hype.",
+      "category": "guides",
+      "canonical": "https://news.duacrypto.com/en/posts/is-bitcoin-legal-in-albania/",
+      "embedUrl": "https://news.duacrypto.com/en/embed/is-bitcoin-legal-in-albania/",
+      "thumbnail": "https://news.duacrypto.com/og/is-bitcoin-legal-in-albania.png"
+    },
+    {
       "slug": "join-duacrypto-community",
       "lang": "en",
       "title": "How to Join the DuaCrypto Community",
@@ -169,6 +189,16 @@
       "canonical": "https://news.duacrypto.com/posts/si-te-njoh-mashtrimet-kripto/",
       "embedUrl": "https://news.duacrypto.com/embed/si-te-njoh-mashtrimet-kripto/",
       "thumbnail": "https://news.duacrypto.com/og/si-te-njoh-mashtrimet-kripto.png"
+    },
+    {
+      "slug": "tangem-hardware-wallet-albania",
+      "lang": "en",
+      "title": "Tangem Hardware Wallet for Albanian Bitcoin Savers",
+      "description": "Why self-custody matters for Balkan Bitcoiners — Tangem card-style wallet setup, backup basics, and EUR-priced context for diaspora savers.",
+      "category": "guides",
+      "canonical": "https://news.duacrypto.com/en/posts/tangem-hardware-wallet-albania/",
+      "embedUrl": "https://news.duacrypto.com/en/embed/tangem-hardware-wallet-albania/",
+      "thumbnail": "https://news.duacrypto.com/og/tangem-hardware-wallet-albania.png"
     }
   ]
 }
