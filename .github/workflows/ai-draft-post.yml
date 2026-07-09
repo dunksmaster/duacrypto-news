@@ -15,34 +15,40 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
+      - name: Check Anthropic secret
+        id: anthropic
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::ANTHROPIC_API_KEY not set — skipping AI draft. Run: gh secret set ANTHROPIC_API_KEY -R dunksmaster/duacrypto-news"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        if: steps.anthropic.outputs.ok == 'true'
         with:
           node-version: "22"
           cache: npm
 
-      - name: Check Anthropic secret
-        run: |
-          if [ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
-            echo "::warning::ANTHROPIC_API_KEY not set — skipping AI draft. Run: gh secret set ANTHROPIC_API_KEY -R dunksmaster/duacrypto-news"
-            exit 0
-          fi
-
       - name: Install dependencies
-        if: secrets.ANTHROPIC_API_KEY != ''
+        if: steps.anthropic.outputs.ok == 'true'
         run: npm ci
 
       - name: Generate draft post
-        if: secrets.ANTHROPIC_API_KEY != ''
+        if: steps.anthropic.outputs.ok == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/generate-post.mjs --queue
 
       - name: Validate posts
-        if: secrets.ANTHROPIC_API_KEY != ''
+        if: steps.anthropic.outputs.ok == 'true'
         run: npm run validate:posts
 
       - name: Create pull request
-        if: secrets.ANTHROPIC_API_KEY != ''
+        if: steps.anthropic.outputs.ok == 'true'
         uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
