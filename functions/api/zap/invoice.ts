@@ -1,4 +1,4 @@
-import { json } from "../_shared/validators";
+import { json } from "../../_shared/validators";
 
 interface Env {
   DB?: D1Database;
