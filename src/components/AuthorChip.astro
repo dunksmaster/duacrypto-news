@@ -1,0 +1,32 @@
+---
+import author from "../data/author.json";
+import { localePath, t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = t(locale);
+const profileHref = localePath(author.profileUrl, locale);
+---
+
+<div class="author-chip mb-6 flex items-center gap-3">
+  <a href={profileHref} class="shrink-0">
+    <img
+      src={author.photo}
+      alt={author.displayName}
+      width="48"
+      height="48"
+      class="h-12 w-12 rounded-full border border-border object-cover"
+      loading="lazy"
+    />
+  </a>
+  <div class="min-w-0 text-sm">
+    <p class="m-0 font-semibold text-dark">
+      <a href={profileHref} class="text-dark hover:text-primary">{author.displayName}</a>
+      <span class="font-normal text-secondary"> · {author.role[locale]}</span>
+    </p>
+    <p class="m-0 mt-0.5 text-secondary line-clamp-2">{author.bio[locale]}</p>
+  </div>
+</div>

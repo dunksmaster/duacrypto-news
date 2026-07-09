@@ -1,8 +1,8 @@
 ---
 title: "Si të njoh mashtrimet kripto — udhëzues për shqiptarët"
 description: "Si të njoh mashtrimet kripto dhe scam-et në Telegram/WhatsApp — shenjat e kuqe, phishing, dhe mbrojtja e parave të tua."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-06-25
+author: "Dua"
 category: guides
 postType: guide
 targetKeyword: "si të njoh mashtrimet kripto"

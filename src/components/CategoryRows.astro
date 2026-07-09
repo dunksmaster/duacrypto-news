@@ -1,0 +1,43 @@
+---
+import PostCard from "./PostCard.astro";
+import { localePath, t, type Locale } from "../i18n/ui";
+import type { CollectionEntry } from "astro:content";
+import site from "../data/site.json";
+
+interface Props {
+  locale: Locale;
+  posts: CollectionEntry<"posts">[];
+}
+
+const { locale, posts } = Astro.props;
+const strings = t(locale);
+const categories = site.navCategories;
+
+const byCategory = categories
+  .map((cat) => ({
+    category: cat,
+    label: site.categoryLabels[cat as keyof typeof site.categoryLabels],
+    items: posts.filter((p) => p.data.category === cat).slice(0, 2),
+  }))
+  .filter((row) => row.items.length > 0);
+---
+
+{
+  byCategory.map((row) => (
+    <section class="pb-10">
+      <div class="section-shell">
+        <div class="mb-4 flex items-end justify-between gap-4">
+          <h2 class="text-2xl">{row.label}</h2>
+          <a href={localePath(`/category/${row.category}/`, locale)} class="text-sm text-primary hover:underline">
+            {strings.viewAll}
+          </a>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2">
+          {row.items.map((post) => (
+            <PostCard post={post} locale={locale} />
+          ))}
+        </div>
+      </div>
+    </section>
+  ))
+}

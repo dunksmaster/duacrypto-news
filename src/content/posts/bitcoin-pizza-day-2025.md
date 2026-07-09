@@ -2,7 +2,7 @@
 title: "Bitcoin Pizza Day 2025 Recap"
 description: "Highlights from DuaCrypto's Bitcoin Pizza Day meetup in Tirana — community, pizza, and live photos."
 pubDate: 2025-05-22
-author: "DuaCrypto"
+author: "Dua"
 category: news
 tags: [events, pizza-day, tirana]
 draft: false

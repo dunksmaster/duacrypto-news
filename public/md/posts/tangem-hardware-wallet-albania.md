@@ -4,7 +4,7 @@ description: "Why self-custody matters for Balkan Bitcoiners — Tangem card-sty
 source: "https://news.duacrypto.com/posts/tangem-hardware-wallet-albania/"
 lang: "en"
 targetKeyword: "tangem hardware wallet albania"
-pubDate: "2026-07-09"
+pubDate: "2026-07-04"
 ---
 
 If you bought Bitcoin on [Bitget](/go/bitget) or [CEX.io](/go/cex) after reading our [Albania buyer guide](/en/posts/buy-bitcoin-in-albania/), the next step is **self-custody** — keys you control, not the exchange.

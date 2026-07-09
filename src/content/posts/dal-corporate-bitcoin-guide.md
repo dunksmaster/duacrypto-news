@@ -2,7 +2,7 @@
 title: "DAL: Bitcoin for Corporations Explained"
 description: "Enterprise treasury strategy, executive networking, and Durana Tech Park residency for corporate Bitcoin adoption."
 pubDate: 2025-02-18
-author: "DuaCrypto"
+author: "Dua"
 category: analysis
 tags: [dal, enterprise, treasury]
 draft: false

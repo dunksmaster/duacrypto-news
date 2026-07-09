@@ -1,8 +1,8 @@
 ---
 title: "How to Buy Bitcoin in Albania — Complete Guide (2026)"
 description: "Buy Bitcoin in Albania or from the diaspora: trusted exchanges, card on-ramps, EUR pricing, and self-custody — practical steps without hype."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-06-19
+author: "Dua"
 category: guides
 postType: guide
 targetKeyword: "buy bitcoin in albania"

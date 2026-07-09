@@ -1,0 +1,28 @@
+---
+import { localePath, t, type Locale } from "../i18n/ui";
+import { postHref, postSlug } from "../lib/posts";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  locale: Locale;
+  posts: CollectionEntry<"posts">[];
+}
+
+const { locale, posts } = Astro.props;
+const strings = t(locale);
+
+const index = posts.map((p) => ({
+  slug: postSlug(p.id),
+  title: p.data.title,
+  href: postHref(postSlug(p.id), locale),
+}));
+---
+
+<section class="py-12 border-t border-border bg-surface" id="popular-posts" hidden>
+  <div class="section-shell">
+    <h2 class="mb-6 text-2xl">{strings.popularPosts}</h2>
+    <ol class="grid gap-3 md:grid-cols-2" id="popular-posts-list" data-locale={locale}></ol>
+  </div>
+  <script type="application/json" id="posts-index" set:html={JSON.stringify(index)} />
+  <script defer src="/js/popular-posts.js"></script>
+</section>

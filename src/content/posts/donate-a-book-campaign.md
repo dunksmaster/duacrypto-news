@@ -2,7 +2,7 @@
 title: "Donate a Book: Lightning-Powered Education"
 description: "How sats become Bitcoin books for Balkans students via Konsensus Network and DuaCrypto."
 pubDate: 2025-04-01
-author: "DuaCrypto"
+author: "Dua"
 category: community
 tags: [lightning, education, donation]
 draft: false

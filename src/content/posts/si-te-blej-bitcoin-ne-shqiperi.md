@@ -1,8 +1,8 @@
 ---
 title: "Si të blej Bitcoin në Shqipëri — udhëzues i plotë 2026"
 description: "Si të blej Bitcoin në Shqipëri ose Kosovë? Hapat praktikë: exchange, kartë, verifikim, dhe self-custody — pa hype."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-06-18
+author: "Dua"
 category: guides
 postType: guide
 targetKeyword: "si të blej bitcoin në shqipëri"

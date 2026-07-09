@@ -4,6 +4,9 @@ import BaseLayout from "./BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
 import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
 import NewsletterCTA from "../components/NewsletterCTA.astro";
+import NewsletterInline from "../components/NewsletterInline.astro";
+import AuthorChip from "../components/AuthorChip.astro";
+import AuthorBox from "../components/AuthorBox.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import RequestTranslation from "../components/RequestTranslation.astro";
 import ShareRow from "../components/ShareRow.astro";
@@ -21,6 +24,7 @@ import {
   postHref,
   categoryHref,
   resolveOgImagePath,
+  isGenericHeroImage,
 } from "../lib/posts";
 import {
   buildHreflangAlternates,
@@ -96,6 +100,9 @@ const jsonLdExtra = [
 
 const updated = post.data.updatedDate ?? post.data.pubDate;
 const mdMirror = `/md/posts/${slug}.md`;
+const showHero =
+  post.data.heroStyle !== "none" &&
+  (post.data.heroStyle === "screenshot" || !isGenericHeroImage(post.data.image));
 ---
 
 <BaseLayout
@@ -135,7 +142,27 @@ const mdMirror = `/md/posts/${slug}.md`;
       </div>
 
       <h1 class="mb-4 text-4xl font-bold leading-tight">{post.data.title}</h1>
-      <p class="mb-6 text-lg text-secondary">{post.data.description}</p>
+      <p class="mb-4 text-lg text-secondary">{post.data.description}</p>
+
+      <AuthorChip locale={locale} />
+
+      <div class="mb-4 flex flex-wrap items-center gap-3 text-sm text-secondary">
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
+        {
+          updated.getTime() !== post.data.pubDate.getTime() && (
+            <>
+              <span>·</span>
+              <span>{strings.updated} {formatDate(updated, locale)}</span>
+            </>
+          )
+        }
+        <span>·</span>
+        <span>{minutes} {strings.minRead}</span>
+        <span>·</span>
+        <a href={mdMirror} class="text-primary hover:underline" rel="alternate" type="text/markdown">
+          {strings.markdown}
+        </a>
+      </div>
 
       {
         post.data.directAnswer && (
@@ -148,51 +175,26 @@ const mdMirror = `/md/posts/${slug}.md`;
 
       {isAffiliate && <AffiliateDisclosure lang={lang} />}
 
-      {!hasTranslation && (
-        <RequestTranslation
-          locale={locale}
-          postSlug={slug}
-          translationKey={post.data.translationKey ?? slug}
-          postTitle={post.data.title}
-        />
-      )}
-
-      <div class="mb-4 flex flex-wrap items-center gap-3 text-sm" id="engagement-stats" data-slug={slug}>
-        <span class="engagement-stat" title="Views">👁 <span data-views>0</span></span>
-        <button type="button" class="engagement-like" data-like-btn aria-pressed="false">
-          🧡 <span data-likes>0</span>
-        </button>
+      <div class="mb-4 hidden flex-wrap items-center gap-3 text-sm" id="engagement-stats" data-slug={slug}>
+        <span class="engagement-stat hidden" data-views-stat title="Views">👁 <span data-views>0</span></span>
+        <span class="engagement-stat hidden" data-likes-stat>
+          <button type="button" class="engagement-like" data-like-btn aria-pressed="false">
+            🧡 <span data-likes>0</span>
+          </button>
+        </span>
+      </div>
+      <div class="mb-4">
         <ZapButton locale={locale} postTitle={post.data.title} />
       </div>
 
-      <div class="mb-8 flex flex-wrap gap-3 border-b border-border pb-6 text-sm text-secondary">
-        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
-        {
-          updated.getTime() !== post.data.pubDate.getTime() && (
-            <>
-              <span>·</span>
-              <span>{strings.updated} {formatDate(updated, locale)}</span>
-            </>
-          )
-        }
-        <span>·</span>
-        <a href={localePath("/authors/dua/", locale)} class="text-primary hover:underline">{post.data.author}</a>
-        <span>·</span>
-        <span>{minutes} {strings.minRead}</span>
-        <span>·</span>
-        <a href={mdMirror} class="text-primary hover:underline" rel="alternate" type="text/markdown">
-          {strings.markdown}
-        </a>
-      </div>
-
       {
-        post.data.image && (
+        showHero && post.data.image && (
           <img
             src={post.data.image}
             alt={post.data.targetKeyword ?? post.data.title}
             width="1200"
             height="675"
-            class="mb-8 w-full rounded-lg border border-border"
+            class="mb-8 max-h-[240px] w-full rounded-xl border border-border object-cover sm:max-h-[380px]"
             loading="eager"
           />
         )
@@ -201,6 +203,8 @@ const mdMirror = `/md/posts/${slug}.md`;
       <div class="post-prose space-y-4 text-dark [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_a]:text-primary [&_a]:underline [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6">
         <Content />
       </div>
+
+      <NewsletterInline locale={locale} />
 
       <ShareRow locale={locale} shareUrl={shareUrl} shareTitle={post.data.title} />
       <EmbedCopy locale={locale} embedUrl={embedUrl} postTitle={post.data.title} />
@@ -223,6 +227,17 @@ const mdMirror = `/md/posts/${slug}.md`;
       }
 
       {isAffiliate && <NewsletterCTA lang={lang} />}
+
+      <AuthorBox locale={locale} />
+
+      {!hasTranslation && (
+        <RequestTranslation
+          locale={locale}
+          postSlug={slug}
+          translationKey={post.data.translationKey ?? slug}
+          postTitle={post.data.title}
+        />
+      )}
 
       {
         post.data.tags.length > 0 && (
@@ -272,6 +287,10 @@ const mdMirror = `/md/posts/${slug}.md`;
   .engagement-like {
     cursor: pointer;
     font: inherit;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: inherit;
   }
   .engagement-like:hover {
     color: var(--color-primary);

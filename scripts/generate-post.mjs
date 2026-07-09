@@ -37,7 +37,7 @@ const postSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   pubDate: z.coerce.date(),
-  author: z.string().default("DuaCrypto AI Desk"),
+  author: z.string().default("Dua"),
   category: z.enum(["news", "analysis", "guides", "community"]),
   postType: z.enum(["affiliate", "news", "guide", "community"]).default("news"),
   scores: scoresSchema.optional(),
@@ -219,7 +219,7 @@ Return ONLY a markdown file starting with YAML frontmatter:
 title: "..."
 description: "..."
 pubDate: ${new Date().toISOString().slice(0, 10)}
-author: "DuaCrypto AI Desk"
+author: "Dua"
 category: ${category}
 postType: ${postType}
 targetKeyword: "..."

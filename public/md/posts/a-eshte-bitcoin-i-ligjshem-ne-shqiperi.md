@@ -4,7 +4,7 @@ description: "A është Bitcoin i ligjshëm në Shqipëri? Përmbledhje e qasjes
 source: "https://news.duacrypto.com/posts/a-eshte-bitcoin-i-ligjshem-ne-shqiperi/"
 lang: "sq"
 targetKeyword: "a është bitcoin i ligjshëm në shqipëri"
-pubDate: "2026-07-09"
+pubDate: "2026-06-22"
 ---
 
 **A është Bitcoin i ligjshëm në Shqipëri?** Pyetja vjen para se dikush të klikojë “Buy” — dhe është e drejtë. Në 2026, shumë shqiptarë mbajnë kripto, por **ligji dhe tatimet** nuk janë gjithmonë të qarta në blogje apo Telegram.

@@ -45,6 +45,10 @@ export function postSlug(id: string) {
 
 const DEFAULT_OG = "/img/duacrypto-logo.png";
 
+export function isGenericHeroImage(image: string | undefined): boolean {
+  return !image || image === DEFAULT_OG;
+}
+
 /** Branded build-time OG PNG unless the post has a custom hero image. */
 export function resolveOgImagePath(image: string | undefined, slug: string): string {
   if (image && image !== DEFAULT_OG) return image;

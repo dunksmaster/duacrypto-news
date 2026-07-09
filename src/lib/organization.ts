@@ -13,10 +13,16 @@ export const organization = {
 };
 
 export const authorDua = {
-  name: "DuaCrypto",
+  name: "Dua",
   url: "https://news.duacrypto.com/authors/dua/",
-  jobTitle: "Bitcoin & Web3 community — Albania",
-  sameAs: organization.sameAs,
+  jobTitle: "Founder, DuaCrypto — Bitcoin & Web3 community, Albania",
+  image: "https://duacrypto.com/img/kane-profile.png",
+  sameAs: [
+    "https://t.me/dua_crypto",
+    "https://x.com/duacrypto",
+    "https://duacrypto.com/about.html",
+    "https://github.com/dunksmaster/TokenDC",
+  ],
 };
 
 export function organizationJsonLd() {
@@ -34,6 +40,7 @@ export function personAuthorJsonLd() {
     "@type": "Person",
     name: authorDua.name,
     url: authorDua.url,
+    image: authorDua.image,
     jobTitle: authorDua.jobTitle,
     sameAs: authorDua.sameAs,
     worksFor: { "@type": "Organization", name: organization.name, url: organization.url },

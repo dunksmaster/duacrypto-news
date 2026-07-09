@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
+import CategoryRows from "../../components/CategoryRows.astro";
+import PopularPosts from "../../components/PopularPosts.astro";
 import { getPublishedPostsForLocale } from "../../lib/posts";
 import { t, localePath } from "../../i18n/ui";
 import site from "../../data/site.json";
@@ -12,7 +14,7 @@ const NAV_CATEGORIES = site.navCategories;
 
 const posts = await getPublishedPostsForLocale(locale);
 const featured = posts[0];
-const latest = posts.slice(1);
+const latest = posts.slice(1, 7);
 ---
 
 <BaseLayout
@@ -41,6 +43,10 @@ const latest = posts.slice(1);
     )
   }
 
+  <PopularPosts locale={locale} posts={posts} />
+
+  <CategoryRows locale={locale} posts={posts} />
+
   <section class="pb-8">
     <div class="section-shell">
       <h2 class="mb-6 text-2xl">{strings.browseCategory}</h2>
@@ -62,14 +68,18 @@ const latest = posts.slice(1);
     </div>
   </section>
 
-  <section class="pb-16">
-    <div class="section-shell">
-      <h2 class="mb-6 text-2xl">{strings.latestPosts}</h2>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {latest.map((post) => (
-          <PostCard post={post} locale={locale} />
-        ))}
-      </div>
-    </div>
-  </section>
+  {
+    latest.length > 0 && (
+      <section class="pb-16">
+        <div class="section-shell">
+          <h2 class="mb-6 text-2xl">{strings.latestPosts}</h2>
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {latest.map((post) => (
+              <PostCard post={post} locale={locale} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 </BaseLayout>

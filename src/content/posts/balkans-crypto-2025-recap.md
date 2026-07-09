@@ -2,7 +2,7 @@
 title: "Balkans Crypto 2025 Recap"
 description: "Recap of the Balkans Crypto Tech Conference in Tirana — DeFi, Web3, and community highlights."
 pubDate: 2025-06-16
-author: "DuaCrypto"
+author: "Dua"
 category: news
 tags: [events, balkans, tirana]
 draft: false

@@ -4,7 +4,7 @@ description: "Si të njoh mashtrimet kripto dhe scam-et në Telegram/WhatsApp �
 source: "https://news.duacrypto.com/posts/si-te-njoh-mashtrimet-kripto/"
 lang: "sq"
 targetKeyword: "si të njoh mashtrimet kripto"
-pubDate: "2026-07-09"
+pubDate: "2026-06-25"
 ---
 
 **Si të njoh mashtrimet kripto** — pyetja që duhet para se të blesh Bitcoin. Në Shqipëri dhe diasporë, scam-et shqip janë të zakonshme: “fitove USDT”, “support Bitget”, “investim 2x në 24 orë”. Komuniteti DuaCrypto i sheh çdo javë.

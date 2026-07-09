@@ -1,8 +1,8 @@
 ---
 title: "Welcome to DuaCrypto News"
 description: "Introducing news.duacrypto.com — Bitcoin and Web3 stories from Albania and the Balkans."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-06-02
+author: "Dua"
 category: community
 tags: [announcement, news-site]
 translationKey: welcome-duacrypto-news-2026

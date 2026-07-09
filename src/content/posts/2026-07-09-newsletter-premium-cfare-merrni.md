@@ -1,8 +1,8 @@
 ---
 title: "Çfarë merr subscriberët e Premium Newsletter — provë e vlerës"
 description: "DuaCrypto Premium Newsletter ($10/muaj) — çfarë publikojmë vetëm për abonentët, pse e krijuam, dhe si të vendosësh nëse vlen për ty."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-07-07
+author: "Dua"
 category: community
 postType: affiliate
 scores:
@@ -14,11 +14,12 @@ lang: sq
 draft: false
 aiGenerated: false
 image: /img/duacrypto-logo.png
+heroStyle: none
 ---
 
 **DuaCrypto Premium Newsletter** nuk është “një tjetër listë email-i me linqe”. Është produkti ynë kryesor — $10/muaj në Gumroad — dhe e ndërtuam sepse lexuesit tanë në Shqipëri dhe diasporë kërkonin **më shumë thellësi** se sa mund të publikojmë falas çdo ditë: analiza pas meetup-eve, shënime mbi self-custody, përmbledhje të lajmeve Ballkan, dhe rekomandime të filtruara (Tangem, Bitget, CEX.io, Deeper — gjithmonë me zbulim transparent).
 
-Nëse je duke lexuar [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/) falas, ky artikull shpjegon **çfarë merr subscriber-i** që nuk e sheh publikisht — provë e vlerës, jo premtime boshe.
+Nëse je duke lexuar [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/) falas, ky artikull shpjegon **çfarë merr subscriber-i** që nuk e sheh publikisht — provë e vlerës, jo premtime boshe. Fillon me [udhëzuesin kryesor për blerje Bitcoin](/posts/si-te-blej-bitcoin-ne-shqiperi/) falas, pastaj Premium shto thellësi.
 
 ## Pse krijuam Premium
 

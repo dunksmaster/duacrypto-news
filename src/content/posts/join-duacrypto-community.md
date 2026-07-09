@@ -2,7 +2,7 @@
 title: "How to Join the DuaCrypto Community"
 description: "Telegram, meetups, free guides, and what to expect as a new member of Albania's crypto community."
 pubDate: 2025-01-15
-author: "DuaCrypto"
+author: "Dua"
 category: community
 tags: [community, telegram, onboarding]
 draft: false

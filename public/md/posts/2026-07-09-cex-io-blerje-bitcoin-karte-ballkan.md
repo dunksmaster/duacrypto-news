@@ -4,7 +4,7 @@ description: "CEX.io lejon blerje me kartë debit/kredit për shumë vende — k
 source: "https://news.duacrypto.com/posts/2026-07-09-cex-io-blerje-bitcoin-karte-ballkan/"
 lang: "sq"
 targetKeyword: ""
-pubDate: "2026-07-09"
+pubDate: "2026-07-01"
 ---
 
 Kur dikush pyet *“a mund ta blej Bitcoin me kartën e bankës?”* — përgjigja shqiptare shpesh është: *“varet nga banka, nga vendi, nga app-i.”* Shumë banka në rajon janë konservatore ndaj exchange-ve të panjohur. **CEX.io** është një platformë me histori të gjatë që ofron **blerje me kartë** për shumë përdorues ndërkombëtarë, dhe e kemi parë të përdoret nga lexues tanë në Ballkan kur duan rrugë të drejtpërdrejtë pa acarime të tepërta.

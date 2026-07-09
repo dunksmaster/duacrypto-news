@@ -1,8 +1,8 @@
 ---
 title: "Tangem Hardware Wallet for Albanian Bitcoin Savers"
 description: "Why self-custody matters for Balkan Bitcoiners — Tangem card-style wallet setup, backup basics, and EUR-priced context for diaspora savers."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-07-04
+author: "Dua"
 category: guides
 postType: affiliate
 targetKeyword: "tangem hardware wallet albania"
@@ -13,6 +13,7 @@ tags: [tangem, hardware-wallet, self-custody, affiliate, albania, bitcoin]
 draft: false
 aiGenerated: false
 image: /img/duacrypto-logo.png
+heroStyle: none
 faq:
   - question: "Is Tangem good for beginners in Albania?"
     answer: "Yes for savers who want simple card-style self-custody — but learn seed backup basics first and start with small amounts."

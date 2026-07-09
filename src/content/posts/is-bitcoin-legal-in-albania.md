@@ -1,8 +1,8 @@
 ---
 title: "Is Bitcoin Legal in Albania? — Practical Guide (2026)"
 description: "What Albanian and diaspora readers should know about Bitcoin legality, taxes, banks, and safe on-ramps — clear facts without legal hype."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-06-23
+author: "Dua"
 category: guides
 postType: guide
 targetKeyword: "is bitcoin legal in albania"

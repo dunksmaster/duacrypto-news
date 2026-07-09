@@ -1,8 +1,8 @@
 ---
 title: "How to Sign Up on Bitget from Albania or Kosovo"
 description: "Step-by-step Bitget registration, KYC, and first Bitcoin buy for Albanian and Kosovar readers — plus diaspora tips in EUR."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-06-29
+author: "Dua"
 category: guides
 postType: affiliate
 targetKeyword: "bitget albania sign up"
@@ -13,6 +13,7 @@ tags: [bitget, exchange, affiliate, bitcoin, albania, kosovo, diaspora]
 draft: false
 aiGenerated: false
 image: /img/duacrypto-logo.png
+heroStyle: none
 faq:
   - question: "Does Bitget work from Albania?"
     answer: "Many Albanian and Kosovar readers use Bitget with standard KYC. Availability can change — always use the official app and check current terms."

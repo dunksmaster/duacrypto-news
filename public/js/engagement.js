@@ -1,5 +1,7 @@
-/** Client-side view + like counters (graceful when API/D1 unavailable). */
+/** Client-side view + like counters — hidden until meaningful social proof (≥25 views). */
 (function () {
+  const MIN_VIEWS = 25;
+
   const root = document.getElementById("engagement-stats");
   if (!root) return;
 
@@ -9,9 +11,22 @@
   const viewsEl = root.querySelector("[data-views]");
   const likesEl = root.querySelector("[data-likes]");
   const likeBtn = root.querySelector("[data-like-btn]");
+  const viewsStat = root.querySelector("[data-views-stat]");
+  const likesStat = root.querySelector("[data-likes-stat]");
 
   function format(n) {
     return new Intl.NumberFormat().format(n);
+  }
+
+  function showEngagement(viewCount, likeCount) {
+    if (viewCount >= MIN_VIEWS) {
+      root.classList.remove("hidden");
+      if (viewsStat) viewsStat.hidden = false;
+    }
+    if (likeCount > 0 && likesStat) {
+      root.classList.remove("hidden");
+      likesStat.hidden = false;
+    }
   }
 
   async function fetchJson(url, options) {
@@ -28,8 +43,7 @@
     try {
       const raw = localStorage.getItem("viewed:" + slug);
       if (!raw) return false;
-      const ts = Number(raw);
-      return Date.now() - ts < 24 * 60 * 60 * 1000;
+      return Date.now() - Number(raw) < 24 * 60 * 60 * 1000;
     } catch {
       return false;
     }
@@ -61,10 +75,13 @@
 
   async function loadCounts() {
     const views = await fetchJson("/api/views/" + encodeURIComponent(slug));
-    if (views && viewsEl) viewsEl.textContent = format(views.count ?? 0);
-
     const likes = await fetchJson("/api/likes/" + encodeURIComponent(slug));
-    if (likes && likesEl) likesEl.textContent = format(likes.count ?? 0);
+    const viewCount = views?.count ?? 0;
+    const likeCount = likes?.count ?? 0;
+
+    if (viewsEl) viewsEl.textContent = format(viewCount);
+    if (likesEl) likesEl.textContent = format(likeCount);
+    showEngagement(viewCount, likeCount);
 
     if (likeBtn && alreadyLiked()) {
       likeBtn.setAttribute("aria-pressed", "true");
@@ -75,7 +92,10 @@
   async function recordView() {
     if (viewedRecently()) return;
     const data = await fetchJson("/api/views/" + encodeURIComponent(slug), { method: "POST" });
-    if (data && viewsEl) viewsEl.textContent = format(data.count ?? 0);
+    const viewCount = data?.count ?? 0;
+    if (viewsEl) viewsEl.textContent = format(viewCount);
+    const likes = await fetchJson("/api/likes/" + encodeURIComponent(slug));
+    showEngagement(viewCount, likes?.count ?? 0);
     markViewed();
   }
 
@@ -83,11 +103,16 @@
     if (alreadyLiked() || !likeBtn) return;
     likeBtn.setAttribute("disabled", "true");
     const data = await fetchJson("/api/likes/" + encodeURIComponent(slug), { method: "POST" });
-    if (data && likesEl) likesEl.textContent = format(data.count ?? 0);
+    const likeCount = data?.count ?? 0;
+    if (likesEl) likesEl.textContent = format(likeCount);
     markLiked();
     likeBtn.setAttribute("aria-pressed", "true");
     likeBtn.classList.add("engagement-liked");
     likeBtn.removeAttribute("disabled");
+    const views = await fetchJson("/api/views/" + encodeURIComponent(slug));
+    showEngagement(views?.count ?? 0, likeCount);
+    if (likesStat) likesStat.hidden = false;
+    root.classList.remove("hidden");
   }
 
   loadCounts();
@@ -95,8 +120,9 @@
   if (likeBtn) likeBtn.addEventListener("click", onLike);
 })();
 
-/** Lazy view counts on listing cards */
+/** Lazy view counts on listing cards — only ≥25 views */
 (function () {
+  const MIN_VIEWS = 25;
   const cards = document.querySelectorAll("[data-card-views]");
   if (!cards.length) return;
 
@@ -111,7 +137,7 @@
         fetch("/api/views/" + encodeURIComponent(slug))
           .then((r) => (r.ok ? r.json() : null))
           .then((data) => {
-            if (data && data.count > 0) {
+            if (data && data.count >= MIN_VIEWS) {
               el.textContent = "👁 " + new Intl.NumberFormat().format(data.count);
               el.hidden = false;
             }

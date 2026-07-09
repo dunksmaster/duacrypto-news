@@ -1,8 +1,8 @@
 ---
 title: "A është Bitcoin i ligjshëm në Shqipëri? — çfarë duhet të dish"
 description: "A është Bitcoin i ligjshëm në Shqipëri? Përmbledhje e qasjes rregullatore, taksave dhe praktikës për lexuesit shqiptarë (jo këshillë ligjore)."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-06-22
+author: "Dua"
 category: guides
 postType: guide
 targetKeyword: "a është bitcoin i ligjshëm në shqipëri"

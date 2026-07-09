@@ -1,8 +1,8 @@
 ---
 title: "Mirë se vini në DuaCrypto News"
 description: "Prezantojmë news.duacrypto.com — lajme Bitcoin dhe Web3 nga Shqipëria dhe Ballkani."
-pubDate: 2026-07-09
-author: "DuaCrypto"
+pubDate: 2026-06-02
+author: "Dua"
 category: community
 tags: [announcement, sq]
 lang: sq

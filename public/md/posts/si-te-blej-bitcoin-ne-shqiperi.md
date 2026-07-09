@@ -4,7 +4,7 @@ description: "Si të blej Bitcoin në Shqipëri ose Kosovë? Hapat praktikë: ex
 source: "https://news.duacrypto.com/posts/si-te-blej-bitcoin-ne-shqiperi/"
 lang: "sq"
 targetKeyword: "si të blej bitcoin në shqipëri"
-pubDate: "2026-07-09"
+pubDate: "2026-06-18"
 ---
 
 **Si të blej Bitcoin në Shqipëri** është pyetja #1 që marrim në Telegram pas çdo meetup-i. Nuk ka (ende) exchange me licencë shqiptare si banka tradicionale, por shqiptarët dhe kosovarët blejnë çdo ditë përmes platformave ndërkombëtare — me KYC, me kartë, dhe shpesh me self-custody pas disa javësh.

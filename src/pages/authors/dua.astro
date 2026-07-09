@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import author from "../../data/author.json";
 import site from "../../data/site.json";
 import { organizationJsonLd, personAuthorJsonLd } from "../../lib/organization";
 
@@ -7,34 +8,33 @@ const MAIN_SITE = site.mainSite;
 ---
 
 <BaseLayout
-  title="DuaCrypto — Autor"
-  description="DuaCrypto — komuniteti i parë Bitcoin dhe Web3 në Shqipëri. Autor i DuaCrypto News."
+  title="Dua — Autor"
+  description="Dua (Dkane) — themelues i DuaCrypto, komuniteti i parë Bitcoin në Shqipëri."
   lang="sq"
   jsonLdExtra={[organizationJsonLd(), personAuthorJsonLd()]}
 >
   <section class="py-12">
     <div class="section-shell max-w-3xl">
-      <h1 class="mb-6 text-4xl font-bold">DuaCrypto</h1>
+      <h1 class="mb-6 text-4xl font-bold">{author.displayName}</h1>
       <div class="mb-8 flex items-start gap-6">
         <img
-          src="/img/duacrypto-logo.png"
-          alt="DuaCrypto logo"
-          width="120"
-          height="120"
-          class="rounded-lg border border-border"
+          src={author.photo}
+          alt={author.displayName}
+          width="160"
+          height="200"
+          class="w-32 shrink-0 rounded-xl border border-border object-cover sm:w-40"
         />
         <div class="space-y-3 text-secondary leading-relaxed">
           <p>
-            <strong class="text-dark">DuaCrypto</strong> është komuniteti i parë Bitcoin dhe Web3 në Shqipëri,
-            i themeluar në 2020. Organizojmë meetup-e në Tiranë, edukim praktik, dhe përmbajtje në shqip për
-            self-custody, Lightning dhe adopcion në Ballkan.
+            <strong class="text-dark">{author.fullName}</strong> — {author.role.sq}
           </p>
+          <p>{author.bio.sq}</p>
           <p>
             <a href={MAIN_SITE} class="text-primary underline">duacrypto.com</a>
             ·
-            <a href="https://t.me/dua_crypto" class="text-primary underline">Telegram</a>
+            <a href={author.telegram} class="text-primary underline">Telegram</a>
             ·
-            <a href="https://github.com/dunksmaster/TokenDC" class="text-primary underline">GitHub</a>
+            <a href={author.x} class="text-primary underline">X</a>
           </p>
           <p>
             Kontakt: <a href="mailto:usdc@duacrypto.com" class="text-primary underline">usdc@duacrypto.com</a>
@@ -42,7 +42,8 @@ const MAIN_SITE = site.mainSite;
         </div>
       </div>
       <p class="text-sm text-secondary">
-        Çdo artikull në DuaCrypto News lidhet me këtë faqe autor për transparencë (E-E-A-T).
+        Çdo artikull në DuaCrypto News lidhet me këtë faqe autor për transparencë (E-E-A-T). Postimet me etiketën
+        “AI-assisted” janë draftuar me ndihmë AI dhe rishikuar nga ekipi.
       </p>
     </div>
   </section>

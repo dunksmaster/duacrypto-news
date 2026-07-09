@@ -1,0 +1,21 @@
+{
+  "displayName": "Dua",
+  "fullName": "Dua (Dkane)",
+  "role": {
+    "sq": "Themelues, DuaCrypto — komuniteti i parë Bitcoin në Shqipëri",
+    "en": "Founder, DuaCrypto — Albania's first Bitcoin community"
+  },
+  "bio": {
+    "sq": "Organizoj meetup-e, edukim praktik dhe udhëzues në shqip për Bitcoin dhe self-custody. Pa hype — vetëm hapa që funksionojnë në Shqipëri dhe diasporë.",
+    "en": "Runs meetups, practical education, and no-hype guides for Bitcoin and self-custody — for Albania and the diaspora."
+  },
+  "photo": "https://duacrypto.com/img/kane-profile.png",
+  "profileUrl": "/authors/dua/",
+  "telegram": "https://t.me/dua_crypto",
+  "x": "https://x.com/duacrypto",
+  "sameAs": [
+    "https://t.me/dua_crypto",
+    "https://x.com/duacrypto",
+    "https://duacrypto.com/about.html"
+  ]
+}
