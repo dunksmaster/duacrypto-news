@@ -1,28 +1,14 @@
-# Topics queued for the AI draft generator (cron or manual runs).
-# Affiliate queue — Albanian-first, postType affiliate, lang sq
+# Queue for AI draft generator — add new affiliate products here (first item runs next).
 topics:
-  - title: "Portofoli më i thjeshtë harduerik për shqiptarët — Tangem"
+  - title: "Ledger Flex — portofol harduerik për fillestarët shqiptarë"
     category: guides
     postType: affiliate
     lang: sq
-    tags: [tangem, portofol-harduerik, self-custody, sq, affiliate]
-  - title: "Si të regjistrohesh në Bitget nga Shqipëria ose Kosova"
+    targetKeyword: "portofol harduerik ledger"
+    tags: [ledger, portofol-harduerik, sq, affiliate]
+  - title: "Lightning Network për tregtarët shqiptarë — fillimi"
     category: guides
-    postType: affiliate
+    postType: guide
     lang: sq
-    tags: [bitget, exchange, sq, affiliate]
-  - title: "Si të blejsh Bitcoin me kartë në CEX.io — udhëzues për Ballkanin"
-    category: guides
-    postType: affiliate
-    lang: sq
-    tags: [cex, bitcoin, sq, affiliate]
-  - title: "Deeper Network — privatësia dhe VPN i decentralizuar për përdoruesit shqiptarë"
-    category: guides
-    postType: affiliate
-    lang: sq
-    tags: [deeper, vpn, privacy, sq, affiliate]
-  - title: "Çfarë merr subscriberët e Premium Newsletter — provë e vlerës"
-    category: community
-    postType: affiliate
-    lang: sq
-    tags: [newsletter, premium, sq, affiliate]
+    targetKeyword: "lightning network shqip"
+    tags: [lightning, merchants, sq]

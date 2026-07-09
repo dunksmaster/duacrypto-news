@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import site from "../data/site.json";
+import { organizationJsonLd } from "../lib/organization";
 
 const SITE_NAME = site.siteName;
 const SITE_DESCRIPTION = site.siteDescription;
@@ -18,6 +19,8 @@ interface Props {
   canonical?: string;
   lang?: string;
   hreflangAlternates?: { hreflang: string; href: string }[];
+  jsonLdExtra?: Record<string, unknown>[];
+  noLargePreview?: boolean;
 }
 
 const {
@@ -30,36 +33,29 @@ const {
   canonical,
   lang = "en",
   hreflangAlternates = [],
+  jsonLdExtra = [],
+  noLargePreview = false,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
 
-const jsonLd =
-  type === "article" && pubDate
+const graph = [
+  type === "website"
     ? {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        headline: title,
-        description,
-        datePublished: pubDate.toISOString(),
-        author: { "@type": "Organization", name: author ?? "DuaCrypto" },
-        publisher: {
-          "@type": "Organization",
-          name: "DuaCrypto",
-          url: MAIN_SITE,
-        },
-        mainEntityOfPage: canonicalUrl,
-        image: ogImage,
-      }
-    : {
         "@context": "https://schema.org",
         "@type": "WebSite",
         name: SITE_NAME,
         url: Astro.site,
         description,
-      };
+        publisher: organizationJsonLd(),
+      }
+    : null,
+  ...jsonLdExtra.map((node) => ({ "@context": "https://schema.org", ...node })),
+].filter(Boolean);
+
+const jsonLd = graph.length === 1 ? graph[0] : { "@context": "https://schema.org", "@graph": graph };
 ---
 
 <!doctype html>
@@ -76,6 +72,9 @@ const jsonLd =
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {!noLargePreview && (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
     <meta property="og:type" content={type} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />

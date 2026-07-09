@@ -4,9 +4,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import AffiliateDisclosure from "../../components/AffiliateDisclosure.astro";
 import NewsletterCTA from "../../components/NewsletterCTA.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import site from "../../data/site.json";
 const CATEGORY_LABELS = site.categoryLabels;
 import { formatDate, postSlug, readingTime, getPublishedPosts } from "../../lib/posts";
+import {
+  organizationJsonLd,
+  breadcrumbJsonLd,
+  faqJsonLd,
+  howToJsonLd,
+  blogPostingJsonLd,
+} from "../../lib/organization";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -27,26 +35,65 @@ const related = allPosts
   .filter((p) => p.id !== post.id && p.data.category === post.data.category)
   .slice(0, 3);
 
-const alternates: { hreflang: string; href: string }[] = [];
 const base = Astro.site?.href ?? "https://news.duacrypto.com/";
+const canonical = `${base}posts/${slug}/`;
+const categoryLabel = CATEGORY_LABELS[post.data.category];
+
+const alternates: { hreflang: string; href: string }[] = [];
 if (post.data.translationOf) {
   alternates.push({
     hreflang: "en",
     href: new URL(`posts/${post.data.translationOf}/`, base).href,
   });
-  alternates.push({ hreflang: "sq", href: new URL(`posts/${slug}/`, base).href });
-  alternates.push({ hreflang: "x-default", href: new URL(`posts/${post.data.translationOf}/`, base).href });
+  alternates.push({ hreflang: "sq", href: canonical });
+  alternates.push({
+    hreflang: "x-default",
+    href: new URL(`posts/${post.data.translationOf}/`, base).href,
+  });
 } else if (post.data.lang === "en") {
   const sqSibling = allPosts.find((p) => p.data.translationOf === slug);
   if (sqSibling) {
-    alternates.push({ hreflang: "en", href: new URL(`posts/${slug}/`, base).href });
+    alternates.push({ hreflang: "en", href: canonical });
     alternates.push({
       hreflang: "sq",
       href: new URL(`posts/${postSlug(sqSibling.id)}/`, base).href,
     });
-    alternates.push({ hreflang: "x-default", href: new URL(`posts/${slug}/`, base).href });
+    alternates.push({ hreflang: "x-default", href: canonical });
   }
 }
+
+const breadcrumbItems = [
+  { name: "Home", url: base },
+  { name: categoryLabel, url: new URL(`category/${post.data.category}/`, base).href },
+  { name: post.data.title, url: canonical },
+];
+
+const jsonLdExtra = [
+  organizationJsonLd(),
+  blogPostingJsonLd({
+    title: post.data.title,
+    description: post.data.description,
+    canonicalUrl: canonical,
+    ogImage: new URL(post.data.image ?? "/img/duacrypto-logo.png", Astro.site).href,
+    pubDate: post.data.pubDate,
+    updatedDate: post.data.updatedDate,
+    lang,
+  }),
+  breadcrumbJsonLd(breadcrumbItems),
+  ...(post.data.faq?.length ? [faqJsonLd(post.data.faq)] : []),
+  ...(post.data.howToSteps?.length
+    ? [
+        howToJsonLd(
+          post.data.title,
+          post.data.description,
+          post.data.howToSteps,
+        ),
+      ]
+    : []),
+].filter(Boolean);
+
+const updated = post.data.updatedDate ?? post.data.pubDate;
+const mdMirror = `/md/posts/${slug}.md`;
 ---
 
 <BaseLayout
@@ -56,15 +103,24 @@ if (post.data.translationOf) {
   type="article"
   pubDate={post.data.pubDate}
   author={post.data.author}
-  canonical={`${Astro.site}posts/${slug}/`}
+  canonical={canonical}
   lang={lang}
   hreflangAlternates={alternates}
+  jsonLdExtra={jsonLdExtra}
 >
   <article class="py-12">
     <div class="section-shell max-w-3xl">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: categoryLabel, href: `/category/${post.data.category}/` },
+          { label: post.data.title },
+        ]}
+      />
+
       <div class="mb-6 flex flex-wrap items-center gap-2">
         <a href={`/category/${post.data.category}/`} class="category-pill">
-          {CATEGORY_LABELS[post.data.category]}
+          {categoryLabel}
         </a>
         {post.data.aiGenerated && <span class="text-xs text-secondary">AI-assisted</span>}
       </div>
@@ -72,23 +128,42 @@ if (post.data.translationOf) {
       <h1 class="mb-4 text-4xl font-bold leading-tight">{post.data.title}</h1>
       <p class="mb-6 text-lg text-secondary">{post.data.description}</p>
 
+      {
+        post.data.directAnswer && (
+          <div class="direct-answer mb-8 rounded-lg border border-primary/30 bg-surface px-4 py-3 text-dark leading-relaxed">
+            <p class="m-0 font-semibold text-sm text-secondary mb-1">Përgjigje e shkurtër</p>
+            <p class="m-0">{post.data.directAnswer}</p>
+          </div>
+        )
+      }
+
       {isAffiliate && <AffiliateDisclosure lang={lang} />}
 
       <div class="mb-8 flex flex-wrap gap-3 border-b border-border pb-6 text-sm text-secondary">
         <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+        {updated.getTime() !== post.data.pubDate.getTime() && (
+          <>
+            <span>·</span>
+            <span>Përditësuar {formatDate(updated)}</span>
+          </>
+        )}
         <span>·</span>
-        <span>{post.data.author}</span>
+        <a href="/authors/dua/" class="text-primary hover:underline">{post.data.author}</a>
         <span>·</span>
         <span>{minutes} min read</span>
+        <span>·</span>
+        <a href={mdMirror} class="text-primary hover:underline" rel="alternate" type="text/markdown">
+          Markdown
+        </a>
       </div>
 
       {
         post.data.image && (
           <img
             src={post.data.image}
-            alt=""
+            alt={post.data.targetKeyword ?? post.data.title}
             width="1200"
-            height="630"
+            height="675"
             class="mb-8 w-full rounded-lg border border-border"
             loading="eager"
           />
@@ -98,6 +173,22 @@ if (post.data.translationOf) {
       <div class="post-prose space-y-4 text-dark [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_a]:text-primary [&_a]:underline [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6">
         <Content />
       </div>
+
+      {
+        post.data.faq && post.data.faq.length > 0 && (
+          <section class="mt-10 border-t border-border pt-8" id="faq">
+            <h2 class="mb-4 text-2xl font-bold">Pyetje të shpeshta</h2>
+            <div class="space-y-4">
+              {post.data.faq.map((item) => (
+                <details class="rounded-lg border border-border bg-surface px-4 py-3">
+                  <summary class="cursor-pointer font-semibold">{item.question}</summary>
+                  <p class="mt-2 mb-0 text-secondary leading-relaxed">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )
+      }
 
       {isAffiliate && <NewsletterCTA lang={lang} />}
 

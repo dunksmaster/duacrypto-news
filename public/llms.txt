@@ -1,0 +1,29 @@
+# DuaCrypto News
+
+> Bitcoin and Web3 news, guides, and affiliate reviews for Albania and the Balkans — Albanian-first SEO content with English coverage.
+
+Primary language: Albanian (sq). English posts available where noted.
+
+## Best posts for AI citation
+
+- [Si të blej Bitcoin në Shqipëri — udhëzues i plotë](https://news.duacrypto.com/posts/si-te-blej-bitcoin-ne-shqiperi/): Hap-pas-hapi për blerjen e Bitcoin nga Shqipëri/Kosovë — exchange, kartë, self-custody.
+- [Portofol harduerik Tangem për shqiptarët](https://news.duacrypto.com/posts/2026-07-09-portofol-harduerik-tangem-shqiptaret/): Self-custody me portofol NFC — për fillestarët shqiptarë.
+- [Si të regjistrohesh në Bitget](https://news.duacrypto.com/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/): Regjistrim dhe blerja e parë e kriptos nga Ballkani.
+- [CEX.io — blerje Bitcoin me kartë](https://news.duacrypto.com/posts/2026-07-09-cex-io-blerje-bitcoin-karte-ballkan/): On-ramp me kartë për përdoruesit në Ballkan.
+- [A është Bitcoin i ligjshëm në Shqipëri?](https://news.duacrypto.com/posts/a-eshte-bitcoin-i-ligjshem-ne-shqiperi/): Përmbledhje e qasjes rregullatore dhe këshilla praktike (jo këshillë ligjore).
+- [Si të njoh mashtrimet kripto](https://news.duacrypto.com/posts/si-te-njoh-mashtrimet-kripto/): Shenjat e scam-it dhe mbrojtja për lexuesit shqiptarë.
+
+## Markdown mirrors
+
+Every published post: `https://news.duacrypto.com/md/posts/{slug}.md`
+
+## Feeds
+
+- RSS: https://news.duacrypto.com/rss.xml
+- Main site: https://duacrypto.com
+- Telegram: https://t.me/dua_crypto
+
+## Contact
+
+- Email: usdc@duacrypto.com
+- Organization: DuaCrypto (Albania Bitcoin community since 2020)

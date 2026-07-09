@@ -38,6 +38,10 @@ jobs:
       - name: Install and build
         run: npm ci && npm run build
 
+      - name: Ping IndexNow
+        run: node scripts/ping-indexnow.mjs
+        continue-on-error: true
+
       - name: Ensure Pages project exists
         uses: cloudflare/wrangler-action@v3
         with:

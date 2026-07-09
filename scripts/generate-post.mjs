@@ -50,15 +50,20 @@ const postSchema = z.object({
 
 const STYLE_GUIDE = `You write for DuaCrypto News (news.duacrypto.com) — Albania's first Bitcoin/Web3 community.
 Voice: practical, welcoming, no hype. Audience: Albanian and Balkans readers plus global Bitcoiners.
-Length: 800–1200 words. Use markdown with ## subheadings. Cite sources when stating facts.
+Length: 800–1200 words (pillar guides: 1200–1500). Use markdown with ## subheadings. Cite sources when stating facts.
 Link to duacrypto.com for events, donation, and corporate pages when relevant.
+
+SEO (every post):
+- ONE target keyword = ONE post. Put keyword front-loaded in title, H1 (title), first 100 words, one H2, image alt concept.
+- Include targetKeyword and directAnswer in frontmatter (2–3 sentence quotable answer for AI search).
+- Include faq: 2–3 real questions with short answers in frontmatter (renders as FAQ schema).
+- Include 2–3 internal links to existing posts on news.duacrypto.com.
+- For step-by-step guides, include howToSteps in frontmatter when applicable.
 
 Affiliate posts (postType: affiliate):
 - Write in Albanian (lang: sq) unless asked otherwise.
 - Use pretty affiliate links only: /go/tangem, /go/bitget, /go/cex, /go/deeper, /go/newsletter
 - End with a soft newsletter CTA pointing to /go/newsletter
-- Target one Albanian keyword in title, first paragraph, and slug concept
-- Include 2–3 internal links to other posts on news.duacrypto.com
 
 Score profiles (include in frontmatter, self-rate honestly):
 - affiliate: empathy 80, storytelling 70, cta 60
@@ -84,17 +89,19 @@ function parseFrontmatter(raw) {
   return { data, body };
 }
 
-async function callClaude(topic, category, postType, tags, lang) {
+async function callClaude(topic, category, postType, tags, lang, targetKeyword) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY is required");
 
   const profile = scoreProfiles[postType] ?? scoreProfiles.news;
+  const keywordLine = targetKeyword ? `Target keyword: ${targetKeyword}` : "";
 
   const prompt = `${STYLE_GUIDE}
 
 Write a blog post about: ${topic}
 Category: ${category}
 postType: ${postType}
+${keywordLine}
 Target scores: empathy ${profile.empathy}, storytelling ${profile.storytelling}, cta ${profile.cta}
 Language: ${lang}
 Tags: ${tags.join(", ")}
@@ -107,17 +114,22 @@ pubDate: ${new Date().toISOString().slice(0, 10)}
 author: "DuaCrypto AI Desk"
 category: ${category}
 postType: ${postType}
+targetKeyword: "..."
+directAnswer: "2-3 sentence direct answer in ${lang === "sq" ? "Albanian" : "English"}"
 scores:
   empathy: ${profile.empathy}
   storytelling: ${profile.storytelling}
   cta: ${profile.cta}
+faq:
+  - question: "..."
+    answer: "..."
 tags: [${tags.map((t) => `"${t}"`).join(", ")}]
 lang: ${lang}
 draft: true
 aiGenerated: true
 ---
 
-Then the article body in markdown. Self-rate scores in frontmatter; they should reflect the draft quality.`;
+Then the article body in markdown. Open with the direct answer theme in first paragraph. Self-rate scores honestly.`;
 
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -174,7 +186,14 @@ ${body}
 `;
 }
 
-async function generateForTopic({ title, category = "news", postType = "news", tags = [], lang = "en" }) {
+async function generateForTopic({
+  title,
+  category = "news",
+  postType = "news",
+  tags = [],
+  lang = "en",
+  targetKeyword,
+}) {
   if (!categories.includes(category)) {
     throw new Error(`Invalid category: ${category}`);
   }
@@ -183,7 +202,7 @@ async function generateForTopic({ title, category = "news", postType = "news", t
   }
 
   console.log(`Generating draft: ${title} (${postType}, ${lang})`);
-  const raw = await callClaude(title, category, postType, tags, lang);
+  const raw = await callClaude(title, category, postType, tags, lang, targetKeyword);
   const { data, body } = parseFrontmatter(raw);
   const profile = scoreProfiles[postType];
   const validated = postSchema.parse({

@@ -16,14 +16,24 @@ const scoresSchema = z.object({
   cta: z.number().int().min(0).max(100),
 });
 
+const faqItemSchema = z.object({
+  question: z.string().min(1),
+  answer: z.string().min(1),
+});
+
 const postSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   pubDate: z.coerce.date(),
+  updatedDate: z.coerce.date().optional(),
   author: z.string(),
   category: z.enum(["news", "analysis", "guides", "community"]),
   postType: z.enum(["affiliate", "news", "guide", "community"]).optional(),
+  targetKeyword: z.string().optional(),
+  directAnswer: z.string().optional(),
   scores: scoresSchema.optional(),
+  faq: z.array(faqItemSchema).optional(),
+  howToSteps: z.array(z.object({ name: z.string(), text: z.string() })).optional(),
   tags: z.array(z.string()),
   image: z.string().optional(),
   draft: z.boolean(),

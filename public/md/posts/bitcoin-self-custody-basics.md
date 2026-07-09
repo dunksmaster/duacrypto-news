@@ -1,12 +1,10 @@
 ---
 title: "Bitcoin Self-Custody Basics"
 description: "A practical intro to holding your own keys — hardware wallets, seed phrases, and avoiding common custody mistakes."
-pubDate: 2025-03-10
-author: "DuaCrypto"
-category: guides
-tags: [bitcoin, self-custody, security]
-draft: false
-aiGenerated: false
+source: "https://news.duacrypto.com/posts/bitcoin-self-custody-basics/"
+lang: "en"
+targetKeyword: ""
+pubDate: "2025-03-10"
 ---
 
 Not your keys, not your coins. Self-custody means you control the private keys that prove ownership of your Bitcoin — no exchange in the middle.

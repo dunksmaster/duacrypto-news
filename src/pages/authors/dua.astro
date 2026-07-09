@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import site from "../../data/site.json";
+import { organizationJsonLd, personAuthorJsonLd } from "../../lib/organization";
+
+const MAIN_SITE = site.mainSite;
+---
+
+<BaseLayout
+  title="DuaCrypto — Autor"
+  description="DuaCrypto — komuniteti i parë Bitcoin dhe Web3 në Shqipëri. Autor i DuaCrypto News."
+  lang="sq"
+  jsonLdExtra={[organizationJsonLd(), personAuthorJsonLd()]}
+>
+  <section class="py-12">
+    <div class="section-shell max-w-3xl">
+      <h1 class="mb-6 text-4xl font-bold">DuaCrypto</h1>
+      <div class="mb-8 flex items-start gap-6">
+        <img
+          src="/img/duacrypto-logo.png"
+          alt="DuaCrypto logo"
+          width="120"
+          height="120"
+          class="rounded-lg border border-border"
+        />
+        <div class="space-y-3 text-secondary leading-relaxed">
+          <p>
+            <strong class="text-dark">DuaCrypto</strong> është komuniteti i parë Bitcoin dhe Web3 në Shqipëri,
+            i themeluar në 2020. Organizojmë meetup-e në Tiranë, edukim praktik, dhe përmbajtje në shqip për
+            self-custody, Lightning dhe adopcion në Ballkan.
+          </p>
+          <p>
+            <a href={MAIN_SITE} class="text-primary underline">duacrypto.com</a>
+            ·
+            <a href="https://t.me/dua_crypto" class="text-primary underline">Telegram</a>
+            ·
+            <a href="https://github.com/dunksmaster/TokenDC" class="text-primary underline">GitHub</a>
+          </p>
+          <p>
+            Kontakt: <a href="mailto:usdc@duacrypto.com" class="text-primary underline">usdc@duacrypto.com</a>
+          </p>
+        </div>
+      </div>
+      <p class="text-sm text-secondary">
+        Çdo artikull në DuaCrypto News lidhet me këtë faqe autor për transparencë (E-E-A-T).
+      </p>
+    </div>
+  </section>
+</BaseLayout>

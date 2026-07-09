@@ -1,12 +1,18 @@
-/*
-  X-Frame-Options: DENY
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-
-/img/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/_astro/*
-  Cache-Control: public, max-age=31536000, immutable
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+/md/*
+  Content-Type: text/markdown; charset=utf-8
+  Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
