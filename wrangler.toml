@@ -11,4 +11,4 @@ compatibility_date = "2024-09-23"
 binding = "DB"
 database_name = "dc-news-analytics"
 # Replace after: wrangler d1 create dc-news-analytics
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "37ab1a7d-520a-4928-acb3-ee9b2884bdd6"
