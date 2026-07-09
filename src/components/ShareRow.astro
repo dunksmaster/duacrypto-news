@@ -1,0 +1,99 @@
+---
+import type { Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  shareUrl: string;
+  shareTitle: string;
+}
+
+const { locale, shareUrl, shareTitle } = Astro.props;
+const encodedUrl = encodeURIComponent(shareUrl);
+const encodedTitle = encodeURIComponent(shareTitle);
+
+const links = [
+  {
+    id: "telegram",
+    label: "Telegram",
+    href: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
+  },
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+    href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+  },
+  {
+    id: "x",
+    label: "X",
+    href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+  },
+];
+---
+
+<div class="share-row" data-share-url={shareUrl}>
+  <span class="share-row-label">{locale === "sq" ? "Ndaj" : "Share"}</span>
+  <div class="share-row-buttons">
+    {
+      links.map((link) => (
+        <a
+          class="share-btn"
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-share={link.id}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <button type="button" class="share-btn" data-copy-link>
+      {locale === "sq" ? "Kopjo linkun" : "Copy link"}
+    </button>
+    <button type="button" class="share-btn share-btn-native hidden" data-native-share>
+      {locale === "sq" ? "Ndaj…" : "Share…"}
+    </button>
+  </div>
+</div>
+
+<script is:inline src="/js/share.js"></script>
+
+<style>
+  .share-row {
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .share-row-label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+  .share-row-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-dark);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .share-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  .share-btn-native.hidden {
+    display: none;
+  }
+</style>

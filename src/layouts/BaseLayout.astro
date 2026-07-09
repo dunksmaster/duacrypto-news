@@ -27,6 +27,8 @@ interface Props {
   ogLocaleAlternates?: string[];
   pagefindLang?: string;
   switchTarget?: { href: string; available: boolean; label?: string };
+  oEmbedUrl?: string;
+  oEmbedTitle?: string;
 }
 
 const {
@@ -44,6 +46,8 @@ const {
   ogLocaleAlternates = locale === "sq" ? ["en_US"] : ["sq_AL"],
   pagefindLang,
   switchTarget,
+  oEmbedUrl,
+  oEmbedTitle,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
@@ -79,6 +83,16 @@ const jsonLd = graph.length === 1 ? graph[0] : { "@context": "https://schema.org
     {hreflangAlternates.map((alt) => (
       <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
     ))}
+    {
+      oEmbedUrl && (
+        <link
+          rel="alternate"
+          type="application/json+oembed"
+          href={oEmbedUrl}
+          title={oEmbedTitle ?? pageTitle}
+        />
+      )
+    }
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />

@@ -43,6 +43,14 @@ export function postSlug(id: string) {
   return id.replace(/\.mdx?$/, "");
 }
 
+const DEFAULT_OG = "/img/duacrypto-logo.png";
+
+/** Branded build-time OG PNG unless the post has a custom hero image. */
+export function resolveOgImagePath(image: string | undefined, slug: string): string {
+  if (image && image !== DEFAULT_OG) return image;
+  return `/og/${slug}.png`;
+}
+
 export function postHref(slug: string, locale: Locale) {
   return locale === "en" ? `/en/posts/${slug}/` : `/posts/${slug}/`;
 }

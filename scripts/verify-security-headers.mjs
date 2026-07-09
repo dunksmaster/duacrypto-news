@@ -52,7 +52,6 @@ if (!globalBlock) {
 } else {
   const h = globalBlock.headers;
   const required = [
-    "X-Frame-Options",
     "X-Content-Type-Options",
     "Referrer-Policy",
     "Permissions-Policy",
@@ -73,7 +72,7 @@ if (!globalBlock) {
   }
 }
 
-const cachePaths = ["/img/*", "/_astro/*", "/pagefind/*"];
+const cachePaths = ["/img/*", "/_astro/*", "/pagefind/*", "/og/*"];
 for (const path of cachePaths) {
   const block = sections.find((s) => s.path === path);
   if (!block?.headers["Cache-Control"]?.includes("immutable")) {

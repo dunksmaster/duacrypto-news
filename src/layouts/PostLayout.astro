@@ -6,6 +6,8 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
 import NewsletterCTA from "../components/NewsletterCTA.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import RequestTranslation from "../components/RequestTranslation.astro";
+import ShareRow from "../components/ShareRow.astro";
+import EmbedCopy from "../components/EmbedCopy.astro";
 import type { CollectionEntry } from "astro:content";
 import site from "../data/site.json";
 import { t, localePath, type Locale } from "../i18n/ui";
@@ -16,6 +18,7 @@ import {
   getPublishedPosts,
   postHref,
   categoryHref,
+  resolveOgImagePath,
 } from "../lib/posts";
 import {
   buildHreflangAlternates,
@@ -51,6 +54,10 @@ const related = allPosts
 
 const base = Astro.site?.href ?? "https://news.duacrypto.com/";
 const canonical = new URL(postHref(slug, locale), base).href;
+const ogImagePath = resolveOgImagePath(post.data.image, slug);
+const shareUrl = `${canonical}${canonical.includes("?") ? "&" : "?"}utm_source=share`;
+const embedUrl = new URL(locale === "en" ? `/en/embed/${slug}/` : `/embed/${slug}/`, base).href;
+const oEmbedUrl = `${base.replace(/\/$/, "")}/api/oembed?url=${encodeURIComponent(canonical)}`;
 const categoryLabel = site.categoryLabels[post.data.category];
 
 const hreflangAlternates = buildHreflangAlternates(post, allPosts, base);
@@ -73,7 +80,7 @@ const jsonLdExtra = [
     title: post.data.title,
     description: post.data.description,
     canonicalUrl: canonical,
-    ogImage: new URL(post.data.image ?? "/img/duacrypto-logo.png", Astro.site).href,
+    ogImage: new URL(ogImagePath, Astro.site).href,
     pubDate: post.data.pubDate,
     updatedDate: post.data.updatedDate,
     lang,
@@ -92,11 +99,13 @@ const mdMirror = `/md/posts/${slug}.md`;
 <BaseLayout
   title={post.data.title}
   description={post.data.description}
-  image={post.data.image}
+  image={ogImagePath}
   type="article"
   pubDate={post.data.pubDate}
   author={post.data.author}
   canonical={canonical}
+  oEmbedUrl={oEmbedUrl}
+  oEmbedTitle={post.data.title}
   lang={lang}
   locale={locale}
   hreflangAlternates={hreflangAlternates}
@@ -189,6 +198,9 @@ const mdMirror = `/md/posts/${slug}.md`;
       <div class="post-prose space-y-4 text-dark [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_a]:text-primary [&_a]:underline [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6">
         <Content />
       </div>
+
+      <ShareRow locale={locale} shareUrl={shareUrl} shareTitle={post.data.title} />
+      <EmbedCopy locale={locale} embedUrl={embedUrl} postTitle={post.data.title} />
 
       {
         post.data.faq && post.data.faq.length > 0 && (

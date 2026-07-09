@@ -1,0 +1,48 @@
+---
+import type { Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  embedUrl: string;
+  postTitle: string;
+}
+
+const { locale, embedUrl, postTitle } = Astro.props;
+const iframeCode = `<iframe src="${embedUrl}" width="100%" height="360" frameborder="0" loading="lazy" title="${postTitle.replace(/"/g, "&quot;")}"></iframe>`;
+---
+
+<details class="embed-copy mt-8 rounded-lg border border-border bg-surface p-4">
+  <summary class="cursor-pointer font-semibold text-dark">
+    {locale === "sq" ? "Kopjo kodin e embed" : "Copy embed code"}
+  </summary>
+  <p class="mt-2 text-sm text-secondary">
+    {
+      locale === "sq"
+        ? "Vendose këtë iframe në blogun ose faqen tënde."
+        : "Paste this iframe on your blog or site."
+    }
+  </p>
+  <textarea
+    class="mt-3 w-full rounded-md border border-border bg-page p-3 font-mono text-xs text-dark"
+    rows="3"
+    readonly
+    aria-label={locale === "sq" ? "Kodi i embed" : "Embed code"}>{iframeCode}</textarea>
+  <button type="button" class="btn-primary mt-3" data-copy-embed>
+    {locale === "sq" ? "Kopjo" : "Copy"}
+  </button>
+</details>
+
+<script is:inline>
+  document.querySelectorAll("[data-copy-embed]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var ta = btn.closest("details")?.querySelector("textarea");
+      if (!ta) return;
+      ta.select();
+      navigator.clipboard?.writeText(ta.value);
+      btn.textContent = btn.textContent?.includes("Kopjo") ? "U kopjua!" : "Copied!";
+      setTimeout(function () {
+        btn.textContent = btn.textContent?.includes("!") ? (btn.textContent.includes("U") ? "Kopjo" : "Copy") : btn.textContent;
+      }, 2000);
+    });
+  });
+</script>
