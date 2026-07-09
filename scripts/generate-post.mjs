@@ -86,7 +86,7 @@ Affiliate posts (postType: affiliate):
 - Write in Albanian (lang: sq) unless asked otherwise.
 - Use pretty affiliate links only: /go/tangem, /go/bitget, /go/cex, /go/deeper, /go/newsletter
 - Use step-cards for how-to sections, pros/cons block, 2 btn-affiliate CTAs.
-- End with a soft newsletter CTA pointing to /go/newsletter
+- Do NOT add newsletter plugs in the article body — the layout renders one newsletter CTA at the end.
 
 Score profiles (include in frontmatter, self-rate honestly):
 - affiliate: empathy 80, storytelling 70, cta 60

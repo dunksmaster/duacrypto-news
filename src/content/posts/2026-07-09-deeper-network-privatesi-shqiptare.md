@@ -104,4 +104,4 @@ Jo. Por nëse je i ekspozuar në Wi-Fi publik dhe menaxhon kripto, **shtresa sht
 
 👉 [Shiko Deeper Connect në faqen zyrtare](/go/deeper)
 
-*Për analiza sigurie dhe recap-e nga eventet në Tiranë, shiko [Premium Newsletter](/go/newsletter).*
+*Për analiza sigurie dhe recap-e nga eventet në Tiranë, ndiq [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/).*

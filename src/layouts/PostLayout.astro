@@ -4,15 +4,13 @@ import BaseLayout from "./BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
 import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
 import NewsletterCTA from "../components/NewsletterCTA.astro";
-import NewsletterInline from "../components/NewsletterInline.astro";
 import AuthorChip from "../components/AuthorChip.astro";
 import AuthorBox from "../components/AuthorBox.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import RequestTranslation from "../components/RequestTranslation.astro";
-import ShareRow from "../components/ShareRow.astro";
+import PostActionRail from "../components/PostActionRail.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import PostNav from "../components/PostNav.astro";
-import ZapButton from "../components/ZapButton.astro";
 import NostrNote from "../components/NostrNote.astro";
 import type { CollectionEntry } from "astro:content";
 import site from "../data/site.json";
@@ -127,142 +125,148 @@ const { older: olderPost, newer: newerPost } = getCategoryAdjacentPosts(post, al
   pagefindLang={lang}
   switchTarget={languageSwitch}
   mdAlternateUrl={new URL(mdMirror, Astro.site).href}
+  showTrustBar={false}
 >
   <article class="py-12" data-pagefind-body>
     <div class="section-shell post-with-toc">
       {toc.length >= 4 && <TableOfContents items={toc} locale={locale} variant="sidebar" />}
 
       <div class="post-main">
-      <Breadcrumbs
-        items={[
-          { label: strings.home, href: localePath("/", locale) },
-          { label: categoryLabel, href: categoryHref(post.data.category, locale) },
-          { label: post.data.title },
-        ]}
-      />
+        <Breadcrumbs
+          items={[
+            { label: strings.home, href: localePath("/", locale) },
+            { label: categoryLabel, href: categoryHref(post.data.category, locale) },
+            { label: post.data.title },
+          ]}
+        />
 
-      <div class="mb-4 flex flex-wrap items-center gap-2 meta-text">
-        <a href={categoryHref(post.data.category, locale)} class="category-pill">
-          {categoryLabel}
-        </a>
-        {post.data.aiGenerated && <span>AI-assisted</span>}
-        <span aria-hidden="true">·</span>
-        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
-        <span aria-hidden="true">·</span>
-        <span>{minutes} {strings.minRead}</span>
+        <h1 class="post-title">{post.data.title}</h1>
+
         {
-          updated.getTime() !== post.data.pubDate.getTime() && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span>{strings.updated} {formatDate(updated, locale)}</span>
-            </>
+          post.data.description && (
+            <p class="post-dek">{post.data.description}</p>
           )
         }
-        <span class="hidden inline-flex flex-wrap items-center gap-2" id="engagement-stats" data-slug={slug}>
-          <span class="engagement-stat hidden" data-views-stat title="Views">👁 <span data-views>0</span></span>
-          <span class="engagement-stat hidden" data-likes-stat>
-            <button type="button" class="engagement-like" data-like-btn aria-pressed="false">
-              🧡 <span data-likes>0</span>
-            </button>
-          </span>
-        </span>
-      </div>
 
-      <h1 class="mb-3 text-4xl font-bold leading-tight">{post.data.title}</h1>
-      <p class="mb-4 text-lg text-dark leading-relaxed">{post.data.description}</p>
+        <div class="post-meta-line">
+          <a href={categoryHref(post.data.category, locale)} class="post-meta-line__category">
+            {categoryLabel}
+          </a>
+          <span class="post-meta-line__sep" aria-hidden="true">·</span>
+          <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
+          <span class="post-meta-line__sep" aria-hidden="true">·</span>
+          <span>{minutes} {strings.minRead}</span>
+          {
+            updated.getTime() !== post.data.pubDate.getTime() && (
+              <>
+                <span class="post-meta-line__sep" aria-hidden="true">·</span>
+                <span>{strings.updated} {formatDate(updated, locale)}</span>
+              </>
+            )
+          }
+          {post.data.aiGenerated && (
+            <>
+              <span class="post-meta-line__sep" aria-hidden="true">·</span>
+              <span>AI-assisted</span>
+            </>
+          )}
+          <span class="post-meta-line__sep" aria-hidden="true">·</span>
+          <AuthorChip locale={locale} />
+        </div>
 
-      <AuthorChip locale={locale} />
+        <PostActionRail
+          locale={locale}
+          slug={slug}
+          shareUrl={shareUrl}
+          shareTitle={post.data.title}
+          embedUrl={embedUrl}
+          embedTitle={post.data.title}
+        />
 
-      {isAffiliate && <AffiliateDisclosure lang={lang} compact />}
+        {isAffiliate && <AffiliateDisclosure lang={lang} compact />}
 
-      {
-        heroSrc && (
-          <img
-            src={heroSrc}
-            alt={post.data.targetKeyword ?? post.data.title}
-            width="1200"
-            height="675"
-            class="post-hero mb-8 max-h-[240px] w-full rounded-xl border border-border object-cover sm:max-h-[380px]"
-            loading="eager"
-          />
-        )
-      }
+        {
+          heroSrc && (
+            <img
+              src={heroSrc}
+              alt={post.data.targetKeyword ?? post.data.title}
+              width="1200"
+              height="675"
+              class="post-hero mb-8 max-h-[240px] w-full rounded-xl border border-border object-cover sm:max-h-[380px]"
+              loading="eager"
+            />
+          )
+        }
 
-      {toc.length >= 4 && <TableOfContents items={toc} locale={locale} variant="mobile" />}
+        {toc.length >= 4 && <TableOfContents items={toc} locale={locale} variant="mobile" />}
 
-      {
-        post.data.directAnswer && (
-          <div class="direct-answer mb-8 rounded-lg px-4 py-3 text-dark leading-relaxed">
-            <p class="m-0 font-semibold text-sm meta-text mb-1">{strings.directAnswerLabel}</p>
-            <p class="m-0">{post.data.directAnswer}</p>
-          </div>
-        )
-      }
+        {
+          post.data.directAnswer && (
+            <div class="direct-answer">
+              <p class="direct-answer__label">{strings.directAnswerLabel}</p>
+              <p class="direct-answer__text">{post.data.directAnswer}</p>
+            </div>
+          )
+        }
 
-      <div class="post-prose space-y-4">
-        <Content />
-      </div>
+        <div class="post-prose space-y-4">
+          <Content />
+        </div>
 
-      <NewsletterInline locale={locale} />
+        <PostActionRail
+          locale={locale}
+          slug={slug}
+          shareUrl={shareUrl}
+          shareTitle={post.data.title}
+          embedUrl={embedUrl}
+          embedTitle={post.data.title}
+          withEngagement={false}
+        />
 
-      <ShareRow
-        locale={locale}
-        shareUrl={shareUrl}
-        shareTitle={post.data.title}
-        embedUrl={embedUrl}
-        embedTitle={post.data.title}
-      />
-      <NostrNote locale={locale} slug={slug} />
+        <NostrNote locale={locale} slug={slug} />
 
-      {
-        post.data.faq && post.data.faq.length > 0 && (
-          <section class="mt-10 border-t border-border pt-8" id="faq">
-            <h2 class="mb-4 text-2xl font-bold">{strings.faqTitle}</h2>
-            <div class="space-y-4">
-              {post.data.faq.map((item) => (
-                <details class="rounded-lg border border-border bg-surface px-4 py-3">
-                  <summary class="cursor-pointer font-semibold">{item.question}</summary>
-                  <p class="mt-2 mb-0 text-dark leading-relaxed">{item.answer}</p>
-                </details>
+        {
+          post.data.faq && post.data.faq.length > 0 && (
+            <section class="post-faq" id="faq">
+              <h2 class="post-faq__title">{strings.faqTitle}</h2>
+              <div class="post-faq__list">
+                {post.data.faq.map((item) => (
+                  <details class="post-faq__item">
+                    <summary>{item.question}</summary>
+                    <p>{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )
+        }
+
+        <NewsletterCTA lang={lang} />
+
+        <PostNav locale={locale} older={olderPost} newer={newerPost} />
+
+        <AuthorBox locale={locale} />
+
+        {
+          post.data.tags.length > 0 && (
+            <div class="post-tags">
+              {post.data.tags.map((tag) => (
+                <a href={localePath(`/tags/${tag}/`, locale)} class="post-tags__link">
+                  #{tag}
+                </a>
               ))}
             </div>
-          </section>
-        )
-      }
+          )
+        }
 
-      {isAffiliate && <NewsletterCTA lang={lang} />}
-
-      <PostNav locale={locale} older={olderPost} newer={newerPost} />
-
-      <AuthorBox locale={locale} />
-
-      {
-        post.data.tags.length > 0 && (
-          <div class="mt-10 flex flex-wrap gap-2 border-t border-border pt-6">
-            {post.data.tags.map((tag) => (
-              <a
-                href={localePath(`/tags/${tag}/`, locale)}
-                class="rounded-full bg-surface px-3 py-1 text-sm text-link no-underline hover:underline"
-              >
-                #{tag}
-              </a>
-            ))}
-          </div>
-        )
-      }
-
-      {!hasTranslation && (
-        <RequestTranslation
-          locale={locale}
-          postSlug={slug}
-          translationKey={post.data.translationKey ?? slug}
-          postTitle={post.data.title}
-        />
-      )}
-
-      <div class="mt-8 border-t border-border pt-6">
-        <ZapButton locale={locale} postTitle={post.data.title} />
-      </div>
+        {!hasTranslation && (
+          <RequestTranslation
+            locale={locale}
+            postSlug={slug}
+            translationKey={post.data.translationKey ?? slug}
+            postTitle={post.data.title}
+          />
+        )}
       </div>
     </div>
   </article>
@@ -284,34 +288,131 @@ const { older: olderPost, newer: newerPost } = getCategoryAdjacentPosts(post, al
 </BaseLayout>
 
 <style>
-  .engagement-stat,
-  .engagement-like {
-    display: inline-flex;
+  .post-title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .post-dek {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .post-meta-line {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.25rem;
-    color: var(--color-secondary);
+    gap: 0.15rem 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
   }
-  .engagement-like {
+
+  .post-meta-line__category {
+    font-weight: 600;
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .post-meta-line__category:hover {
+    text-decoration: underline;
+  }
+
+  .post-meta-line__sep {
+    user-select: none;
+  }
+
+  .direct-answer {
+    margin: 1.5rem 0;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .direct-answer__label {
+    margin: 0 0 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+  }
+
+  .direct-answer__text {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .post-faq {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-faq__title {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .post-faq__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-faq__item {
+    border-top: 1px solid var(--color-border);
+    padding: 0.75rem 0;
+  }
+
+  .post-faq__item summary {
     cursor: pointer;
-    font: inherit;
-    border: 0;
-    background: transparent;
-    padding: 0;
-    color: inherit;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--color-text);
   }
-  .engagement-like:hover {
-    color: var(--color-primary);
+
+  .post-faq__item p {
+    margin: 0.5rem 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text);
   }
-  .engagement-like.engagement-liked {
-    border-color: var(--color-primary);
-    color: var(--color-dark);
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
   }
+
+  .post-tags__link {
+    font-size: 0.8125rem;
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .post-tags__link:hover {
+    text-decoration: underline;
+  }
+
   [data-card-views][hidden] {
     display: none;
   }
+
   .post-hero {
     max-height: 240px;
   }
+
   @media (min-width: 640px) {
     .post-hero {
       max-height: 380px;

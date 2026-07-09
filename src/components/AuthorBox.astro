@@ -11,25 +11,91 @@ const strings = t(locale);
 const profileHref = localePath(author.profileUrl, locale);
 ---
 
-<section class="author-box mt-10 rounded-xl border border-border bg-surface p-5">
-  <div class="flex flex-col gap-4 sm:flex-row sm:items-start">
+<section class="author-box">
+  <div class="author-box__inner">
     <img
       src={author.photo}
       alt={author.displayName}
-      width="80"
-      height="80"
-      class="h-20 w-20 shrink-0 rounded-full border border-border object-cover"
+      width="48"
+      height="48"
+      class="author-box__photo"
       loading="lazy"
     />
     <div>
-      <h2 class="mb-1 text-lg font-bold">{strings.aboutAuthor} {author.displayName}</h2>
-      <p class="mb-2 text-sm text-secondary">{author.role[locale]}</p>
-      <p class="mb-3 text-sm leading-relaxed text-dark">{author.bio[locale]}</p>
-      <div class="flex flex-wrap gap-3 text-sm">
-        <a href={author.telegram} class="text-primary hover:underline" rel="noopener noreferrer">Telegram</a>
-        <a href={author.x} class="text-primary hover:underline" rel="noopener noreferrer">X</a>
-        <a href={profileHref} class="text-primary hover:underline">{strings.aboutAuthorPage}</a>
+      <h2 class="author-box__title">{strings.aboutAuthor} {author.displayName}</h2>
+      <p class="author-box__role">{author.role[locale]}</p>
+      <p class="author-box__bio">{author.bio[locale]}</p>
+      <div class="author-box__links">
+        <a href={author.telegram} rel="noopener noreferrer">Telegram</a>
+        <a href={author.x} rel="noopener noreferrer">X</a>
+        <a href={profileHref}>{strings.aboutAuthorPage}</a>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .author-box {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .author-box__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .author-box__inner {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .author-box__photo {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .author-box__title {
+    margin: 0 0 0.15rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .author-box__role {
+    margin: 0 0 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .author-box__bio {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-text);
+  }
+
+  .author-box__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .author-box__links a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .author-box__links a:hover {
+    text-decoration: underline;
+  }
+</style>

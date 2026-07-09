@@ -7,9 +7,11 @@ interface Props {
   shareTitle: string;
   embedUrl?: string;
   embedTitle?: string;
+  compact?: boolean;
+  includePopover?: boolean;
 }
 
-const { locale, shareUrl, shareTitle, embedUrl, embedTitle } = Astro.props;
+const { locale, shareUrl, shareTitle, embedUrl, embedTitle, compact = false, includePopover = true } = Astro.props;
 const encodedUrl = encodeURIComponent(shareUrl);
 const encodedTitle = encodeURIComponent(shareTitle);
 const iframeCode = embedUrl
@@ -35,8 +37,8 @@ const links = [
 ];
 ---
 
-<div class="share-row" data-share-url={shareUrl} data-embed-code={iframeCode || undefined}>
-  <span class="share-row-label">{locale === "sq" ? "Ndaj" : "Share"}</span>
+<div class:list={["share-row", compact && "share-row--compact"]} data-share-url={shareUrl} data-embed-code={iframeCode || undefined}>
+  {!compact && <span class="share-row-label">{locale === "sq" ? "Ndaj" : "Share"}</span>}
   <div class="share-row-buttons">
     {
       links.map((link) => (
@@ -46,18 +48,19 @@ const links = [
           target="_blank"
           rel="noopener noreferrer"
           data-share={link.id}
+          title={link.label}
         >
-          {link.label}
+          {compact ? (link.id === "telegram" ? "TG" : link.id === "whatsapp" ? "WA" : "X") : link.label}
         </a>
       ))
     }
-    <button type="button" class="share-btn" data-copy-link>
-      {locale === "sq" ? "Kopjo linkun" : "Copy link"}
+    <button type="button" class="share-btn" data-copy-link title={locale === "sq" ? "Kopjo linkun" : "Copy link"}>
+      {compact ? "🔗" : locale === "sq" ? "Kopjo linkun" : "Copy link"}
     </button>
     {
-      embedUrl && (
-        <button type="button" class="share-btn share-btn-embed" data-embed-open aria-haspopup="dialog">
-          {"</>"} {locale === "sq" ? "Embed" : "Embed"}
+      embedUrl && includePopover && (
+        <button type="button" class="share-btn share-btn-embed" data-embed-open aria-haspopup="dialog" title={locale === "sq" ? "Embed" : "Embed"}>
+          {compact ? "</>" : `</> ${locale === "sq" ? "Embed" : "Embed"}`}
         </button>
       )
     }
@@ -68,7 +71,7 @@ const links = [
 </div>
 
 {
-  embedUrl && (
+  embedUrl && includePopover && (
     <div class="embed-popover hidden" id="embed-popover" role="dialog" aria-modal="true" aria-labelledby="embed-popover-title">
       <div class="embed-popover-backdrop" data-embed-close />
       <div class="embed-popover-panel">
@@ -104,6 +107,27 @@ const links = [
     padding: 1rem 0;
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
+  }
+  .share-row--compact {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: inline-flex;
+  }
+  .share-row--compact .share-row-buttons {
+    gap: 0.35rem;
+  }
+  .share-row--compact .share-btn {
+    min-height: auto;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.75rem;
+    border: 0;
+    background: transparent;
+    color: var(--color-text-muted);
+  }
+  .share-row--compact .share-btn:hover {
+    color: var(--color-link);
+    background: transparent;
   }
   .share-row-label {
     display: block;

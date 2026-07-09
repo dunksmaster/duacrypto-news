@@ -5,9 +5,11 @@ import { t, type Locale } from "../i18n/ui";
 interface Props {
   locale: Locale;
   postTitle: string;
+  compact?: boolean;
+  includeModal?: boolean;
 }
 
-const { locale, postTitle } = Astro.props;
+const { locale, postTitle, compact = false, includeModal = true } = Astro.props;
 const strings = t(locale);
 const address = site.lightningAddress?.trim();
 ---
@@ -17,37 +19,41 @@ const address = site.lightningAddress?.trim();
     <>
       <button
         type="button"
-        class="engagement-zap"
+        class:list={["engagement-zap", compact && "engagement-zap--compact"]}
         data-zap-btn
         data-zap-address={address}
         data-zap-title={postTitle}
         title={strings.zapTitle}
       >
-        ⚡ {strings.zap}
+        ⚡ {!compact && strings.zap}
       </button>
-      <div
-        id="zap-modal"
-        class="zap-modal hidden"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="zap-modal-title"
-      >
-        <div class="zap-modal-backdrop" data-zap-close />
-        <div class="zap-modal-panel">
-          <h3 id="zap-modal-title" class="mb-2 text-lg font-bold">{strings.zapTitle}</h3>
-          <p class="mb-4 text-sm text-secondary">{strings.zapHint}</p>
-          <p class="mb-2 text-xs text-secondary break-all" data-zap-invoice hidden />
-          <div class="flex flex-wrap gap-2">
-            <button type="button" class="btn-primary text-sm" data-zap-copy hidden>
-              {strings.zapCopyInvoice}
-            </button>
-            <button type="button" class="btn-secondary text-sm" data-zap-close-btn>
-              {strings.zapClose}
-            </button>
+      {
+        includeModal && (
+          <div
+            id="zap-modal"
+            class="zap-modal hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="zap-modal-title"
+          >
+            <div class="zap-modal-backdrop" data-zap-close />
+            <div class="zap-modal-panel">
+              <h3 id="zap-modal-title" class="mb-2 text-lg font-bold">{strings.zapTitle}</h3>
+              <p class="mb-4 text-sm text-secondary">{strings.zapHint}</p>
+              <p class="mb-2 text-xs text-secondary break-all" data-zap-invoice hidden />
+              <div class="flex flex-wrap gap-2">
+                <button type="button" class="btn-primary text-sm" data-zap-copy hidden>
+                  {strings.zapCopyInvoice}
+                </button>
+                <button type="button" class="btn-secondary text-sm" data-zap-close-btn>
+                  {strings.zapClose}
+                </button>
+              </div>
+              <p class="mt-3 text-xs text-secondary" data-zap-error hidden />
+            </div>
           </div>
-          <p class="mt-3 text-xs text-secondary" data-zap-error hidden />
-        </div>
-      </div>
+        )
+      }
     </>
   )
 }
@@ -68,6 +74,17 @@ const address = site.lightningAddress?.trim();
   .engagement-zap:hover {
     color: var(--color-primary);
     border-color: var(--color-primary);
+  }
+  .engagement-zap--compact {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+  .engagement-zap--compact:hover {
+    color: var(--color-link);
+    border-color: transparent;
   }
   .zap-modal {
     position: fixed;

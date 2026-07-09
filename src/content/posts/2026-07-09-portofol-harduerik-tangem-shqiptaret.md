@@ -89,4 +89,4 @@ Nëse kërkon **portofol harduerik** që nuk të frikëson me fjalëkalime të p
 
 👉 [Shiko Tangem dhe porosit kartën tënde](/go/tangem)
 
-*Ky artikull është pjesë e serisë sonë në shqip për Bitcoin në Ballkan. Për analiza më të thella dhe recap-e nga eventet, shiko [Premium Newsletter](/go/newsletter) ($10/muaj).*
+*Ky artikull është pjesë e serisë sonë në shqip për Bitcoin në Ballkan.*

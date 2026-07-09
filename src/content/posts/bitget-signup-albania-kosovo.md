@@ -56,7 +56,3 @@ Diaspora readers in **Italy, Germany, or Switzerland** usually verify with docum
 ## Step 4 — Withdraw to self-custody
 
 When ready, withdraw a tiny test amount to your hardware wallet address, confirm on-chain, then move the rest. Read our [Tangem guide for Albanian readers](/en/posts/tangem-hardware-wallet-albania/) (EN) or the [Albanian Tangem post](/posts/2026-07-09-portofol-harduerik-tangem-shqiptaret/).
-
-## Newsletter
-
-For deeper monthly analysis (not hype), see [Premium Newsletter](/go/newsletter).

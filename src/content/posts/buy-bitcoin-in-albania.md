@@ -78,6 +78,5 @@ Many Albanian families abroad use Bitcoin as **savings technology** — euro-den
 
 - [Self-custody basics](/en/posts/bitcoin-self-custody-basics/)
 - [Join the DuaCrypto community](https://t.me/dua_crypto)
-- [Premium newsletter](/go/newsletter) for deeper monthly analysis
 
 *Educational content only — not financial or legal advice.*

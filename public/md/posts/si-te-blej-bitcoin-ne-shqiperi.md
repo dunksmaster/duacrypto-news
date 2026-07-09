@@ -61,6 +61,5 @@ Procesi është i ngjashëm: KYC me dokumentin tënd, kartë që lejon blerje nd
 
 - Ndiq [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/) për udhëzues në shqip.
 - Bashkohu në [Telegram](https://t.me/dua_crypto) për pyetje.
-- Për thellësi mujore: [Premium Newsletter](/go/newsletter).
 
 *Ky artikull është edukim, jo këshillë financiare ose ligjore.*

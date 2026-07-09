@@ -77,6 +77,8 @@ Variants: `callout-warning` (⚠️), `callout-info` (ℹ️).
 
 Use `/go/*` pretty links only. Place after the first major step and again before the closing paragraph.
 
+Do **not** add newsletter plugs in the article body — `PostLayout` renders one compact newsletter row at the end.
+
 ## Images
 
 ```markdown

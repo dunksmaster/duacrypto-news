@@ -71,17 +71,51 @@ test("newsletter blocks readable in dark mode", async ({ page }) => {
   await setTheme(page, "dark");
   await page.goto("/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/");
 
-  const inlineBody = page.locator(".newsletter-inline__body");
-  await expect(inlineBody).toBeVisible();
-  const bodyColor = await inlineBody.evaluate((el) => getComputedStyle(el).color);
+  const ctaBody = page.locator(".newsletter-cta__body");
+  await expect(ctaBody).toBeVisible();
+  const bodyColor = await ctaBody.evaluate((el) => getComputedStyle(el).color);
   expect(bodyColor).not.toBe("rgb(17, 17, 17)");
 
-  const cta = page.locator(".newsletter-inline .newsletter-cta-btn");
+  const cta = page.locator(".newsletter-cta .newsletter-cta-btn");
+  await expect(cta).toHaveCount(1);
   await expect(cta).toBeVisible();
   const ctaColor = await cta.evaluate((el) => getComputedStyle(el).color);
-  expect(ctaColor).toBe("rgb(6, 42, 51)");
+  expect(ctaColor).toBe("rgb(77, 216, 255)");
   const ctaDecoration = await cta.evaluate((el) => getComputedStyle(el).textDecorationLine);
   expect(ctaDecoration).toBe("none");
+  const ctaBg = await cta.evaluate((el) => getComputedStyle(el).backgroundColor);
+  expect(ctaBg).toBe("rgba(0, 0, 0, 0)");
+});
+
+test("affiliate CTA dominates newsletter visually", async ({ page }) => {
+  await page.goto("/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/");
+
+  const affiliate = page.locator("a.btn-affiliate").first();
+  await expect(affiliate).toBeVisible();
+  const affiliateFontSize = await affiliate.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+  const newsletterBtn = page.locator(".newsletter-cta-btn");
+  const newsletterFontSize = await newsletterBtn.evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+  expect(affiliateFontSize).toBeGreaterThan(newsletterFontSize);
+
+  const affiliateDecoration = await affiliate.evaluate((el) => getComputedStyle(el).textDecorationLine);
+  expect(affiliateDecoration).toBe("none");
+
+  await expect(page.getByRole("link", { name: /Premium Newsletter/i })).toHaveCount(0);
+});
+
+test("post page: no duplicate newsletter or trust bar", async ({ page }) => {
+  await page.goto("/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/");
+
+  await expect(page.locator(".newsletter-cta")).toHaveCount(1);
+  await expect(page.locator(".newsletter-inline")).toHaveCount(0);
+  await expect(page.locator(".author-box")).toHaveCount(1);
+  await expect(page.locator(".author-chip-compact")).toHaveCount(1);
+  await expect(page.locator('[data-trust-bar], .trust-bar, [class*="trust-bar"]')).toHaveCount(0);
+});
+
+test("homepage: trust bar visible", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".trust-bar")).toHaveCount(1);
 });
 
 test("post page: embed opens from share row popover", async ({ page }) => {

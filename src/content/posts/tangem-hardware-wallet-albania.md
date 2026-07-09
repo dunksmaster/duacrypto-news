@@ -53,7 +53,3 @@ Readers in **Italy or Germany** often buy on EU-friendly exchanges and self-cust
 ## Scam reminder
 
 Nobody legitimate asks for your seed phrase — not “support”, not Telegram helpers. See our Albanian [crypto scam guide](/posts/si-te-njoh-mashtrimet-kripto/) (EN version planned).
-
-## Newsletter
-
-Monthly depth (on-chain, macro, no shill spam): [Premium Newsletter](/go/newsletter).

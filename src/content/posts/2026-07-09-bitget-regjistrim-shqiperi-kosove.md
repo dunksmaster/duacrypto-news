@@ -171,4 +171,4 @@ Lexo [si të njohësh mashtrimet kripto](/posts/si-te-njoh-mashtrimet-kripto/) �
 
 <a class="btn-affiliate" href="/go/bitget">Regjistrohu në Bitget →</a>
 
-*Për udhëzues të tjerë në shqip, ndiq [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/) ose [Premium Newsletter](/go/newsletter).*
+*Për udhëzues të tjerë në shqip, ndiq [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/).*

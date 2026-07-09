@@ -1,0 +1,96 @@
+---
+import ShareRow from "./ShareRow.astro";
+import ZapButton from "./ZapButton.astro";
+import type { Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  slug: string;
+  shareUrl: string;
+  shareTitle: string;
+  embedUrl?: string;
+  embedTitle?: string;
+  /** When false, omits view/like counters (for duplicate footer rail). */
+  withEngagement?: boolean;
+}
+
+const { locale, slug, shareUrl, shareTitle, embedUrl, embedTitle, withEngagement = true } = Astro.props;
+---
+
+<div
+  class="post-action-rail"
+  {...(withEngagement ? { id: "engagement-stats", "data-slug": slug } : {})}
+>
+  {
+    withEngagement && (
+      <>
+        <span class="post-action-rail__stat hidden" data-views-stat title="Views">
+          👁 <span data-views>0</span>
+        </span>
+        <span class="post-action-rail__stat hidden" data-likes-stat>
+          <button type="button" class="post-action-rail__btn engagement-like" data-like-btn aria-pressed="false">
+            🧡 <span data-likes>0</span>
+          </button>
+        </span>
+      </>
+    )
+  }
+  <ZapButton locale={locale} postTitle={shareTitle} compact includeModal={withEngagement} />
+  <ShareRow
+    locale={locale}
+    shareUrl={shareUrl}
+    shareTitle={shareTitle}
+    embedUrl={embedUrl}
+    embedTitle={embedTitle}
+    compact
+    includePopover={withEngagement}
+  />
+</div>
+
+<style>
+  .post-action-rail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin: 0.75rem 0 1rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-action-rail__stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-action-rail__stat.hidden {
+    display: none;
+  }
+
+  .post-action-rail__btn,
+  .post-action-rail .engagement-like {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .post-action-rail__btn:hover,
+  .post-action-rail .engagement-like:hover {
+    color: var(--color-link);
+  }
+
+  .post-action-rail .engagement-like.engagement-liked {
+    color: var(--color-text);
+  }
+</style>

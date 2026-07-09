@@ -52,4 +52,4 @@ Edhe kur mbajtja personale nuk është e ndaluar, **banka** mund të refuzojë t
 
 👉 Vazhdo me [si të blej Bitcoin në Shqipëri](/posts/si-te-blej-bitcoin-ne-shqiperi/) kur të jesh gati.
 
-*Për analiza më të thella: [Premium Newsletter](/go/newsletter).*
+*Për analiza më të thella, shiko [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/).*

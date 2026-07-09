@@ -166,4 +166,4 @@ Ky artikull nuk është këshillë ligjore ose tatimore. Në Shqipëri/Kosovë r
 
 <a class="btn-affiliate" href="/go/cex">Hap llogari në CEX.io →</a>
 
-*Analiza më të thella dhe përmbledhje mujore shkojnë te [Premium Newsletter](/go/newsletter) — $10/muaj, anulim i lirë.*
+*Më shumë udhëzues në [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/).*

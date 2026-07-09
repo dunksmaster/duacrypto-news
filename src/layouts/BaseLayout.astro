@@ -32,6 +32,7 @@ interface Props {
   oEmbedUrl?: string;
   oEmbedTitle?: string;
   mdAlternateUrl?: string;
+  showTrustBar?: boolean;
 }
 
 const {
@@ -52,6 +53,7 @@ const {
   oEmbedUrl,
   oEmbedTitle,
   mdAlternateUrl,
+  showTrustBar = false,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
@@ -127,7 +129,7 @@ const jsonLd = graph.length === 1 ? graph[0] : { "@context": "https://schema.org
   <body class="min-h-screen flex flex-col" data-pagefind-filter={`lang:${pagefindLang ?? lang}`}>
     <div id="reading-progress" aria-hidden="true"></div>
     <GeoBanner locale={locale} />
-    <TrustBar locale={locale} />
+    {showTrustBar && <TrustBar locale={locale} />}
     <Header locale={locale} switchTarget={switchTarget} />
     <main class="flex-1">
       <slot />

@@ -54,4 +54,4 @@ Pas edukimit për scam, hapi tjetër është blerja e drejtë: [si të blej Bitc
 
 **Si të njoh mashtrimet kripto?** — Skepticizëm, URL të pastra, zero seed sharing, dhe komunitet real. Scam-et fitojnë nga nxitimi; ti fiton duke ngadalësuar.
 
-*Më shumë udhëzues në [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/) · [Newsletter Premium](/go/newsletter).*
+*Më shumë udhëzues në [DuaCrypto News](/posts/2026-07-09-welcome-duacrypto-news-sq/).*

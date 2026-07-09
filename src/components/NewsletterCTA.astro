@@ -1,31 +1,88 @@
----
-interface Props {
-  lang?: "en" | "sq";
-}
-
-const { lang = "en" } = Astro.props;
-
-const copy =
-  lang === "sq"
-    ? {
-        title: "Dua më shumë se një artikull?",
-        body: "Newsletter-i Premium i DuaCrypto ($10/muaj) sjell analiza, recap-e eventesh dhe udhëzime që nuk publikojmë kudo.",
-        cta: "Shiko newsletter-in Premium",
-        href: "/go/newsletter",
-      }
-    : {
-        title: "Want more than one article?",
-        body: "DuaCrypto Premium Newsletter ($10/mo) brings analysis, event recaps, and guides we do not publish everywhere.",
-        cta: "See Premium newsletter",
-        href: "/go/newsletter",
-      };
----
-
-<section class="newsletter-cta mt-10 rounded-lg border border-border bg-surface px-5 py-6">
-  <h2 class="newsletter-cta__title text-xl font-bold">{copy.title}</h2>
-  <p class="newsletter-cta__body">{copy.body}</p>
-  <a href={copy.href} rel="sponsored noopener noreferrer" class="newsletter-cta-btn">
-    {copy.cta}
-  </a>
-</section>
-
+---
+interface Props {
+  lang?: "en" | "sq";
+}
+
+const { lang = "en" } = Astro.props;
+
+const copy =
+  lang === "sq"
+    ? {
+        title: "Dua më shumë se një artikull?",
+        body: "Premium Newsletter ($10/muaj) — analiza dhe udhëzime që nuk i publikojmë kudo.",
+        cta: "Shiko Premium →",
+        href: "/go/newsletter",
+      }
+    : {
+        title: "Want more than one article?",
+        body: "Premium Newsletter ($10/mo) — analysis and guides we don't publish everywhere.",
+        cta: "See Premium →",
+        href: "/go/newsletter",
+      };
+---
+
+<section class="newsletter-cta" aria-label={copy.title}>
+  <div class="newsletter-cta__text">
+    <p class="newsletter-cta__title">{copy.title}</p>
+    <p class="newsletter-cta__body">{copy.body}</p>
+  </div>
+  <a href={copy.href} rel="sponsored noopener noreferrer" class="newsletter-cta-btn">
+    {copy.cta}
+  </a>
+</section>
+
+<style>
+  .newsletter-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-top: 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .newsletter-cta__text {
+    flex: 1 1 14rem;
+    min-width: 0;
+  }
+
+  .newsletter-cta__title {
+    margin: 0 0 0.15rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .newsletter-cta__body {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .newsletter-cta-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-link);
+    background: transparent;
+    color: var(--color-link);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .newsletter-cta-btn:hover {
+    background: color-mix(in srgb, var(--color-link) 8%, transparent);
+    color: var(--color-link);
+    text-decoration: none;
+  }
+</style>
