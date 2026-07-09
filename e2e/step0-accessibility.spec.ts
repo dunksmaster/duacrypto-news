@@ -67,6 +67,23 @@ test("CEX post: step cards, CTAs, and TOC", async ({ page }) => {
   await expect(page.locator(".post-toc--mobile details")).toBeVisible();
 });
 
+test("newsletter blocks readable in dark mode", async ({ page }) => {
+  await setTheme(page, "dark");
+  await page.goto("/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/");
+
+  const inlineBody = page.locator(".newsletter-inline__body");
+  await expect(inlineBody).toBeVisible();
+  const bodyColor = await inlineBody.evaluate((el) => getComputedStyle(el).color);
+  expect(bodyColor).not.toBe("rgb(17, 17, 17)");
+
+  const cta = page.locator(".newsletter-inline .newsletter-cta-btn");
+  await expect(cta).toBeVisible();
+  const ctaColor = await cta.evaluate((el) => getComputedStyle(el).color);
+  expect(ctaColor).toBe("rgb(6, 42, 51)");
+  const ctaDecoration = await cta.evaluate((el) => getComputedStyle(el).textDecorationLine);
+  expect(ctaDecoration).toBe("none");
+});
+
 test("post page: embed opens from share row popover", async ({ page }) => {
   await page.goto("/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/");
 

@@ -1,34 +1,31 @@
----
-interface Props {
-  lang?: "en" | "sq";
-}
-
-const { lang = "en" } = Astro.props;
-
-const copy =
-  lang === "sq"
-    ? {
-        title: "Dua më shumë se një artikull?",
-        body: "Newsletter-i Premium i DuaCrypto ($10/muaj) sjell analiza, recap-e eventesh dhe udhëzime që nuk publikojmë kudo.",
-        cta: "Shiko newsletter-in Premium",
-        href: "/go/newsletter",
-      }
-    : {
-        title: "Want more than one article?",
-        body: "DuaCrypto Premium Newsletter ($10/mo) brings analysis, event recaps, and guides we do not publish everywhere.",
-        cta: "See Premium newsletter",
-        href: "/go/newsletter",
-      };
----
-
-<section class="newsletter-cta mt-10 rounded-lg border border-border bg-surface px-5 py-6">
-  <h2 class="mb-2 text-xl font-bold">{copy.title}</h2>
-  <p class="mb-4 text-dark leading-relaxed">{copy.body}</p>
-  <a
-    href={copy.href}
-    rel="sponsored noopener noreferrer"
-    class="inline-block rounded-md bg-primary px-4 py-2 font-semibold text-on-primary no-underline hover:opacity-90"
-  >
-    {copy.cta}
-  </a>
-</section>
+---
+interface Props {
+  lang?: "en" | "sq";
+}
+
+const { lang = "en" } = Astro.props;
+
+const copy =
+  lang === "sq"
+    ? {
+        title: "Dua më shumë se një artikull?",
+        body: "Newsletter-i Premium i DuaCrypto ($10/muaj) sjell analiza, recap-e eventesh dhe udhëzime që nuk publikojmë kudo.",
+        cta: "Shiko newsletter-in Premium",
+        href: "/go/newsletter",
+      }
+    : {
+        title: "Want more than one article?",
+        body: "DuaCrypto Premium Newsletter ($10/mo) brings analysis, event recaps, and guides we do not publish everywhere.",
+        cta: "See Premium newsletter",
+        href: "/go/newsletter",
+      };
+---
+
+<section class="newsletter-cta mt-10 rounded-lg border border-border bg-surface px-5 py-6">
+  <h2 class="newsletter-cta__title text-xl font-bold">{copy.title}</h2>
+  <p class="newsletter-cta__body">{copy.body}</p>
+  <a href={copy.href} rel="sponsored noopener noreferrer" class="newsletter-cta-btn">
+    {copy.cta}
+  </a>
+</section>
+

@@ -1,5 +1,26 @@
 # Post Page Redesign Plan — make posts people actually read
 
+## DESIGN DIRECTION (owner decision, 2026-07-09): compact & text-first, Reddit-style
+
+The owner does not like the current look: too many stacked decorative boxes, duplicated blocks, weak text hierarchy, bad colors. New direction = **Reddit/Hacker-News-style density**: text first, thin divider lines between sections instead of bordered boxes, compact single-line metadata, engagement inline, nothing repeated. Concretely:
+
+**R1. Kill all duplication on the post page (confirmed live bugs):**
+- Author bio paragraph appears TWICE (full bio in the header before the article + author box at the end). Header keeps ONLY a one-line chip: `[avatar 24px] Dua · 28 qer 2026 · 5 min`. Full bio box stays at the end only.
+- Newsletter CTA appears TWICE ("Dua më shumë se një artikull?" inline component + bottom box). Keep ONE (end of article), delete the other.
+- Trust bar ("10,000+ anëtarë…") shows above the header on post pages — keep it on the homepage only, not on articles.
+
+**R2. One-line meta, not stacked rows.** Category · date · reading time · views on a single compact line under the title (like Reddit's `r/x · 5h · 1.2k views`). Kill the separate stats row, the separate date row, the Markdown link (step 0b).
+
+**R3. Dividers, not boxes.** Replace bordered/filled boxes (direct answer, disclosure, FAQ cards, newsletter, embed) with flat sections separated by thin `border-t` hairlines. Boxes are allowed for exactly TWO things: warning callouts (scams) and the affiliate CTA button block. Everything else is typography + hairline dividers.
+
+**R4. Reddit-style engagement rail.** Like/zap/share as a compact horizontal action bar directly under the title meta (upvote-style ❤️ count, ⚡, share icon, comment count when ZapThreads lands) AND repeated once at article end. Small icon buttons, not padded pill boxes.
+
+**R5. Density + hierarchy via type, not decoration.** Slightly smaller UI chrome (13–14px meta, 15px UI), strong H1, clear H2s with hairline top-border, body per step 3. The article should look like a well-formatted Reddit long post: text, headings, lists, an occasional table — nothing else competing.
+
+**R6. Sitewide**: same rules on homepage/category/cards (compact rows with hairlines like a Reddit feed: title 2 lines, one meta line, small thumb right — not big image cards), /en tree, embeds. Colors per step 0d.
+
+Steps below remain valid but are SUBORDINATE to this direction — when a step says "box", render it per R3.
+
 Cursor-ready. Target file: `src/layouts/PostLayout.astro` (+ `src/css`, components, AI prompt).
 Reference standards: Medium/Substack (typography & rhythm), CoinDesk/Bankless (crypto news layout), Ghost themes (structure). Work in order, one commit per step, `npm run build` green after each.
 
@@ -28,6 +49,9 @@ d. **Color contrast failures (WCAG)** in `src/styles/global.css` — fix the tok
    - `--color-secondary` dark mode `#8b949e` → `#a3aeb8` (≥4.5:1 on `#0d1117`); light mode `#999999` on white is 2.8:1 → `#5f6b76`.
    - Reduce `text-secondary` usage in post page: FAQ answers and newsletter body should be `--color-dark` (primary text); secondary is ONLY for meta (dates, counts, captions).
    - Add an automated check: `axe-core` contrast assertions in the Playwright suite (NEXT-PHASE-PLAN T3) so this never regresses.
+e. **Prose-vs-button CSS collision (confirmed live)**: `post-prose [&_a]:text-primary [&_a]:underline` styles EVERY anchor in the article — including `.btn-primary` CTAs, producing cyan underlined text on a cyan button. Fix: scope prose link styles to exclude buttons (`[&_a:not([class*="btn"])]:…`) or move to `.post-prose a:not([class])` in CSS. Applies to NewsletterCTA and all in-content CTA buttons.
+f. **Triple newsletter pitch on affiliate posts (confirmed live)**: article text plug + inline NewsletterCTA component + bottom newsletter box = same message 3× in one viewport. Keep only the end-of-article component (R1); AI prompt updated to NOT write newsletter plugs into the article body (the layout owns that).
+g. **Affiliate CTA hierarchy inversion**: the main affiliate link ("Regjistrohu në Bitget këtu") renders as a small text link while newsletter boxes dominate. The affiliate CTA must be the strongest element on the page (step 4 `btn-affiliate`), newsletter secondary.
 
 ### 1. Fix the hero + header order (the complaint)
 New order, tight: breadcrumbs (smaller, one line) → category pill + date + reading time on ONE row → H1 → one-line dek (description) → author chip (small avatar + name + updated date) → hero image **capped**: `max-h-[380px] w-full object-cover` desktop, `max-h-[240px]` mobile, rounded-xl. Everything above the image fits in one glance; article text starts within the first viewport.

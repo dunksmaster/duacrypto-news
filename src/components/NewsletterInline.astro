@@ -1,29 +1,30 @@
----
-import { t, type Locale } from "../i18n/ui";
-
-interface Props {
-  locale: Locale;
-  variant?: "inline" | "compact";
-}
-
-const { locale, variant = "inline" } = Astro.props;
-const strings = t(locale);
----
-
-<section
-  class:list={[
-    "newsletter-inline rounded-lg border border-primary/25 bg-surface",
-    variant === "compact" ? "my-8 px-4 py-4" : "my-10 px-5 py-5",
-  ]}
->
-  <p class="mb-1 text-sm font-semibold uppercase tracking-wide text-primary">{strings.newsletterInlineLabel}</p>
-  <h2 class="mb-2 text-lg font-bold">{strings.newsletterInlineTitle}</h2>
-  <p class="mb-3 text-sm text-dark leading-relaxed">{strings.newsletterInlineBody}</p>
-  <a
-    href="/go/newsletter"
-    rel="sponsored noopener noreferrer"
-    class="inline-block rounded-md bg-primary px-4 py-2 text-sm font-semibold text-on-primary no-underline hover:opacity-90"
-  >
-    {strings.newsletterInlineCta}
-  </a>
-</section>
+---
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  variant?: "inline" | "compact";
+}
+
+const { locale, variant = "inline" } = Astro.props;
+const strings = t(locale);
+---
+
+<section
+  class:list={[
+    "newsletter-inline rounded-lg border border-border bg-surface",
+    variant === "compact" ? "my-8 px-4 py-4" : "my-10 px-5 py-5",
+  ]}
+>
+  <p class="newsletter-inline__label">{strings.newsletterInlineLabel}</p>
+  <h2 class="newsletter-inline__title text-lg font-bold">{strings.newsletterInlineTitle}</h2>
+  <p class="newsletter-inline__body">{strings.newsletterInlineBody}</p>
+  <a
+    href="/go/newsletter"
+    rel="sponsored noopener noreferrer"
+    class="newsletter-cta-btn"
+  >
+    {strings.newsletterInlineCta}
+  </a>
+</section>
+
