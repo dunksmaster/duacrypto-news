@@ -6,7 +6,6 @@ on:
     workflows:
       - Deploy to Cloudflare Pages
       - Verify build
-      - PR preview
       - AI draft post
     types: [completed]
 

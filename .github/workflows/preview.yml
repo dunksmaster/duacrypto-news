@@ -1,4 +1,4 @@
-# Deploy a Cloudflare Pages preview for every PR (same-repo only).
+# Deploy a Cloudflare Pages preview for same-repo PRs (not Dependabot).
 name: PR preview
 
 on:
@@ -17,7 +17,10 @@ permissions:
 
 jobs:
   preview:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    # Dependabot PRs cannot use repository secrets — skip preview (Verify build still runs).
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.user.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
@@ -35,14 +38,16 @@ jobs:
       - name: Require Cloudflare Pages secrets
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "::error::Set CLOUDFLARE_PAGES_API_TOKEN and CLOUDFLARE_ACCOUNT_ID for PR previews."
-            exit 1
+            echo "::warning::CLOUDFLARE_PAGES_API_TOKEN / CLOUDFLARE_ACCOUNT_ID not set — skipping preview deploy."
+            exit 0
           fi
 
       - name: Install and build
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
         run: npm ci && npm run build
 
       - name: Deploy preview to Cloudflare Pages
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
         uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
@@ -51,6 +56,7 @@ jobs:
           command: pages deploy dist --project-name=dc-news --branch=${{ env.PREVIEW_BRANCH }} --commit-dirty=true
 
       - name: Comment preview URL on PR
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
