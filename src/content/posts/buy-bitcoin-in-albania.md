@@ -12,7 +12,6 @@ lang: en
 tags: [bitcoin, albania, diaspora, buyer-intent, guides]
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 faq:
   - question: "Can I buy Bitcoin with a card from Albania?"
     answer: "Yes — many readers use international exchanges with debit/credit cards. Fees are usually higher than bank transfer; check your bank allows crypto purchases."

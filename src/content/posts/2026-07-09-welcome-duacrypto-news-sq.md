@@ -10,7 +10,6 @@ translationKey: welcome-duacrypto-news-2026
 translationOf: 2026-07-09-welcome-duacrypto-news
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 ---
 
 **DuaCrypto News** është shtëpia e re për recap-et e eventeve, udhëzuesit, analizat dhe lajmet e komunitetit nga komuniteti i parë Bitcoin dhe Web3 në Shqipëri.

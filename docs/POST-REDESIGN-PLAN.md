@@ -18,6 +18,17 @@ Direct-answer concept (just restyle), FAQ accordions, related posts, breadcrumbs
 
 ## Redesign steps
 
+### 0. URGENT quick fixes (confirmed live bugs — do before everything else, sitewide)
+a. **Logo used as hero image**: posts with `image: /img/duacrypto-logo.png` (e.g. the Bitget post) render a giant stretched square logo. Fix: in PostLayout, treat the logo (or missing image) as "no hero" — render text-first. Audit all post frontmatter; replace logo heroes with the generated OG image (`/og/<slug>.png`) or none. Also apply cap `max-h-[380px] object-cover` (step 1).
+b. **Remove the visible "Markdown" link** from the post meta row — the `<link rel="alternate" type="text/markdown">` in the head serves AI agents; the visible link confuses readers. Remove on all layouts (post, en, embed).
+c. **EmbedCopy box looks like leaked code**: replace the full-width `<details>` + textarea block with a small `</>` "Embed" button appended to the ShareRow that opens a compact popover/modal with the code + copy button. Same for /en.
+d. **Color contrast failures (WCAG)** in `src/styles/global.css` — fix the tokens once, applies sitewide:
+   - `.btn-primary`: white-on-cyan ≈1.9:1 → change to dark text (`#062a33`) on cyan, or darken button bg to `#0891b2` and keep white. Verify ≥4.5:1.
+   - Link color in light mode: `#16d5ff` on white ≈1.6:1 → introduce `--color-link: #0e7490` (light) / `#4dd8ff` (dark); use for all text links; keep bright cyan only for large UI accents.
+   - `--color-secondary` dark mode `#8b949e` → `#a3aeb8` (≥4.5:1 on `#0d1117`); light mode `#999999` on white is 2.8:1 → `#5f6b76`.
+   - Reduce `text-secondary` usage in post page: FAQ answers and newsletter body should be `--color-dark` (primary text); secondary is ONLY for meta (dates, counts, captions).
+   - Add an automated check: `axe-core` contrast assertions in the Playwright suite (NEXT-PHASE-PLAN T3) so this never regresses.
+
 ### 1. Fix the hero + header order (the complaint)
 New order, tight: breadcrumbs (smaller, one line) → category pill + date + reading time on ONE row → H1 → one-line dek (description) → author chip (small avatar + name + updated date) → hero image **capped**: `max-h-[380px] w-full object-cover` desktop, `max-h-[240px]` mobile, rounded-xl. Everything above the image fits in one glance; article text starts within the first viewport.
 - Posts with generic stock heroes: set `heroStyle: banner` (default, capped) vs `heroStyle: none` in frontmatter — a text-first opening like Substack is better than a meaningless image.

@@ -12,7 +12,6 @@ lang: sq
 tags: [bitcoin, shqiperi, kosove, guides, sq, buyer-intent]
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 howToSteps:
   - name: "Zgjidh exchange-in"
     text: "Hap llogari në Bitget ose CEX.io përmes linqeve të verifikuara; aktivizo 2FA menjëherë."

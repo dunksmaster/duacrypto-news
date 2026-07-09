@@ -12,7 +12,6 @@ lang: en
 tags: [bitcoin, albania, legal, compliance, guides, sq]
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 faq:
   - question: "Did Albania ban Bitcoin?"
     answer: "There is no broad personal-use ban commonly cited for holding/buying via international platforms — but regulation evolves; verify current official sources for business use."

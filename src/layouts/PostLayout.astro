@@ -10,7 +10,8 @@ import AuthorBox from "../components/AuthorBox.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import RequestTranslation from "../components/RequestTranslation.astro";
 import ShareRow from "../components/ShareRow.astro";
-import EmbedCopy from "../components/EmbedCopy.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import PostNav from "../components/PostNav.astro";
 import ZapButton from "../components/ZapButton.astro";
 import NostrNote from "../components/NostrNote.astro";
 import type { CollectionEntry } from "astro:content";
@@ -24,7 +25,9 @@ import {
   postHref,
   categoryHref,
   resolveOgImagePath,
-  isGenericHeroImage,
+  resolveHeroSrc,
+  extractToc,
+  getCategoryAdjacentPosts,
 } from "../lib/posts";
 import {
   buildHreflangAlternates,
@@ -100,9 +103,9 @@ const jsonLdExtra = [
 
 const updated = post.data.updatedDate ?? post.data.pubDate;
 const mdMirror = `/md/posts/${slug}.md`;
-const showHero =
-  post.data.heroStyle !== "none" &&
-  (post.data.heroStyle === "screenshot" || !isGenericHeroImage(post.data.image));
+const heroSrc = resolveHeroSrc(post.data.image, slug, post.data.heroStyle);
+const toc = extractToc(post.body ?? "");
+const { older: olderPost, newer: newerPost } = getCategoryAdjacentPosts(post, allPosts, locale);
 ---
 
 <BaseLayout
@@ -123,9 +126,13 @@ const showHero =
   jsonLdExtra={jsonLdExtra}
   pagefindLang={lang}
   switchTarget={languageSwitch}
+  mdAlternateUrl={new URL(mdMirror, Astro.site).href}
 >
   <article class="py-12" data-pagefind-body>
-    <div class="section-shell max-w-3xl">
+    <div class="section-shell post-with-toc">
+      {toc.length >= 4 && <TableOfContents items={toc} locale={locale} variant="sidebar" />}
+
+      <div class="post-main">
       <Breadcrumbs
         items={[
           { label: strings.home, href: localePath("/", locale) },
@@ -134,80 +141,77 @@ const showHero =
         ]}
       />
 
-      <div class="mb-6 flex flex-wrap items-center gap-2">
+      <div class="mb-4 flex flex-wrap items-center gap-2 meta-text">
         <a href={categoryHref(post.data.category, locale)} class="category-pill">
           {categoryLabel}
         </a>
-        {post.data.aiGenerated && <span class="text-xs text-secondary">AI-assisted</span>}
-      </div>
-
-      <h1 class="mb-4 text-4xl font-bold leading-tight">{post.data.title}</h1>
-      <p class="mb-4 text-lg text-secondary">{post.data.description}</p>
-
-      <AuthorChip locale={locale} />
-
-      <div class="mb-4 flex flex-wrap items-center gap-3 text-sm text-secondary">
+        {post.data.aiGenerated && <span>AI-assisted</span>}
+        <span aria-hidden="true">·</span>
         <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{minutes} {strings.minRead}</span>
         {
           updated.getTime() !== post.data.pubDate.getTime() && (
             <>
-              <span>·</span>
+              <span aria-hidden="true">·</span>
               <span>{strings.updated} {formatDate(updated, locale)}</span>
             </>
           )
         }
-        <span>·</span>
-        <span>{minutes} {strings.minRead}</span>
-        <span>·</span>
-        <a href={mdMirror} class="text-primary hover:underline" rel="alternate" type="text/markdown">
-          {strings.markdown}
-        </a>
-      </div>
-
-      {
-        post.data.directAnswer && (
-          <div class="direct-answer mb-8 rounded-lg border border-primary/30 bg-surface px-4 py-3 text-dark leading-relaxed">
-            <p class="m-0 font-semibold text-sm text-secondary mb-1">{strings.directAnswerLabel}</p>
-            <p class="m-0">{post.data.directAnswer}</p>
-          </div>
-        )
-      }
-
-      {isAffiliate && <AffiliateDisclosure lang={lang} />}
-
-      <div class="mb-4 hidden flex-wrap items-center gap-3 text-sm" id="engagement-stats" data-slug={slug}>
-        <span class="engagement-stat hidden" data-views-stat title="Views">👁 <span data-views>0</span></span>
-        <span class="engagement-stat hidden" data-likes-stat>
-          <button type="button" class="engagement-like" data-like-btn aria-pressed="false">
-            🧡 <span data-likes>0</span>
-          </button>
+        <span class="hidden inline-flex flex-wrap items-center gap-2" id="engagement-stats" data-slug={slug}>
+          <span class="engagement-stat hidden" data-views-stat title="Views">👁 <span data-views>0</span></span>
+          <span class="engagement-stat hidden" data-likes-stat>
+            <button type="button" class="engagement-like" data-like-btn aria-pressed="false">
+              🧡 <span data-likes>0</span>
+            </button>
+          </span>
         </span>
       </div>
-      <div class="mb-4">
-        <ZapButton locale={locale} postTitle={post.data.title} />
-      </div>
+
+      <h1 class="mb-3 text-4xl font-bold leading-tight">{post.data.title}</h1>
+      <p class="mb-4 text-lg text-dark leading-relaxed">{post.data.description}</p>
+
+      <AuthorChip locale={locale} />
+
+      {isAffiliate && <AffiliateDisclosure lang={lang} compact />}
 
       {
-        showHero && post.data.image && (
+        heroSrc && (
           <img
-            src={post.data.image}
+            src={heroSrc}
             alt={post.data.targetKeyword ?? post.data.title}
             width="1200"
             height="675"
-            class="mb-8 max-h-[240px] w-full rounded-xl border border-border object-cover sm:max-h-[380px]"
+            class="post-hero mb-8 max-h-[240px] w-full rounded-xl border border-border object-cover sm:max-h-[380px]"
             loading="eager"
           />
         )
       }
 
-      <div class="post-prose space-y-4 text-dark [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_a]:text-primary [&_a]:underline [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6">
+      {toc.length >= 4 && <TableOfContents items={toc} locale={locale} variant="mobile" />}
+
+      {
+        post.data.directAnswer && (
+          <div class="direct-answer mb-8 rounded-lg px-4 py-3 text-dark leading-relaxed">
+            <p class="m-0 font-semibold text-sm meta-text mb-1">{strings.directAnswerLabel}</p>
+            <p class="m-0">{post.data.directAnswer}</p>
+          </div>
+        )
+      }
+
+      <div class="post-prose space-y-4">
         <Content />
       </div>
 
       <NewsletterInline locale={locale} />
 
-      <ShareRow locale={locale} shareUrl={shareUrl} shareTitle={post.data.title} />
-      <EmbedCopy locale={locale} embedUrl={embedUrl} postTitle={post.data.title} />
+      <ShareRow
+        locale={locale}
+        shareUrl={shareUrl}
+        shareTitle={post.data.title}
+        embedUrl={embedUrl}
+        embedTitle={post.data.title}
+      />
       <NostrNote locale={locale} slug={slug} />
 
       {
@@ -218,7 +222,7 @@ const showHero =
               {post.data.faq.map((item) => (
                 <details class="rounded-lg border border-border bg-surface px-4 py-3">
                   <summary class="cursor-pointer font-semibold">{item.question}</summary>
-                  <p class="mt-2 mb-0 text-secondary leading-relaxed">{item.answer}</p>
+                  <p class="mt-2 mb-0 text-dark leading-relaxed">{item.answer}</p>
                 </details>
               ))}
             </div>
@@ -228,7 +232,24 @@ const showHero =
 
       {isAffiliate && <NewsletterCTA lang={lang} />}
 
+      <PostNav locale={locale} older={olderPost} newer={newerPost} />
+
       <AuthorBox locale={locale} />
+
+      {
+        post.data.tags.length > 0 && (
+          <div class="mt-10 flex flex-wrap gap-2 border-t border-border pt-6">
+            {post.data.tags.map((tag) => (
+              <a
+                href={localePath(`/tags/${tag}/`, locale)}
+                class="rounded-full bg-surface px-3 py-1 text-sm text-link no-underline hover:underline"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
 
       {!hasTranslation && (
         <RequestTranslation
@@ -239,20 +260,10 @@ const showHero =
         />
       )}
 
-      {
-        post.data.tags.length > 0 && (
-          <div class="mt-10 flex flex-wrap gap-2 border-t border-border pt-6">
-            {post.data.tags.map((tag) => (
-              <a
-                href={localePath(`/tags/${tag}/`, locale)}
-                class="rounded-full bg-surface px-3 py-1 text-sm text-primary hover:underline"
-              >
-                #{tag}
-              </a>
-            ))}
-          </div>
-        )
-      }
+      <div class="mt-8 border-t border-border pt-6">
+        <ZapButton locale={locale} postTitle={post.data.title} />
+      </div>
+      </div>
     </div>
   </article>
 
@@ -278,10 +289,6 @@ const showHero =
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.375rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
     color: var(--color-secondary);
   }
   .engagement-like {
@@ -301,5 +308,13 @@ const showHero =
   }
   [data-card-views][hidden] {
     display: none;
+  }
+  .post-hero {
+    max-height: 240px;
+  }
+  @media (min-width: 640px) {
+    .post-hero {
+      max-height: 380px;
+    }
   }
 </style>

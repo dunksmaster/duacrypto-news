@@ -19,6 +19,9 @@
     "ping:indexnow": "node scripts/ping-indexnow.mjs",
     "smoke": "node scripts/smoke-test-news.mjs",
     "verify:engagement": "node scripts/verify-engagement.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install chromium",
+    "test:lighthouse": "node scripts/lighthouse-mobile.mjs",
     "import:gsc-queue": "node scripts/import-gsc-queue.mjs",
     "publish:nostr": "node scripts/publish-nostr.mjs"
   },
@@ -33,7 +36,10 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.52.0",
     "@resvg/resvg-js": "^2.6.2",
+    "lighthouse": "^12.6.0",
     "nostr-tools": "^2.10.4",
     "pagefind": "^1.5.2",
     "wrangler": "^4.100.0"

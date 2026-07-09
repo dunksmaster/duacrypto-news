@@ -12,7 +12,6 @@ lang: en
 tags: [bitget, exchange, affiliate, bitcoin, albania, kosovo, diaspora]
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 heroStyle: none
 faq:
   - question: "Does Bitget work from Albania?"

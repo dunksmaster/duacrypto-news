@@ -1,0 +1,86 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { postHref, postSlug } from "../lib/posts";
+import type { Locale } from "../i18n/ui";
+import { t } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  older: CollectionEntry<"posts"> | null;
+  newer: CollectionEntry<"posts"> | null;
+}
+
+const { locale, older, newer } = Astro.props;
+const strings = t(locale);
+if (!older && !newer) return null;
+---
+
+<nav class="post-nav" aria-label={strings.postNavLabel}>
+  {
+    older && (
+      <a href={postHref(postSlug(older.id), locale)} class="post-nav-link post-nav-link--prev">
+        <span class="post-nav-kicker">{strings.prevPost}</span>
+        <span class="post-nav-title">{older.data.title}</span>
+      </a>
+    )
+  }
+  {
+    newer && (
+      <a href={postHref(postSlug(newer.id), locale)} class="post-nav-link post-nav-link--next">
+        <span class="post-nav-kicker">{strings.nextPost}</span>
+        <span class="post-nav-title">{newer.data.title}</span>
+      </a>
+    )
+  }
+</nav>
+
+<style>
+  .post-nav {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 640px) {
+    .post-nav {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .post-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    text-decoration: none;
+    color: inherit;
+    min-height: 2.75rem;
+  }
+
+  .post-nav-link:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+
+  .post-nav-link--next {
+    text-align: right;
+  }
+
+  .post-nav-kicker {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-secondary);
+  }
+
+  .post-nav-title {
+    font-weight: 600;
+    color: var(--color-link);
+    line-height: 1.35;
+  }
+</style>

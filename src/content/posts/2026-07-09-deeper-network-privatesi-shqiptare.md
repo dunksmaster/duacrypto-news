@@ -13,7 +13,6 @@ tags: [deeper, vpn, privacy, sq, affiliate, security]
 lang: sq
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 heroStyle: none
 ---
 

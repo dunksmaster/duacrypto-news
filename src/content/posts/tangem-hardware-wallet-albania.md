@@ -12,7 +12,6 @@ lang: en
 tags: [tangem, hardware-wallet, self-custody, affiliate, albania, bitcoin]
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 heroStyle: none
 faq:
   - question: "Is Tangem good for beginners in Albania?"

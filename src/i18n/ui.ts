@@ -66,6 +66,11 @@ export const ui = {
     newsletterInlineTitle: "Dua më shumë se një artikull?",
     newsletterInlineBody: "Premium Newsletter ($10/muaj) — analiza, recap-e dhe udhëzime që nuk i publikojmë kudo.",
     newsletterInlineCta: "Shiko Premium →",
+    tocLabel: "Në këtë artikull",
+    prevPost: "Artikulli i mëparshëm",
+    nextPost: "Artikulli tjetër",
+    postNavLabel: "Navigim artikujsh",
+    keyTakeawaysLabel: "Çka mëson këtu",
   },
   en: {
     siteName: "DuaCrypto News",
@@ -125,6 +130,11 @@ export const ui = {
     newsletterInlineTitle: "Want more than one article?",
     newsletterInlineBody: "Premium Newsletter ($10/mo) — analysis, recaps, and guides we don't publish everywhere.",
     newsletterInlineCta: "See Premium →",
+    tocLabel: "In this article",
+    prevPost: "Previous article",
+    nextPost: "Next article",
+    postNavLabel: "Post navigation",
+    keyTakeawaysLabel: "What you'll learn",
   },
 } as const;
 

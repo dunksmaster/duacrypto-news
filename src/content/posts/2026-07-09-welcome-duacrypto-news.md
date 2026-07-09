@@ -8,7 +8,6 @@ tags: [announcement, news-site]
 translationKey: welcome-duacrypto-news-2026
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 ---
 
 We launched **DuaCrypto News** as the home for event recaps, guides, analysis, and community updates from Albania's first Bitcoin and Web3 community.

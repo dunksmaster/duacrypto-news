@@ -11,7 +11,6 @@ lang: sq
 tags: [scam, security, sq, mashtrim, bitcoin]
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 faq:
   - question: "A më kontakton ndonjëherë support-i i vërtetë në Telegram?"
     answer: "Shumë rrallë dhe kurrë për seed phrase. Mesazhet që të shkruajnë së pari në DM janë pothuajse gjithmonë scam."

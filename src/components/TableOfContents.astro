@@ -1,0 +1,50 @@
+---
+import type { TocItem } from "../lib/posts";
+import type { Locale } from "../i18n/ui";
+import { t } from "../i18n/ui";
+
+interface Props {
+  items: TocItem[];
+  locale: Locale;
+  variant?: "sidebar" | "mobile";
+}
+
+const { items, locale, variant = "sidebar" } = Astro.props;
+const strings = t(locale);
+if (items.length < 4) return null;
+---
+
+<nav
+  class:list={["post-toc", variant === "sidebar" ? "post-toc--sidebar" : "post-toc--mobile"]}
+  aria-label={strings.tocLabel}
+>
+  {
+    variant === "mobile" ? (
+      <details class="post-toc-details">
+        <summary class="post-toc-summary">{strings.tocLabel}</summary>
+        <ol class="post-toc-list">
+          {items.map((item) => (
+            <li>
+              <a href={`#${item.id}`} class="post-toc-link">
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    ) : (
+      <>
+        <p class="post-toc-heading">{strings.tocLabel}</p>
+        <ol class="post-toc-list">
+          {items.map((item) => (
+            <li>
+              <a href={`#${item.id}`} class="post-toc-link">
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </>
+    )
+  }
+</nav>

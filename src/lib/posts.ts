@@ -1,7 +1,11 @@
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import type { Category } from "../content.config";
-import { filterPostsByLocale, type Locale } from "./i18n";
+import { filterPostsByLocale, getPostLocale, type Locale } from "./i18n";
 import { localePath } from "../i18n/ui";
+import { slugifyHeadingUnique } from "./slugify-heading.mjs";
+
+export type TocItem = { id: string; text: string };
 
 export async function getPublishedPosts() {
   const posts = await getCollection("posts");
@@ -49,6 +53,18 @@ export function isGenericHeroImage(image: string | undefined): boolean {
   return !image || image === DEFAULT_OG;
 }
 
+/** In-page hero src, or null for text-first (OG/social uses resolveOgImagePath). */
+export function resolveHeroSrc(
+  image: string | undefined,
+  slug: string,
+  heroStyle?: "banner" | "none" | "screenshot",
+): string | null {
+  if (heroStyle === "none") return null;
+  if (heroStyle === "screenshot" && image && !isGenericHeroImage(image)) return image;
+  if (image && !isGenericHeroImage(image)) return image;
+  return null;
+}
+
 /** Branded build-time OG PNG unless the post has a custom hero image. */
 export function resolveOgImagePath(image: string | undefined, slug: string): string {
   if (image && image !== DEFAULT_OG) return image;
@@ -65,4 +81,36 @@ export function categoryHref(category: string, locale: Locale) {
 
 export function tagHref(tag: string, locale: Locale) {
   return localePath(`/tags/${tag}/`, locale);
+}
+
+/** H2 headings for table of contents (ids must match rehypeHeadingIds). */
+export function extractToc(body: string): TocItem[] {
+  const seen = new Map<string, number>();
+  const items: TocItem[] = [];
+  for (const match of body.matchAll(/^## (.+)$/gm)) {
+    const raw = match[1]
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[*_`]/g, "")
+      .trim();
+    if (!raw) continue;
+    items.push({ id: slugifyHeadingUnique(raw, seen), text: raw });
+  }
+  return items;
+}
+
+/** Chronological neighbors within the same category + locale (newest-first list). */
+export function getCategoryAdjacentPosts(
+  post: CollectionEntry<"posts">,
+  allPosts: CollectionEntry<"posts">[],
+  locale: Locale,
+) {
+  const categoryPosts = allPosts.filter(
+    (p) => getPostLocale(p) === locale && p.data.category === post.data.category,
+  );
+  const idx = categoryPosts.findIndex((p) => p.id === post.id);
+  if (idx < 0) return { older: null, newer: null };
+  return {
+    older: idx < categoryPosts.length - 1 ? categoryPosts[idx + 1] : null,
+    newer: idx > 0 ? categoryPosts[idx - 1] : null,
+  };
 }

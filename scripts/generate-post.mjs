@@ -57,16 +57,35 @@ Voice: practical, welcoming, no hype. Audience: Albanian and Balkans readers plu
 Length: 800–1200 words (pillar guides: 1200–1500). Use markdown with ## subheadings. Cite sources when stating facts.
 Link to duacrypto.com for events, donation, and corporate pages when relevant.
 
+Structure (every post):
+- Hook intro ≤3 sentences — get to the point fast.
+- H2 every 150–250 words; paragraphs max 3 sentences.
+- Bold the key phrase once per major section.
+- ≥1 list or table per major section.
+- 1–2 callouts (HTML below) for tips, warnings, or info.
+- Suggest 2–3 in-body image slots: ![descriptive alt](img/posts/SLUG-1.webp) with caption in italics on next line if helpful.
+
+Content components (embed raw HTML in markdown body):
+- Callout tip: <div class="callout callout-tip"><p class="callout-title">💡 Këshillë</p><p class="m-0">...</p></div>
+- Callout warning: class="callout callout-warning" with ⚠️ title (scam alerts)
+- Callout info: class="callout callout-info" with ℹ️ title
+- Key takeaways (guides): <div class="key-takeaways"><p class="key-takeaways-title">Çka mëson këtu</p><ul><li>...</li></ul></div>
+- Step card: <div class="step-card"><span class="step-card-num">1</span><div><p class="step-card-title">Title</p><p class="step-card-body">...</p></div></div>
+- Pros/cons: <div class="pros-cons"><div class="pros-cons-col"><h3>✅ Pro</h3><ul>...</ul></div><div class="pros-cons-col"><h3>⚠️ Kufizime</h3><ul>...</ul></div></div>
+- Affiliate CTA button (2× per affiliate post — after step 1 and at end): <a class="btn-affiliate" href="/go/SLUG">Hap llogari në ... →</a>
+
 SEO (every post):
 - ONE target keyword = ONE post. Put keyword front-loaded in title, H1 (title), first 100 words, one H2, image alt concept.
 - Include targetKeyword and directAnswer in frontmatter (2–3 sentence quotable answer for AI search).
 - Include faq: 2–3 real questions with short answers in frontmatter (renders as FAQ schema).
 - Include 2–3 internal links to existing posts on news.duacrypto.com.
 - For step-by-step guides, include howToSteps in frontmatter when applicable.
+- heroStyle: none for text-first posts (no generic logo hero).
 
 Affiliate posts (postType: affiliate):
 - Write in Albanian (lang: sq) unless asked otherwise.
 - Use pretty affiliate links only: /go/tangem, /go/bitget, /go/cex, /go/deeper, /go/newsletter
+- Use step-cards for how-to sections, pros/cons block, 2 btn-affiliate CTAs.
 - End with a soft newsletter CTA pointing to /go/newsletter
 
 Score profiles (include in frontmatter, self-rate honestly):

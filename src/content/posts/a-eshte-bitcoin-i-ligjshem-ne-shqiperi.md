@@ -12,7 +12,6 @@ translationKey: bitcoin-legal-albania-2026
 tags: [bitcoin, shqiperi, ligj, rregullore, sq, trust]
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 faq:
   - question: "A është e ndaluar të blej Bitcoin në Shqipëri?"
     answer: "Për individët, nuk ka ndalim të qartë të përgjithshëm si për mbajtje personale në shumë vende, por korniza ligjore evolvon. Përdor exchange të rregulluara dhe respekto detyrimet e raportimit nëse aplikohen."

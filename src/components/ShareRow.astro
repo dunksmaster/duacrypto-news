@@ -5,11 +5,16 @@ interface Props {
   locale: Locale;
   shareUrl: string;
   shareTitle: string;
+  embedUrl?: string;
+  embedTitle?: string;
 }
 
-const { locale, shareUrl, shareTitle } = Astro.props;
+const { locale, shareUrl, shareTitle, embedUrl, embedTitle } = Astro.props;
 const encodedUrl = encodeURIComponent(shareUrl);
 const encodedTitle = encodeURIComponent(shareTitle);
+const iframeCode = embedUrl
+  ? `<iframe src="${embedUrl}" width="100%" height="360" frameborder="0" loading="lazy" title="${(embedTitle ?? shareTitle).replace(/"/g, "&quot;")}"></iframe>`
+  : "";
 
 const links = [
   {
@@ -30,7 +35,7 @@ const links = [
 ];
 ---
 
-<div class="share-row" data-share-url={shareUrl}>
+<div class="share-row" data-share-url={shareUrl} data-embed-code={iframeCode || undefined}>
   <span class="share-row-label">{locale === "sq" ? "Ndaj" : "Share"}</span>
   <div class="share-row-buttons">
     {
@@ -49,11 +54,47 @@ const links = [
     <button type="button" class="share-btn" data-copy-link>
       {locale === "sq" ? "Kopjo linkun" : "Copy link"}
     </button>
+    {
+      embedUrl && (
+        <button type="button" class="share-btn share-btn-embed" data-embed-open aria-haspopup="dialog">
+          {"</>"} {locale === "sq" ? "Embed" : "Embed"}
+        </button>
+      )
+    }
     <button type="button" class="share-btn share-btn-native hidden" data-native-share>
       {locale === "sq" ? "Ndaj…" : "Share…"}
     </button>
   </div>
 </div>
+
+{
+  embedUrl && (
+    <div class="embed-popover hidden" id="embed-popover" role="dialog" aria-modal="true" aria-labelledby="embed-popover-title">
+      <div class="embed-popover-backdrop" data-embed-close />
+      <div class="embed-popover-panel">
+        <h3 id="embed-popover-title" class="embed-popover-title">
+          {locale === "sq" ? "Kodi i embed" : "Embed code"}
+        </h3>
+        <p class="embed-popover-hint">
+          {
+            locale === "sq"
+              ? "Vendose këtë iframe në blogun ose faqen tënde."
+              : "Paste this iframe on your blog or site."
+          }
+        </p>
+        <textarea class="embed-popover-code" readonly rows="3" aria-label={locale === "sq" ? "Kodi i embed" : "Embed code"}>{iframeCode}</textarea>
+        <div class="embed-popover-actions">
+          <button type="button" class="btn-primary btn-sm" data-embed-copy>
+            {locale === "sq" ? "Kopjo" : "Copy"}
+          </button>
+          <button type="button" class="share-btn" data-embed-close>
+            {locale === "sq" ? "Mbyll" : "Close"}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 <script is:inline src="/js/share.js"></script>
 
@@ -79,6 +120,7 @@ const links = [
   .share-btn {
     display: inline-flex;
     align-items: center;
+    min-height: 2.75rem;
     padding: 0.375rem 0.75rem;
     border-radius: 0.375rem;
     border: 1px solid var(--color-border);
@@ -86,14 +128,75 @@ const links = [
     color: var(--color-dark);
     font-size: 0.875rem;
     font-weight: 600;
+    font-family: inherit;
     text-decoration: none;
     cursor: pointer;
   }
   .share-btn:hover {
     border-color: var(--color-primary);
-    color: var(--color-primary);
+    color: var(--color-link);
   }
-  .share-btn-native.hidden {
+  .share-btn-embed {
+    font-family: ui-monospace, monospace;
+  }
+  .share-btn-native.hidden,
+  .embed-popover.hidden {
     display: none;
+  }
+  .embed-popover {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .embed-popover-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 0.45);
+  }
+  .embed-popover-panel {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 28rem);
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+    padding: 1rem;
+    box-shadow: 0 12px 40px rgb(0 0 0 / 0.15);
+  }
+  .embed-popover-title {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-dark);
+  }
+  .embed-popover-hint {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-secondary);
+  }
+  .embed-popover-code {
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-page);
+    padding: 0.75rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--color-dark);
+    resize: vertical;
+  }
+  .embed-popover-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
   }
 </style>

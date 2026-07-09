@@ -3,6 +3,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import { rehypeAffiliateLinks } from "./src/lib/rehype-affiliate-links.mjs";
+import { rehypeHeadingIds } from "./src/lib/rehype-heading-ids.mjs";
 
 const i18nMapPath = new URL("./src/data/i18n-map.json", import.meta.url);
 /** @type {{ alternates: Record<string, { href: string; hreflang: string }[]> }} */
@@ -40,6 +41,6 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    rehypePlugins: [rehypeAffiliateLinks],
+    rehypePlugins: [rehypeHeadingIds, rehypeAffiliateLinks],
   },
 });

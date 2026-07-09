@@ -13,7 +13,6 @@ tags: [newsletter, premium, sq, affiliate, gumroad]
 lang: sq
 draft: false
 aiGenerated: false
-image: /img/duacrypto-logo.png
 heroStyle: none
 ---
 
