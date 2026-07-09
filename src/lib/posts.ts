@@ -38,6 +38,16 @@ export function formatDate(date: Date, locale: Locale = "en") {
   });
 }
 
+/** Compact uppercase ticker date for post eyebrow meta (Terminal & Sats). */
+export function formatTickerDate(date: Date, locale: Locale = "en") {
+  const parts = date.toLocaleDateString(locale === "sq" ? "sq-AL" : "en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+  return parts.toUpperCase();
+}
+
 export function readingTime(body: string) {
   const words = body.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / 200));

@@ -4,9 +4,8 @@ import BaseLayout from "./BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
 import AffiliateDisclosure from "../components/AffiliateDisclosure.astro";
 import NewsletterCTA from "../components/NewsletterCTA.astro";
-import AuthorChip from "../components/AuthorChip.astro";
 import AuthorBox from "../components/AuthorBox.astro";
-import Breadcrumbs from "../components/Breadcrumbs.astro";
+import PostByline from "../components/PostByline.astro";
 import RequestTranslation from "../components/RequestTranslation.astro";
 import PostActionRail from "../components/PostActionRail.astro";
 import TableOfContents from "../components/TableOfContents.astro";
@@ -17,6 +16,7 @@ import site from "../data/site.json";
 import { t, localePath, type Locale } from "../i18n/ui";
 import {
   formatDate,
+  formatTickerDate,
   postSlug,
   readingTime,
   getPublishedPosts,
@@ -132,14 +132,6 @@ const { older: olderPost, newer: newerPost } = getCategoryAdjacentPosts(post, al
       {toc.length >= 4 && <TableOfContents items={toc} locale={locale} variant="sidebar" />}
 
       <div class="post-main">
-        <Breadcrumbs
-          items={[
-            { label: strings.home, href: localePath("/", locale) },
-            { label: categoryLabel, href: categoryHref(post.data.category, locale) },
-            { label: post.data.title },
-          ]}
-        />
-
         <h1 class="post-title">{post.data.title}</h1>
 
         {
@@ -148,40 +140,36 @@ const { older: olderPost, newer: newerPost } = getCategoryAdjacentPosts(post, al
           )
         }
 
-        <div class="post-meta-line">
-          <a href={categoryHref(post.data.category, locale)} class="post-meta-line__category">
-            {categoryLabel}
+        <p class="post-eyebrow meta-mono">
+          <a href={categoryHref(post.data.category, locale)} class="post-eyebrow__category">
+            {categoryLabel.toUpperCase()}
           </a>
-          <span class="post-meta-line__sep" aria-hidden="true">·</span>
-          <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, locale)}</time>
-          <span class="post-meta-line__sep" aria-hidden="true">·</span>
-          <span>{minutes} {strings.minRead}</span>
+          <span class="post-eyebrow__sep" aria-hidden="true">///</span>
+          <time datetime={post.data.pubDate.toISOString()}>{formatTickerDate(post.data.pubDate, locale)}</time>
+          <span class="post-eyebrow__sep" aria-hidden="true">///</span>
+          <span>{minutes} MIN</span>
           {
             updated.getTime() !== post.data.pubDate.getTime() && (
               <>
-                <span class="post-meta-line__sep" aria-hidden="true">·</span>
-                <span>{strings.updated} {formatDate(updated, locale)}</span>
+                <span class="post-eyebrow__sep" aria-hidden="true">///</span>
+                <span>{strings.updated.toUpperCase()} {formatTickerDate(updated, locale)}</span>
               </>
             )
           }
-          {post.data.aiGenerated && (
-            <>
-              <span class="post-meta-line__sep" aria-hidden="true">·</span>
-              <span>AI-assisted</span>
-            </>
-          )}
-          <span class="post-meta-line__sep" aria-hidden="true">·</span>
-          <AuthorChip locale={locale} />
-        </div>
+        </p>
 
-        <PostActionRail
-          locale={locale}
-          slug={slug}
-          shareUrl={shareUrl}
-          shareTitle={post.data.title}
-          embedUrl={embedUrl}
-          embedTitle={post.data.title}
-        />
+        <div class="post-byline-rail">
+          <PostByline locale={locale} />
+          <PostActionRail
+            locale={locale}
+            slug={slug}
+            shareUrl={shareUrl}
+            shareTitle={post.data.title}
+            embedUrl={embedUrl}
+            embedTitle={post.data.title}
+            variant="byline"
+          />
+        </div>
 
         {isAffiliate && <AffiliateDisclosure lang={lang} compact />}
 
@@ -221,6 +209,7 @@ const { older: olderPost, newer: newerPost } = getCategoryAdjacentPosts(post, al
           embedUrl={embedUrl}
           embedTitle={post.data.title}
           withEngagement={false}
+          variant="footer"
         />
 
         <NostrNote locale={locale} slug={slug} />
@@ -290,57 +279,72 @@ const { older: olderPost, newer: newerPost } = getCategoryAdjacentPosts(post, al
 <style>
   .post-title {
     margin: 0 0 0.5rem;
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--color-text);
+    font-size: clamp(1.65rem, 4vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--ink);
+    text-wrap: balance;
   }
 
   .post-dek {
     margin: 0 0 0.75rem;
     font-size: 1rem;
     line-height: 1.5;
-    color: var(--color-text-muted);
+    color: var(--ink-2);
   }
 
-  .post-meta-line {
+  .post-eyebrow {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.15rem 0.35rem;
-    font-size: 0.8125rem;
-    color: var(--color-text-muted);
-    line-height: 1.4;
+    gap: 0.35rem 0.5rem;
+    margin: 0 0 0.75rem;
   }
 
-  .post-meta-line__category {
-    font-weight: 600;
+  .post-eyebrow__category {
     color: var(--color-link);
     text-decoration: none;
+    font-weight: 600;
   }
 
-  .post-meta-line__category:hover {
+  .post-eyebrow__category:hover {
     text-decoration: underline;
   }
 
-  .post-meta-line__sep {
+  .post-eyebrow__sep {
+    color: var(--hairline);
     user-select: none;
+  }
+
+  .post-byline-rail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin: 0 0 1rem;
+    padding: 0.65rem 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
   }
 
   .direct-answer {
     margin: 1.5rem 0;
-    padding: 0.75rem 0;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    padding: 0.75rem 0 0.75rem 0.85rem;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    border-left: 3px solid var(--cyan-bright);
   }
 
   .direct-answer__label {
-    margin: 0 0 0.25rem;
-    font-size: 0.75rem;
+    margin: 0 0 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--color-text-muted);
+    color: var(--ink-2);
   }
 
   .direct-answer__text {

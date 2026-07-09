@@ -12,13 +12,15 @@ interface Props {
   embedTitle?: string;
   /** When false, omits view/like counters (for duplicate footer rail). */
   withEngagement?: boolean;
+  variant?: "default" | "byline" | "footer";
 }
 
-const { locale, slug, shareUrl, shareTitle, embedUrl, embedTitle, withEngagement = true } = Astro.props;
+const { locale, slug, shareUrl, shareTitle, embedUrl, embedTitle, withEngagement = true, variant = "default" } =
+  Astro.props;
 ---
 
 <div
-  class="post-action-rail"
+  class:list={["post-action-rail", variant === "byline" && "post-action-rail--byline", variant === "footer" && "post-action-rail--footer"]}
   {...(withEngagement ? { id: "engagement-stats", "data-slug": slug } : {})}
 >
   {
@@ -55,8 +57,20 @@ const { locale, slug, shareUrl, shareTitle, embedUrl, embedTitle, withEngagement
     gap: 0.5rem 0.75rem;
     margin: 0.75rem 0 1rem;
     padding: 0.5rem 0;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .post-action-rail--byline {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+  }
+
+  .post-action-rail--footer {
+    margin-top: 1.5rem;
   }
 
   .post-action-rail__stat {

@@ -80,7 +80,7 @@ test("newsletter blocks readable in dark mode", async ({ page }) => {
   await expect(cta).toHaveCount(1);
   await expect(cta).toBeVisible();
   const ctaColor = await cta.evaluate((el) => getComputedStyle(el).color);
-  expect(ctaColor).toBe("rgb(77, 216, 255)");
+  expect(ctaColor).toBe("rgb(77, 217, 240)");
   const ctaDecoration = await cta.evaluate((el) => getComputedStyle(el).textDecorationLine);
   expect(ctaDecoration).toBe("none");
   const ctaBg = await cta.evaluate((el) => getComputedStyle(el).backgroundColor);
@@ -109,7 +109,7 @@ test("post page: no duplicate newsletter or trust bar", async ({ page }) => {
   await expect(page.locator(".newsletter-cta")).toHaveCount(1);
   await expect(page.locator(".newsletter-inline")).toHaveCount(0);
   await expect(page.locator(".author-box")).toHaveCount(1);
-  await expect(page.locator(".author-chip-compact")).toHaveCount(1);
+  await expect(page.locator(".post-byline")).toHaveCount(1);
   await expect(page.locator('[data-trust-bar], .trust-bar, [class*="trust-bar"]')).toHaveCount(0);
 });
 

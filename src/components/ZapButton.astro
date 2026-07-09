@@ -76,15 +76,16 @@ const address = site.lightningAddress?.trim();
     border-color: var(--color-primary);
   }
   .engagement-zap--compact {
-    padding: 0;
-    border: 0;
-    background: transparent;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid color-mix(in srgb, var(--btc) 45%, transparent);
+    background: color-mix(in srgb, var(--btc) 8%, transparent);
     font-size: 0.8125rem;
-    color: var(--color-text-muted);
+    color: var(--btc);
   }
   .engagement-zap--compact:hover {
-    color: var(--color-link);
-    border-color: transparent;
+    color: var(--btc-dark);
+    border-color: var(--btc);
+    background: color-mix(in srgb, var(--btc) 14%, transparent);
   }
   .zap-modal {
     position: fixed;

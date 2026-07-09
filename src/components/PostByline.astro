@@ -1,0 +1,67 @@
+---
+import author from "../data/author.json";
+import { localePath, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const profileHref = localePath(author.profileUrl, locale);
+---
+
+<div class="post-byline">
+  <a href={profileHref} class="post-byline__avatar" aria-label={author.displayName}>
+    <img src={author.photo} alt="" width="26" height="26" loading="lazy" />
+  </a>
+  <span class="post-byline__text">
+    <a href={profileHref} class="post-byline__name">{author.displayName}</a>
+    <span class="post-byline__role">{author.role[locale]}</span>
+  </span>
+</div>
+
+<style>
+  .post-byline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 1 1 12rem;
+  }
+
+  .post-byline__avatar img {
+    width: 1.625rem;
+    height: 1.625rem;
+    border-radius: 9999px;
+    border: 1px solid var(--hairline);
+    object-fit: cover;
+  }
+
+  .post-byline__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    min-width: 0;
+  }
+
+  .post-byline__name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.2;
+  }
+
+  .post-byline__name:hover {
+    color: var(--cyan);
+  }
+
+  .post-byline__role {
+    font-size: 0.75rem;
+    color: var(--ink-2);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
