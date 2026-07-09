@@ -40,6 +40,16 @@ Secrets to add later (GitHub Actions): `NOSTR_NSEC` (step 9 only).
 13. **Embed card**: route `/embed/[slug]/` rendering a compact card (og image, title, excerpt, "Read on DuaCrypto News →"), `X-Frame-Options` removed ONLY for `/embed/*` (override in generated `_headers`), plus "Copy embed code" button on posts producing the iframe snippet.
 14. **oEmbed**: `functions/api/oembed.ts` (or static per-post JSON at build) returning rich-type oEmbed pointing at the embed route; add `<link rel="alternate" type="application/json+oembed">` discovery tag in post heads.
 
+## Operator: enable D1 in production
+
+1. `npx wrangler d1 create dc-news-analytics` — copy `database_id` into `wrangler.toml`
+2. `npx wrangler d1 migrations apply dc-news-analytics --remote`
+3. Cloudflare dashboard → **Pages → dc-news → Settings → Functions → D1 bindings** → bind `DB` → `dc-news-analytics`
+4. Redeploy (push to main or `wrangler pages deploy dist --project-name=dc-news`)
+5. Cloudflare Access: protect `/admin/stats` and `/api/stats` (see dashboard)
+
+Until step 3–4 complete, the site works without counts; APIs return zeros gracefully.
+
 ## Acceptance checklist
 - [ ] `npm run build` green; smoke tests updated for new UI elements
 - [ ] View/like counts visible on post + cards; refresh doesn't double-count; curl with GPTBot UA doesn't increment

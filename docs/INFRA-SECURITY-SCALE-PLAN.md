@@ -20,7 +20,7 @@ Analysis date: 2026-07-09. Covers `TokenDC` (duacrypto.com) and `duacrypto-news`
 ### Gaps found ⚠️ (ordered by risk)
 1. ~~**News site has NO Content-Security-Policy**~~ ✅ Fixed — generated in prebuild, enforced in CI.
 2. ~~**TokenDC has 17 uncommitted files**~~ ✅ Fixed — committed and pushed.
-3. **Branch protection unverified** on either repo — see `docs/GITHUB-SECURITY-SETUP.md`.
+3. ~~**Branch protection unverified**~~ ✅ Rulesets active on both repos (`Protect main`, admin bypass enabled).
 4. ~~**No dependency security automation**~~ ✅ Dependabot + `npm audit --audit-level=high` in CI (both repos).
 5. ~~**GitHub Actions not pinned to commit SHAs**~~ ✅ All workflows pinned; minimum `permissions:` set.
 6. ~~**No monitoring**~~ ⚠️ CI failure → Telegram workflow added; UptimeRobot still manual (see setup doc).

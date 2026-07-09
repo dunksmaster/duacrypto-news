@@ -13,8 +13,7 @@ function slugFromFilename(name) {
   return name.replace(/\.md$/, "");
 }
 
-const base = readFileSync(redirectsPath, "utf8").split("\n").filter(Boolean);
-const redirectLines = new Set(base);
+const redirectLines = new Set();
 
 for (const name of readdirSync(postsDir)) {
   if (!name.endsWith(".md")) continue;
@@ -30,4 +29,4 @@ for (const name of readdirSync(postsDir)) {
 }
 
 writeFileSync(redirectsPath, [...redirectLines].join("\n") + "\n", "utf8");
-console.log(`Updated _redirects (${redirectLines.size} lines)`);
+console.log(`Updated _redirects (${redirectLines.size} EN legacy lines; /go/* handled by Functions)`);

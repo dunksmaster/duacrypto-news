@@ -4,15 +4,9 @@ Items that cannot be fully automated from the repo. Do once per repository (`dua
 
 ## Branch protection (required)
 
-GitHub → **Settings → Rules → Rulesets** (or Branch protection rules):
+✅ **Active** — ruleset `Protect main` on both repos (PR required, `verify` status check, no force-push). Repo admins can bypass for emergencies.
 
-- Target branch: `main`
-- Require a pull request before merging
-- Require status checks: **Verify build** (and **Deploy** only on main after merge)
-- Block force pushes
-- Block branch deletion
-
-With `.github/CODEOWNERS` pointing at `@dunksmaster`, enable **Require review from Code Owners**.
+To review: GitHub → **Settings → Rules → Rulesets**.
 
 ## Secret scanning + push protection
 

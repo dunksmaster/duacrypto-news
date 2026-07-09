@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/generate-headers.mjs && node scripts/build-i18n-map.mjs && node scripts/generate-en-redirects.mjs && node scripts/generate-md-mirrors.mjs",
+    "prebuild": "node scripts/generate-headers.mjs && node scripts/sync-affiliates-functions.mjs && node scripts/build-i18n-map.mjs && node scripts/generate-en-redirects.mjs && node scripts/generate-md-mirrors.mjs",
     "build": "astro build",
     "postbuild": "pagefind --site dist && node scripts/ping-indexnow.mjs && node scripts/verify-security-headers.mjs",
     "preview": "astro preview",
@@ -30,6 +30,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2"
+    "pagefind": "^1.5.2",
+    "wrangler": "^4.100.0"
   }
 }

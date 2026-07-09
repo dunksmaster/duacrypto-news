@@ -1,0 +1,14 @@
+# Cloudflare Pages + D1 bindings for dc-news
+# After create: wrangler d1 create dc-news-analytics
+# Then: wrangler d1 migrations apply dc-news-analytics --remote
+# Bind DB in Pages project settings (or this file when using wrangler pages deploy)
+
+name = "dc-news"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-09-23"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dc-news-analytics"
+# Replace after: wrangler d1 create dc-news-analytics
+database_id = "00000000-0000-0000-0000-000000000000"
