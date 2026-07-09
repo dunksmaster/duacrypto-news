@@ -6,6 +6,11 @@
 const checks = [
   { url: "https://dc-news-9n3.pages.dev/", expect: 200 },
   { url: "https://dc-news-9n3.pages.dev/posts/bitcoin-pizza-day-2025/", expect: 200 },
+  {
+    url: "https://dc-news-9n3.pages.dev/posts/2026-07-09-portofol-harduerik-tangem-shqiptaret/",
+    expect: 200,
+  },
+  { url: "https://news.duacrypto.com/go/tangem", expect: 302, optional: true },
   { url: "https://duacrypto.com/blog/index.html", expect: 301, location: "https://news.duacrypto.com/" },
   {
     url: "https://duacrypto.com/blog/bitcoin-pizza-day-2025.html",
@@ -13,6 +18,11 @@ const checks = [
     location: "https://news.duacrypto.com/posts/bitcoin-pizza-day-2025/",
   },
   { url: "https://news.duacrypto.com/", expect: 200, optional: true },
+  {
+    url: "https://news.duacrypto.com/posts/2026-07-09-portofol-harduerik-tangem-shqiptaret/",
+    expect: 200,
+    optional: true,
+  },
 ];
 
 let failed = 0;
