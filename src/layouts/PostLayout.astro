@@ -12,8 +12,7 @@ import TableOfContents from "../components/TableOfContents.astro";
 import PostNav from "../components/PostNav.astro";
 import NostrNote from "../components/NostrNote.astro";
 import type { CollectionEntry } from "astro:content";
-import site from "../data/site.json";
-import { t, localePath, type Locale } from "../i18n/ui";
+import { t, localePath, categoryLabel as localizeCategory, type Locale } from "../i18n/ui";
 import {
   formatDate,
   formatTickerDate,
@@ -65,7 +64,7 @@ const ogImagePath = resolveOgImagePath(post.data.image, slug);
 const shareUrl = `${canonical}${canonical.includes("?") ? "&" : "?"}utm_source=share`;
 const embedUrl = new URL(locale === "en" ? `/en/embed/${slug}/` : `/embed/${slug}/`, base).href;
 const oEmbedUrl = `${base.replace(/\/$/, "")}/api/oembed?url=${encodeURIComponent(canonical)}`;
-const categoryLabel = site.categoryLabels[post.data.category];
+const categoryLabel = localizeCategory(post.data.category, locale);
 
 const hreflangAlternates = buildHreflangAlternates(post, allPosts, base);
 const ogLocaleInfo = buildOgLocaleAlternates(post, allPosts);
@@ -265,7 +264,7 @@ const { older: olderPost, newer: newerPost } = getCategoryAdjacentPosts(post, al
       <section class="border-t border-border bg-surface py-12">
         <div class="section-shell">
           <h2 class="mb-6 text-2xl">{strings.relatedPosts}</h2>
-          <div class="grid gap-6 md:grid-cols-3">
+          <div class="feed-list">
             {related.map((item) => (
               <PostCard post={item} locale={locale} />
             ))}

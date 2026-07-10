@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import EmbedLayout from "../../layouts/EmbedLayout.astro";
-import site from "../../data/site.json";
 import { postSlug, postHref, resolveOgImagePath } from "../../lib/posts";
 import { getPostLocale } from "../../lib/i18n";
+import { categoryLabel } from "../../i18n/ui";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -27,5 +27,5 @@ const canonical = new URL(postHref(slug, "sq"), Astro.site).href;
   image={ogImage}
   canonical={canonical}
   locale="sq"
-  categoryLabel={site.categoryLabels[post.data.category]}
+  categoryLabel={categoryLabel(post.data.category, "sq")}
 />

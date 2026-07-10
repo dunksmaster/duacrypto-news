@@ -1,6 +1,6 @@
 ---
 import PostCard from "./PostCard.astro";
-import { localePath, t, type Locale } from "../i18n/ui";
+import { localePath, t, categoryLabel, type Locale } from "../i18n/ui";
 import type { CollectionEntry } from "astro:content";
 import site from "../data/site.json";
 
@@ -16,8 +16,8 @@ const categories = site.navCategories;
 const byCategory = categories
   .map((cat) => ({
     category: cat,
-    label: site.categoryLabels[cat as keyof typeof site.categoryLabels],
-    items: posts.filter((p) => p.data.category === cat).slice(0, 2),
+    label: categoryLabel(cat, locale),
+    items: posts.filter((p) => p.data.category === cat).slice(0, 3),
   }))
   .filter((row) => row.items.length > 0);
 ---
@@ -26,13 +26,13 @@ const byCategory = categories
   byCategory.map((row) => (
     <section class="pb-10">
       <div class="section-shell">
-        <div class="mb-4 flex items-end justify-between gap-4">
+        <div class="mb-2 flex items-end justify-between gap-4">
           <h2 class="text-2xl">{row.label}</h2>
           <a href={localePath(`/category/${row.category}/`, locale)} class="text-sm text-primary hover:underline">
             {strings.viewAll}
           </a>
         </div>
-        <div class="grid gap-6 md:grid-cols-2">
+        <div class="feed-list">
           {row.items.map((post) => (
             <PostCard post={post} locale={locale} />
           ))}

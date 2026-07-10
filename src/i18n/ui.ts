@@ -17,7 +17,7 @@ export const ui = {
     community: "Komunitet",
     search: "Kërko",
     about: "Rreth nesh",
-    mainSite: "Faqja kryesore",
+    mainSite: "duacrypto.com ↗",
     readInEnglish: "Lexo në anglisht",
     readInAlbanian: "Lexo në shqip",
     notTranslatedYet: "Ende pa përkthim — shiko të ngjashme në anglisht",
@@ -81,7 +81,7 @@ export const ui = {
     community: "Community",
     search: "Search",
     about: "About",
-    mainSite: "Main site",
+    mainSite: "duacrypto.com ↗",
     readInEnglish: "Read in English",
     readInAlbanian: "Read in Albanian",
     notTranslatedYet: "Not translated yet — browse similar in English",
@@ -140,6 +140,21 @@ export const ui = {
 
 export function t(locale: Locale) {
   return ui[locale];
+}
+
+/** Localized category label (never use English site.json labels on SQ pages). */
+export function categoryLabel(
+  category: string,
+  locale: Locale,
+): string {
+  const strings = t(locale);
+  const map: Record<string, string> = {
+    news: strings.news,
+    analysis: strings.analysis,
+    guides: strings.guides,
+    community: strings.community,
+  };
+  return map[category] ?? category;
 }
 
 export function localePrefix(locale: Locale): string {

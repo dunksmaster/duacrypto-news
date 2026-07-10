@@ -35,7 +35,7 @@ const posts = await getPostsByTag(tag, locale);
         posts.length === 0 ? (
           <p class="text-secondary">No posts with this tag.</p>
         ) : (
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="feed-list">
             {posts.map((post) => (
               <PostCard post={post} locale={locale} />
             ))}

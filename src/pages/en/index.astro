@@ -4,17 +4,22 @@ import PostCard from "../../components/PostCard.astro";
 import CategoryRows from "../../components/CategoryRows.astro";
 import PopularPosts from "../../components/PopularPosts.astro";
 import { getPublishedPostsForLocale } from "../../lib/posts";
-import { t, localePath } from "../../i18n/ui";
+import { t, localePath, categoryLabel } from "../../i18n/ui";
 import site from "../../data/site.json";
 
 const locale = "en" as const;
 const strings = t(locale);
-const CATEGORY_LABELS = site.categoryLabels;
 const NAV_CATEGORIES = site.navCategories;
 
 const posts = await getPublishedPostsForLocale(locale);
 const featured = posts[0];
 const latest = posts.slice(1, 7);
+
+const categoriesWithPosts = NAV_CATEGORIES.map((category) => ({
+  category,
+  label: categoryLabel(category, locale),
+  count: posts.filter((p) => p.data.category === category).length,
+})).filter((c) => c.count > 0);
 ---
 
 <BaseLayout
@@ -48,33 +53,35 @@ const latest = posts.slice(1, 7);
 
   <CategoryRows locale={locale} posts={posts} />
 
-  <section class="pb-8">
-    <div class="section-shell">
-      <h2 class="mb-6 text-2xl">{strings.browseCategory}</h2>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {
-          NAV_CATEGORIES.map((category) => (
-            <a
-              href={localePath(`/category/${category}/`, locale)}
-              class="rounded-lg border border-border bg-card p-5 transition hover:border-primary/40"
-            >
-              <span class="category-pill">{CATEGORY_LABELS[category]}</span>
-              <p class="mt-3 text-sm text-secondary">
-                {posts.filter((p) => p.data.category === category).length} {strings.postsCount}
-              </p>
-            </a>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  {
+    categoriesWithPosts.length > 0 && (
+      <section class="pb-8">
+        <div class="section-shell">
+          <h2 class="mb-6 text-2xl">{strings.browseCategory}</h2>
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {categoriesWithPosts.map(({ category, label, count }) => (
+              <a
+                href={localePath(`/category/${category}/`, locale)}
+                class="rounded-lg border border-border bg-card p-5 transition hover:border-primary/40"
+              >
+                <span class="category-pill">{label}</span>
+                <p class="mt-3 text-sm text-secondary">
+                  {count} {strings.postsCount}
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   {
     latest.length > 0 && (
       <section class="pb-16">
         <div class="section-shell">
           <h2 class="mb-6 text-2xl">{strings.latestPosts}</h2>
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="feed-list">
             {latest.map((post) => (
               <PostCard post={post} locale={locale} />
             ))}
