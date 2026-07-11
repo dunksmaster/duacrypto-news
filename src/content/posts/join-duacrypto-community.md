@@ -13,7 +13,7 @@ DuaCrypto is Albania's longest-running Bitcoin and crypto community. Joining is 
 
 ## 1. Join Telegram
 
-Our primary hub is [t.me/dua_crypto](https://t.me/dua_crypto) with 10,000+ members. Introduce yourself, ask questions, and follow event announcements.
+Our primary hub is [t.me/dua_crypto](https://t.me/dua_crypto) with 200+ members. Introduce yourself, ask questions, and follow event announcements.
 
 ## 2. Read free guides
 
