@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import PopularPosts from "../../components/PopularPosts.astro";
-import { getPublishedPostsForLocale } from "../../lib/posts";
+import { getPublishedPostsForLocale, pickFeaturedPost } from "../../lib/posts";
 import { t, localePath, categoryLabel } from "../../i18n/ui";
 import site from "../../data/site.json";
 
@@ -11,8 +11,8 @@ const strings = t(locale);
 const NAV_CATEGORIES = site.navCategories;
 
 const posts = await getPublishedPostsForLocale(locale);
-const featured = posts[0];
-const latest = posts.slice(1, 7);
+const featured = pickFeaturedPost(posts);
+const latest = posts.filter((p) => p !== featured).slice(0, 7);
 
 const categoriesWithPosts = NAV_CATEGORIES.map((category) => ({
   category,
@@ -29,17 +29,9 @@ const categoriesWithPosts = NAV_CATEGORIES.map((category) => ({
   canonical={`${Astro.site}en/`}
   showTrustBar={true}
 >
-  <section class="border-b border-border bg-surface py-16" data-pagefind-body>
-    <div class="section-shell">
-      <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">DuaCrypto News</p>
-      <h1 class="max-w-3xl text-4xl font-bold sm:text-5xl">{strings.heroTitle}</h1>
-      <p class="mt-4 max-w-2xl text-lg text-secondary">{strings.heroSubtitle}</p>
-    </div>
-  </section>
-
   {
     featured && (
-      <section class="py-12">
+      <section class="border-b border-border py-10 sm:py-12" data-pagefind-body>
         <div class="section-shell">
           <h2 class="meta-mono mb-6 text-secondary">{strings.heroKicker}</h2>
           <PostCard post={featured} featured locale={locale} />

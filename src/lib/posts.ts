@@ -18,6 +18,11 @@ export async function getPublishedPostsForLocale(locale: Locale) {
   return filterPostsByLocale(await getPublishedPosts(), locale);
 }
 
+/** Homepage hero: explicit `featured: true`, else newest post. */
+export function pickFeaturedPost(posts: CollectionEntry<"posts">[]) {
+  return posts.find((p) => p.data.featured) ?? posts[0];
+}
+
 export async function getPostsByCategory(category: Category, locale?: Locale) {
   const posts = locale ? await getPublishedPostsForLocale(locale) : await getPublishedPosts();
   return posts.filter((post) => post.data.category === category);

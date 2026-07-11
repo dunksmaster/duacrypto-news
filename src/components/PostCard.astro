@@ -63,9 +63,6 @@ const href = postHref(slug, locale);
   ) : (
     <article class="feed-row">
       <div class="feed-row__body">
-        <h2 class="feed-row__title">
-          <a href={href} class="text-link no-underline hover:underline">{post.data.title}</a>
-        </h2>
         <p class="meta-mono feed-row__meta">
           <a href={categoryHref(post.data.category, locale)} class="feed-meta-cat">
             {catLabel}
@@ -76,12 +73,20 @@ const href = postHref(slug, locale);
           <span>{minutes} MIN</span>
           <span class="post-card-views" data-card-views={slug} hidden />
         </p>
+        <h2 class="feed-row__title">
+          <a href={href} class="text-link no-underline hover:underline">{post.data.title}</a>
+        </h2>
+        <p class="feed-row__dek">{post.data.description}</p>
       </div>
       {
-        thumb && (
+        thumb ? (
           <a href={href} class="feed-row__thumb" tabindex="-1" aria-hidden="true">
             <img src={thumb} alt="" width="64" height="48" loading="lazy" />
           </a>
+        ) : (
+          <span class="feed-row__placeholder meta-mono" aria-hidden="true">
+            {strings.noPhotoLabel}
+          </span>
         )
       }
     </article>
@@ -123,11 +128,47 @@ const href = postHref(slug, locale);
   }
 
   .feed-row__meta {
-    margin: 0;
+    margin: 0 0 0.4rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.35rem;
+  }
+
+  .feed-row__dek {
+    margin: 0.35rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--ink-2, var(--color-secondary));
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .feed-row__placeholder {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 48px;
+    padding: 0.2rem;
+    border-radius: 4px;
+    border: 1px dashed var(--hairline, var(--color-border));
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 3px,
+      color-mix(in srgb, var(--hairline, var(--color-border)) 35%, transparent) 3px,
+      color-mix(in srgb, var(--hairline, var(--color-border)) 35%, transparent) 6px
+    );
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1.2;
+    color: var(--ink-2, var(--color-secondary));
   }
 
   .feed-meta-cat {

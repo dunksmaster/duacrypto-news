@@ -10,6 +10,7 @@ translationKey: buy-bitcoin-albania-2026
 directAnswer: "Për të blerë Bitcoin në Shqipëri, regjistrohu në një exchange i besueshëm (p.sh. Bitget ose CEX.io), verifiko identitetin (KYC), depozito me kartë ose transfer, bli BTC, pastaj tërheq në portofol harduerik që ti kontrollon. Fillo me shuma të vogla dhe aktivizo 2FA."
 lang: sq
 tags: [bitcoin, shqiperi, kosove, guides, sq, buyer-intent]
+featured: true
 draft: false
 aiGenerated: false
 howToSteps:
