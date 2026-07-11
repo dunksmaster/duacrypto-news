@@ -502,6 +502,121 @@ a {
   color: var(--color-link);
 }
 
+/* T3 — homepage two-column grid + sidebar */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .home-grid {
+    grid-template-columns: 1fr 260px;
+    gap: 3rem;
+  }
+}
+
+.feed-section-label,
+.side-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.feed-section-label {
+  color: var(--color-text);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--ink);
+  display: inline-block;
+}
+
+.home-main {
+  min-width: 0;
+}
+
+.home-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .home-side {
+    position: sticky;
+    top: 5.5rem;
+    align-self: start;
+  }
+}
+
+.side-cats {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-cat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--hairline);
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.side-cat:hover {
+  color: var(--cyan);
+}
+
+.side-cat__count {
+  color: var(--color-text-muted);
+}
+
+.side-donate {
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--btc) 35%, transparent);
+  background: color-mix(in srgb, var(--btc) 9%, var(--surface));
+}
+
+.side-donate__label {
+  color: var(--btc-dark);
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+}
+
+.side-donate__body {
+  margin: 0 0 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.side-donate__cta {
+  display: block;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--btc-ink);
+  background: var(--btc);
+  padding: 11px;
+  border-radius: 9px;
+  text-decoration: none;
+}
+
+.side-donate__cta:hover {
+  background: var(--btc-dark);
+  color: var(--btc-ink);
+  text-decoration: none;
+}
+
 .footer-link {
   display: block;
   margin-bottom: 0.25rem;

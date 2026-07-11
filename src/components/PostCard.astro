@@ -8,7 +8,7 @@ import {
   resolveHeroSrc,
   categoryHref,
 } from "../lib/posts";
-import { categoryLabel, type Locale } from "../i18n/ui";
+import { categoryLabel, t, type Locale } from "../i18n/ui";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -17,6 +17,7 @@ interface Props {
 }
 
 const { post, featured = false, locale = "sq" } = Astro.props;
+const strings = t(locale);
 const slug = postSlug(post.id);
 const catLabel = categoryLabel(post.data.category, locale);
 const thumb = resolveHeroSrc(post.data.image, slug, post.data.heroStyle);
@@ -35,15 +36,22 @@ const href = postHref(slug, locale);
         <span class="feed-meta-sep" aria-hidden="true">///</span>
         <time datetime={post.data.pubDate.toISOString()}>{tickerDate}</time>
         <span class="feed-meta-sep" aria-hidden="true">///</span>
-        <span>
-          {minutes} MIN
-        </span>
+        <span>{minutes} MIN</span>
         <span class="post-card-views" data-card-views={slug} hidden />
       </p>
       <h2 class="feed-featured__title">
         <a href={href} class="text-link no-underline hover:underline">{post.data.title}</a>
       </h2>
       <p class="feed-featured__dek">{post.data.description}</p>
+      <div class="feed-featured__actions">
+        <a href={href} class="feed-featured__cta">{strings.readGuideCta}</a>
+        <p class="meta-mono feed-featured__stats">
+          <time datetime={post.data.pubDate.toISOString()}>{tickerDate}</time>
+          <span class="feed-meta-sep" aria-hidden="true">///</span>
+          <span>{minutes} MIN</span>
+          <span class="post-card-views" data-card-views={slug} hidden />
+        </p>
+      </div>
       {
         thumb && (
           <a href={href} class="feed-featured__media" tabindex="-1" aria-hidden="true">
@@ -169,10 +177,10 @@ const href = postHref(slug, locale);
 
   .feed-featured__title {
     margin: 0 0 0.75rem;
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-size: clamp(1.9rem, 4.5vw, 2.6rem);
     font-weight: 800;
     letter-spacing: -0.03em;
-    line-height: 1.2;
+    line-height: 1.15;
     text-wrap: balance;
   }
 
@@ -190,6 +198,44 @@ const href = postHref(slug, locale);
     font-size: 1.05rem;
     line-height: 1.55;
     color: var(--ink-2, var(--color-secondary));
+  }
+
+  .feed-featured__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .feed-featured__cta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--btc-ink);
+    background: var(--btc);
+    padding: 12px 22px;
+    border-radius: 9px;
+    text-decoration: none;
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--btc-dark) 40%, transparent);
+  }
+
+  .feed-featured__cta:hover {
+    background: var(--btc-dark);
+    color: var(--btc-ink);
+    text-decoration: none;
+  }
+
+  .feed-featured__stats {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-text-muted);
   }
 
   .feed-featured__media {
