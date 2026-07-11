@@ -29,6 +29,20 @@ jobs:
             echo "::error::Set CLOUDFLARE_PAGES_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in repo secrets."
             exit 1
           fi
+          code=$(curl -s -o /tmp/cf-pages.json -w "%{http_code}" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/dc-news")
+          if [ "$code" = "401" ] || [ "$code" = "403" ]; then
+            echo "::error::CLOUDFLARE_PAGES_API_TOKEN is invalid or expired (HTTP $code)."
+            echo "Create a new token: Cloudflare dashboard → My Profile → API Tokens → Custom → Account / Cloudflare Pages / Edit"
+            echo "Then: gh secret set CLOUDFLARE_PAGES_API_TOKEN --repo dunksmaster/duacrypto-news"
+            cat /tmp/cf-pages.json || true
+            exit 1
+          fi
+          if [ "$code" != "200" ]; then
+            echo "::warning::Preflight check returned HTTP $code (continuing to deploy)"
+            cat /tmp/cf-pages.json || true
+          fi
 
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
@@ -44,25 +58,30 @@ jobs:
         run: node scripts/ping-indexnow.mjs
         continue-on-error: true
 
-      # One Wrangler call for deploy (retries on Cloudflare 10429 rate limits).
-      # Project already exists — do not call `pages project create` every push.
       - name: Deploy to Cloudflare Pages
         run: |
           set -e
-          for i in 1 2 3 4 5; do
+          for i in 1 2 3; do
             echo "Deploy attempt $i..."
-            if npx --yes wrangler@4.100.0 pages deploy dist --project-name=dc-news --branch=main --commit-dirty=true; then
+            log=$(mktemp)
+            if npx --yes wrangler@4.100.0 pages deploy dist --project-name=dc-news --branch=main --commit-dirty=true 2>&1 | tee "$log"; then
               echo "Deploy succeeded on attempt $i"
               exit 0
             fi
-            wait=$((i * 45))
-            echo "Deploy failed (likely rate limit). Waiting ${wait}s before retry..."
+            if grep -qE 'Invalid access token|Authentication error|code: 9109|code: 10000' "$log"; then
+              echo "::error::Cloudflare token rejected. Regenerate CLOUDFLARE_PAGES_API_TOKEN (see deploy workflow logs)."
+              exit 1
+            fi
+            if [ "$i" -eq 3 ]; then
+              echo "::error::Cloudflare Pages deploy failed after 3 attempts (likely rate limit 10429)."
+              exit 1
+            fi
+            wait=$((i * 60))
+            echo "Retrying in ${wait}s..."
             sleep "$wait"
           done
-          echo "::error::Cloudflare Pages deploy failed after retries"
-          exit 1
 
       - name: Apply D1 migrations
         run: |
-          sleep 20
+          sleep 15
           npx --yes wrangler@4.100.0 d1 execute dc-news-analytics --remote --file=migrations/0002_rate_limits.sql || true
