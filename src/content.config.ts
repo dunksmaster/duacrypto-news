@@ -40,6 +40,7 @@ const posts = defineCollection({
     image: z.string().optional(),
     heroStyle: z.enum(["banner", "none", "screenshot"]).optional(),
     draft: z.boolean().default(false),
+    featured: z.boolean().default(false),
     aiGenerated: z.boolean().default(false),
     lang: z.enum(["en", "sq"]).default("en"),
     translationKey: z.string().optional(),

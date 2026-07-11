@@ -10,6 +10,7 @@ translationKey: buy-bitcoin-albania-2026
 directAnswer: "To buy Bitcoin in Albania, open a reputable exchange account (Bitget or CEX.io), complete KYC, deposit via card or bank transfer in EUR/USD, buy BTC on spot markets, then withdraw to a hardware wallet you control. Start small and enable 2FA."
 lang: en
 tags: [bitcoin, albania, diaspora, buyer-intent, guides]
+featured: true
 draft: false
 aiGenerated: false
 faq:

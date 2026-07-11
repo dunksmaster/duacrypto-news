@@ -52,9 +52,9 @@ const nav = [
 
       <nav
         id="nav-menu"
-        class="absolute left-0 right-0 top-[68px] hidden flex-col border-t border-border bg-surface/95 px-4 pb-4 backdrop-blur-md lg:static lg:flex lg:flex-1 lg:flex-row lg:items-center lg:justify-end lg:border-0 lg:bg-transparent lg:px-0 lg:pb-0"
+        class="site-header__nav absolute left-0 right-0 top-[68px] hidden flex flex-col border-t border-border bg-surface/95 px-4 pb-4 backdrop-blur-md lg:static lg:flex-1 lg:flex-row lg:items-center lg:justify-end lg:border-0 lg:bg-transparent lg:px-0 lg:pb-0"
       >
-        <div class="flex flex-col lg:ml-auto lg:flex-row lg:items-center lg:gap-1">
+        <div class="site-header__nav-links">
           {nav.map((item) => (
             <a href={item.href} class:list={["nav-link", { "nav-link-active": item.match }]}>
               {item.label}
@@ -63,7 +63,7 @@ const nav = [
           <a href={MAIN_SITE} class="nav-link">{strings.mainSite}</a>
         </div>
 
-        <div class="mt-4 flex items-center gap-3 lg:ml-6 lg:mt-0">
+        <div class="mobile-nav-actions mt-4 flex items-center gap-3 lg:ml-6 lg:mt-0">
           <LanguageSwitcher locale={locale} switchTarget={switchTarget} />
           <button
             type="button"
@@ -145,5 +145,23 @@ const nav = [
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Explicit flex gap — do not rely on inline whitespace between <a> tags */
+  .site-header__nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .site-header__nav-links {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.25rem;
+      margin-left: auto;
+    }
   }
 </style>
