@@ -25,9 +25,9 @@ const nav = [
 ];
 ---
 
-<header class="sticky top-0 z-50 border-b border-border bg-surface shadow-sm">
+<header class="site-header sticky top-0 z-50 border-b border-border">
   <div class="section-shell">
-    <div class="flex h-[75px] items-center justify-between gap-4">
+    <div class="flex h-[68px] items-center justify-between gap-4">
       <a href={localePath("/", locale)} class="flex shrink-0 items-center gap-2" aria-label="DuaCrypto News home">
         <img
           src="/img/duacrypto-logo.png"
@@ -36,7 +36,7 @@ const nav = [
           height="378"
           class="h-10 w-auto"
         />
-        <span class="hidden font-display text-lg font-bold text-dark sm:inline">News</span>
+        <span class="site-header__wordmark hidden sm:inline">News<br />Terminal</span>
       </a>
 
       <button
@@ -52,9 +52,9 @@ const nav = [
 
       <nav
         id="nav-menu"
-        class="absolute left-0 right-0 top-[75px] hidden flex-col border-t border-border bg-surface px-4 pb-4 lg:static lg:flex lg:flex-1 lg:flex-row lg:items-center lg:justify-end lg:border-0 lg:bg-transparent lg:px-0 lg:pb-0"
+        class="absolute left-0 right-0 top-[68px] hidden flex-col border-t border-border bg-surface/95 px-4 pb-4 backdrop-blur-md lg:static lg:flex lg:flex-1 lg:flex-row lg:items-center lg:justify-end lg:border-0 lg:bg-transparent lg:px-0 lg:pb-0"
       >
-        <div class="flex flex-col lg:ml-auto lg:flex-row lg:items-center lg:gap-6">
+        <div class="flex flex-col lg:ml-auto lg:flex-row lg:items-center lg:gap-1">
           {nav.map((item) => (
             <a href={item.href} class:list={["nav-link", { "nav-link-active": item.match }]}>
               {item.label}
@@ -120,3 +120,30 @@ const nav = [
     applyTheme(next);
   });
 </script>
+
+<style>
+  .site-header {
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .site-header__wordmark {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border-left: 1px solid var(--color-border);
+    padding-left: 10px;
+    line-height: 1.3;
+  }
+
+  .site-header .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+</style>

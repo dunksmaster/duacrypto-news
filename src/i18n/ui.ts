@@ -71,6 +71,12 @@ export const ui = {
     nextPost: "Artikulli tjetër",
     postNavLabel: "Navigim artikujsh",
     keyTakeawaysLabel: "Çka mëson këtu",
+    heroKicker: "NË FOKUS",
+    readGuideCta: "LEXO UDHËZUESIN →",
+    sidebarBrowse: "SHFLETO SIPAS KATEGORISË",
+    donateLabel: "₿ NDIHMO KOMUNITETIN",
+    donateBody: "Mbështet edukimin falas në shqip me sats mbi Lightning.",
+    donateCta: "⚡ DËRGO SATS",
   },
   en: {
     siteName: "DuaCrypto News",
@@ -135,6 +141,12 @@ export const ui = {
     nextPost: "Next article",
     postNavLabel: "Post navigation",
     keyTakeawaysLabel: "What you'll learn",
+    heroKicker: "IN FOCUS",
+    readGuideCta: "READ THE GUIDE →",
+    sidebarBrowse: "BROWSE BY CATEGORY",
+    donateLabel: "₿ SUPPORT THE COMMUNITY",
+    donateBody: "Support free education with sats over Lightning.",
+    donateCta: "⚡ SEND SATS",
   },
 } as const;
 
