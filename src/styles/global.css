@@ -1296,30 +1296,3 @@ a.newsletter-cta-btn:hover {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
-
-@media (min-width: 1024px) {
-  #nav-menu {
-    position: static;
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    border: 0;
-    background: transparent;
-    padding: 0;
-  }
-
-  #nav-toggle {
-    display: none;
-  }
-
-  .nav-link {
-    padding-block: 1.5rem;
-  }
-
-  .mobile-nav-actions {
-    margin-top: 0;
-    margin-left: 1.5rem;
-  }
-}

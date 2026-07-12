@@ -129,3 +129,29 @@ test("post page: embed opens from share row popover", async ({ page }) => {
   await expect(popover).toBeVisible();
   await expect(popover.locator(".embed-popover-code")).toContainText("<iframe");
 });
+
+test("mobile nav: hidden by default, opens as overlay panel", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+
+  const menu = page.locator("#nav-menu");
+  const toggle = page.locator("#nav-toggle");
+
+  await expect(menu).not.toBeVisible();
+  await expect(toggle).toBeVisible();
+
+  await toggle.click();
+  await expect(menu).toBeVisible();
+
+  const menuBox = await menu.boundingBox();
+  const toggleBox = await toggle.boundingBox();
+  expect(menuBox).not.toBeNull();
+  expect(toggleBox).not.toBeNull();
+  expect(menuBox!.y).toBeGreaterThanOrEqual(toggleBox!.y + toggleBox!.height - 2);
+
+  const bg = await menu.evaluate((el) => getComputedStyle(el).backgroundColor);
+  expect(bg).not.toBe("rgba(0, 0, 0, 0)");
+
+  await menu.locator("a").first().click();
+  await expect(menu).not.toBeVisible();
+});
