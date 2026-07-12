@@ -27,6 +27,13 @@
     "goPath": "/go/deeper",
     "description": "Decentralized VPN / privacy device"
   },
+  "gomining": {
+    "key": "gomining",
+    "name": "GoMining",
+    "href": "https://gomining.com/?ref=XQL81C6",
+    "goPath": "/go/gomining",
+    "description": "Cloud Bitcoin mining — NFT miners, 5% cashback with promo code"
+  },
   "newsletter": {
     "key": "newsletter",
     "name": "DuaCrypto Premium Newsletter",
