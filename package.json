@@ -39,9 +39,9 @@
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.52.0",
     "@resvg/resvg-js": "^2.6.2",
-    "lighthouse": "^12.6.0",
+    "lighthouse": "^13.4.0",
     "nostr-tools": "^2.10.4",
     "pagefind": "^1.5.2",
-    "wrangler": "^4.100.0"
+    "wrangler": "^4.110.0"
   }
 }
