@@ -63,8 +63,10 @@ jobs:
       - name: Verify A-ADS markup in build output
         working-directory: tokenDC
         run: |
+          grep -q 'class="aads-unit section-shell"' dist/index.html
           grep -q 'acceptable.a-ads.com/1383633' dist/index.html
           grep -q 'acceptable.a-ads.com' dist/_headers
+          ! grep -q 'height: auto' dist/index.html
 
       - name: Deploy to Cloudflare Pages (dc-site)
         working-directory: tokenDC
@@ -103,8 +105,8 @@ jobs:
           set -euo pipefail
           for i in 1 2 3 4 5 6; do
             html=$(curl -fsSL "https://duacrypto.com/")
-            if echo "$html" | grep -q 'acceptable.a-ads.com/1383633'; then
-              echo "Production homepage includes A-ADS unit 1383633."
+            if echo "$html" | grep -q 'class="aads-unit section-shell"'; then
+              echo "Production homepage includes fixed A-ADS unit 1383633."
               exit 0
             fi
             echo "Waiting for duacrypto.com to serve latest deploy (attempt $i)..."
