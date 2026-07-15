@@ -1,0 +1,114 @@
+# Deploy duacrypto.com (TokenDC) to Cloudflare Pages project dc-site.
+# Used when TokenDC repo changes are prepared here (e.g. A-ADS rollout).
+name: Deploy duacrypto.com (main site)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - cursor/deploy-aads-main-site-de6d
+
+concurrency:
+  group: cloudflare-pages-dc-site
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+    steps:
+      - name: Require Cloudflare Pages secrets
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Set CLOUDFLARE_PAGES_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in repo secrets."
+            exit 1
+          fi
+          code=$(curl -s -o /tmp/cf-pages.json -w "%{http_code}" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/dc-site")
+          if [ "$code" = "401" ] || [ "$code" = "403" ]; then
+            echo "::error::CLOUDFLARE_PAGES_API_TOKEN is invalid or lacks dc-site access (HTTP $code)."
+            cat /tmp/cf-pages.json || true
+            exit 1
+          fi
+
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Check out TokenDC and apply A-ADS patch
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/dunksmaster/TokenDC.git tokenDC
+          cd tokenDC
+          git apply --check ../patches/tokenDC-aads.patch
+          git apply ../patches/tokenDC-aads.patch
+          echo "Applied A-ADS patch to TokenDC main."
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Install and build TokenDC
+        working-directory: tokenDC
+        run: |
+          export SOURCE_DATE_EPOCH=$(git log -1 --format=%ct)
+          npm ci && npm audit --audit-level=high && npm run build
+
+      - name: Verify A-ADS markup in build output
+        working-directory: tokenDC
+        run: |
+          grep -q 'acceptable.a-ads.com/1383633' dist/index.html
+          grep -q 'acceptable.a-ads.com' dist/_headers
+
+      - name: Deploy to Cloudflare Pages (dc-site)
+        working-directory: tokenDC
+        run: |
+          set -euo pipefail
+          for i in 1 2 3; do
+            echo "Deploy attempt $i..."
+            log=$(mktemp)
+            set +e
+            npx --yes wrangler@4.100.0 pages deploy dist --project-name=dc-site --branch=main --commit-dirty=true 2>&1 | tee "$log"
+            wrangler_status=$?
+            set -e
+
+            if grep -qE 'Invalid access token|Authentication error|code: 9109|code: 10000' "$log"; then
+              echo "::error::Cloudflare token rejected."
+              exit 1
+            fi
+
+            if grep -q 'Deployment complete!' "$log"; then
+              echo "Deploy succeeded on attempt $i"
+              grep -o 'https://[^ ]*pages.dev' "$log" | tail -1 || true
+              exit 0
+            fi
+
+            if [ "$i" -eq 3 ]; then
+              echo "::error::Cloudflare Pages deploy failed after 3 attempts."
+              exit 1
+            fi
+            wait=$((i * 60))
+            echo "Retrying in ${wait}s..."
+            sleep "$wait"
+          done
+
+      - name: Verify production HTML updated
+        run: |
+          set -euo pipefail
+          for i in 1 2 3 4 5 6; do
+            html=$(curl -fsSL "https://duacrypto.com/")
+            if echo "$html" | grep -q 'acceptable.a-ads.com/1383633'; then
+              echo "Production homepage includes A-ADS unit 1383633."
+              exit 0
+            fi
+            echo "Waiting for duacrypto.com to serve latest deploy (attempt $i)..."
+            sleep 20
+          done
+          echo "::error::Production still missing A-ADS markup after deploy."
+          exit 1
