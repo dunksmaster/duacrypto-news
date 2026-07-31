@@ -5,6 +5,7 @@
 .catalog-section__cta:focus-visible,
 .catalog-hero__cta:focus-visible,
 .catalog-brand-chip:focus-visible,
+.catalog-brand-chip--marquee:focus-visible,
 .product-card:focus-visible,
 .product-card a:focus-visible,
 .catalog-featured a:focus-visible,
@@ -423,14 +424,118 @@
   margin-bottom: 1.25rem;
 }
 
+/* Two-row infinite brand marquee (TBH-style) */
+.brand-marquee {
+  overflow-x: clip;
+  margin-bottom: 1.25rem;
+}
+
+.brand-marquee__row {
+  overflow-x: clip;
+  width: 100%;
+}
+
+.brand-marquee__row + .brand-marquee__row {
+  margin-top: 0.75rem;
+}
+
+/* One animating belt per row — both duplicate tracks scroll as a unit */
+.brand-marquee__inner {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+}
+
+.brand-marquee__row--ltr .brand-marquee__inner {
+  animation: brand-marquee-ltr 97s linear infinite;
+}
+
+.brand-marquee__row--rtl .brand-marquee__inner {
+  animation: brand-marquee-rtl 97s linear infinite;
+}
+
+.brand-marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.75rem;
+}
+
+@keyframes brand-marquee-ltr {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes brand-marquee-rtl {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.catalog-brand-chip--marquee {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 72px;
+  padding: 14px 18px;
+  border: 1px solid #dde6ef;
+  border-radius: 12px;
+  background: #ffffff;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.catalog-brand-chip--marquee:hover {
+  border-color: color-mix(in srgb, var(--btc) 40%, #dde6ef);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--ink) 8%, transparent);
+  transform: none;
+}
+
+.catalog-brand-chip--marquee img {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.catalog-brand-chip__name {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-wrap: anywhere;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  color: #1a1a1c;
+}
+
+.catalog-brand-chip--marquee:focus-visible {
+  border-radius: 12px;
+}
+
 .catalog-brand-chip {
   display: grid;
   place-items: center;
   aspect-ratio: 1;
   padding: 0.65rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid #dde6ef;
   border-radius: 0.5rem;
-  background: var(--color-card);
+  background: #ffffff;
   text-decoration: none;
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -446,22 +551,6 @@
   max-width: 2.75rem;
   height: auto;
   object-fit: contain;
-}
-
-.catalog-brand-chip__monogram {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--btc) 14%, var(--color-page));
-  border: 1px solid color-mix(in srgb, var(--btc) 28%, var(--color-border));
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  text-transform: uppercase;
 }
 
 .catalog-section__cta {
@@ -501,6 +590,92 @@
   text-decoration: underline;
 }
 
+/* /brands/ directory — TBH-style white plaque grid */
+.brands-page {
+  padding: 2.5rem 0 4rem;
+}
+
+.brands-page__crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-secondary);
+  font-size: 0.72rem;
+}
+
+.brands-page__crumbs a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+.brands-page__head h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+}
+
+.brands-page__head p {
+  margin: 0 0 0.75rem;
+  max-width: 40rem;
+  color: var(--color-secondary);
+  line-height: 1.55;
+}
+
+.brands-page__stats {
+  margin: 0 0 1.75rem;
+  color: var(--color-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brands-page__grid {
+  display: grid;
+  gap: 1.25rem 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.brand-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  text-align: center;
+}
+
+.brand-tile .catalog-brand-chip--marquee {
+  width: 150px;
+  max-width: 100%;
+}
+
+.brand-tile__name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+.brand-tile__meta {
+  font-size: 0.78rem;
+  color: var(--color-secondary);
+  line-height: 1.35;
+}
+
+.brand-tile__link {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+.brand-tile__link:hover {
+  text-decoration: underline;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .catalog-hero__pill,
   .catalog-hero__cta,
@@ -520,5 +695,14 @@
   .catalog-brand-chip:hover,
   .catalog-promo__card:hover {
     transform: none;
+  }
+
+  .brand-marquee__inner {
+    animation: none;
+    transform: none;
+  }
+
+  .brand-marquee__row {
+    overflow-x: auto;
   }
 }

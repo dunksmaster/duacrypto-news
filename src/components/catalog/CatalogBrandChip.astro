@@ -1,22 +1,26 @@
 ---
 import type { Locale } from "../../i18n/ui";
-import { brandMonogram, brandPath, type CatalogBrandSummary } from "../../lib/catalog";
+import { brandPath, type CatalogBrandSummary } from "../../lib/catalog";
 
 interface Props {
   brand: CatalogBrandSummary;
   locale?: Locale;
+  variant?: "marquee" | "grid" | "directory";
 }
 
-const { brand, locale = "sq" } = Astro.props;
-const monogram = brandMonogram(brand.name);
+const { brand, locale = "sq", variant = "grid" } = Astro.props;
+const chipClass =
+  variant === "marquee" || variant === "directory"
+    ? "catalog-brand-chip catalog-brand-chip--marquee"
+    : "catalog-brand-chip";
 ---
 
-<a href={brandPath(brand.id, locale)} class="catalog-brand-chip" aria-label={brand.name}>
+<a href={brandPath(brand.id, locale)} class={chipClass} aria-label={brand.name}>
   {
     brand.logo ? (
       <img src={brand.logo} alt="" width="48" height="48" loading="lazy" />
     ) : (
-      <span class="catalog-brand-chip__monogram" aria-hidden="true">{monogram}</span>
+      <span class="catalog-brand-chip__name" aria-hidden="true">{brand.name}</span>
     )
   }
 </a>

@@ -1,0 +1,45 @@
+---
+import type { Locale } from "../../i18n/ui";
+import type { CatalogBrandSummary } from "../../lib/catalog";
+import CatalogBrandChip from "./CatalogBrandChip.astro";
+
+interface Props {
+  brands: CatalogBrandSummary[];
+  locale?: Locale;
+}
+
+const { brands, locale = "sq" } = Astro.props;
+const rowLtr = brands.slice(0, 42);
+const rowRtl = brands.slice(42);
+---
+
+<div class="brand-marquee">
+  <div class="brand-marquee__row brand-marquee__row--ltr">
+    <div class="brand-marquee__inner">
+      <div class="brand-marquee__track">
+        {rowLtr.map((brand) => (
+          <CatalogBrandChip brand={brand} locale={locale} variant="marquee" />
+        ))}
+      </div>
+      <div class="brand-marquee__track" aria-hidden="true">
+        {rowLtr.map((brand) => (
+          <CatalogBrandChip brand={brand} locale={locale} variant="marquee" />
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="brand-marquee__row brand-marquee__row--rtl">
+    <div class="brand-marquee__inner">
+      <div class="brand-marquee__track">
+        {rowRtl.map((brand) => (
+          <CatalogBrandChip brand={brand} locale={locale} variant="marquee" />
+        ))}
+      </div>
+      <div class="brand-marquee__track" aria-hidden="true">
+        {rowRtl.map((brand) => (
+          <CatalogBrandChip brand={brand} locale={locale} variant="marquee" />
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

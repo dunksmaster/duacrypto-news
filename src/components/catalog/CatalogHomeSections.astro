@@ -13,7 +13,7 @@ import {
   getSpotlightColumns,
 } from "../../lib/catalog";
 import ShopCategoryCard from "../ShopCategoryCard.astro";
-import CatalogBrandChip from "./CatalogBrandChip.astro";
+import CatalogBrandMarquee from "./CatalogBrandMarquee.astro";
 import CatalogFeaturedComparison from "./CatalogFeaturedComparison.astro";
 import CatalogPromoCards from "./CatalogPromoCards.astro";
 import CatalogSpotlightColumns from "./CatalogSpotlightColumns.astro";
@@ -101,11 +101,7 @@ const spotlightColumns = getSpotlightColumns();
       <h2 class="catalog-section__title">{strings.catalogExploreBrands}</h2>
       <p class="catalog-section__lead">{strings.catalogExploreBrandsLead}</p>
     </header>
-    <div class="catalog-grid--brands">
-      {allBrands.map((brand) => (
-        <CatalogBrandChip brand={brand} locale={locale} />
-      ))}
-    </div>
+    <CatalogBrandMarquee brands={allBrands} locale={locale} />
     <a href={localePath("/brands/", locale)} class="catalog-section__cta">
       {strings.viewAll} brands →
     </a>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { brandMonogram, brandPath, getBrandItems, getBrands } from "../../../lib/catalog";
+import CatalogBrandChip from "../../../components/catalog/CatalogBrandChip.astro";
+import { brandPath, getBrandItems, getBrands } from "../../../lib/catalog";
 import { t, localePath } from "../../../i18n/ui";
 
 const locale = "en" as const;
@@ -31,25 +32,31 @@ const brands = getBrands();
       <header class="brands-page__head">
         <h1>{strings.catalogExploreBrands}</h1>
         <p>{strings.catalogExploreBrandsLead}</p>
+        <p class="brands-page__stats">
+          {brands.length} {strings.catalogBrandsLabel.toUpperCase()}
+        </p>
       </header>
 
       <div class="brands-page__grid">
         {
           brands.map((brand) => {
             const count = getBrandItems(brand.id).length;
+            const href = brandPath(brand.id, locale);
             return (
-              <a href={brandPath(brand.id, locale)} class="brand-card">
+              <article class="brand-tile">
+                <CatalogBrandChip brand={brand} locale={locale} variant="directory" />
+                {brand.logo && <p class="brand-tile__name">{brand.name}</p>}
                 {
-                  brand.logo ? (
-                    <img src={brand.logo} alt="" width="64" height="64" loading="lazy" />
-                  ) : (
-                    <span class="brand-card__monogram" aria-hidden="true">{brandMonogram(brand.name)}</span>
+                  (brand.headquarters || count > 0) && (
+                    <p class="brand-tile__meta">
+                      {brand.headquarters && brand.headquarters !== "-" ? brand.headquarters : null}
+                      {brand.headquarters && brand.headquarters !== "-" && count > 0 ? " · " : null}
+                      {count > 0 ? `${count} ${strings.catalogProductsLabel}` : null}
+                    </p>
                   )
                 }
-                <span class="brand-card__name">{brand.name}</span>
-                {brand.headquarters && <span class="brand-card__hq">{brand.headquarters}</span>}
-                {count > 0 && <span class="brand-card__count">{count} products</span>}
-              </a>
+                <a href={href} class="brand-tile__link">{strings.catalogViewBrand}</a>
+              </article>
             );
           })
         }
@@ -57,93 +64,3 @@ const brands = getBrands();
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .brands-page {
-    padding: 2.5rem 0 4rem;
-  }
-
-  .brands-page__crumbs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
-    color: var(--color-secondary);
-    font-size: 0.72rem;
-  }
-
-  .brands-page__crumbs a {
-    color: var(--color-link);
-    text-decoration: none;
-  }
-
-  .brands-page__head h1 {
-    margin: 0 0 0.5rem;
-    font-size: clamp(1.75rem, 3vw, 2.35rem);
-  }
-
-  .brands-page__head p {
-    margin: 0 0 1.75rem;
-    max-width: 40rem;
-    color: var(--color-secondary);
-    line-height: 1.55;
-  }
-
-  .brands-page__grid {
-    display: grid;
-    gap: 0.85rem;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-
-  .brand-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1.25rem 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 0.85rem;
-    background: var(--color-card);
-    text-decoration: none;
-    text-align: center;
-    transition: border-color 0.15s ease, transform 0.15s ease;
-  }
-
-  .brand-card:hover {
-    border-color: color-mix(in srgb, var(--cyan) 35%, var(--color-border));
-    transform: translateY(-2px);
-  }
-
-  .brand-card img {
-    width: 3.5rem;
-    height: 3.5rem;
-    object-fit: contain;
-  }
-
-  .brand-card__monogram {
-    display: grid;
-    place-items: center;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--btc) 14%, var(--color-page));
-    border: 1px solid color-mix(in srgb, var(--btc) 28%, var(--color-border));
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    text-transform: uppercase;
-  }
-
-  .brand-card__name {
-    font-weight: 700;
-    color: var(--color-text);
-  }
-
-  .brand-card__hq,
-  .brand-card__count {
-    font-size: 0.82rem;
-    color: var(--color-secondary);
-  }
-</style>
