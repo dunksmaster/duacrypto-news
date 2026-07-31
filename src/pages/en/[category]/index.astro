@@ -1,0 +1,129 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CatalogGridCard from "../../../components/catalog/CatalogGridCard.astro";
+import {
+  catalogCategoryPaths,
+  categoryBlurb,
+  categoryLabel,
+  getCategory,
+  getItems,
+  isCatalogCategory,
+} from "../../../lib/catalog";
+import { t, localePath } from "../../../i18n/ui";
+import site from "../../../data/site.json";
+
+export function getStaticPaths() {
+  return catalogCategoryPaths();
+}
+
+const locale = "en" as const;
+const strings = t(locale);
+const { category: categoryId } = Astro.params;
+
+if (!categoryId || !isCatalogCategory(categoryId)) {
+  return Astro.redirect("/en/");
+}
+
+const category = getCategory(categoryId)!;
+const items = getItems(categoryId);
+const label = categoryLabel(categoryId, locale);
+const blurb = categoryBlurb(category, locale) || strings.shopExploreLead;
+const isMining = categoryId === "mining";
+---
+
+<BaseLayout
+  title={label}
+  description={blurb}
+  lang="en"
+  locale={locale}
+  canonical={`${Astro.site}en/${categoryId}/`}
+  switchTarget={{
+    href: localePath(`/${categoryId}/`, "sq"),
+    available: true,
+    label: strings.readInAlbanian,
+  }}
+>
+  <section class="cat-page" data-pagefind-body>
+    <div class="section-shell">
+      <nav class="cat-page__crumbs meta-mono" aria-label="Breadcrumb">
+        <a href={localePath("/", locale)}>{strings.home}</a>
+        <span aria-hidden="true">/</span>
+        <span>{label}</span>
+      </nav>
+
+      <header class="cat-page__head">
+        <h1>{isMining ? strings.catalogMiningTitle : label}</h1>
+        <p>{isMining ? strings.catalogMiningLead : blurb}</p>
+      </header>
+
+      {
+        isMining ? (
+          <div class="cat-page__mining-cta">
+            <p>{strings.shopBody}</p>
+            <a href={site.telegramUrl} class="btn-primary" target="_blank" rel="noopener noreferrer">
+              {strings.shopCta}
+            </a>
+          </div>
+        ) : (
+          <div class="cat-page__grid">
+            {items.map((item) => (
+              <CatalogGridCard item={item} locale={locale} />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cat-page {
+    padding: 2.5rem 0 4rem;
+  }
+
+  .cat-page__crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-secondary);
+    font-size: 0.72rem;
+  }
+
+  .cat-page__crumbs a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .cat-page__head h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+  }
+
+  .cat-page__head p {
+    margin: 0 0 1.75rem;
+    max-width: 40rem;
+    color: var(--color-secondary);
+    line-height: 1.55;
+  }
+
+  .cat-page__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  .cat-page__mining-cta {
+    padding: 1.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: var(--color-card);
+    max-width: 36rem;
+  }
+
+  .cat-page__mining-cta p {
+    margin: 0 0 1.25rem;
+    color: var(--color-secondary);
+    line-height: 1.55;
+  }
+</style>

@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import GeoBanner from "../components/GeoBanner.astro";
 import TrustBar from "../components/TrustBar.astro";
+import AadsUnit from "../components/AadsUnit.astro";
 import site from "../data/site.json";
 import { organizationJsonLd } from "../lib/organization";
 import type { Locale } from "../i18n/ui";
@@ -134,6 +135,7 @@ const jsonLd = graph.length === 1 ? graph[0] : { "@context": "https://schema.org
     <main class="flex-1">
       <slot />
     </main>
+    <AadsUnit />
     <Footer locale={locale} />
     <script defer src="/js/engagement.js"></script>
     <script defer src="/js/reading-progress.js"></script>

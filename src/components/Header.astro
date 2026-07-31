@@ -2,6 +2,7 @@
 import site from "../data/site.json";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import { t, localePath, type Locale } from "../i18n/ui";
+import { categoryLabel, categoryPath, getCategories } from "../lib/catalog";
 
 interface Props {
   locale?: Locale;
@@ -13,14 +14,15 @@ const strings = t(locale);
 const { pathname } = Astro.url;
 const MAIN_SITE = site.mainSite;
 const prefix = locale === "en" ? "/en" : "";
+const categories = getCategories();
+
+const isCatalogPath = categories.some(
+  (c) => pathname.includes(`/${c.id}`) || pathname.includes(`/en/${c.id}`),
+);
 
 const nav = [
   { href: localePath("/", locale), label: strings.home, match: pathname === prefix || pathname === `${prefix}/` },
-  { href: localePath("/category/news/", locale), label: strings.news, match: pathname.includes("/category/news") },
-  { href: localePath("/category/analysis/", locale), label: strings.analysis, match: pathname.includes("/category/analysis") },
-  { href: localePath("/category/guides/", locale), label: strings.guides, match: pathname.includes("/category/guides") },
-  { href: localePath("/category/community/", locale), label: strings.community, match: pathname.includes("/category/community") },
-  { href: localePath("/search/", locale), label: strings.search, match: pathname.includes("/search") },
+  { href: localePath("/blog/", locale), label: strings.blog, match: pathname.includes("/blog") },
   { href: localePath("/about/", locale), label: strings.about, match: pathname.includes("/about") },
 ];
 ---
@@ -28,7 +30,7 @@ const nav = [
 <header class="site-header sticky top-0 z-50 border-b border-border">
   <div class="section-shell site-header__shell">
     <div class="site-header__bar">
-      <a href={localePath("/", locale)} class="site-header__brand" aria-label="DuaCrypto News home">
+      <a href={localePath("/", locale)} class="site-header__brand" aria-label="DuaCrypto home">
         <img
           src="/img/duacrypto-logo.png"
           alt="DuaCrypto"
@@ -36,7 +38,7 @@ const nav = [
           height="378"
           class="h-10 w-auto"
         />
-        <span class="site-header__wordmark hidden sm:inline">News<br />Terminal</span>
+        <span class="site-header__wordmark hidden sm:inline">Self-Custody<br />Catalog</span>
       </a>
 
       <button
@@ -58,6 +60,32 @@ const nav = [
             {item.label}
           </a>
         ))}
+
+        <div class="nav-dropdown">
+          <button
+            type="button"
+            class:list={["nav-link nav-dropdown__toggle", { "nav-link-active": isCatalogPath }]}
+            aria-expanded="false"
+            aria-haspopup="true"
+            id="cat-menu-toggle"
+          >
+            {strings.allCategories} ▾
+          </button>
+          <div class="nav-dropdown__menu" id="cat-menu" hidden>
+            {
+              categories.map((cat) => (
+                <a href={categoryPath(cat.id, locale)} class="nav-dropdown__item">
+                  {categoryLabel(cat.id, locale)}
+                </a>
+              ))
+            }
+            <a href={localePath("/brands/", locale)} class="nav-dropdown__item">
+              {strings.catalogExploreBrands}
+            </a>
+          </div>
+        </div>
+
+        <a href={localePath("/search/", locale)} class="nav-link">{strings.search}</a>
         <a href={MAIN_SITE} class="nav-link">{strings.mainSite}</a>
       </div>
 
@@ -117,6 +145,29 @@ const nav = [
 
   window.matchMedia("(min-width: 1024px)").addEventListener("change", () => {
     syncNavState();
+  });
+
+  const catToggle = document.getElementById("cat-menu-toggle");
+  const catMenu = document.getElementById("cat-menu");
+  catToggle?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = catMenu?.hasAttribute("hidden");
+    if (open) {
+      catMenu?.removeAttribute("hidden");
+      catToggle?.setAttribute("aria-expanded", "true");
+    } else {
+      catMenu?.setAttribute("hidden", "");
+      catToggle?.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!catToggle || !catMenu) return;
+    const target = e.target as Node;
+    if (!catToggle.contains(target) && !catMenu.contains(target)) {
+      catMenu.setAttribute("hidden", "");
+      catToggle.setAttribute("aria-expanded", "false");
+    }
   });
 
   const themeBtn = document.querySelector("[data-theme-toggle]");
@@ -232,6 +283,11 @@ const nav = [
     text-transform: uppercase;
     font-weight: 600;
     white-space: nowrap;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    padding: 0;
   }
 
   .site-header__nav-links {
@@ -298,5 +354,52 @@ const nav = [
     .site-header .nav-link {
       padding-block: 1.5rem;
     }
+  }
+
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .nav-dropdown__menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    z-index: 60;
+    min-width: 14rem;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.65rem;
+    background: var(--color-surface);
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--ink) 12%, transparent);
+  }
+
+  .nav-dropdown__menu[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 1023px) {
+    .nav-dropdown__menu {
+      position: static;
+      box-shadow: none;
+      margin-top: 0.25rem;
+      margin-left: 0.5rem;
+    }
+  }
+
+  .nav-dropdown__item {
+    display: block;
+    padding: 0.45rem 0.65rem;
+    border-radius: 0.4rem;
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-dropdown__item:hover {
+    background: color-mix(in srgb, var(--cyan) 10%, var(--color-page));
+    color: var(--color-link);
   }
 </style>

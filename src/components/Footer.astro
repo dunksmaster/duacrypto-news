@@ -37,17 +37,6 @@ const rssHref = locale === "en" ? "/en/rss.xml" : "/rss.xml";
               ? "Jemi të hapur për bashkëpunime dhe ide kreative."
               : "We're open to collaborations, partnerships, and creative ideas."}
           </li>
-          <li class="break-words">
-            {locale === "sq" ? "Na kontaktoni me email ose" : "Reach out via email or our"}
-            <a
-              href="https://blockscan.com/address/2ECp5NXzGzx4R49DDnQu2nbJiVPKMzKXRHVmHrxp4Exh"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-all text-link hover:underline"
-            >
-              {locale === "sq" ? "portofolin zyrtar" : "official wallet"}
-            </a>.
-          </li>
         </ul>
       </div>
 
@@ -69,7 +58,7 @@ const rssHref = locale === "en" ? "/en/rss.xml" : "/rss.xml";
         <a class="footer-link" href={`${MAIN_SITE}/bitcoin-for-corporations.html`}
           >Bitcoin for Corporations</a
         >
-        <a class="footer-link" href={newsHome}>{strings.news}</a>
+        <a class="footer-link" href={localePath("/blog/", locale)}>{strings.blog}</a>
         <a class="footer-link" href={`${MAIN_SITE}/donation.html`}>{locale === "sq" ? "Dhuroni libër" : "Donate a Book"}</a>
         <a class="footer-link" href={`${MAIN_SITE}/newsletter.html`}>Newsletter</a>
         <a class="footer-link" href={`${MAIN_SITE}/privacy.html`}>{locale === "sq" ? "Privatësia" : "Privacy"}</a>
@@ -105,6 +94,13 @@ const rssHref = locale === "en" ? "/en/rss.xml" : "/rss.xml";
       <p>
         &copy; <a href={MAIN_SITE} class="text-link hover:underline">DuaCrypto {new Date().getFullYear()}</a>, All Right
         Reserved.
+      </p>
+      <p class="text-center md:text-right">
+        {strings.catalogTbhCredit}{" "}
+        <a href="https://thebitcoinhole.com/" class="text-link hover:underline" target="_blank" rel="noopener noreferrer"
+          >The Bitcoin Hole</a
+        >
+        {" "}(MIT).
       </p>
       <p>
         <a href={rssHref} class="text-link hover:underline">RSS</a>

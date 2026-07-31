@@ -1,0 +1,35 @@
+{
+  "brand": {
+    "value": "Trezor"
+  },
+  "description": {
+    "value": "Trezor is a cryptocurrency security company that pioneered the hardware wallet, offering devices that store digital assets offline. Its lineup includes models such as the Trezor Safe 7, Safe 5 and Safe 3, paired with the Trezor Suite companion app for desktop and mobile. Trezor emphasizes open-source code and user control of private keys, supporting thousands of coins and tokens."
+  },
+  "headquarters": {
+    "value": "Czech Republic",
+    "countryCode": "CZ"
+  },
+  "website": {
+    "value": "trezor.io",
+    "url": "https://trezor.io/"
+  },
+  "blog": {
+    "value": "blog.trezor.io",
+    "url": "https://blog.trezor.io/"
+  },
+  "twitter": {
+    "value": "@TREZOR",
+    "url": "https://x.com/TREZOR"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "@TrezorWallet",
+    "url": "https://www.youtube.com/@TrezorWallet"
+  },
+  "github": {
+    "value": "trezor",
+    "url": "https://github.com/trezor"
+  }
+}

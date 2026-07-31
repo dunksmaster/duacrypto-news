@@ -1,0 +1,39 @@
+{
+  "brand": {
+    "value": "ACINQ"
+  },
+  "description": {
+    "value": "ACINQ is a Bitcoin technology company focused on the Lightning Network. It develops Phoenix, a self-custodial mobile Lightning wallet for Android and iOS designed to make Lightning payments simple, and also maintains eclair, an open-source Lightning implementation. Phoenix manages channels automatically so users can send and receive Bitcoin over Lightning without running their own node."
+  },
+  "headquarters": {
+    "value": "France",
+    "countryCode": "FR"
+  },
+  "website": {
+    "value": "phoenix.acinq.co",
+    "url": "https://phoenix.acinq.co/"
+  },
+  "blog": {
+    "value": "-"
+  },
+  "twitter": {
+    "value": "@PhoenixWallet",
+    "url": "https://x.com/PhoenixWallet"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "-"
+  },
+  "github": {
+    "value": "ACINQ",
+    "url": "https://github.com/ACINQ"
+  },
+  "slack": {
+    "value": "-"
+  },
+  "discord": {
+    "value": "-"
+  }
+}

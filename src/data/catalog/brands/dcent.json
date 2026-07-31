@@ -1,0 +1,34 @@
+{
+  "brand": {
+    "value": "D'CENT"
+  },
+  "description": {
+    "value": "D'CENT is a cryptocurrency wallet brand from the South Korean company IoTrust Co., Ltd. Its products include the D'CENT Biometric Wallet, a cold wallet with fingerprint authentication, the D'CENT Card Wallet for Ethereum and EVM assets, and a mobile app for portfolio management. D'CENT supports a wide range of mainnets and thousands of cryptocurrencies."
+  },
+  "headquarters": {
+    "value": "Korea",
+    "countryCode": "KR"
+  },
+  "website": {
+    "value": "dcentwallet.com",
+    "url": "https://dcentwallet.com/"
+  },
+  "blog": {
+    "value": "medium.com/dcentwallet",
+    "url": "https://medium.com/dcentwallet"
+  },
+  "twitter": {
+    "value": "@DCENTwallets",
+    "url": "https://x.com/DCENTwallets"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "-"
+  },
+  "github": {
+    "value": "DcentWallet",
+    "url": "https://github.com/DcentWallet"
+  }
+}

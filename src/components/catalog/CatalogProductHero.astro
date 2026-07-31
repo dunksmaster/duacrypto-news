@@ -1,0 +1,220 @@
+---
+import type { Locale } from "../../i18n/ui";
+import { t } from "../../i18n/ui";
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  author: string;
+  image: string | null;
+  buyLink?: string | null;
+  year?: string;
+  publisher?: string;
+  pages?: string;
+  locale?: Locale;
+  headingLevel?: 1 | 2 | 3;
+}
+
+const {
+  title,
+  subtitle,
+  author,
+  image,
+  buyLink,
+  year,
+  publisher,
+  pages,
+  locale = "sq",
+  headingLevel = 2,
+} = Astro.props;
+const strings = t(locale);
+const TitleTag = `h${headingLevel}` as "h1" | "h2" | "h3";
+---
+
+<article class="catalog-hero">
+  {
+    image && (
+      <div class="catalog-hero__media">
+        <img src={image} alt={title} width="420" height="630" loading="lazy" />
+      </div>
+    )
+  }
+
+  <div class="catalog-hero__body">
+    {
+      author && (
+        <p class="catalog-hero__author">
+          <span class="catalog-hero__dot" aria-hidden="true"></span>
+          {author}
+        </p>
+      )
+    }
+
+    <TitleTag class="catalog-hero__title">{title}</TitleTag>
+    {subtitle && <p class="catalog-hero__subtitle">{subtitle}</p>}
+
+    {
+      (year || publisher || pages) && (
+        <ul class="catalog-hero__specs">
+          {year && (
+            <li>
+              <span class="catalog-hero__spec-label">{strings.shopYear}</span>
+              <span>{year}</span>
+            </li>
+          )}
+          {publisher && (
+            <li>
+              <span class="catalog-hero__spec-label">{strings.shopPublisher}</span>
+              <span>{publisher}</span>
+            </li>
+          )}
+          {pages && (
+            <li>
+              <span class="catalog-hero__spec-label">{strings.shopPages}</span>
+              <span>{pages}</span>
+            </li>
+          )}
+        </ul>
+      )
+    }
+
+    {
+      buyLink ? (
+        <>
+          <a
+            href={buyLink}
+            class="catalog-hero__cta"
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+          >
+            {strings.shopBuyAmazon}
+          </a>
+          <p class="catalog-hero__disclosure">{strings.shopAffiliateNote}</p>
+        </>
+      ) : null
+    }
+  </div>
+</article>
+
+<style>
+  .catalog-hero {
+    display: grid;
+    gap: 1.75rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: var(--color-card);
+    box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 7%, transparent);
+  }
+
+  @media (min-width: 768px) {
+    .catalog-hero {
+      grid-template-columns: minmax(180px, 280px) 1fr;
+      gap: 2.25rem;
+      padding: 2rem;
+      align-items: start;
+    }
+
+    .catalog-hero:not(:has(.catalog-hero__media)) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .catalog-hero__media {
+    margin: 0 auto;
+    width: min(100%, 280px);
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--color-page) 80%, var(--color-card));
+  }
+
+  .catalog-hero__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+
+  .catalog-hero__author {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.65rem;
+    color: var(--color-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .catalog-hero__dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--color-btc);
+  }
+
+  .catalog-hero__title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+
+  .catalog-hero__subtitle {
+    margin: 0 0 1.25rem;
+    color: var(--color-secondary);
+    font-size: 1.08rem;
+    line-height: 1.45;
+  }
+
+  .catalog-hero__specs {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+
+  .catalog-hero__spec-label {
+    display: inline-block;
+    min-width: 8.5rem;
+    color: var(--color-secondary);
+  }
+
+  .catalog-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 22rem;
+    min-height: 3.1rem;
+    padding: 0.9rem 1.5rem;
+    border-radius: 0.75rem;
+    background: #ff6a2b;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .catalog-hero__cta:hover {
+    background: #ea580c;
+    transform: translateY(-1px);
+  }
+
+  .catalog-hero__disclosure {
+    margin: 0.7rem 0 0;
+    max-width: 22rem;
+    color: var(--color-secondary);
+    font-size: 0.78rem;
+    font-style: italic;
+    line-height: 1.4;
+  }
+</style>

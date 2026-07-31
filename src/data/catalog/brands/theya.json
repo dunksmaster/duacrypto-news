@@ -1,0 +1,40 @@
+{
+  "brand": {
+    "value": "Theya"
+  },
+  "description": {
+    "value": "Theya is a Bitcoin custody and infrastructure platform offering secure, scalable Bitcoin custody for businesses, advisors, families and individuals. It provides a modular multisig vault architecture with role-based access controls and hardware-grade security, available on iOS and web. Theya offers product tiers aimed at businesses, financial advisors and individual users."
+  },
+  "headquarters": {
+    "value": "USA",
+    "countryCode": "US"
+  },
+  "website": {
+    "value": "theya.us",
+    "url": "https://www.theya.us/"
+  },
+  "blog": {
+    "value": "blog.theya.us",
+    "url": "https://blog.theya.us/"
+  },
+  "twitter": {
+    "value": "@TheyaBitcoin",
+    "url": "https://x.com/TheyaBitcoin"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "@theya-bitcoin",
+    "url": "https://www.youtube.com/@theya-bitcoin"
+  },
+  "github": {
+    "value": "-"
+  },
+  "slack": {
+    "value": "-"
+  },
+  "discord": {
+    "value": "-"
+  }
+}

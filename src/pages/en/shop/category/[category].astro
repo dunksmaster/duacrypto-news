@@ -1,0 +1,13 @@
+---
+export function getStaticPaths() {
+  return [{ params: { category: "books" } }, { params: { category: "mining" } }];
+}
+
+const targets: Record<string, string> = {
+  books: "/en/books/",
+  mining: "/en/mining/",
+};
+
+const { category } = Astro.params;
+return Astro.redirect(targets[category!] ?? "/en/", 301);
+---

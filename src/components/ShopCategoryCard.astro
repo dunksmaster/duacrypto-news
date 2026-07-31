@@ -1,0 +1,123 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  image?: string | null;
+  visual?: string | null;
+}
+
+const { title, description, href, image, visual } = Astro.props;
+---
+
+<a href={href} class="cat-card">
+  <div class:list={["cat-card__visual", visual && `cat-card__visual--${visual}`]}>
+    {
+      image ? (
+        <img src={image} alt="" width="480" height="280" loading="lazy" />
+      ) : (
+        <div class="cat-card__motif" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      )
+    }
+  </div>
+  <div class="cat-card__body">
+    <h3 class="cat-card__title">{title}</h3>
+    <p class="cat-card__desc">{description}</p>
+  </div>
+</a>
+
+<style>
+  .cat-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: var(--color-card);
+    text-decoration: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .cat-card:hover {
+    border-color: color-mix(in srgb, var(--cyan) 35%, var(--color-border));
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 8%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .cat-card__visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 9.5rem;
+    background: color-mix(in srgb, var(--color-page) 70%, #dbeafe);
+    overflow: hidden;
+  }
+
+  :root.dark .cat-card__visual,
+  :root[data-theme="dark"] .cat-card__visual {
+    background: color-mix(in srgb, var(--color-page) 80%, #1e3a5f);
+  }
+
+  .cat-card__visual img {
+    display: block;
+    width: auto;
+    max-width: 55%;
+    max-height: 8.5rem;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.35rem;
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--ink) 18%, transparent);
+  }
+
+  .cat-card__visual--mining {
+    background:
+      radial-gradient(circle at 30% 40%, color-mix(in srgb, var(--btc) 22%, transparent), transparent 55%),
+      color-mix(in srgb, var(--color-page) 70%, #e2e8f0);
+  }
+
+  .cat-card__motif {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.45rem;
+    height: 4.5rem;
+  }
+
+  .cat-card__motif span {
+    display: block;
+    width: 1.6rem;
+    border-radius: 0.25rem 0.25rem 0 0;
+    background: linear-gradient(180deg, var(--btc), color-mix(in srgb, var(--btc) 40%, var(--ink)));
+    opacity: 0.85;
+  }
+
+  .cat-card__motif span:nth-child(1) {
+    height: 55%;
+  }
+  .cat-card__motif span:nth-child(2) {
+    height: 100%;
+  }
+  .cat-card__motif span:nth-child(3) {
+    height: 72%;
+  }
+
+  .cat-card__body {
+    padding: 1.25rem 1.35rem 1.45rem;
+  }
+
+  .cat-card__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+
+  .cat-card__desc {
+    margin: 0;
+    color: var(--color-secondary);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+</style>

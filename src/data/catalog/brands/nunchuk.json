@@ -1,0 +1,42 @@
+{
+  "brand": {
+    "value": "Nunchuk"
+  },
+  "description": {
+    "value": "Nunchuk is a Bitcoin wallet built around multisig technology to remove single points of failure, available on iOS, Android, Mac, Windows and Linux. It supports inheritance planning with on-chain timelocks, air-gapped signing and major hardware wallets such as Ledger, Trezor and Coldcard, with no KYC requirement. Nunchuk also enables multi-user collaborative custody for families and businesses."
+  },
+  "headquarters": {
+    "value": "USA",
+    "countryCode": "US"
+  },
+  "website": {
+    "value": "nunchuk.io",
+    "url": "https://nunchuk.io/"
+  },
+  "blog": {
+    "value": "Blog",
+    "url": "https://nunchuk.io/blog"
+  },
+  "twitter": {
+    "value": "@nunchuk_io",
+    "url": "https://x.com/nunchuk_io"
+  },
+  "nostr": {
+    "value": "nunchuk_io",
+    "url": "https://primal.net/p/npub1cvqlzvmjercdn0ypsmv8f7j9lge6ahsnueh5rparh53wuswftv4q49yjt3"
+  },
+  "youtube": {
+    "value": "-"
+  },
+  "github": {
+    "value": "nunchuk-io",
+    "url": "https://github.com/nunchuk-io"
+  },
+  "slack": {
+    "value": "Nunchuk.io",
+    "url": "https://join.slack.com/t/nunchukio/shared_invite/zt-xqdlvl5g-xKKohQu_R7IUo7_np8rVaw"
+  },
+  "discord": {
+    "value": "-"
+  }
+}

@@ -1,0 +1,134 @@
+---
+import type { CollectionEntry } from "astro:content";
+import {
+  formatTickerDate,
+  postHref,
+  postSlug,
+  resolveHeroSrc,
+} from "../lib/posts";
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  locale?: Locale;
+}
+
+const { post, locale = "sq" } = Astro.props;
+const strings = t(locale);
+const slug = postSlug(post.id);
+const thumb = resolveHeroSrc(post.data.image, slug, post.data.heroStyle);
+const tickerDate = formatTickerDate(post.data.pubDate, locale);
+const href = postHref(slug, locale);
+---
+
+<a href={href} class="blog-card">
+  <div class="blog-card__media">
+    {
+      thumb ? (
+        <img src={thumb} alt="" width="640" height="360" loading="lazy" />
+      ) : (
+        <span class="blog-card__placeholder meta-mono">{strings.noPhotoLabel}</span>
+      )
+    }
+  </div>
+  <div class="blog-card__body">
+    <time class="blog-card__date meta-mono" datetime={post.data.pubDate.toISOString()}>
+      {tickerDate}
+    </time>
+    <h3 class="blog-card__title">{post.data.title}</h3>
+    <p class="blog-card__dek">{post.data.description}</p>
+  </div>
+</a>
+
+<style>
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 0.85rem;
+    background: var(--color-card);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .blog-card:hover {
+    border-color: color-mix(in srgb, var(--cyan) 35%, var(--color-border));
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 8%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .blog-card__media {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 10;
+    background: color-mix(in srgb, var(--color-page) 80%, var(--color-border));
+    overflow: hidden;
+  }
+
+  .blog-card__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-card__placeholder {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: var(--color-secondary);
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 4px,
+      color-mix(in srgb, var(--color-border) 40%, transparent) 4px,
+      color-mix(in srgb, var(--color-border) 40%, transparent) 8px
+    );
+  }
+
+  .blog-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 1.1rem 1.15rem 1.25rem;
+  }
+
+  .blog-card__date {
+    color: var(--color-secondary);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+
+  .blog-card__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card:hover .blog-card__title {
+    color: var(--color-link);
+  }
+
+  .blog-card__dek {
+    margin: 0;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

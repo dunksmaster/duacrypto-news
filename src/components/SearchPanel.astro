@@ -1,0 +1,126 @@
+---
+import type { Locale } from "../../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  placeholder?: string;
+  devHintSq?: string;
+  devHintEn?: string;
+}
+
+const {
+  locale,
+  placeholder = locale === "sq" ? "Kërko katalogun dhe blogun..." : "Search catalog and blog...",
+  devHintSq = "Kërkimi funksionon pas build-it: npm run build && npm run preview",
+  devHintEn = "Search works after build: npm run build && npm run preview",
+} = Astro.props;
+
+const devHint = locale === "sq" ? devHintSq : devHintEn;
+const filterLang = locale;
+---
+
+<div class="search-panel">
+  <div id="search"></div>
+  <div id="search-results"></div>
+  <p id="search-dev-hint" class="search-panel__dev-hint" hidden>{devHint}</p>
+</div>
+
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+<script is:inline define:vars={{ filterLang, placeholder }}>
+  window.addEventListener("DOMContentLoaded", function () {
+    const hint = document.getElementById("search-dev-hint");
+    if (typeof PagefindUI === "undefined") {
+      if (hint) hint.hidden = false;
+      return;
+    }
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      resetStyles: false,
+      translations: { placeholder },
+    });
+    document.querySelectorAll("[data-pagefind-filter]").forEach(function (el) {
+      const filter = String(el.getAttribute("data-pagefind-filter"));
+      if (!filter.includes("lang:" + filterLang)) {
+        el.setAttribute("data-pagefind-ignore", "true");
+      }
+    });
+  });
+</script>
+
+<style>
+  .search-panel {
+    min-height: 3rem;
+  }
+
+  .search-panel__dev-hint {
+    margin: 1rem 0 0;
+    padding: 0.85rem 1rem;
+    border: 1px dashed var(--color-border);
+    border-radius: 0.65rem;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .search-panel__dev-hint[hidden] {
+    display: none;
+  }
+
+  /* Pagefind UI — inherit site theme (light + dark) */
+  .search-panel :global(.pagefind-ui) {
+    --pagefind-ui-scale: 0.95;
+    --pagefind-ui-primary: var(--color-text);
+    --pagefind-ui-text: var(--color-text);
+    --pagefind-ui-background: var(--color-card);
+    --pagefind-ui-border: var(--color-border);
+    --pagefind-ui-tag: var(--color-page);
+  }
+
+  .search-panel :global(.pagefind-ui__form) {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.65rem;
+  }
+
+  .search-panel :global(.pagefind-ui__search-input) {
+    color: var(--color-text);
+    background: transparent;
+  }
+
+  .search-panel :global(.pagefind-ui__search-input::placeholder) {
+    color: var(--color-secondary);
+    opacity: 0.85;
+  }
+
+  .search-panel :global(.pagefind-ui__result) {
+    background: var(--color-card);
+    border-color: var(--color-border);
+  }
+
+  .search-panel :global(.pagefind-ui__result-title),
+  .search-panel :global(.pagefind-ui__result-excerpt) {
+    color: var(--color-text);
+  }
+
+  .search-panel :global(.pagefind-ui__message) {
+    color: var(--color-secondary);
+  }
+
+  :root.dark .search-panel :global(.pagefind-ui__form),
+  :root[data-theme="dark"] .search-panel :global(.pagefind-ui__form) {
+    background: var(--color-card);
+    border-color: var(--color-border);
+  }
+
+  :root.dark .search-panel :global(.pagefind-ui__search-input),
+  :root[data-theme="dark"] .search-panel :global(.pagefind-ui__search-input) {
+    color: var(--color-text);
+  }
+
+  :root.dark .search-panel :global(.pagefind-ui__search-clear),
+  :root[data-theme="dark"] .search-panel :global(.pagefind-ui__search-clear) {
+    filter: invert(1) opacity(0.75);
+  }
+</style>

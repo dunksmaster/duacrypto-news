@@ -1,0 +1,3701 @@
+{
+  "syncedAt": "2026-07-31T11:34:26.088Z",
+  "source": "thebitcoinhole/database",
+  "categories": [
+    {
+      "id": "books",
+      "count": 112,
+      "sampleThumb": "/catalog/img/books/21-futures-thumb.webp"
+    },
+    {
+      "id": "hardware-wallets",
+      "count": 74,
+      "sampleThumb": "/catalog/img/hardware-wallets/arculus-thumb.webp"
+    },
+    {
+      "id": "software-wallets",
+      "count": 28,
+      "sampleThumb": "/catalog/img/software-wallets/alby-hub-thumb.webp"
+    },
+    {
+      "id": "bitcoin-nodes",
+      "count": 20,
+      "sampleThumb": "/catalog/img/bitcoin-nodes/bitcoin-core-thumb.webp"
+    },
+    {
+      "id": "seed-backup",
+      "count": 44,
+      "sampleThumb": "/catalog/img/seed-backup/bitbar-thumb.webp"
+    },
+    {
+      "id": "inheritance",
+      "count": 9,
+      "sampleThumb": "/catalog/img/inheritance/bitcoin-keeper-thumb.webp"
+    }
+  ],
+  "items": [
+    {
+      "id": "21-futures",
+      "category": "books",
+      "name": "21 Futures",
+      "shortDescription": "Tales from the Timechain",
+      "author": "21 Authors",
+      "thumb": "/catalog/img/books/21-futures-thumb.webp",
+      "image": "/catalog/img/books/21-futures.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "21-lessons",
+      "category": "books",
+      "name": "21 Lessons",
+      "shortDescription": "What I've Learned from Falling Down the Bitcoin Rabbit Hole",
+      "author": "Gigi",
+      "thumb": "/catalog/img/books/21-lessons-thumb.webp",
+      "image": "/catalog/img/books/21-lessons.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "a-beginners-guide-to-bitcoin",
+      "category": "books",
+      "name": "A Beginner's Guide To Bitcoin",
+      "shortDescription": "",
+      "author": "Matthew R. Kratter",
+      "thumb": "/catalog/img/books/a-beginners-guide-to-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/a-beginners-guide-to-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "a-progressives-case-for-bitcoin",
+      "category": "books",
+      "name": "A Progressive's Case for Bitcoin",
+      "shortDescription": "A Path Toward a More Just, Equitable, and Peaceful World",
+      "author": "C. Jason Maier",
+      "thumb": "/catalog/img/books/a-progressives-case-for-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/a-progressives-case-for-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "abundance-through-scarcity",
+      "category": "books",
+      "name": "Abundance Through Scarcity",
+      "shortDescription": "",
+      "author": "Ioni Appelberg",
+      "thumb": "/catalog/img/books/abundance-through-scarcity-thumb.webp",
+      "image": "/catalog/img/books/abundance-through-scarcity.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "american-kingpin",
+      "category": "books",
+      "name": "American Kingpin",
+      "shortDescription": "The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+      "author": "Nick Bilton",
+      "thumb": "/catalog/img/books/american-kingpin-thumb.webp",
+      "image": "/catalog/img/books/american-kingpin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "b-is-for-bitcoin",
+      "category": "books",
+      "name": "B Is for Bitcoin",
+      "shortDescription": "The Essential Guide to All Things Bitcoin",
+      "author": "Seb Bunney, Daz Bea",
+      "thumb": "/catalog/img/books/b-is-for-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/b-is-for-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "baffled-by-bitcoin",
+      "category": "books",
+      "name": "Baffled By Bitcoin",
+      "shortDescription": "A Simple Guide To The Money Of Tomorrow",
+      "author": "Bit Noi",
+      "thumb": "/catalog/img/books/baffled-by-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/baffled-by-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "better-money",
+      "category": "books",
+      "name": "Better Money",
+      "shortDescription": "Gold, Fiat, or Bitcoin?",
+      "author": "Lawrence H. White",
+      "thumb": "/catalog/img/books/better-money-thumb.webp",
+      "image": "/catalog/img/books/better-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-and-black-america",
+      "category": "books",
+      "name": "Bitcoin & Black America",
+      "shortDescription": "",
+      "author": "Isaiah Jackson",
+      "thumb": "/catalog/img/books/bitcoin-and-black-america-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-and-black-america.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-and-cryptocurrency-technologies",
+      "category": "books",
+      "name": "Bitcoin and Cryptocurrency Technologies",
+      "shortDescription": "A Comprehensive Introduction",
+      "author": "Many",
+      "thumb": "/catalog/img/books/bitcoin-and-cryptocurrency-technologies-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-and-cryptocurrency-technologies.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-and-lightning-network-on-raspberry-pi",
+      "category": "books",
+      "name": "Bitcoin and Lightning Network on Raspberry Pi",
+      "shortDescription": "Running Nodes on Pi3, Pi4 and Pi Zero",
+      "author": "Harris Brakmić",
+      "thumb": "/catalog/img/books/bitcoin-and-lightning-network-on-raspberry-pi-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-and-lightning-network-on-raspberry-pi.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-and-the-american-dream",
+      "category": "books",
+      "name": "Bitcoin and the American Dream",
+      "shortDescription": "The New Monetary Technology Transcending Our Political Divide",
+      "author": "Many",
+      "thumb": "/catalog/img/books/bitcoin-and-the-american-dream-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-and-the-american-dream.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-and-the-blockchain-two-entry-level-guides",
+      "category": "books",
+      "name": "Bitcoin and the Blockchain - Two Entry Level Guides",
+      "shortDescription": "Bitcoin",
+      "author": "Eric Morse",
+      "thumb": "/catalog/img/books/bitcoin-and-the-blockchain-two-entry-level-guides-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-and-the-blockchain-two-entry-level-guides.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-and-the-future-of-money",
+      "category": "books",
+      "name": "Bitcoin: And the Future of Money",
+      "shortDescription": "How does it work? How do you invest? How risky is it?",
+      "author": "Jose Pagliery",
+      "thumb": "/catalog/img/books/bitcoin-and-the-future-of-money-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-and-the-future-of-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-and-the-trust-problem",
+      "category": "books",
+      "name": "Bitcoin and The Trust Problem",
+      "shortDescription": "How bitcoin plays a role in fixing our world of trust",
+      "author": "Karo Zagorus",
+      "thumb": "/catalog/img/books/bitcoin-and-the-trust-problem-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-and-the-trust-problem.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-answered",
+      "category": "books",
+      "name": "Bitcoin Answered",
+      "shortDescription": "A Beginner's Guide to Everything Bitcoin",
+      "author": "Jon Law",
+      "thumb": "/catalog/img/books/bitcoin-answered-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-answered.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-basics",
+      "category": "books",
+      "name": "Bitcoin Basics",
+      "shortDescription": "Buying, Selling, Creating and Investing Bitcoins - The Digital Currency of the Future",
+      "author": "Benjamin Tideas",
+      "thumb": "/catalog/img/books/bitcoin-basics-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-basics.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-benson",
+      "category": "books",
+      "name": "Bitcoin",
+      "shortDescription": "A Clear and Simple Guide to Getting Up and Running Fast with Cryptocurrency",
+      "author": "Alford Benson",
+      "thumb": "/catalog/img/books/bitcoin-benson-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-benson.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-billionaires",
+      "category": "books",
+      "name": "Bitcoin Billionaires",
+      "shortDescription": "A True Story of Genius, Betrayal, and Redemption",
+      "author": "Ben Mezrich",
+      "thumb": "/catalog/img/books/bitcoin-billionaires-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-billionaires.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-bloggsbot",
+      "category": "books",
+      "name": "Bitcoin",
+      "shortDescription": "How to go from beginner to pro in Bitcoin",
+      "author": "Bowen Bloggsbot",
+      "thumb": "/catalog/img/books/bitcoin-bloggsbot-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-bloggsbot.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-boss",
+      "category": "books",
+      "name": "Bitcoin Boss",
+      "shortDescription": "The One-Hour Guidance You Need Before Investing in Bitcoin or Other Cryptocurrency",
+      "author": "J.S. McIntosh",
+      "thumb": "/catalog/img/books/bitcoin-boss-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-boss.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-clarity",
+      "category": "books",
+      "name": "Bitcoin Clarity",
+      "shortDescription": "The Complete Beginners Guide to Understanding",
+      "author": "Kiara Bickers",
+      "thumb": "/catalog/img/books/bitcoin-clarity-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-clarity.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-decoded",
+      "category": "books",
+      "name": "Bitcoin Decoded",
+      "shortDescription": "Bitcoin Beginner's Guide to Mining and the Strategies to Make Money with Cryptocurrencies.",
+      "author": "Brett Combs, Tom Mitsoff",
+      "thumb": "/catalog/img/books/bitcoin-decoded-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-decoded.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-evangelism",
+      "category": "books",
+      "name": "Bitcoin Evangelism",
+      "shortDescription": "Planting seeds for the decentralized revolution",
+      "author": "Brian De Mint",
+      "thumb": "/catalog/img/books/bitcoin-evangelism-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-evangelism.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-everything-divided-by-21-million",
+      "category": "books",
+      "name": "Bitcoin: Everything divided by 21 million",
+      "shortDescription": "",
+      "author": "Knut Svanholm",
+      "thumb": "/catalog/img/books/bitcoin-everything-divided-by-21-million-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-everything-divided-by-21-million.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-everything-you-need-to-know-mcgee",
+      "category": "books",
+      "name": "Bitcoin: Everything You Need To Know",
+      "shortDescription": "Unlock the mysteries of the world's most transformative digital currency",
+      "author": "Austin McGee",
+      "thumb": "/catalog/img/books/bitcoin-everything-you-need-to-know-mcgee-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-everything-you-need-to-know-mcgee.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-everything-you-need-to-know",
+      "category": "books",
+      "name": "Bitcoin: Everything You Need to Know",
+      "shortDescription": "Aimed at a wide audience and goes in-depth on several subjects while remaining easy to grasp by the layman.",
+      "author": "David St-Onge",
+      "thumb": "/catalog/img/books/bitcoin-everything-you-need-to-know-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-everything-you-need-to-know.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-for-beginners-lincoln",
+      "category": "books",
+      "name": "Bitcoin for Beginners",
+      "shortDescription": "How To Grow Your Income And Generate Tremendous Profit Investing In Bitcoin",
+      "author": "Daniel Lincoln",
+      "thumb": "/catalog/img/books/bitcoin-for-beginners-lincoln-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-for-beginners-lincoln.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-for-beginners",
+      "category": "books",
+      "name": "Bitcoin for beginners",
+      "shortDescription": "The Ultimate Guide to Investing in Cryptocurrencies and Diversifying Your Portfolio",
+      "author": "Gualtiero Favole",
+      "thumb": "/catalog/img/books/bitcoin-for-beginners-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-for-beginners.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-for-dummies",
+      "category": "books",
+      "name": "Bitcoin For Dummies",
+      "shortDescription": "",
+      "author": "Peter Kent, Tyler Bain",
+      "thumb": "/catalog/img/books/bitcoin-for-dummies-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-for-dummies.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-hard-money-you-cant-fck-with",
+      "category": "books",
+      "name": "Bitcoin: Hard Money You Can't F*ck With",
+      "shortDescription": "Why bitcoin will be the next global reserve currency",
+      "author": "Jason A. Williams",
+      "thumb": "/catalog/img/books/bitcoin-hard-money-you-cant-fck-with-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-hard-money-you-cant-fck-with.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-hollister",
+      "category": "books",
+      "name": "Bitcoin",
+      "shortDescription": "Starters Complete Guide to Easily Buy, Invest and Trade with Bitcoin",
+      "author": "Susan Hollister",
+      "thumb": "/catalog/img/books/bitcoin-hollister-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-hollister.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-independence-reimagined",
+      "category": "books",
+      "name": "Bitcoin: Independence reimagined",
+      "shortDescription": "The old boxes we have been operating within, and how Bitcoin encourages us to challenge and reshape them.",
+      "author": "Knut Svanholm, Daniel Prince",
+      "thumb": "/catalog/img/books/bitcoin-independence-reimagined-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-independence-reimagined.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-internals",
+      "category": "books",
+      "name": "Bitcoin Internals",
+      "shortDescription": "A Technical Guide to Bitcoin",
+      "author": "Chris Clark",
+      "thumb": "/catalog/img/books/bitcoin-internals-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-internals.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-is-venice",
+      "category": "books",
+      "name": "Bitcoin Is Venice",
+      "shortDescription": "Essays on the Past and Future of Capitalism",
+      "author": "Allen Farrington, Sacha Meyers",
+      "thumb": "/catalog/img/books/bitcoin-is-venice-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-is-venice.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-istomin",
+      "category": "books",
+      "name": "Bitcoin",
+      "shortDescription": "Everything you need to know about Bitcoin, how to min bitcoin, how to exchange bitcoin and how to buy btc",
+      "author": "Andrus Istomin",
+      "thumb": "/catalog/img/books/bitcoin-istomin-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-istomin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-money",
+      "category": "books",
+      "name": "Bitcoin Money",
+      "shortDescription": "A Tale of Bitville Discovering Good Money",
+      "author": "Michael Caras",
+      "thumb": "/catalog/img/books/bitcoin-money-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-on-the-go",
+      "category": "books",
+      "name": "Bitcoin on the Go",
+      "shortDescription": "The Basics of Bitcoins and Blockchains",
+      "author": "Antony Lewis",
+      "thumb": "/catalog/img/books/bitcoin-on-the-go-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-on-the-go.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-prophecy",
+      "category": "books",
+      "name": "Bitcoin Prophecy",
+      "shortDescription": "What Argentina can teach you about your money",
+      "author": "Ariel A Aguilar",
+      "thumb": "/catalog/img/books/bitcoin-prophecy-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-prophecy.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-sovereignty-independence",
+      "category": "books",
+      "name": "Bitcoin: Sovereignty & Independence",
+      "shortDescription": "A philosophical journey to explore the new language of money that Bitcoin creates",
+      "author": "Knut Svanholm",
+      "thumb": "/catalog/img/books/bitcoin-sovereignty-independence-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-sovereignty-independence.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-sovereignty-through-mathematics",
+      "category": "books",
+      "name": "Bitcoin: Sovereignty through mathematics",
+      "shortDescription": "What makes Bitcoin so special?",
+      "author": "Knut Svanholm",
+      "thumb": "/catalog/img/books/bitcoin-sovereignty-through-mathematics-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-sovereignty-through-mathematics.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-technics-and-time",
+      "category": "books",
+      "name": "Bitcoin, Technics and Time",
+      "shortDescription": "Philosophical exploration through history, technology and timechain",
+      "author": "Pietro Battistella",
+      "thumb": "/catalog/img/books/bitcoin-technics-and-time-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-technics-and-time.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-the-blockchain-and-beyond",
+      "category": "books",
+      "name": "Bitcoin, the Blockchain and Beyond",
+      "shortDescription": "A 360-Degree onboarding guide to the first cryptocurrency and blockchain",
+      "author": "Jean-Luc Verhelst",
+      "thumb": "/catalog/img/books/bitcoin-the-blockchain-and-beyond-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-the-blockchain-and-beyond.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-the-digital-currency-that-changed-the-world",
+      "category": "books",
+      "name": "Bitcoin The Digital Currency that changed the world",
+      "shortDescription": "The Decentralized Revolution",
+      "author": "Mark Auditore",
+      "thumb": "/catalog/img/books/bitcoin-the-digital-currency-that-changed-the-world-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-the-digital-currency-that-changed-the-world.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoin-vs-altcoins",
+      "category": "books",
+      "name": "Bitcoin vs Altcoins",
+      "shortDescription": "The Battle for Dominance",
+      "author": "Phil Champagne",
+      "thumb": "/catalog/img/books/bitcoin-vs-altcoins-thumb.webp",
+      "image": "/catalog/img/books/bitcoin-vs-altcoins.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "bitcoinismo",
+      "category": "books",
+      "name": "Bitcoinismo",
+      "shortDescription": "La era de la riqueza inconfiscable",
+      "author": "Adrián Bernabéu",
+      "thumb": "/catalog/img/books/bitcoinismo-thumb.webp",
+      "image": "/catalog/img/books/bitcoinismo.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "blockchain-and-distributed-ledgers",
+      "category": "books",
+      "name": "Blockchain And Distributed Ledgers",
+      "shortDescription": "Mathematics, Technology, And Economics",
+      "author": "Alexander Lipton, Adrien Treccani",
+      "thumb": "/catalog/img/books/blockchain-and-distributed-ledgers-thumb.webp",
+      "image": "/catalog/img/books/blockchain-and-distributed-ledgers.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "broken-money",
+      "category": "books",
+      "name": "Broken Money",
+      "shortDescription": "Why Our Financial System is Failing Us and How We Can Make it Better",
+      "author": "Lyn Alden",
+      "thumb": "/catalog/img/books/broken-money-thumb.webp",
+      "image": "/catalog/img/books/broken-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "catching-up-to-crypto",
+      "category": "books",
+      "name": "Catching Up to Crypto",
+      "shortDescription": "Your Guide to Bitcoin and the New Digital Economy",
+      "author": "Ben Armstrong",
+      "thumb": "/catalog/img/books/catching-up-to-crypto-thumb.webp",
+      "image": "/catalog/img/books/catching-up-to-crypto.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "check-your-financial-privilege",
+      "category": "books",
+      "name": "Check Your Financial Privilege",
+      "shortDescription": "Inside the global bitcoin revolution",
+      "author": "Alex Gladstein",
+      "thumb": "/catalog/img/books/check-your-financial-privilege-thumb.webp",
+      "image": "/catalog/img/books/check-your-financial-privilege.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "complete-guide-to-bitcoin",
+      "category": "books",
+      "name": "Complete Guide To Bitcoin",
+      "shortDescription": "Understand everything from getting started with bitcoin, sending and receiving bitcoin to mining bitcoin.",
+      "author": "Mark Gates",
+      "thumb": "/catalog/img/books/complete-guide-to-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/complete-guide-to-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "criptoria",
+      "category": "books",
+      "name": "Criptoria",
+      "shortDescription": "De Turing a Nakamoto",
+      "author": "Alfre Mancera",
+      "thumb": "/catalog/img/books/criptoria-thumb.webp",
+      "image": "/catalog/img/books/criptoria.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "crypto-spotlight-series",
+      "category": "books",
+      "name": "Crypto Spotlight Series",
+      "shortDescription": "Bitcoin (BTC) (Crypto for Beginners",
+      "author": "Nott U.R. Keys",
+      "thumb": "/catalog/img/books/crypto-spotlight-series-thumb.webp",
+      "image": "/catalog/img/books/crypto-spotlight-series.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "cryptoasset-inheritance-planning",
+      "category": "books",
+      "name": "Cryptoasset Inheritance Planning",
+      "shortDescription": "A Simple Guide for Owners",
+      "author": "Pamela Morgan",
+      "thumb": "/catalog/img/books/cryptoasset-inheritance-planning-thumb.webp",
+      "image": "/catalog/img/books/cryptoasset-inheritance-planning.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "cryptoeconomics",
+      "category": "books",
+      "name": "Cryptoeconomics",
+      "shortDescription": "Fundamental Principles of Bitcoin",
+      "author": "Eric Voskuil",
+      "thumb": "/catalog/img/books/cryptoeconomics-thumb.webp",
+      "image": "/catalog/img/books/cryptoeconomics.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "cryptosovereignty",
+      "category": "books",
+      "name": "Cryptosovereignty",
+      "shortDescription": "The Encrypted Political Philosophy of Bitcoin",
+      "author": "Erik Cason",
+      "thumb": "/catalog/img/books/cryptosovereignty-thumb.webp",
+      "image": "/catalog/img/books/cryptosovereignty.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "decrypting-money",
+      "category": "books",
+      "name": "Decrypting Money",
+      "shortDescription": "A Comprehensive Introduction to Bitcoin",
+      "author": "Many",
+      "thumb": "/catalog/img/books/decrypting-money-thumb.webp",
+      "image": "/catalog/img/books/decrypting-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "digital-gold",
+      "category": "books",
+      "name": "Digital Gold",
+      "shortDescription": "Bitcoin and the Inside Story of the Misfits and Millionaires Trying to Reinvent Money",
+      "author": "Nathaniel Popper",
+      "thumb": "/catalog/img/books/digital-gold-thumb.webp",
+      "image": "/catalog/img/books/digital-gold.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "early-bird-gets-the-bitcoin",
+      "category": "books",
+      "name": "Early Bird Gets The Bitcoin",
+      "shortDescription": "The Ultimate Guide To Everything About Bitcoin",
+      "author": "Andrew K. Courey",
+      "thumb": "/catalog/img/books/early-bird-gets-the-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/early-bird-gets-the-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "economias-circulares-de-bitcoin",
+      "category": "books",
+      "name": "Economias Circulares de Bitcoin",
+      "shortDescription": "Historias de esperanza construidas sobre el dinero soberano del futuro",
+      "author": "Gabriel Kurman, Ivan Kaleja",
+      "thumb": "/catalog/img/books/economias-circulares-de-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/economias-circulares-de-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "fiat-ruins-everything",
+      "category": "books",
+      "name": "Fiat Ruins Everything",
+      "shortDescription": "How Our Financial System Is Rigged and How Bitcoin Fixes It",
+      "author": "Jimmy Song",
+      "thumb": "/catalog/img/books/fiat-ruins-everything-thumb.webp",
+      "image": "/catalog/img/books/fiat-ruins-everything.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "gradually-then-suddenly",
+      "category": "books",
+      "name": "Gradually, Then Suddenly",
+      "shortDescription": "A framework for understanding bitcoin as money",
+      "author": "Parker Lewis",
+      "thumb": "/catalog/img/books/gradually-then-suddenly-thumb.webp",
+      "image": "/catalog/img/books/gradually-then-suddenly.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "grokking-bitcoin",
+      "category": "books",
+      "name": "Grokking Bitcoin",
+      "shortDescription": "",
+      "author": "Kalle Rosenbaum",
+      "thumb": "/catalog/img/books/grokking-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/grokking-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "history-echoes-bitcoin",
+      "category": "books",
+      "name": "History Echoes Bitcoin",
+      "shortDescription": "Understanding the value of Bitcoin's properties through the lens of history",
+      "author": "Tim Niemeyer",
+      "thumb": "/catalog/img/books/history-echoes-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/history-echoes-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "how-to-bitcoin",
+      "category": "books",
+      "name": "How to Bitcoin",
+      "shortDescription": "",
+      "author": "CoinGecko",
+      "thumb": "/catalog/img/books/how-to-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/how-to-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "how-to-explain-bitcoin-to-your-mum",
+      "category": "books",
+      "name": "How to Explain Bitcoin to your mum",
+      "shortDescription": "The complete guide to Bitcoin for novices, experts and mums everywhere",
+      "author": "Jason Deane",
+      "thumb": "/catalog/img/books/how-to-explain-bitcoin-to-your-mum-thumb.webp",
+      "image": "/catalog/img/books/how-to-explain-bitcoin-to-your-mum.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "how-to-leave-bitcoin-to-your-heirs",
+      "category": "books",
+      "name": "How to Leave Bitcoin to Your Heirs",
+      "shortDescription": "A simple inheritance plan for your self-custody bitcoin",
+      "author": "Anthony S. Park",
+      "thumb": "/catalog/img/books/how-to-leave-bitcoin-to-your-heirs-thumb.webp",
+      "image": "/catalog/img/books/how-to-leave-bitcoin-to-your-heirs.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "how-to-mine-bitcoin",
+      "category": "books",
+      "name": "How To Mine Bitcoin",
+      "shortDescription": "A Beginners' Guide To Mine And Invest In Bitcoin",
+      "author": "Shirleen Seamons",
+      "thumb": "/catalog/img/books/how-to-mine-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/how-to-mine-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "introduction-to-bitcoin-ricardo",
+      "category": "books",
+      "name": "Introduction to Bitcoin",
+      "shortDescription": "Understanding Peer-to-Peer Networks, Digital Signatures, the Blockchain, Proof-of-Work, Mining, Network Attacks, Bitcoin Core",
+      "author": "David Ricardo",
+      "thumb": "/catalog/img/books/introduction-to-bitcoin-ricardo-thumb.webp",
+      "image": "/catalog/img/books/introduction-to-bitcoin-ricardo.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "introduction-to-bitcoin",
+      "category": "books",
+      "name": "Introduction to Bitcoin",
+      "shortDescription": "Navigating the Future of Money",
+      "author": "Florin T. Hilbay",
+      "thumb": "/catalog/img/books/introduction-to-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/introduction-to-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "inventing-bitcoin",
+      "category": "books",
+      "name": "Inventing Bitcoin",
+      "shortDescription": "The Technology Behind The First Truly Scarce and Decentralized Money Explained",
+      "author": "Yan Pritzker",
+      "thumb": "/catalog/img/books/inventing-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/inventing-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "layered-money",
+      "category": "books",
+      "name": "Layered Money",
+      "shortDescription": "From Gold and Dollars to Bitcoin and Central Bank Digital Currencies",
+      "author": "Nik Bhatia",
+      "thumb": "/catalog/img/books/layered-money-thumb.webp",
+      "image": "/catalog/img/books/layered-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "learn-bitcoin",
+      "category": "books",
+      "name": "Learn Bitcoin",
+      "shortDescription": "Become Financially Sovereign",
+      "author": "Anita Posch",
+      "thumb": "/catalog/img/books/learn-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/learn-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "magic-internet-money",
+      "category": "books",
+      "name": "Magic Internet Money",
+      "shortDescription": "A Book About Bitcoin",
+      "author": "Jesse Berger",
+      "thumb": "/catalog/img/books/magic-internet-money-thumb.webp",
+      "image": "/catalog/img/books/magic-internet-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "mastering-bitcoin-for-starters",
+      "category": "books",
+      "name": "Mastering Bitcoin for Starters",
+      "shortDescription": "The ultimate guide that will teach you how to master the number one cryptocurrency in the world",
+      "author": "Sam Sutton",
+      "thumb": "/catalog/img/books/mastering-bitcoin-for-starters-thumb.webp",
+      "image": "/catalog/img/books/mastering-bitcoin-for-starters.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "mastering-bitcoin",
+      "category": "books",
+      "name": "Mastering Bitcoin",
+      "shortDescription": "Programming the Open Blockchain",
+      "author": "Andreas M. Antonopoulos, David A. Harding",
+      "thumb": "/catalog/img/books/mastering-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/mastering-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "mastering-the-lightning-network",
+      "category": "books",
+      "name": "Mastering the Lightning Network",
+      "shortDescription": "A Second Layer Blockchain Protocol for Instant Bitcoin Payments",
+      "author": "Andreas M. Antonopoulos",
+      "thumb": "/catalog/img/books/mastering-the-lightning-network-thumb.webp",
+      "image": "/catalog/img/books/mastering-the-lightning-network.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "orange-coin-good",
+      "category": "books",
+      "name": "Orange Coin Good",
+      "shortDescription": "The Value of Bitcoin - Book One",
+      "author": "jimbo",
+      "thumb": "/catalog/img/books/orange-coin-good-thumb.webp",
+      "image": "/catalog/img/books/orange-coin-good.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "programming-bitcoin",
+      "category": "books",
+      "name": "Programming Bitcoin",
+      "shortDescription": "Learn How to Program Bitcoin from Scratch",
+      "author": "Jimmy Song",
+      "thumb": "/catalog/img/books/programming-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/programming-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "proof-of-money",
+      "category": "books",
+      "name": "Proof of Money",
+      "shortDescription": "The Big Idea Behind Bitcoin (What You Don't Know About Why You Need It)",
+      "author": "Terence Michael",
+      "thumb": "/catalog/img/books/proof-of-money-thumb.webp",
+      "image": "/catalog/img/books/proof-of-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "qa-about-bitcoin",
+      "category": "books",
+      "name": "Q/A about Bitcoin",
+      "shortDescription": "From the blockchain concept to the definition of the LNP/BP suite",
+      "author": "David Coen",
+      "thumb": "/catalog/img/books/qa-about-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/qa-about-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "resistance-money",
+      "category": "books",
+      "name": "Resistance Money",
+      "shortDescription": "A Philosophical Case for Bitcoin",
+      "author": "Many",
+      "thumb": "/catalog/img/books/resistance-money-thumb.webp",
+      "image": "/catalog/img/books/resistance-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "strategies-for-liberty",
+      "category": "books",
+      "name": "Strategies for Liberty",
+      "shortDescription": "Free Cities & Bitcoin",
+      "author": "Alexander Voss",
+      "thumb": "/catalog/img/books/strategies-for-liberty-thumb.webp",
+      "image": "/catalog/img/books/strategies-for-liberty.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "thank-god-for-bitcoin",
+      "category": "books",
+      "name": "Thank God for Bitcoin",
+      "shortDescription": "The Creation, Corruption and Redemption of Money",
+      "author": "Many",
+      "thumb": "/catalog/img/books/thank-god-for-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/thank-god-for-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-7th-property",
+      "category": "books",
+      "name": "The 7th Property",
+      "shortDescription": "Bitcoin and the Monetary Revolution",
+      "author": "Eric Yakes",
+      "thumb": "/catalog/img/books/the-7th-property-thumb.webp",
+      "image": "/catalog/img/books/the-7th-property.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-bible-and-bitcoin",
+      "category": "books",
+      "name": "The Bible and Bitcoin",
+      "shortDescription": "A Theological Exploration of Human Time, Energy and Bitcoin",
+      "author": "Alin Armstrong",
+      "thumb": "/catalog/img/books/the-bible-and-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/the-bible-and-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-bitcoin-and-blockchain-booklet",
+      "category": "books",
+      "name": "The Bitcoin and Blockchain Booklet",
+      "shortDescription": "The Beginner's Guide to Getting Started with Cryptocurrency",
+      "author": "Robert Beadles",
+      "thumb": "/catalog/img/books/the-bitcoin-and-blockchain-booklet-thumb.webp",
+      "image": "/catalog/img/books/the-bitcoin-and-blockchain-booklet.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-bitcoin-dictionary",
+      "category": "books",
+      "name": "The Bitcoin Dictionary",
+      "shortDescription": "A Reference and Primer for Bitcoin",
+      "author": "Ansel Lindner",
+      "thumb": "/catalog/img/books/the-bitcoin-dictionary-thumb.webp",
+      "image": "/catalog/img/books/the-bitcoin-dictionary.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-bitcoin-dollar",
+      "category": "books",
+      "name": "The Bitcoin-Dollar",
+      "shortDescription": "An Economic Monomyth",
+      "author": "Mark Goodwin",
+      "thumb": "/catalog/img/books/the-bitcoin-dollar-thumb.webp",
+      "image": "/catalog/img/books/the-bitcoin-dollar.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-bitcoin-handbook",
+      "category": "books",
+      "name": "The Bitcoin Handbook",
+      "shortDescription": "Key Concepts in Economics, Technology & Psychology",
+      "author": "Anil Patel",
+      "thumb": "/catalog/img/books/the-bitcoin-handbook-thumb.webp",
+      "image": "/catalog/img/books/the-bitcoin-handbook.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-bitcoin-standard",
+      "category": "books",
+      "name": "The Bitcoin Standard",
+      "shortDescription": "The Decentralized Alternative to Central Banking",
+      "author": "Saifedean Ammous",
+      "thumb": "/catalog/img/books/the-bitcoin-standard-thumb.webp",
+      "image": "/catalog/img/books/the-bitcoin-standard.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-blocksize-war",
+      "category": "books",
+      "name": "The Blocksize War",
+      "shortDescription": "The battle for control over Bitcoin's protocol rules",
+      "author": "Jonathan Bier",
+      "thumb": "/catalog/img/books/the-blocksize-war-thumb.webp",
+      "image": "/catalog/img/books/the-blocksize-war.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-book-of-satoshi",
+      "category": "books",
+      "name": "The Book Of Satoshi",
+      "shortDescription": "The Collected Writings of Bitcoin Creator Satoshi Nakamoto",
+      "author": "Phil Champagne",
+      "thumb": "/catalog/img/books/the-book-of-satoshi-thumb.webp",
+      "image": "/catalog/img/books/the-book-of-satoshi.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-bullish-case-for-bitcoin",
+      "category": "books",
+      "name": "The Bullish Case for Bitcoin",
+      "shortDescription": "",
+      "author": "Vijay Boyapati",
+      "thumb": "/catalog/img/books/the-bullish-case-for-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/the-bullish-case-for-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-fiat-standard",
+      "category": "books",
+      "name": "The Fiat Standard",
+      "shortDescription": "The Debt Slavery Alternative to Human Civilization",
+      "author": "Saifedean Ammous",
+      "thumb": "/catalog/img/books/the-fiat-standard-thumb.webp",
+      "image": "/catalog/img/books/the-fiat-standard.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-genesis-book",
+      "category": "books",
+      "name": "The Genesis Book",
+      "shortDescription": "The Story of the People and Projects That Inspired Bitcoin",
+      "author": "Aaron van Wirdum",
+      "thumb": "/catalog/img/books/the-genesis-book-thumb.webp",
+      "image": "/catalog/img/books/the-genesis-book.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-internet-of-money-volume-three",
+      "category": "books",
+      "name": "The Internet of Money - Volume Three",
+      "shortDescription": "A collection of talks by Andreas M. Antonopoulos",
+      "author": "Andreas M. Antonopoulos",
+      "thumb": "/catalog/img/books/the-internet-of-money-volume-three-thumb.webp",
+      "image": "/catalog/img/books/the-internet-of-money-volume-three.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-internet-of-money-volume-two",
+      "category": "books",
+      "name": "The Internet of Money - Volume Two",
+      "shortDescription": "A collection of talks by Andreas M. Antonopoulos",
+      "author": "Andreas M. Antonopoulos",
+      "thumb": "/catalog/img/books/the-internet-of-money-volume-two-thumb.webp",
+      "image": "/catalog/img/books/the-internet-of-money-volume-two.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-internet-of-money",
+      "category": "books",
+      "name": "The Internet of Money",
+      "shortDescription": "A collection of talks by Andreas M. Antonopoulos",
+      "author": "Andreas M. Antonopoulos",
+      "thumb": "/catalog/img/books/the-internet-of-money-thumb.webp",
+      "image": "/catalog/img/books/the-internet-of-money.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-little-bitcoin-book",
+      "category": "books",
+      "name": "The Little Bitcoin Book",
+      "shortDescription": "Why Bitcoin Matters for Your Freedom, Finances, and Future",
+      "author": "Many",
+      "thumb": "/catalog/img/books/the-little-bitcoin-book-thumb.webp",
+      "image": "/catalog/img/books/the-little-bitcoin-book.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-little-honey-badger-and-the-mysteries-of-bitcoin",
+      "category": "books",
+      "name": "The Little Honey Badger",
+      "shortDescription": "The Little Honey Badger And the Mysteries of Bitcoin",
+      "author": "Benjamin Colombier",
+      "thumb": "/catalog/img/books/the-little-honey-badger-and-the-mysteries-of-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/the-little-honey-badger-and-the-mysteries-of-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-only-bitcoin-investing-book-youll-ever-need",
+      "category": "books",
+      "name": "The Only Bitcoin Investing Book You'll Ever Need",
+      "shortDescription": "An Absolute Beginner's Guide to the Cryptocurrency Which Is Changing the World and Your Finances in 2021 & Beyond",
+      "author": "Freeman Publications",
+      "thumb": "/catalog/img/books/the-only-bitcoin-investing-book-youll-ever-need-thumb.webp",
+      "image": "/catalog/img/books/the-only-bitcoin-investing-book-youll-ever-need.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-philosophy-of-bitcoin",
+      "category": "books",
+      "name": "The Philosophy of Bitcoin",
+      "shortDescription": "",
+      "author": "Álvaro D. María",
+      "thumb": "/catalog/img/books/the-philosophy-of-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/the-philosophy-of-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "the-promise-of-bitcoin",
+      "category": "books",
+      "name": "The Promise of Bitcoin",
+      "shortDescription": "The Future of Money and How It Can Work for You",
+      "author": "Bobby C. Lee",
+      "thumb": "/catalog/img/books/the-promise-of-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/the-promise-of-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "this-book-will-save-you-time",
+      "category": "books",
+      "name": "This Book Will Save You Time",
+      "shortDescription": "",
+      "author": "Misir Mahmudov",
+      "thumb": "/catalog/img/books/this-book-will-save-you-time-thumb.webp",
+      "image": "/catalog/img/books/this-book-will-save-you-time.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "truth-decay-how-bitcoin-fixes-this",
+      "category": "books",
+      "name": "Truth Decay - How Bitcoin Fixes This",
+      "shortDescription": "Unveiling the Path to Financial Freedom",
+      "author": "Victoria Collette Jones",
+      "thumb": "/catalog/img/books/truth-decay-how-bitcoin-fixes-this-thumb.webp",
+      "image": "/catalog/img/books/truth-decay-how-bitcoin-fixes-this.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "undressing-bitcoin",
+      "category": "books",
+      "name": "Undressing Bitcoin",
+      "shortDescription": "A Revealing Guide To The World's Most Revolutionary Asset",
+      "author": "Layah Heilpern",
+      "thumb": "/catalog/img/books/undressing-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/undressing-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "watafak-es-bitcoin",
+      "category": "books",
+      "name": "WATAFAK es BITCOIN",
+      "shortDescription": "Un pergamino digital que recoge más de 50 breves definiciones fáciles de leer para entender qué es Bitcoin, escritas por los mayores expertos y referentes del ecosistema en habla hispana",
+      "author": "Adrián Bernabéu",
+      "thumb": "/catalog/img/books/watafak-es-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/watafak-es-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "what-is-money-the-saylor-series",
+      "category": "books",
+      "name": "What Is Money? The Saylor Series",
+      "shortDescription": "",
+      "author": "Michael Saylor, Robert Breedlove",
+      "thumb": "/catalog/img/books/what-is-money-the-saylor-series-thumb.webp",
+      "image": "/catalog/img/books/what-is-money-the-saylor-series.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "why-bitcoin",
+      "category": "books",
+      "name": "Why Bitcoin?",
+      "shortDescription": "",
+      "author": "Tomer Strolight",
+      "thumb": "/catalog/img/books/why-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/why-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "why-buy-bitcoin",
+      "category": "books",
+      "name": "Why Buy Bitcoin",
+      "shortDescription": "Investing Today in the Money of Tomorrow",
+      "author": "Andy Edstrom",
+      "thumb": "/catalog/img/books/why-buy-bitcoin-thumb.webp",
+      "image": "/catalog/img/books/why-buy-bitcoin.webp",
+      "purchasable": true,
+      "brand": null
+    },
+    {
+      "id": "arculus",
+      "category": "hardware-wallets",
+      "name": "Arculus",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/arculus-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/arculus.webp",
+      "purchasable": true,
+      "brand": "composecure"
+    },
+    {
+      "id": "bc-vault",
+      "category": "hardware-wallets",
+      "name": "BC Vault",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/bc-vault-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/bc-vault.webp",
+      "purchasable": true,
+      "brand": "real-security"
+    },
+    {
+      "id": "bitbox02-btconly",
+      "category": "hardware-wallets",
+      "name": "BitBox02 Bitcoin-only",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/bitbox02-btconly-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/bitbox02-btconly.webp",
+      "purchasable": true,
+      "brand": "bitbox"
+    },
+    {
+      "id": "bitbox02-multi",
+      "category": "hardware-wallets",
+      "name": "BitBox02 Multi",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/bitbox02-multi-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/bitbox02-multi.webp",
+      "purchasable": true,
+      "brand": "bitbox"
+    },
+    {
+      "id": "bitbox02-nova-btconly",
+      "category": "hardware-wallets",
+      "name": "BitBox02 Nova Bitcoin-only",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/bitbox02-nova-btconly-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/bitbox02-nova-btconly.webp",
+      "purchasable": true,
+      "brand": "bitbox"
+    },
+    {
+      "id": "bitbox02-nova-multi",
+      "category": "hardware-wallets",
+      "name": "BitBox02 Nova Multi",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/bitbox02-nova-multi-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/bitbox02-nova-multi.webp",
+      "purchasable": true,
+      "brand": "bitbox"
+    },
+    {
+      "id": "bitkey-2026",
+      "category": "hardware-wallets",
+      "name": "Bitkey (2026)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/bitkey-2026-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/bitkey-2026.webp",
+      "purchasable": true,
+      "brand": "block"
+    },
+    {
+      "id": "bitkey",
+      "category": "hardware-wallets",
+      "name": "Bitkey (2024)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/bitkey-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/bitkey.webp",
+      "purchasable": true,
+      "brand": "block"
+    },
+    {
+      "id": "cardware",
+      "category": "hardware-wallets",
+      "name": "Cardware",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/cardware-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/cardware.webp",
+      "purchasable": true,
+      "brand": "cardware-wallet"
+    },
+    {
+      "id": "coldcard-mk4",
+      "category": "hardware-wallets",
+      "name": "Coldcard Mk4",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/coldcard-mk4-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/coldcard-mk4.webp",
+      "purchasable": true,
+      "brand": "coinkite"
+    },
+    {
+      "id": "coldcard-mk5",
+      "category": "hardware-wallets",
+      "name": "Coldcard Mk5",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/coldcard-mk5-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/coldcard-mk5.webp",
+      "purchasable": true,
+      "brand": "coinkite"
+    },
+    {
+      "id": "coldcard-q",
+      "category": "hardware-wallets",
+      "name": "Coldcard Q",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/coldcard-q-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/coldcard-q.webp",
+      "purchasable": true,
+      "brand": "coinkite"
+    },
+    {
+      "id": "coolwallet-go",
+      "category": "hardware-wallets",
+      "name": "CoolWallet Go",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/coolwallet-go-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/coolwallet-go.webp",
+      "purchasable": true,
+      "brand": "coolbitx"
+    },
+    {
+      "id": "coolwallet-pro",
+      "category": "hardware-wallets",
+      "name": "CoolWallet Pro",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/coolwallet-pro-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/coolwallet-pro.webp",
+      "purchasable": true,
+      "brand": "coolbitx"
+    },
+    {
+      "id": "coolwallet-s",
+      "category": "hardware-wallets",
+      "name": "CoolWallet S",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/coolwallet-s-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/coolwallet-s.webp",
+      "purchasable": false,
+      "brand": "coolbitx"
+    },
+    {
+      "id": "cypherock-x1",
+      "category": "hardware-wallets",
+      "name": "Cypherock X1",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/cypherock-x1-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/cypherock-x1.webp",
+      "purchasable": true,
+      "brand": "cypherock"
+    },
+    {
+      "id": "dcent-biometric",
+      "category": "hardware-wallets",
+      "name": "Biometric Wallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/dcent-biometric-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/dcent-biometric.webp",
+      "purchasable": true,
+      "brand": "dcent"
+    },
+    {
+      "id": "ellipal-titan-2",
+      "category": "hardware-wallets",
+      "name": "Titan 2.0",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ellipal-titan-2-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ellipal-titan-2.webp",
+      "purchasable": true,
+      "brand": "ellipal"
+    },
+    {
+      "id": "ellipal-titan-mini",
+      "category": "hardware-wallets",
+      "name": "Titan Mini",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ellipal-titan-mini-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ellipal-titan-mini.webp",
+      "purchasable": true,
+      "brand": "ellipal"
+    },
+    {
+      "id": "ellipal-x-card",
+      "category": "hardware-wallets",
+      "name": "X Card",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ellipal-x-card-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ellipal-x-card.webp",
+      "purchasable": true,
+      "brand": "ellipal"
+    },
+    {
+      "id": "era-wallet",
+      "category": "hardware-wallets",
+      "name": "Era Wallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/era-wallet-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/era-wallet.webp",
+      "purchasable": true,
+      "brand": "hwlt"
+    },
+    {
+      "id": "frostnap",
+      "category": "hardware-wallets",
+      "name": "Frostnap",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/frostnap-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/frostnap.webp",
+      "purchasable": true,
+      "brand": "frostsnap-tech"
+    },
+    {
+      "id": "gridplus-lattice1",
+      "category": "hardware-wallets",
+      "name": "Lattice1",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/gridplus-lattice1-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/gridplus-lattice1.webp",
+      "purchasable": true,
+      "brand": "grid-plus"
+    },
+    {
+      "id": "jade-core",
+      "category": "hardware-wallets",
+      "name": "Jade Core",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/jade-core-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/jade-core.webp",
+      "purchasable": true,
+      "brand": "blockstream"
+    },
+    {
+      "id": "jade-plus-metal",
+      "category": "hardware-wallets",
+      "name": "Jade Plus (Metal)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/jade-plus-metal-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/jade-plus-metal.webp",
+      "purchasable": true,
+      "brand": "blockstream"
+    },
+    {
+      "id": "jade-plus",
+      "category": "hardware-wallets",
+      "name": "Jade Plus (Plastic)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/jade-plus-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/jade-plus.webp",
+      "purchasable": true,
+      "brand": "blockstream"
+    },
+    {
+      "id": "jade",
+      "category": "hardware-wallets",
+      "name": "Jade",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/jade-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/jade.webp",
+      "purchasable": true,
+      "brand": "blockstream"
+    },
+    {
+      "id": "keepkey",
+      "category": "hardware-wallets",
+      "name": "KeepKey",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/keepkey-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/keepkey.webp",
+      "purchasable": true,
+      "brand": "keepkey"
+    },
+    {
+      "id": "keevo-model-1",
+      "category": "hardware-wallets",
+      "name": "Keevo Model 1",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/keevo-model-1-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/keevo-model-1.webp",
+      "purchasable": true,
+      "brand": "keevo"
+    },
+    {
+      "id": "keycard-shell",
+      "category": "hardware-wallets",
+      "name": "Keycard Shell",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/keycard-shell-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/keycard-shell.webp",
+      "purchasable": true,
+      "brand": "keycard"
+    },
+    {
+      "id": "keystone-3-pro",
+      "category": "hardware-wallets",
+      "name": "Keystone 3 Pro",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/keystone-3-pro-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/keystone-3-pro.webp",
+      "purchasable": true,
+      "brand": "keystone"
+    },
+    {
+      "id": "krux",
+      "category": "hardware-wallets",
+      "name": "Krux",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/krux-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/krux.webp",
+      "purchasable": false,
+      "brand": "self-custody-solutions"
+    },
+    {
+      "id": "ledger-flex",
+      "category": "hardware-wallets",
+      "name": "Flex",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ledger-flex-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ledger-flex.webp",
+      "purchasable": true,
+      "brand": "ledger"
+    },
+    {
+      "id": "ledger-nano-gen5",
+      "category": "hardware-wallets",
+      "name": "Nano Gen5",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ledger-nano-gen5-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ledger-nano-gen5.webp",
+      "purchasable": true,
+      "brand": "ledger"
+    },
+    {
+      "id": "ledger-nano-s-plus",
+      "category": "hardware-wallets",
+      "name": "Nano S Plus",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ledger-nano-s-plus-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ledger-nano-s-plus.webp",
+      "purchasable": true,
+      "brand": "ledger"
+    },
+    {
+      "id": "ledger-nano-x",
+      "category": "hardware-wallets",
+      "name": "Nano X",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ledger-nano-x-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ledger-nano-x.webp",
+      "purchasable": true,
+      "brand": "ledger"
+    },
+    {
+      "id": "ledger-stax",
+      "category": "hardware-wallets",
+      "name": "Stax",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ledger-stax-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ledger-stax.webp",
+      "purchasable": true,
+      "brand": "ledger"
+    },
+    {
+      "id": "ngrave-zero",
+      "category": "hardware-wallets",
+      "name": "Zero",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/ngrave-zero-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/ngrave-zero.webp",
+      "purchasable": true,
+      "brand": "ngrave"
+    },
+    {
+      "id": "onekey-classic-1s-pure",
+      "category": "hardware-wallets",
+      "name": "OneKey Classic 1S Pure",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/onekey-classic-1s-pure-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/onekey-classic-1s-pure.webp",
+      "purchasable": true,
+      "brand": "onekey"
+    },
+    {
+      "id": "onekey-classic-1s",
+      "category": "hardware-wallets",
+      "name": "OneKey Classic 1S",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/onekey-classic-1s-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/onekey-classic-1s.webp",
+      "purchasable": true,
+      "brand": "onekey"
+    },
+    {
+      "id": "onekey-pro",
+      "category": "hardware-wallets",
+      "name": "OneKey Pro",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/onekey-pro-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/onekey-pro.webp",
+      "purchasable": true,
+      "brand": "onekey"
+    },
+    {
+      "id": "passport-batch-2",
+      "category": "hardware-wallets",
+      "name": "Passport Core",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/passport-batch-2-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/passport-batch-2.webp",
+      "purchasable": false,
+      "brand": "foundation-devices"
+    },
+    {
+      "id": "passport-prime",
+      "category": "hardware-wallets",
+      "name": "Passport Prime",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/passport-prime-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/passport-prime.webp",
+      "purchasable": true,
+      "brand": "foundation-devices"
+    },
+    {
+      "id": "portal",
+      "category": "hardware-wallets",
+      "name": "Portal",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/portal-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/portal.webp",
+      "purchasable": true,
+      "brand": "twentytwo"
+    },
+    {
+      "id": "prokey-optimum",
+      "category": "hardware-wallets",
+      "name": "Prokey Optimum",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/prokey-optimum-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/prokey-optimum.webp",
+      "purchasable": true,
+      "brand": "prokey-optimum"
+    },
+    {
+      "id": "safepal-s1-pro",
+      "category": "hardware-wallets",
+      "name": "SafePal S1 Pro",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/safepal-s1-pro-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/safepal-s1-pro.webp",
+      "purchasable": true,
+      "brand": "safepal"
+    },
+    {
+      "id": "safepal-s1",
+      "category": "hardware-wallets",
+      "name": "SafePal S1",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/safepal-s1-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/safepal-s1.webp",
+      "purchasable": true,
+      "brand": "safepal"
+    },
+    {
+      "id": "safepal-x1",
+      "category": "hardware-wallets",
+      "name": "SafePal X1",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/safepal-x1-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/safepal-x1.webp",
+      "purchasable": true,
+      "brand": "safepal"
+    },
+    {
+      "id": "satochip-diy",
+      "category": "hardware-wallets",
+      "name": "Satochip DIY",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/satochip-diy-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/satochip-diy.webp",
+      "purchasable": true,
+      "brand": "satochip"
+    },
+    {
+      "id": "satochip",
+      "category": "hardware-wallets",
+      "name": "Satochip",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/satochip-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/satochip.webp",
+      "purchasable": true,
+      "brand": "satochip"
+    },
+    {
+      "id": "secux-neo-gold",
+      "category": "hardware-wallets",
+      "name": "SecuX Neo Gold",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-neo-gold-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-neo-gold.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-neo-x",
+      "category": "hardware-wallets",
+      "name": "SecuX Neo X",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-neo-x-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-neo-x.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-nifty",
+      "category": "hardware-wallets",
+      "name": "SecuX Nifty",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-nifty-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-nifty.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-shield-bio",
+      "category": "hardware-wallets",
+      "name": "SecuX Shield BIO",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-shield-bio-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-shield-bio.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-v20",
+      "category": "hardware-wallets",
+      "name": "SecuX V20",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-v20-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-v20.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-w10",
+      "category": "hardware-wallets",
+      "name": "SecuX W10",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-w10-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-w10.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-w10c-plus",
+      "category": "hardware-wallets",
+      "name": "SecuX W10C-Plus",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-w10c-plus-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-w10c-plus.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-w20",
+      "category": "hardware-wallets",
+      "name": "SecuX W20",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-w20-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-w20.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-w20c-plus",
+      "category": "hardware-wallets",
+      "name": "SecuX W20C-Plus",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/secux-w20c-plus-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/secux-w20c-plus.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "seedsigner",
+      "category": "hardware-wallets",
+      "name": "SeedSigner",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/seedsigner-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/seedsigner.webp",
+      "purchasable": true,
+      "brand": "seedsigner"
+    },
+    {
+      "id": "specter-diy",
+      "category": "hardware-wallets",
+      "name": "Specter DIY",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/specter-diy-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/specter-diy.webp",
+      "purchasable": true,
+      "brand": "specter-solutions"
+    },
+    {
+      "id": "specter-shield-lite",
+      "category": "hardware-wallets",
+      "name": "Specter Shield Lite",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/specter-shield-lite-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/specter-shield-lite.webp",
+      "purchasable": true,
+      "brand": "specter-solutions"
+    },
+    {
+      "id": "specter-shield",
+      "category": "hardware-wallets",
+      "name": "Specter Shield",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/specter-shield-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/specter-shield.webp",
+      "purchasable": true,
+      "brand": "specter-solutions"
+    },
+    {
+      "id": "tangem-2",
+      "category": "hardware-wallets",
+      "name": "Tangem",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/tangem-2-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/tangem-2.webp",
+      "purchasable": true,
+      "brand": "tangem"
+    },
+    {
+      "id": "tangem-ring",
+      "category": "hardware-wallets",
+      "name": "Tangem Ring",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/tangem-ring-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/tangem-ring.webp",
+      "purchasable": true,
+      "brand": "tangem"
+    },
+    {
+      "id": "tapsigner",
+      "category": "hardware-wallets",
+      "name": "Tapsigner",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/tapsigner-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/tapsigner.webp",
+      "purchasable": true,
+      "brand": "coinkite"
+    },
+    {
+      "id": "trezor-model-one",
+      "category": "hardware-wallets",
+      "name": "Model One",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/trezor-model-one-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/trezor-model-one.webp",
+      "purchasable": false,
+      "brand": "trezor"
+    },
+    {
+      "id": "trezor-model-t",
+      "category": "hardware-wallets",
+      "name": "Model T",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/trezor-model-t-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/trezor-model-t.webp",
+      "purchasable": false,
+      "brand": "trezor"
+    },
+    {
+      "id": "trezor-safe-3-btconly",
+      "category": "hardware-wallets",
+      "name": "Safe 3 Bitcoin-Only",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/trezor-safe-3-btconly-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/trezor-safe-3-btconly.webp",
+      "purchasable": true,
+      "brand": "trezor"
+    },
+    {
+      "id": "trezor-safe-3",
+      "category": "hardware-wallets",
+      "name": "Safe 3",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/trezor-safe-3-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/trezor-safe-3.webp",
+      "purchasable": true,
+      "brand": "trezor"
+    },
+    {
+      "id": "trezor-safe-5-btconly",
+      "category": "hardware-wallets",
+      "name": "Safe 5 Bitcoin-Only",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/trezor-safe-5-btconly-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/trezor-safe-5-btconly.webp",
+      "purchasable": true,
+      "brand": "trezor"
+    },
+    {
+      "id": "trezor-safe-5",
+      "category": "hardware-wallets",
+      "name": "Safe 5",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/trezor-safe-5-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/trezor-safe-5.webp",
+      "purchasable": true,
+      "brand": "trezor"
+    },
+    {
+      "id": "trezor-safe-7-btconly",
+      "category": "hardware-wallets",
+      "name": "Safe 7 Bitcoin-Only",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/trezor-safe-7-btconly-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/trezor-safe-7-btconly.webp",
+      "purchasable": true,
+      "brand": "trezor"
+    },
+    {
+      "id": "trezor-safe-7",
+      "category": "hardware-wallets",
+      "name": "Safe 7",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/hardware-wallets/trezor-safe-7-thumb.webp",
+      "image": "/catalog/img/hardware-wallets/trezor-safe-7.webp",
+      "purchasable": true,
+      "brand": "trezor"
+    },
+    {
+      "id": "alby-hub",
+      "category": "software-wallets",
+      "name": "Alby Hub",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/alby-hub-thumb.webp",
+      "image": "/catalog/img/software-wallets/alby-hub.webp",
+      "purchasable": false,
+      "brand": "alby"
+    },
+    {
+      "id": "aqua",
+      "category": "software-wallets",
+      "name": "Aqua",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/aqua-thumb.webp",
+      "image": "/catalog/img/software-wallets/aqua.webp",
+      "purchasable": false,
+      "brand": "jan3"
+    },
+    {
+      "id": "ashigaru",
+      "category": "software-wallets",
+      "name": "Ashigaru",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/ashigaru-thumb.webp",
+      "image": "/catalog/img/software-wallets/ashigaru.webp",
+      "purchasable": false,
+      "brand": "ashigaru-open-source-project"
+    },
+    {
+      "id": "bitcoin-core",
+      "category": "software-wallets",
+      "name": "Bitcoin Core",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/bitcoin-core-thumb.webp",
+      "image": "/catalog/img/software-wallets/bitcoin-core.webp",
+      "purchasable": false,
+      "brand": "bitcoin-core-project"
+    },
+    {
+      "id": "bitcoin-keeper",
+      "category": "software-wallets",
+      "name": "Bitcoin Keeper",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/bitcoin-keeper-thumb.webp",
+      "image": "/catalog/img/software-wallets/bitcoin-keeper.webp",
+      "purchasable": false,
+      "brand": "bithyve"
+    },
+    {
+      "id": "bitcoin-safe",
+      "category": "software-wallets",
+      "name": "Bitcoin Safe",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/bitcoin-safe-thumb.webp",
+      "image": "/catalog/img/software-wallets/bitcoin-safe.webp",
+      "purchasable": false,
+      "brand": "bitcoin-safe"
+    },
+    {
+      "id": "bluewallet",
+      "category": "software-wallets",
+      "name": "Bluewallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/bluewallet-thumb.webp",
+      "image": "/catalog/img/software-wallets/bluewallet.webp",
+      "purchasable": false,
+      "brand": "bluewallet-services"
+    },
+    {
+      "id": "bull",
+      "category": "software-wallets",
+      "name": "Bull",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/bull-thumb.webp",
+      "image": "/catalog/img/software-wallets/bull.webp",
+      "purchasable": false,
+      "brand": "satoshi-portal"
+    },
+    {
+      "id": "casa",
+      "category": "software-wallets",
+      "name": "Casa",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/casa-thumb.webp",
+      "image": "/catalog/img/software-wallets/casa.webp",
+      "purchasable": false,
+      "brand": "casa"
+    },
+    {
+      "id": "coin-wallet",
+      "category": "software-wallets",
+      "name": "Coin Wallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/coin-wallet-thumb.webp",
+      "image": "/catalog/img/software-wallets/coin-wallet.webp",
+      "purchasable": false,
+      "brand": "coinspace"
+    },
+    {
+      "id": "cove",
+      "category": "software-wallets",
+      "name": "Cove",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/cove-thumb.webp",
+      "image": "/catalog/img/software-wallets/cove.webp",
+      "purchasable": false,
+      "brand": "infraops"
+    },
+    {
+      "id": "electrum",
+      "category": "software-wallets",
+      "name": "Electrum",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/electrum-thumb.webp",
+      "image": "/catalog/img/software-wallets/electrum.webp",
+      "purchasable": false,
+      "brand": "electrum"
+    },
+    {
+      "id": "envoy",
+      "category": "software-wallets",
+      "name": "Envoy",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/envoy-thumb.webp",
+      "image": "/catalog/img/software-wallets/envoy.webp",
+      "purchasable": false,
+      "brand": "foundation-devices"
+    },
+    {
+      "id": "green",
+      "category": "software-wallets",
+      "name": "Blockstream App (Green)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/green-thumb.webp",
+      "image": "/catalog/img/software-wallets/green.webp",
+      "purchasable": false,
+      "brand": "blockstream"
+    },
+    {
+      "id": "liana",
+      "category": "software-wallets",
+      "name": "Liana",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/liana-thumb.webp",
+      "image": "/catalog/img/software-wallets/liana.webp",
+      "purchasable": false,
+      "brand": "wizardsardine"
+    },
+    {
+      "id": "muun",
+      "category": "software-wallets",
+      "name": "Muun",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/muun-thumb.webp",
+      "image": "/catalog/img/software-wallets/muun.webp",
+      "purchasable": false,
+      "brand": "muun"
+    },
+    {
+      "id": "my-citadel",
+      "category": "software-wallets",
+      "name": "MyCitadel",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/my-citadel-thumb.webp",
+      "image": "/catalog/img/software-wallets/my-citadel.webp",
+      "purchasable": false,
+      "brand": "pandora-prime-sa"
+    },
+    {
+      "id": "nunchuk",
+      "category": "software-wallets",
+      "name": "Nunchuk",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/nunchuk-thumb.webp",
+      "image": "/catalog/img/software-wallets/nunchuk.webp",
+      "purchasable": false,
+      "brand": "nunchuk"
+    },
+    {
+      "id": "phoenix",
+      "category": "software-wallets",
+      "name": "Phoenix",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/phoenix-thumb.webp",
+      "image": "/catalog/img/software-wallets/phoenix.webp",
+      "purchasable": false,
+      "brand": "acinq"
+    },
+    {
+      "id": "proton-wallet",
+      "category": "software-wallets",
+      "name": "Proton Wallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/proton-wallet-thumb.webp",
+      "image": "/catalog/img/software-wallets/proton-wallet.webp",
+      "purchasable": false,
+      "brand": "proton"
+    },
+    {
+      "id": "sentinel",
+      "category": "software-wallets",
+      "name": "Sentinel",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/sentinel-thumb.webp",
+      "image": "/catalog/img/software-wallets/sentinel.webp",
+      "purchasable": false,
+      "brand": "streetside-development"
+    },
+    {
+      "id": "simple-bitcoin-wallet",
+      "category": "software-wallets",
+      "name": "Simple Bitcoin Wallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/simple-bitcoin-wallet-thumb.webp",
+      "image": "/catalog/img/software-wallets/simple-bitcoin-wallet.webp",
+      "purchasable": false,
+      "brand": "tactical-advantage-trading"
+    },
+    {
+      "id": "sparrow",
+      "category": "software-wallets",
+      "name": "Sparrow",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/sparrow-thumb.webp",
+      "image": "/catalog/img/software-wallets/sparrow.webp",
+      "purchasable": false,
+      "brand": "sparrow-wallet"
+    },
+    {
+      "id": "specter",
+      "category": "software-wallets",
+      "name": "Specter",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/specter-thumb.webp",
+      "image": "/catalog/img/software-wallets/specter.webp",
+      "purchasable": false,
+      "brand": "specter-solutions"
+    },
+    {
+      "id": "stack-wallet",
+      "category": "software-wallets",
+      "name": "Stack Wallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/stack-wallet-thumb.webp",
+      "image": "/catalog/img/software-wallets/stack-wallet.webp",
+      "purchasable": false,
+      "brand": "cypher-stack"
+    },
+    {
+      "id": "theya",
+      "category": "software-wallets",
+      "name": "Theya",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/theya-thumb.webp",
+      "image": "/catalog/img/software-wallets/theya.webp",
+      "purchasable": false,
+      "brand": "theya"
+    },
+    {
+      "id": "wasabi-wallet",
+      "category": "software-wallets",
+      "name": "Wasabi Wallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/wasabi-wallet-thumb.webp",
+      "image": "/catalog/img/software-wallets/wasabi-wallet.webp",
+      "purchasable": false,
+      "brand": "wasabi-wallet"
+    },
+    {
+      "id": "zeus",
+      "category": "software-wallets",
+      "name": "Zeus",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/software-wallets/zeus-thumb.webp",
+      "image": "/catalog/img/software-wallets/zeus.webp",
+      "purchasable": false,
+      "brand": "atlas-21"
+    },
+    {
+      "id": "bitcoin-core",
+      "category": "bitcoin-nodes",
+      "name": "Bitcoin Core",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/bitcoin-core-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/bitcoin-core.webp",
+      "purchasable": false,
+      "brand": "bitcoin-core-project"
+    },
+    {
+      "id": "bitcoin-knots",
+      "category": "bitcoin-nodes",
+      "name": "Bitcoin Knots",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/bitcoin-knots-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/bitcoin-knots.webp",
+      "purchasable": false,
+      "brand": "bitcoin-knots"
+    },
+    {
+      "id": "bitcoin-nodebox",
+      "category": "bitcoin-nodes",
+      "name": "Bitcoin Nodebox",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/bitcoin-nodebox-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/bitcoin-nodebox.webp",
+      "purchasable": true,
+      "brand": "ministry-of-nodes"
+    },
+    {
+      "id": "citadel",
+      "category": "bitcoin-nodes",
+      "name": "Citadel",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/citadel-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/citadel.webp",
+      "purchasable": false,
+      "brand": "citadel"
+    },
+    {
+      "id": "minibolt",
+      "category": "bitcoin-nodes",
+      "name": "MiniBolt",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/minibolt-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/minibolt.webp",
+      "purchasable": false,
+      "brand": "minibolt"
+    },
+    {
+      "id": "mynode-community-edition",
+      "category": "bitcoin-nodes",
+      "name": "Community Edition",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/mynode-community-edition-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/mynode-community-edition.webp",
+      "purchasable": false,
+      "brand": "mynode"
+    },
+    {
+      "id": "mynode-model-one",
+      "category": "bitcoin-nodes",
+      "name": "Model One",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/mynode-model-one-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/mynode-model-one.webp",
+      "purchasable": true,
+      "brand": "mynode"
+    },
+    {
+      "id": "mynode-model-two",
+      "category": "bitcoin-nodes",
+      "name": "Model Two",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/mynode-model-two-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/mynode-model-two.webp",
+      "purchasable": true,
+      "brand": "mynode"
+    },
+    {
+      "id": "mynode-premium",
+      "category": "bitcoin-nodes",
+      "name": "Premium",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/mynode-premium-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/mynode-premium.webp",
+      "purchasable": false,
+      "brand": "mynode"
+    },
+    {
+      "id": "nodl-one-mark-2",
+      "category": "bitcoin-nodes",
+      "name": "One Mark 2",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/nodl-one-mark-2-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/nodl-one-mark-2.webp",
+      "purchasable": true,
+      "brand": "nodl"
+    },
+    {
+      "id": "nodl-two",
+      "category": "bitcoin-nodes",
+      "name": "Two",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/nodl-two-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/nodl-two.webp",
+      "purchasable": true,
+      "brand": "nodl"
+    },
+    {
+      "id": "parmanode",
+      "category": "bitcoin-nodes",
+      "name": "Parmanode",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/parmanode-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/parmanode.webp",
+      "purchasable": false,
+      "brand": "arman-the-parman"
+    },
+    {
+      "id": "raspiblitz",
+      "category": "bitcoin-nodes",
+      "name": "RaspiBlitz",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/raspiblitz-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/raspiblitz.webp",
+      "purchasable": false,
+      "brand": "raspiblitz"
+    },
+    {
+      "id": "raspibolt",
+      "category": "bitcoin-nodes",
+      "name": "RaspiBolt",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/raspibolt-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/raspibolt.webp",
+      "purchasable": false,
+      "brand": "raspibolt"
+    },
+    {
+      "id": "ronindojo",
+      "category": "bitcoin-nodes",
+      "name": "Ronin Dojo",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/ronindojo-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/ronindojo.webp",
+      "purchasable": false,
+      "brand": "ronindojo"
+    },
+    {
+      "id": "start9-diy",
+      "category": "bitcoin-nodes",
+      "name": "Start9 DIY",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/start9-diy-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/start9-diy.webp",
+      "purchasable": false,
+      "brand": "start9"
+    },
+    {
+      "id": "start9-server-one",
+      "category": "bitcoin-nodes",
+      "name": "Server One",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/start9-server-one-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/start9-server-one.webp",
+      "purchasable": true,
+      "brand": "start9"
+    },
+    {
+      "id": "umbrel-diy",
+      "category": "bitcoin-nodes",
+      "name": "Umbrel DIY",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/umbrel-diy-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/umbrel-diy.webp",
+      "purchasable": false,
+      "brand": "umbrel"
+    },
+    {
+      "id": "umbrel-home",
+      "category": "bitcoin-nodes",
+      "name": "Home",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/umbrel-home-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/umbrel-home.webp",
+      "purchasable": true,
+      "brand": "umbrel"
+    },
+    {
+      "id": "umbrel-pro",
+      "category": "bitcoin-nodes",
+      "name": "Pro",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/bitcoin-nodes/umbrel-pro-thumb.webp",
+      "image": "/catalog/img/bitcoin-nodes/umbrel-pro.webp",
+      "purchasable": true,
+      "brand": "umbrel"
+    },
+    {
+      "id": "bitbar",
+      "category": "seed-backup",
+      "name": "BitBar",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/bitbar-thumb.webp",
+      "image": "/catalog/img/seed-backup/bitbar.webp",
+      "purchasable": true,
+      "brand": "bitbar"
+    },
+    {
+      "id": "bitbox-steelwallet",
+      "category": "seed-backup",
+      "name": "Steelwallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/bitbox-steelwallet-thumb.webp",
+      "image": "/catalog/img/seed-backup/bitbox-steelwallet.webp",
+      "purchasable": true,
+      "brand": "bitbox"
+    },
+    {
+      "id": "black-seed-ink",
+      "category": "seed-backup",
+      "name": "Black Seed Ink",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/black-seed-ink-thumb.webp",
+      "image": "/catalog/img/seed-backup/black-seed-ink.webp",
+      "purchasable": true,
+      "brand": "black-seed-ink"
+    },
+    {
+      "id": "blockstream-capsule",
+      "category": "seed-backup",
+      "name": "Capsule",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/blockstream-capsule-thumb.webp",
+      "image": "/catalog/img/seed-backup/blockstream-capsule.webp",
+      "purchasable": true,
+      "brand": "blockstream"
+    },
+    {
+      "id": "blockstream-metal",
+      "category": "seed-backup",
+      "name": "Metal",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/blockstream-metal-thumb.webp",
+      "image": "/catalog/img/seed-backup/blockstream-metal.webp",
+      "purchasable": true,
+      "brand": "blockstream"
+    },
+    {
+      "id": "blockstream-seedqr-template-pack",
+      "category": "seed-backup",
+      "name": "SeedQR Template Pack",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/blockstream-seedqr-template-pack-thumb.webp",
+      "image": "/catalog/img/seed-backup/blockstream-seedqr-template-pack.webp",
+      "purchasable": true,
+      "brand": "blockstream"
+    },
+    {
+      "id": "cryptosteel-capsule",
+      "category": "seed-backup",
+      "name": "Capsule",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cryptosteel-capsule-thumb.webp",
+      "image": "/catalog/img/seed-backup/cryptosteel-capsule.webp",
+      "purchasable": true,
+      "brand": "cryptosteel"
+    },
+    {
+      "id": "cryptosteel-cassette",
+      "category": "seed-backup",
+      "name": "Cassette",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cryptosteel-cassette-thumb.webp",
+      "image": "/catalog/img/seed-backup/cryptosteel-cassette.webp",
+      "purchasable": true,
+      "brand": "cryptosteel"
+    },
+    {
+      "id": "cryptosteel-seed12-backup-core",
+      "category": "seed-backup",
+      "name": "Seed12 Backup Core",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cryptosteel-seed12-backup-core-thumb.webp",
+      "image": "/catalog/img/seed-backup/cryptosteel-seed12-backup-core.webp",
+      "purchasable": true,
+      "brand": "cryptosteel"
+    },
+    {
+      "id": "cryptosteel-seed12-security-kit",
+      "category": "seed-backup",
+      "name": "Seed12 Security Kit",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cryptosteel-seed12-security-kit-thumb.webp",
+      "image": "/catalog/img/seed-backup/cryptosteel-seed12-security-kit.webp",
+      "purchasable": true,
+      "brand": "cryptosteel"
+    },
+    {
+      "id": "cryptosteel-seed24",
+      "category": "seed-backup",
+      "name": "Seed24",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cryptosteel-seed24-thumb.webp",
+      "image": "/catalog/img/seed-backup/cryptosteel-seed24.webp",
+      "purchasable": true,
+      "brand": "cryptosteel"
+    },
+    {
+      "id": "cryptotag-odin",
+      "category": "seed-backup",
+      "name": "Odin",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cryptotag-odin-thumb.webp",
+      "image": "/catalog/img/seed-backup/cryptotag-odin.webp",
+      "purchasable": true,
+      "brand": "cryptotag"
+    },
+    {
+      "id": "cryptotag-thor",
+      "category": "seed-backup",
+      "name": "Thor",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cryptotag-thor-thumb.webp",
+      "image": "/catalog/img/seed-backup/cryptotag-thor.webp",
+      "purchasable": true,
+      "brand": "cryptotag"
+    },
+    {
+      "id": "cryptotag-zeus",
+      "category": "seed-backup",
+      "name": "Zeus",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cryptotag-zeus-thumb.webp",
+      "image": "/catalog/img/seed-backup/cryptotag-zeus.webp",
+      "purchasable": true,
+      "brand": "cryptotag"
+    },
+    {
+      "id": "cypherock-x1-cards",
+      "category": "seed-backup",
+      "name": "Cypherock X1 Cards",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/cypherock-x1-cards-thumb.webp",
+      "image": "/catalog/img/seed-backup/cypherock-x1-cards.webp",
+      "purchasable": true,
+      "brand": "cypherock"
+    },
+    {
+      "id": "domino-one-2",
+      "category": "seed-backup",
+      "name": "Domino One 2",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/domino-one-2-thumb.webp",
+      "image": "/catalog/img/seed-backup/domino-one-2.webp",
+      "purchasable": true,
+      "brand": "bitplates"
+    },
+    {
+      "id": "domino-one",
+      "category": "seed-backup",
+      "name": "Domino One",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/domino-one-thumb.webp",
+      "image": "/catalog/img/seed-backup/domino-one.webp",
+      "purchasable": true,
+      "brand": "bitplates"
+    },
+    {
+      "id": "ellipal-seed-phrase-steel",
+      "category": "seed-backup",
+      "name": "Seed Phrase Steel",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/ellipal-seed-phrase-steel-thumb.webp",
+      "image": "/catalog/img/seed-backup/ellipal-seed-phrase-steel.webp",
+      "purchasable": true,
+      "brand": "ellipal"
+    },
+    {
+      "id": "graphene",
+      "category": "seed-backup",
+      "name": "Graphene",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/graphene-thumb.webp",
+      "image": "/catalog/img/seed-backup/graphene.webp",
+      "purchasable": true,
+      "brand": "ngrave"
+    },
+    {
+      "id": "gridplus-safecards",
+      "category": "seed-backup",
+      "name": "SafeCards",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/gridplus-safecards-thumb.webp",
+      "image": "/catalog/img/seed-backup/gridplus-safecards.webp",
+      "purchasable": true,
+      "brand": "grid-plus"
+    },
+    {
+      "id": "keystone-tablet-plus",
+      "category": "seed-backup",
+      "name": "Tablet Plus",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/keystone-tablet-plus-thumb.webp",
+      "image": "/catalog/img/seed-backup/keystone-tablet-plus.webp",
+      "purchasable": true,
+      "brand": "keystone"
+    },
+    {
+      "id": "keystone-tablet-punch",
+      "category": "seed-backup",
+      "name": "Tablet Punch",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/keystone-tablet-punch-thumb.webp",
+      "image": "/catalog/img/seed-backup/keystone-tablet-punch.webp",
+      "purchasable": true,
+      "brand": "keystone"
+    },
+    {
+      "id": "keystone-tablet",
+      "category": "seed-backup",
+      "name": "Tablet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/keystone-tablet-thumb.webp",
+      "image": "/catalog/img/seed-backup/keystone-tablet.webp",
+      "purchasable": true,
+      "brand": "keystone"
+    },
+    {
+      "id": "ledger-recovery-key",
+      "category": "seed-backup",
+      "name": "Recovery Key",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/ledger-recovery-key-thumb.webp",
+      "image": "/catalog/img/seed-backup/ledger-recovery-key.webp",
+      "purchasable": true,
+      "brand": "ledger"
+    },
+    {
+      "id": "micro-seed",
+      "category": "seed-backup",
+      "name": "MicroSeed",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/micro-seed-thumb.webp",
+      "image": "/catalog/img/seed-backup/micro-seed.webp",
+      "purchasable": true,
+      "brand": "microseed"
+    },
+    {
+      "id": "onekey-keytag",
+      "category": "seed-backup",
+      "name": "KeyTag",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/onekey-keytag-thumb.webp",
+      "image": "/catalog/img/seed-backup/onekey-keytag.webp",
+      "purchasable": true,
+      "brand": "onekey"
+    },
+    {
+      "id": "onekey-lite",
+      "category": "seed-backup",
+      "name": "OneKey Lite",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/onekey-lite-thumb.webp",
+      "image": "/catalog/img/seed-backup/onekey-lite.webp",
+      "purchasable": true,
+      "brand": "onekey"
+    },
+    {
+      "id": "plebstyle-terrasteel-wallet",
+      "category": "seed-backup",
+      "name": "Titan TerraSteel",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/plebstyle-terrasteel-wallet-thumb.webp",
+      "image": "/catalog/img/seed-backup/plebstyle-terrasteel-wallet.webp",
+      "purchasable": true,
+      "brand": "plebstyle"
+    },
+    {
+      "id": "plebstyle-titan-wallet",
+      "category": "seed-backup",
+      "name": "Titan Wallet",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/plebstyle-titan-wallet-thumb.webp",
+      "image": "/catalog/img/seed-backup/plebstyle-titan-wallet.webp",
+      "purchasable": true,
+      "brand": "plebstyle"
+    },
+    {
+      "id": "punchplate-mini-3-12",
+      "category": "seed-backup",
+      "name": "Punchplate Mini III (12 Words)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/punchplate-mini-3-12-thumb.webp",
+      "image": "/catalog/img/seed-backup/punchplate-mini-3-12.webp",
+      "purchasable": true,
+      "brand": "codl-storage-solutions"
+    },
+    {
+      "id": "punchplate-mini-3-24",
+      "category": "seed-backup",
+      "name": "Punchplate Mini III (24 Words)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/punchplate-mini-3-24-thumb.webp",
+      "image": "/catalog/img/seed-backup/punchplate-mini-3-24.webp",
+      "purchasable": true,
+      "brand": "codl-storage-solutions"
+    },
+    {
+      "id": "punchplate-standard",
+      "category": "seed-backup",
+      "name": "Punchplate Standard",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/punchplate-standard-thumb.webp",
+      "image": "/catalog/img/seed-backup/punchplate-standard.webp",
+      "purchasable": true,
+      "brand": "codl-storage-solutions"
+    },
+    {
+      "id": "safepal-cypher",
+      "category": "seed-backup",
+      "name": "Cypher",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/safepal-cypher-thumb.webp",
+      "image": "/catalog/img/seed-backup/safepal-cypher.webp",
+      "purchasable": true,
+      "brand": "safepal"
+    },
+    {
+      "id": "secux-xseed-plus",
+      "category": "seed-backup",
+      "name": "X-SEED Plus",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/secux-xseed-plus-thumb.webp",
+      "image": "/catalog/img/seed-backup/secux-xseed-plus.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-xseed-pro",
+      "category": "seed-backup",
+      "name": "X-SEED Pro",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/secux-xseed-pro-thumb.webp",
+      "image": "/catalog/img/seed-backup/secux-xseed-pro.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "secux-xseed",
+      "category": "seed-backup",
+      "name": "X-SEED",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/secux-xseed-thumb.webp",
+      "image": "/catalog/img/seed-backup/secux-xseed.webp",
+      "purchasable": true,
+      "brand": "secux"
+    },
+    {
+      "id": "seedhammer-2",
+      "category": "seed-backup",
+      "name": "SeedHammer II",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/seedhammer-2-thumb.webp",
+      "image": "/catalog/img/seed-backup/seedhammer-2.webp",
+      "purchasable": true,
+      "brand": "seedhammer"
+    },
+    {
+      "id": "seedkeeper",
+      "category": "seed-backup",
+      "name": "Seedkeeper",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/seedkeeper-thumb.webp",
+      "image": "/catalog/img/seed-backup/seedkeeper.webp",
+      "purchasable": true,
+      "brand": "satochip"
+    },
+    {
+      "id": "seedor-safe",
+      "category": "seed-backup",
+      "name": "Seedor Safe",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/seedor-safe-thumb.webp",
+      "image": "/catalog/img/seed-backup/seedor-safe.webp",
+      "purchasable": true,
+      "brand": "seedor"
+    },
+    {
+      "id": "seedplate",
+      "category": "seed-backup",
+      "name": "Seedplate",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/seedplate-thumb.webp",
+      "image": "/catalog/img/seed-backup/seedplate.webp",
+      "purchasable": true,
+      "brand": "coinkite"
+    },
+    {
+      "id": "stampseed",
+      "category": "seed-backup",
+      "name": "Stamp Seed",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/stampseed-thumb.webp",
+      "image": "/catalog/img/seed-backup/stampseed.webp",
+      "purchasable": true,
+      "brand": "impressart"
+    },
+    {
+      "id": "the-billfodl",
+      "category": "seed-backup",
+      "name": "The Billfodl",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/the-billfodl-thumb.webp",
+      "image": "/catalog/img/seed-backup/the-billfodl.webp",
+      "purchasable": true,
+      "brand": "privacy-pros"
+    },
+    {
+      "id": "trezor-keep-metal-12-word",
+      "category": "seed-backup",
+      "name": "Keep Metal (12 word)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/trezor-keep-metal-12-word-thumb.webp",
+      "image": "/catalog/img/seed-backup/trezor-keep-metal-12-word.webp",
+      "purchasable": true,
+      "brand": "trezor"
+    },
+    {
+      "id": "trezor-keep-metal-shamir",
+      "category": "seed-backup",
+      "name": "Keep Metal (Shamir Backup)",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/seed-backup/trezor-keep-metal-shamir-thumb.webp",
+      "image": "/catalog/img/seed-backup/trezor-keep-metal-shamir.webp",
+      "purchasable": true,
+      "brand": "trezor"
+    },
+    {
+      "id": "bitcoin-keeper",
+      "category": "inheritance",
+      "name": "Bitcoin Keeper",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/bitcoin-keeper-thumb.webp",
+      "image": "/catalog/img/inheritance/bitcoin-keeper.webp",
+      "purchasable": true,
+      "brand": "bithyve"
+    },
+    {
+      "id": "bitkey",
+      "category": "inheritance",
+      "name": "Bitkey",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/bitkey-thumb.webp",
+      "image": "/catalog/img/inheritance/bitkey.webp",
+      "purchasable": true,
+      "brand": "block"
+    },
+    {
+      "id": "casa",
+      "category": "inheritance",
+      "name": "Casa",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/casa-thumb.webp",
+      "image": "/catalog/img/inheritance/casa.webp",
+      "purchasable": true,
+      "brand": "casa"
+    },
+    {
+      "id": "cypherock-cover",
+      "category": "inheritance",
+      "name": "Cypherock Cover",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/cypherock-cover-thumb.webp",
+      "image": "/catalog/img/inheritance/cypherock-cover.webp",
+      "purchasable": true,
+      "brand": "cypherock"
+    },
+    {
+      "id": "jinca",
+      "category": "inheritance",
+      "name": "Jinca",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/jinca-thumb.webp",
+      "image": "/catalog/img/inheritance/jinca.webp",
+      "purchasable": true,
+      "brand": "jinca"
+    },
+    {
+      "id": "liana",
+      "category": "inheritance",
+      "name": "Liana",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/liana-thumb.webp",
+      "image": "/catalog/img/inheritance/liana.webp",
+      "purchasable": true,
+      "brand": "wizardsardine"
+    },
+    {
+      "id": "nunchuk",
+      "category": "inheritance",
+      "name": "Nunchuk",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/nunchuk-thumb.webp",
+      "image": "/catalog/img/inheritance/nunchuk.webp",
+      "purchasable": true,
+      "brand": "nunchuk"
+    },
+    {
+      "id": "unchained",
+      "category": "inheritance",
+      "name": "Unchained",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/unchained-thumb.webp",
+      "image": "/catalog/img/inheritance/unchained.webp",
+      "purchasable": true,
+      "brand": "unchained-capital"
+    },
+    {
+      "id": "zengo-pro",
+      "category": "inheritance",
+      "name": "Zengo Pro",
+      "shortDescription": "",
+      "author": "",
+      "thumb": "/catalog/img/inheritance/zengo-pro-thumb.webp",
+      "image": "/catalog/img/inheritance/zengo-pro.webp",
+      "purchasable": true,
+      "brand": "zengo"
+    }
+  ],
+  "brands": [
+    {
+      "id": "acinq",
+      "name": "ACINQ",
+      "headquarters": "France",
+      "logo": "/catalog/img/brands/acinq.webp"
+    },
+    {
+      "id": "alby",
+      "name": "Alby",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/alby.webp"
+    },
+    {
+      "id": "arman-the-parman",
+      "name": "Arman The Parman",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/arman-the-parman.webp"
+    },
+    {
+      "id": "ashigaru-open-source-project",
+      "name": "Ashigaru Open Source Project",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/ashigaru-open-source-project.webp"
+    },
+    {
+      "id": "atlas-21",
+      "name": "Atlas 21",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "bitbar",
+      "name": "BitBar",
+      "headquarters": "Switzerland",
+      "logo": "/catalog/img/brands/bitbar.webp"
+    },
+    {
+      "id": "bitbox",
+      "name": "BitBox",
+      "headquarters": "Switzerland",
+      "logo": null
+    },
+    {
+      "id": "bitcoin-core-project",
+      "name": "Bitcoin Core Project",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/bitcoin-core-project.webp"
+    },
+    {
+      "id": "bitcoin-knots",
+      "name": "Bitcoin Knots",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "bitcoin-safe",
+      "name": "Bitcoin Safe",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "bithyve",
+      "name": "BitHyve",
+      "headquarters": "United Kingdom",
+      "logo": "/catalog/img/brands/bithyve.webp"
+    },
+    {
+      "id": "bitplates",
+      "name": "Bitplates",
+      "headquarters": "England",
+      "logo": "/catalog/img/brands/bitplates.webp"
+    },
+    {
+      "id": "black-seed-ink",
+      "name": "Black Seed Ink",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/black-seed-ink.webp"
+    },
+    {
+      "id": "block",
+      "name": "Block",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "blockstream",
+      "name": "Blockstream",
+      "headquarters": "Canada",
+      "logo": null
+    },
+    {
+      "id": "bluewallet-services",
+      "name": "Bluewallet Services",
+      "headquarters": "Spain",
+      "logo": null
+    },
+    {
+      "id": "cardware-wallet",
+      "name": "Cardware Wallet",
+      "headquarters": "South Africa",
+      "logo": "/catalog/img/brands/cardware-wallet.webp"
+    },
+    {
+      "id": "casa",
+      "name": "Casa",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "citadel",
+      "name": "Citadel",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/citadel.webp"
+    },
+    {
+      "id": "codl-storage-solutions",
+      "name": "Codl Storage Solutions",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/codl-storage-solutions.webp"
+    },
+    {
+      "id": "coinkite",
+      "name": "Coinkite",
+      "headquarters": "Canada",
+      "logo": null
+    },
+    {
+      "id": "coinspace",
+      "name": "CoinSpace",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "composecure",
+      "name": "CompoSecure",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "coolbitx",
+      "name": "CoolBitX",
+      "headquarters": "Taiwan",
+      "logo": "/catalog/img/brands/coolbitx.webp"
+    },
+    {
+      "id": "cryptosteel",
+      "name": "Cryptosteel",
+      "headquarters": "United Kingdom",
+      "logo": "/catalog/img/brands/cryptosteel.webp"
+    },
+    {
+      "id": "cryptotag",
+      "name": "Cryptotag",
+      "headquarters": "Netherlands",
+      "logo": null
+    },
+    {
+      "id": "cypher-stack",
+      "name": "Cypher Stack",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "cypherock",
+      "name": "Cypherock",
+      "headquarters": "Singapore",
+      "logo": null
+    },
+    {
+      "id": "dcent",
+      "name": "D'CENT",
+      "headquarters": "Korea",
+      "logo": null
+    },
+    {
+      "id": "electrum",
+      "name": "Electrum",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/electrum.webp"
+    },
+    {
+      "id": "ellipal",
+      "name": "Ellipal",
+      "headquarters": "Hong Kong",
+      "logo": "/catalog/img/brands/ellipal.webp"
+    },
+    {
+      "id": "foundation-devices",
+      "name": "Foundation Devices",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "frostsnap-tech",
+      "name": "Frostsnap Tech",
+      "headquarters": "Australia",
+      "logo": null
+    },
+    {
+      "id": "grid-plus",
+      "name": "Grid Plus",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/grid-plus.webp"
+    },
+    {
+      "id": "hwlt",
+      "name": "HWLT",
+      "headquarters": "United Arab Emirates",
+      "logo": "/catalog/img/brands/hwlt.webp"
+    },
+    {
+      "id": "impressart",
+      "name": "ImpressArt",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "infraops",
+      "name": "InfraOps",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/infraops.webp"
+    },
+    {
+      "id": "jan3",
+      "name": "Jan3",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "jinca",
+      "name": "Jinca",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "keepkey",
+      "name": "KeepKey",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "keevo",
+      "name": "Keevo",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/keevo.webp"
+    },
+    {
+      "id": "keycard",
+      "name": "Keycard",
+      "headquarters": "Germany",
+      "logo": null
+    },
+    {
+      "id": "keystone",
+      "name": "Keystone",
+      "headquarters": "Hong Kong",
+      "logo": "/catalog/img/brands/keystone.webp"
+    },
+    {
+      "id": "ledger",
+      "name": "Ledger",
+      "headquarters": "France",
+      "logo": null
+    },
+    {
+      "id": "microseed",
+      "name": "MicroSeed",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/microseed.webp"
+    },
+    {
+      "id": "minibolt",
+      "name": "MiniBolt",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/minibolt.webp"
+    },
+    {
+      "id": "ministry-of-nodes",
+      "name": "Ministry of Nodes",
+      "headquarters": "Australia",
+      "logo": "/catalog/img/brands/ministry-of-nodes.webp"
+    },
+    {
+      "id": "muun",
+      "name": "Muun",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "mynode",
+      "name": "MyNode",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "ngrave",
+      "name": "NGrave",
+      "headquarters": "Belgium",
+      "logo": null
+    },
+    {
+      "id": "nodl",
+      "name": "nodl",
+      "headquarters": "France",
+      "logo": null
+    },
+    {
+      "id": "nunchuk",
+      "name": "Nunchuk",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "onekey",
+      "name": "OneKey",
+      "headquarters": "Hong Kong",
+      "logo": null
+    },
+    {
+      "id": "pandora-prime-sa",
+      "name": "Pandora Prime SA",
+      "headquarters": "Switzerland",
+      "logo": "/catalog/img/brands/pandora-prime-sa.webp"
+    },
+    {
+      "id": "plebstyle",
+      "name": "Plebstyle",
+      "headquarters": "Germany",
+      "logo": "/catalog/img/brands/plebstyle.webp"
+    },
+    {
+      "id": "privacy-pros",
+      "name": "Privacy Pros",
+      "headquarters": "?",
+      "logo": null
+    },
+    {
+      "id": "prokey-optimum",
+      "name": "Prokey Optimum",
+      "headquarters": "Malaysia",
+      "logo": null
+    },
+    {
+      "id": "proton",
+      "name": "Proton",
+      "headquarters": "Switzerland",
+      "logo": null
+    },
+    {
+      "id": "raspiblitz",
+      "name": "RaspiBlitz",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "raspibolt",
+      "name": "RaspiBolt",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/raspibolt.webp"
+    },
+    {
+      "id": "real-security",
+      "name": "Real Security",
+      "headquarters": "Slovenia",
+      "logo": "/catalog/img/brands/real-security.webp"
+    },
+    {
+      "id": "ronindojo",
+      "name": "RoninDojo",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/ronindojo.webp"
+    },
+    {
+      "id": "safepal",
+      "name": "SafePal",
+      "headquarters": "Singapore",
+      "logo": null
+    },
+    {
+      "id": "satochip",
+      "name": "Satochip",
+      "headquarters": "Belgium",
+      "logo": "/catalog/img/brands/satochip.webp"
+    },
+    {
+      "id": "satoshi-portal",
+      "name": "Satoshi Portal",
+      "headquarters": "Canada",
+      "logo": "/catalog/img/brands/satoshi-portal.webp"
+    },
+    {
+      "id": "secux",
+      "name": "SecuX",
+      "headquarters": "Taiwan",
+      "logo": "/catalog/img/brands/secux.webp"
+    },
+    {
+      "id": "seedhammer",
+      "name": "SeedHammer",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "seedor",
+      "name": "Seedor",
+      "headquarters": "Germany",
+      "logo": "/catalog/img/brands/seedor.webp"
+    },
+    {
+      "id": "seedsigner",
+      "name": "SeedSigner",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/seedsigner.webp"
+    },
+    {
+      "id": "self-custody-solutions",
+      "name": "Self-custody Solutions",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/self-custody-solutions.webp"
+    },
+    {
+      "id": "sparrow-wallet",
+      "name": "Sparrow Wallet",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/sparrow-wallet.webp"
+    },
+    {
+      "id": "specter-solutions",
+      "name": "Specter Solutions",
+      "headquarters": "Liechtenstein",
+      "logo": "/catalog/img/brands/specter-solutions.webp"
+    },
+    {
+      "id": "start9",
+      "name": "Start9",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/start9.webp"
+    },
+    {
+      "id": "streetside-development",
+      "name": "Streetside Development",
+      "headquarters": "United Kingdom",
+      "logo": "/catalog/img/brands/streetside-development.webp"
+    },
+    {
+      "id": "tactical-advantage-trading",
+      "name": "Tactical Advantage Trading",
+      "headquarters": "-",
+      "logo": "/catalog/img/brands/tactical-advantage-trading.webp"
+    },
+    {
+      "id": "tangem",
+      "name": "Tangem",
+      "headquarters": "Switzerland",
+      "logo": null
+    },
+    {
+      "id": "theya",
+      "name": "Theya",
+      "headquarters": "USA",
+      "logo": "/catalog/img/brands/theya.webp"
+    },
+    {
+      "id": "trezor",
+      "name": "Trezor",
+      "headquarters": "Czech Republic",
+      "logo": null
+    },
+    {
+      "id": "twentytwo",
+      "name": "TwentyTwo",
+      "headquarters": "Italy",
+      "logo": null
+    },
+    {
+      "id": "umbrel",
+      "name": "Umbrel",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "unchained-capital",
+      "name": "Unchained Capital",
+      "headquarters": "USA",
+      "logo": null
+    },
+    {
+      "id": "wasabi-wallet",
+      "name": "Wasabi Wallet",
+      "headquarters": "-",
+      "logo": null
+    },
+    {
+      "id": "wizardsardine",
+      "name": "Wizardsardine",
+      "headquarters": "Portugal",
+      "logo": null
+    },
+    {
+      "id": "zengo",
+      "name": "Zengo",
+      "headquarters": "Israel",
+      "logo": null
+    }
+  ]
+}

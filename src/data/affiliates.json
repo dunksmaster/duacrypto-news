@@ -40,5 +40,13 @@
     "href": "https://duacrypto.gumroad.com/l/newsleter?wanted=true",
     "goPath": "/go/newsletter",
     "description": "Premium newsletter — $10/mo on Gumroad"
+  },
+  "bitcoin-supercycle": {
+    "key": "bitcoin-supercycle",
+    "name": "Bitcoin Supercycle (Amazon)",
+    "href": "https://amzn.to/3RAVADH",
+    "goPath": "/go/bitcoin-supercycle",
+    "description": "Bitcoin Supercycle by Michael Terpin — Amazon"
   }
 }
+

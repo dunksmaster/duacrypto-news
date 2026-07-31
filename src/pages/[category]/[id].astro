@@ -1,0 +1,194 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CatalogProductHero from "../../components/catalog/CatalogProductHero.astro";
+import CatalogSpecTable from "../../components/catalog/CatalogSpecTable.astro";
+import CatalogGridCard from "../../components/catalog/CatalogGridCard.astro";
+import ShopSpotlightCard from "../../components/ShopSpotlightCard.astro";
+import {
+  catalogStaticPaths,
+  categoryLabel,
+  categoryPath,
+  extractFeatureGroups,
+  getItem,
+  getItemFull,
+  getRelatedItems,
+  isCatalogCategory,
+  itemAuthor,
+  itemBuyLink,
+  itemPath,
+} from "../../lib/catalog";
+import { t, localePath } from "../../i18n/ui";
+
+export function getStaticPaths() {
+  return catalogStaticPaths();
+}
+
+const locale = "sq" as const;
+const strings = t(locale);
+const { category: categoryId, id } = Astro.params;
+
+if (!categoryId || !id || !isCatalogCategory(categoryId)) {
+  return Astro.redirect("/");
+}
+
+const summary = getItem(categoryId, id);
+const full = getItemFull(categoryId, id);
+
+if (!summary || !full) {
+  return Astro.redirect(categoryPath(categoryId, locale));
+}
+
+const label = categoryLabel(categoryId, locale);
+const author = itemAuthor(full);
+const buyLink = itemBuyLink(summary);
+const year = full["basic-information"]?.year?.value;
+const publisher = full["basic-information"]?.publisher?.value;
+const pages = full["basic-information"]?.pages?.value;
+const description = typeof full.description === "string" ? full.description : "";
+const featureGroups = extractFeatureGroups(full);
+const related = getRelatedItems(categoryId, id);
+---
+
+<BaseLayout
+  title={`${summary.name} — ${label}`}
+  description={summary.shortDescription || description.slice(0, 160)}
+  image={summary.image ?? undefined}
+  lang="sq"
+  locale={locale}
+  canonical={`${Astro.site}${categoryId}/${id}/`}
+  switchTarget={{
+    href: localePath(`/${categoryId}/${id}/`, "en"),
+    available: true,
+    label: strings.readInEnglish,
+  }}
+>
+  <section class="item-page" data-pagefind-body>
+    <div class="section-shell">
+      <nav class="item-page__crumbs meta-mono" aria-label="Breadcrumb">
+        <a href={localePath("/", locale)}>{strings.home}</a>
+        <span aria-hidden="true">/</span>
+        <a href={categoryPath(categoryId, locale)}>{label}</a>
+        <span aria-hidden="true">/</span>
+        <span>{summary.name}</span>
+      </nav>
+
+      <CatalogProductHero
+        title={summary.name}
+        subtitle={summary.shortDescription}
+        author={author}
+        image={summary.image}
+        buyLink={buyLink}
+        year={year}
+        publisher={publisher}
+        pages={pages}
+        locale={locale}
+        headingLevel={1}
+      />
+
+      {
+        description && (
+          <div class="item-page__desc">
+            <h2>{strings.shopDescriptionHeading}</h2>
+            {description.split("\n\n").map((para) => (
+              <p>{para}</p>
+            ))}
+          </div>
+        )
+      }
+
+      {
+        featureGroups.length > 0 && (
+          <CatalogSpecTable groups={featureGroups} title={strings.catalogEverySpec} />
+        )
+      }
+
+      {
+        related.length > 0 && (
+          <section class="item-page__related">
+            <h2>{strings.catalogCompareNext}</h2>
+            <div class="item-page__related-grid">
+              {related.map((item) => (
+                <ShopSpotlightCard
+                  title={item.name}
+                  author={item.author}
+                  image={item.thumb ?? item.image ?? "/img/duacrypto-logo.png"}
+                  href={itemPath(item.category, item.id, locale)}
+                />
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .item-page {
+    padding: 2.5rem 0 4rem;
+  }
+
+  .item-page__crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-secondary);
+    font-size: 0.72rem;
+  }
+
+  .item-page__crumbs a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .item-page__desc {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: var(--color-card);
+  }
+
+  .item-page__desc h2 {
+    margin: 0 0 0.85rem;
+    font-size: 1.35rem;
+  }
+
+  .item-page__desc p {
+    margin: 0 0 0.85rem;
+    color: var(--color-secondary);
+    line-height: 1.65;
+  }
+
+  .item-page__desc p:last-child {
+    margin-bottom: 0;
+  }
+
+  .item-page__related {
+    margin-top: 2rem;
+  }
+
+  .item-page__related h2 {
+    margin: 0 0 1rem;
+    font-size: 1.35rem;
+  }
+
+  .item-page__related-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .item-page__related-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .item-page__related-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

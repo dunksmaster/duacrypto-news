@@ -1,0 +1,40 @@
+{
+  "brand": {
+    "value": "Bitcoin Safe"
+  },
+  "description": {
+    "value": "Bitcoin Safe is an open-source desktop application for managing Bitcoin cold-storage wallets with a focus on easy single-sig and multisig setup. It supports many hardware signers via QR, USB and SD card, offers private blockchain syncing through compact block filters, label organization and encrypted backups. The application is available on Windows, macOS and Linux with support for 20+ languages."
+  },
+  "headquarters": {
+    "value": "-"
+  },
+  "website": {
+    "value": "bitcoin-safe.org",
+    "url": "https://bitcoin-safe.org/"
+  },
+  "blog": {
+    "value": "-"
+  },
+  "twitter": {
+    "value": "@BitcoinSafeOrg",
+    "url": "https://x.com/BitcoinSafeOrg"
+  },
+  "nostr": {
+    "value": "Bitcoin Safe",
+    "url": "https://primal.net/p/npub1g9uhysae68vhvwwqel8v9enr9mg43rn4tpurs6a9g4jsrw6nl7lsplhs9v"
+  },
+  "youtube": {
+    "value": "@Bitcoin-SafeOrg",
+    "url": "https://www.youtube.com/@BitcoinSafeOrg"
+  },
+  "github": {
+    "value": "andreasgriffin",
+    "url": "https://github.com/andreasgriffin"
+  },
+  "slack": {
+    "value": "-"
+  },
+  "discord": {
+    "value": "-"
+  }
+}

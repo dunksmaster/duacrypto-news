@@ -1,0 +1,41 @@
+{
+  "categories": {
+    "mining": {
+      "id": "mining",
+      "custom": true,
+      "blurb": {
+        "sq": "Pajisje mining për Bitcoin — ASIC dhe opsione për minerë. Pyet për modele, çmim dhe porosi.",
+        "en": "Bitcoin mining devices — ASICs and options for miners. Ask about models, pricing, and orders."
+      },
+      "visual": "mining"
+    }
+  },
+  "items": [
+    {
+      "id": "bitcoin-supercycle",
+      "category": "books",
+      "custom": true,
+      "name": "Bitcoin Supercycle",
+      "shortDescription": "How the Crypto Calendar Can Make You Rich",
+      "author": "Michael Terpin",
+      "thumb": "/img/shop/bitcoin-supercycle.jpg",
+      "image": "/img/shop/bitcoin-supercycle.jpg",
+      "purchasable": true,
+      "buyLink": "/go/bitcoin-supercycle",
+      "basic-information": {
+        "year": { "value": "2025" },
+        "publisher": { "value": "Skyhorse" }
+      },
+      "description": "Bitcoin Supercycle explains how crypto market cycles and the event calendar can help investors understand market timing. A practical book by Michael Terpin for readers who want more context on Bitcoin and crypto."
+    }
+  ],
+  "buyLinks": {},
+  "spotlight": [
+    "books/bitcoin-supercycle",
+    "books/the-genesis-book",
+    "books/21-lessons",
+    "hardware-wallets/bitbox02-btconly",
+    "hardware-wallets/trezor-safe-5",
+    "hardware-wallets/coldcard-mk4"
+  ]
+}

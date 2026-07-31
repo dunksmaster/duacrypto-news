@@ -1,0 +1,34 @@
+{
+  "brand": {
+    "value": "Real Security"
+  },
+  "description": {
+    "value": "Real Security makes BC Vault, a cryptocurrency hardware wallet with a seedless design that stores private keys in ferroelectric (FRAM) memory with encrypted backups instead of a traditional seed phrase. It offers several models such as the BC Vault ONE, Gunmetal and Quicksilver, paired with desktop and mobile apps. The wallet supports a wide range of cryptocurrencies, tokens and NFTs."
+  },
+  "headquarters": {
+    "value": "Slovenia",
+    "countryCode": "SI"
+  },
+  "website": {
+    "value": "bc-vault.com",
+    "url": "https://bc-vault.com/"
+  },
+  "blog": {
+    "value": "-"
+  },
+  "twitter": {
+    "value": "@BCVaultOfficial",
+    "url": "https://x.com/BCVaultOfficial"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "@bcvault1012",
+    "url": "https://www.youtube.com/@bcvault1012"
+  },
+  "github": {
+    "value": "bc-vault",
+    "url": "https://github.com/bc-vault"
+  }
+}

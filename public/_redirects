@@ -1,3 +1,7 @@
+/en/shop/ /en/ 301
+/en/shop/bitcoin-supercycle/ /en/books/bitcoin-supercycle/ 301
+/en/shop/category/books/ /en/books/ 301
+/en/shop/category/mining/ /en/mining/ 301
 /posts/2026-07-09-welcome-duacrypto-news/ /en/posts/2026-07-09-welcome-duacrypto-news/ 301
 /posts/balkans-crypto-2025-recap/ /en/posts/balkans-crypto-2025-recap/ 301
 /posts/bitcoin-pizza-day-2025/ /en/posts/bitcoin-pizza-day-2025/ 301
@@ -9,3 +13,7 @@
 /posts/is-bitcoin-legal-in-albania/ /en/posts/is-bitcoin-legal-in-albania/ 301
 /posts/join-duacrypto-community/ /en/posts/join-duacrypto-community/ 301
 /posts/tangem-hardware-wallet-albania/ /en/posts/tangem-hardware-wallet-albania/ 301
+/shop/ / 301
+/shop/bitcoin-supercycle/ /books/bitcoin-supercycle/ 301
+/shop/category/books/ /books/ 301
+/shop/category/mining/ /mining/ 301

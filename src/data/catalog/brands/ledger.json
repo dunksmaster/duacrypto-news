@@ -1,0 +1,35 @@
+{
+  "brand": {
+    "value": "Ledger"
+  },
+  "description": {
+    "value": "Ledger is a France-based company that makes hardware wallets for securing cryptocurrency private keys offline. Its devices, paired with the Ledger Live app, let users store, send, receive and manage thousands of crypto assets across desktop and mobile. Ledger is one of the most widely used hardware wallet brands for Bitcoin and other cryptocurrencies."
+  },
+  "headquarters": {
+    "value": "France",
+    "countryCode": "FR"
+  },
+  "website": {
+    "value": "ledger.com",
+    "url": "https://www.ledger.com/"
+  },
+  "blog": {
+    "value": "ledger.com/company-updates",
+    "url": "https://www.ledger.com/company-updates"
+  },
+  "twitter": {
+    "value": "@Ledger",
+    "url": "https://x.com/Ledger"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "@Ledger",
+    "url": "https://www.youtube.com/@Ledger"
+  },
+  "github": {
+    "value": "LedgerHQ",
+    "url": "https://github.com/LedgerHQ"
+  }
+}

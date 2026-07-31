@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BlogGridCard from "../../../components/BlogGridCard.astro";
+import { getPublishedPostsForLocale } from "../../../lib/posts";
+import { t, localePath } from "../../../i18n/ui";
+
+const locale = "en" as const;
+const strings = t(locale);
+const posts = await getPublishedPostsForLocale(locale);
+---
+
+<BaseLayout
+  title={strings.blog}
+  description={strings.latestPostsLead}
+  lang="en"
+  locale={locale}
+  canonical={`${Astro.site}en/blog/`}
+  switchTarget={{
+    href: localePath("/blog/", "sq"),
+    available: true,
+    label: strings.readInAlbanian,
+  }}
+>
+  <section class="blog-page" data-pagefind-body>
+    <div class="section-shell">
+      <header class="blog-page__head">
+        <p class="meta-mono blog-page__eyebrow">{strings.fromTheBlog}</p>
+        <h1>{strings.latestPosts}</h1>
+        <p>{strings.latestPostsLead}</p>
+      </header>
+
+      <div class="blog-page__grid">
+        {posts.map((post) => (
+          <BlogGridCard post={post} locale={locale} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-page {
+    padding: 2.5rem 0 4rem;
+  }
+
+  .blog-page__head h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+  }
+
+  .blog-page__head p {
+    margin: 0 0 1.75rem;
+    max-width: 40rem;
+    color: var(--color-secondary);
+    line-height: 1.55;
+  }
+
+  .blog-page__eyebrow {
+    margin: 0 0 0.45rem;
+    color: var(--color-secondary);
+  }
+
+  .blog-page__grid {
+    display: grid;
+    gap: 1.15rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .blog-page__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .blog-page__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

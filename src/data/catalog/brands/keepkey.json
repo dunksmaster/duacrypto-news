@@ -1,0 +1,35 @@
+{
+  "brand": {
+    "value": "KeepKey"
+  },
+  "description": {
+    "value": "KeepKey is an open-source hardware wallet, first released in 2014, that stores private keys offline on a dedicated device to protect them from malware and hackers. It supports multiple native chains including Bitcoin and Ethereum plus thousands of EVM tokens, features an OLED display for transaction verification and offers free firmware updates. KeepKey pairs with desktop, browser and mobile apps for portfolio management and swaps."
+  },
+  "headquarters": {
+    "value": "USA",
+    "countryCode": "US"
+  },
+  "website": {
+    "value": "keepkey.com",
+    "url": "https://www.keepkey.com/"
+  },
+  "blog": {
+    "value": "keepkey.com/blog",
+    "url": "https://www.keepkey.com/blog"
+  },
+  "twitter": {
+    "value": "@keepkeydevs",
+    "url": "https://x.com/keepkeydevs"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "@keepkey6256",
+    "url": "https://www.youtube.com/@keepkey6256"
+  },
+  "github": {
+    "value": "keepkey",
+    "url": "https://github.com/keepkey"
+  }
+}

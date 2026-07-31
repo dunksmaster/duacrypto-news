@@ -1,0 +1,194 @@
+---
+import type { Locale } from "../../i18n/ui";
+import { t, localePath } from "../../i18n/ui";
+import {
+  categoryBlurb,
+  categoryLabel,
+  categoryPath,
+  getCategories,
+  getSpotlightItems,
+  itemPath,
+} from "../../lib/catalog";
+import ShopCategoryCard from "../ShopCategoryCard.astro";
+import ShopSpotlightCard from "../ShopSpotlightCard.astro";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "sq" } = Astro.props;
+const strings = t(locale);
+const categories = getCategories();
+const spotlight = getSpotlightItems();
+---
+
+<section class="catalog-hero-band">
+  <div class="section-shell catalog-hero-band__inner">
+    <p class="meta-mono catalog-hero-band__eyebrow">DuaCrypto</p>
+    <h1 class="catalog-hero-band__title">{strings.catalogHeroTitle}</h1>
+    <p class="catalog-hero-band__lead">{strings.catalogHeroSubtitle}</p>
+  </div>
+</section>
+
+<section class="catalog-section">
+  <div class="section-shell">
+    <p class="meta-mono catalog-section__eyebrow">{strings.shopExploreEyebrow}</p>
+    <h2 class="catalog-section__title">{strings.shopExploreTitle}</h2>
+    <p class="catalog-section__lead">{strings.shopExploreLead}</p>
+    <div class="catalog-section__grid catalog-section__grid--cats">
+      {
+        categories.map((cat) => (
+          <ShopCategoryCard
+            title={categoryLabel(cat.id, locale)}
+            description={categoryBlurb(cat, locale)}
+            href={categoryPath(cat.id, locale)}
+            image={cat.sampleThumb}
+            visual={cat.visual ?? undefined}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+{
+  spotlight.length > 0 && (
+    <section class="catalog-section catalog-section--alt">
+      <div class="section-shell">
+        <p class="meta-mono catalog-section__eyebrow">{strings.catalogSpotlight}</p>
+        <h2 class="catalog-section__title">{strings.catalogSpotlight}</h2>
+        <p class="catalog-section__lead">{strings.catalogSpotlightLead}</p>
+        <div class="catalog-section__grid catalog-section__grid--spotlight">
+          {spotlight.map((item) => (
+            <ShopSpotlightCard
+              title={item.name}
+              author={item.author}
+              image={item.thumb ?? item.image ?? "/img/duacrypto-logo.png"}
+              href={itemPath(item.category, item.id, locale)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<section class="catalog-section">
+  <div class="section-shell">
+    <p class="meta-mono catalog-section__eyebrow">{strings.catalogExploreBrands}</p>
+    <h2 class="catalog-section__title">{strings.catalogExploreBrands}</h2>
+    <p class="catalog-section__lead">{strings.catalogExploreBrandsLead}</p>
+    <a href={localePath("/brands/", locale)} class="catalog-section__link meta-mono">
+      {strings.viewAll} →
+    </a>
+  </div>
+</section>
+
+<style>
+  .catalog-hero-band {
+    padding: 3.5rem 0 3rem;
+    background: linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--ink) 92%, var(--cyan)) 0%,
+      color-mix(in srgb, var(--ink) 96%, #0f172a) 100%
+    );
+    color: #f8fafc;
+  }
+
+  .catalog-hero-band__inner {
+    max-width: 42rem;
+  }
+
+  .catalog-hero-band__eyebrow {
+    margin: 0 0 0.75rem;
+    color: color-mix(in srgb, #f8fafc 65%, var(--cyan));
+  }
+
+  .catalog-hero-band__title {
+    margin: 0 0 0.85rem;
+    font-size: clamp(2rem, 4vw, 2.85rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  .catalog-hero-band__lead {
+    margin: 0;
+    color: color-mix(in srgb, #f8fafc 78%, transparent);
+    font-size: 1.08rem;
+    line-height: 1.55;
+  }
+
+  .catalog-section {
+    padding: 2.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .catalog-section--alt {
+    background: color-mix(in srgb, var(--color-page) 92%, var(--color-card));
+  }
+
+  .catalog-section__eyebrow {
+    margin: 0 0 0.45rem;
+    color: var(--color-secondary);
+  }
+
+  .catalog-section__title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.65rem, 3vw, 2.1rem);
+  }
+
+  .catalog-section__lead {
+    margin: 0 0 1.5rem;
+    max-width: 38rem;
+    color: var(--color-secondary);
+    line-height: 1.5;
+  }
+
+  .catalog-section__grid--cats {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .catalog-section__grid--cats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .catalog-section__grid--cats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .catalog-section__grid--spotlight {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 720px) {
+    .catalog-section__grid--spotlight {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .catalog-section__grid--spotlight {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .catalog-section__link {
+    display: inline-block;
+    color: var(--color-link);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .catalog-section__link:hover {
+    text-decoration: underline;
+  }
+</style>

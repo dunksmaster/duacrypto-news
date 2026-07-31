@@ -1,0 +1,36 @@
+{
+  "brand": {
+    "value": "Start9"
+  },
+  "description": {
+    "value": "Start9 builds sovereign computing solutions that let users run private servers as an alternative to the cloud. Its operating system, StartOS, makes it easy to discover, install and configure open-source software, including Bitcoin and Lightning nodes, on a personal server. The company sells both pre-built servers and DIY options through its store."
+  },
+  "headquarters": {
+    "value": "USA",
+    "countryCode": "US"
+  },
+  "website": {
+    "value": "start9.com",
+    "url": "https://start9.com/"
+  },
+  "blog": {
+    "value": "News",
+    "url": "https://start9.com/news/"
+  },
+  "twitter": {
+    "value": "@start9labs",
+    "url": "https://x.com/start9labs"
+  },
+  "nostr": {
+    "value": "Start9",
+    "url": "https://primal.net/p/npub126ntw5mnermmj0znhjhgdk8lh2af72sm8qfzq48umdlnhaj9kuns3le9ll"
+  },
+  "youtube": {
+    "value": "@Start9",
+    "url": "https://www.youtube.com/@Start9"
+  },
+  "github": {
+    "value": "Start9Labs",
+    "url": "https://github.com/Start9Labs"
+  }
+}

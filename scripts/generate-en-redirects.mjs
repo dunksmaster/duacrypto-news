@@ -28,5 +28,20 @@ for (const name of readdirSync(postsDir)) {
   redirectLines.add(`/posts/${slug}/ /en/posts/${slug}/ 301`);
 }
 
-writeFileSync(redirectsPath, [...redirectLines].join("\n") + "\n", "utf8");
-console.log(`Updated _redirects (${redirectLines.size} EN legacy lines; /go/* handled by Functions)`);
+const SHOP_REDIRECTS = [
+  "/shop/ / 301",
+  "/shop/bitcoin-supercycle/ /books/bitcoin-supercycle/ 301",
+  "/shop/category/books/ /books/ 301",
+  "/shop/category/mining/ /mining/ 301",
+  "/en/shop/ /en/ 301",
+  "/en/shop/bitcoin-supercycle/ /en/books/bitcoin-supercycle/ 301",
+  "/en/shop/category/books/ /en/books/ 301",
+  "/en/shop/category/mining/ /en/mining/ 301",
+];
+
+for (const line of SHOP_REDIRECTS) {
+  redirectLines.add(line);
+}
+
+writeFileSync(redirectsPath, [...redirectLines].sort().join("\n") + "\n", "utf8");
+console.log(`Updated _redirects (${redirectLines.size} lines; /go/* handled by Functions)`);

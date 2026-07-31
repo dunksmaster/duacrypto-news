@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CatalogGridCard from "../../components/catalog/CatalogGridCard.astro";
+import {
+  brandPath,
+  brandStaticPaths,
+  getBrand,
+  getBrandFull,
+  getBrandItems,
+} from "../../lib/catalog";
+import { t, localePath } from "../../i18n/ui";
+
+export function getStaticPaths() {
+  return brandStaticPaths();
+}
+
+const locale = "sq" as const;
+const strings = t(locale);
+const { id } = Astro.params;
+const brand = getBrand(id!);
+const full = getBrandFull(id!);
+
+if (!brand || !full) {
+  return Astro.redirect("/brands/");
+}
+
+const items = getBrandItems(id!);
+const description =
+  typeof full.description === "object" && full.description && "value" in full.description
+    ? full.description.value
+    : "";
+const website =
+  typeof full.website === "object" && full.website?.url ? full.website.url : null;
+---
+
+<BaseLayout
+  title={brand.name}
+  description={description?.slice(0, 160) ?? brand.name}
+  lang="sq"
+  locale={locale}
+  canonical={`${Astro.site}brands/${id}/`}
+  switchTarget={{
+    href: localePath(`/brands/${id}/`, "en"),
+    available: true,
+    label: strings.readInEnglish,
+  }}
+>
+  <section class="brand-detail" data-pagefind-body>
+    <div class="section-shell">
+      <nav class="brand-detail__crumbs meta-mono" aria-label="Breadcrumb">
+        <a href={localePath("/", locale)}>{strings.home}</a>
+        <span aria-hidden="true">/</span>
+        <a href={localePath("/brands/", locale)}>{strings.catalogExploreBrands}</a>
+        <span aria-hidden="true">/</span>
+        <span>{brand.name}</span>
+      </nav>
+
+      <header class="brand-detail__head">
+        {
+          brand.logo && (
+            <img src={brand.logo} alt="" width="80" height="80" class="brand-detail__logo" />
+          )
+        }
+        <div>
+          <h1>{brand.name}</h1>
+          {brand.headquarters && <p class="brand-detail__hq">{brand.headquarters}</p>}
+          {website && (
+            <a href={website} class="brand-detail__web" target="_blank" rel="noopener noreferrer">
+              {website.replace(/^https?:\/\//, "")}
+            </a>
+          )}
+        </div>
+      </header>
+
+      {description && <div class="brand-detail__desc">{description}</div>}
+
+      {
+        items.length > 0 && (
+          <section class="brand-detail__products">
+            <h2>{brand.name} products</h2>
+            <div class="brand-detail__grid">
+              {items.map((item) => (
+                <CatalogGridCard item={item} locale={locale} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .brand-detail {
+    padding: 2.5rem 0 4rem;
+  }
+
+  .brand-detail__crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-secondary);
+    font-size: 0.72rem;
+  }
+
+  .brand-detail__crumbs a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .brand-detail__head {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .brand-detail__logo {
+    object-fit: contain;
+  }
+
+  .brand-detail__head h1 {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+  }
+
+  .brand-detail__hq {
+    margin: 0;
+    color: var(--color-secondary);
+  }
+
+  .brand-detail__web {
+    display: inline-block;
+    margin-top: 0.35rem;
+    color: var(--color-link);
+    font-size: 0.92rem;
+  }
+
+  .brand-detail__desc {
+    max-width: 48rem;
+    margin-bottom: 2rem;
+    color: var(--color-secondary);
+    line-height: 1.65;
+  }
+
+  .brand-detail__products h2 {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+  }
+
+  .brand-detail__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+</style>

@@ -1,0 +1,39 @@
+{
+  "brand": {
+    "value": "CoinSpace"
+  },
+  "description": {
+    "value": "Coin Wallet (Coin Space) is a self-custodial, multi-currency cryptocurrency wallet founded in 2015 and used by millions of people across 190 countries. It supports Bitcoin, Ethereum, Litecoin, XRP, Monero, Solana and thousands of other assets, with private keys encrypted and stored only on the user's device and no KYC. The wallet is available on web, desktop and mobile with synchronization, and lets users buy, send, receive and swap crypto."
+  },
+  "headquarters": {
+    "value": "-",
+    "countryCode": "-"
+  },
+  "website": {
+    "value": "coin.space",
+    "url": "https://coin.space"
+  },
+  "blog": {
+    "value": "-"
+  },
+  "twitter": {
+    "value": "@CoinAppWallet",
+    "url": "https://x.com/CoinAppWallet"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "-"
+  },
+  "github": {
+    "value": "CoinSpace",
+    "url": "https://github.com/CoinSpace"
+  },
+  "slack": {
+    "value": "-"
+  },
+  "discord": {
+    "value": "-"
+  }
+}

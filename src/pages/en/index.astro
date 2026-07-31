@@ -1,87 +1,97 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import PostCard from "../../components/PostCard.astro";
-import PopularPosts from "../../components/PopularPosts.astro";
-import { getPublishedPostsForLocale, pickFeaturedPost } from "../../lib/posts";
-import { t, localePath, categoryLabel } from "../../i18n/ui";
-import site from "../../data/site.json";
+import CatalogHomeSections from "../../components/catalog/CatalogHomeSections.astro";
+import BlogGridCard from "../../components/BlogGridCard.astro";
+import { getPublishedPostsForLocale } from "../../lib/posts";
+import { t, localePath } from "../../i18n/ui";
 
 const locale = "en" as const;
 const strings = t(locale);
-const NAV_CATEGORIES = site.navCategories;
-
 const posts = await getPublishedPostsForLocale(locale);
-const featured = pickFeaturedPost(posts);
-const latest = posts.filter((p) => p !== featured).slice(0, 7);
-
-const categoriesWithPosts = NAV_CATEGORIES.map((category) => ({
-  category,
-  label: categoryLabel(category, locale),
-  count: posts.filter((p) => p.data.category === category).length,
-})).filter((c) => c.count > 0);
+const latest = posts.slice(0, 3);
 ---
 
 <BaseLayout
-  title="DuaCrypto News"
-  description="Bitcoin and Web3 news for the Albanian diaspora and Balkans — in English."
+  title="DuaCrypto — Self-Custody Catalog"
+  description={strings.catalogHeroSubtitle}
   lang="en"
   locale={locale}
   canonical={`${Astro.site}en/`}
+  switchTarget={{
+    href: localePath("/", "sq"),
+    available: true,
+    label: strings.readInAlbanian,
+  }}
   showTrustBar={true}
 >
+  <CatalogHomeSections locale={locale} />
+
   {
-    featured && (
-      <section class="border-b border-border py-10 sm:py-12" data-pagefind-body>
+    latest.length > 0 && (
+      <section class="latest-blog" data-pagefind-body>
         <div class="section-shell">
-          <h2 class="meta-mono mb-6 text-secondary">{strings.heroKicker}</h2>
-          <PostCard post={featured} featured locale={locale} />
+          <p class="meta-mono latest-blog__eyebrow">{strings.fromTheBlog}</p>
+          <h2 class="latest-blog__title">{strings.latestPosts}</h2>
+          <p class="latest-blog__lead">{strings.latestPostsLead}</p>
+          <div class="latest-blog__grid">
+            {latest.map((post) => (
+              <BlogGridCard post={post} locale={locale} />
+            ))}
+          </div>
+          <a href={localePath("/blog/", locale)} class="latest-blog__more meta-mono">
+            {strings.viewAllPosts}
+          </a>
         </div>
       </section>
     )
   }
-
-  <section class="pb-16">
-    <div class="section-shell home-grid">
-      <div class="home-main">
-        <PopularPosts locale={locale} posts={posts} />
-
-        {
-          latest.length > 0 && (
-            <>
-              <h2 class="feed-section-label">{strings.latestPosts}</h2>
-              <div class="feed-list">
-                {latest.map((post) => (
-                  <PostCard post={post} locale={locale} />
-                ))}
-              </div>
-            </>
-          )
-        }
-      </div>
-
-      <aside class="home-side">
-        {
-          categoriesWithPosts.length > 0 && (
-            <div>
-              <p class="meta-mono side-label">{strings.sidebarBrowse}</p>
-              <div class="side-cats">
-                {categoriesWithPosts.map(({ category, label, count }) => (
-                  <a href={localePath(`/category/${category}/`, locale)} class="side-cat">
-                    <span>{label}</span>
-                    <span class="meta-mono side-cat__count">{String(count).padStart(2, "0")}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )
-        }
-
-        <div class="side-donate">
-          <p class="meta-mono side-donate__label">{strings.donateLabel}</p>
-          <p class="side-donate__body">{strings.donateBody}</p>
-          <a href={`${site.mainSite}/donation.html`} class="side-donate__cta">{strings.donateCta}</a>
-        </div>
-      </aside>
-    </div>
-  </section>
 </BaseLayout>
+
+<style>
+  .latest-blog {
+    padding: 2.75rem 0 3rem;
+  }
+
+  .latest-blog__eyebrow {
+    margin: 0 0 0.45rem;
+    color: var(--color-secondary);
+  }
+
+  .latest-blog__title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+  }
+
+  .latest-blog__lead {
+    margin: 0 0 1.5rem;
+    max-width: 36rem;
+    color: var(--color-secondary);
+    line-height: 1.5;
+  }
+
+  .latest-blog__grid {
+    display: grid;
+    gap: 1.15rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 720px) {
+    .latest-blog__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .latest-blog__more {
+    display: inline-block;
+    margin-top: 1.35rem;
+    color: var(--color-secondary);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .latest-blog__more:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+</style>

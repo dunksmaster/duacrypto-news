@@ -1,0 +1,34 @@
+{
+  "brand": {
+    "value": "MyNode"
+  },
+  "description": {
+    "value": "MyNode is a platform for running Bitcoin and Lightning nodes with an emphasis on ease of use. The company offers hardware appliances as well as community and premium software editions, integrating open-source Bitcoin apps through a web interface and marketplace that works with wallets such as Zeus and Electrum. Premium tiers add features like remote channel backup and watchtower services."
+  },
+  "headquarters": {
+    "value": "USA",
+    "countryCode": "US"
+  },
+  "website": {
+    "value": "mynodebtc.com",
+    "url": "https://mynodebtc.com/"
+  },
+  "blog": {
+    "value": "-"
+  },
+  "twitter": {
+    "value": "@mynodebtc",
+    "url": "https://x.com/mynodebtc"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "@mynode",
+    "url": "https://www.youtube.com/@mynode"
+  },
+  "github": {
+    "value": "mynodebtc",
+    "url": "https://github.com/mynodebtc"
+  }
+}

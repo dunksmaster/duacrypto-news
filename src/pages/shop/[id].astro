@@ -1,0 +1,9 @@
+---
+export function getStaticPaths() {
+  return [{ params: { id: "bitcoin-supercycle" } }];
+}
+
+const { id } = Astro.params;
+const target = id === "bitcoin-supercycle" ? "/books/bitcoin-supercycle/" : "/books/";
+return Astro.redirect(target, 301);
+---

@@ -1,0 +1,34 @@
+{
+  "brand": {
+    "value": "Keevo"
+  },
+  "description": {
+    "value": "Keevo is a hardware cryptocurrency wallet that secures digital assets using a multi-factor authentication system and dual-chip architecture. It supports a wide range of cryptocurrencies, features a touch display and offers seedless recovery via its Carbon Key system. Keevo also includes a trustless inheritance function for transferring crypto to beneficiaries without sharing private keys."
+  },
+  "headquarters": {
+    "value": "USA",
+    "countryCode": "US"
+  },
+  "website": {
+    "value": "keevowallet.com",
+    "url": "https://www.keevowallet.com/"
+  },
+  "blog": {
+    "value": "keevowallet.com/blogs/news",
+    "url": "https://www.keevowallet.com/blogs/news"
+  },
+  "twitter": {
+    "value": "@keevowallet",
+    "url": "https://x.com/keevowallet"
+  },
+  "nostr": {
+    "value": "-"
+  },
+  "youtube": {
+    "value": "@keevo6539",
+    "url": "https://www.youtube.com/@keevo6539"
+  },
+  "github": {
+    "value": "-"
+  }
+}

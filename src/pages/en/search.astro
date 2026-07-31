@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SearchPanel from "../../components/SearchPanel.astro";
 import { t } from "../../i18n/ui";
 
 const locale = "en" as const;
@@ -16,21 +17,7 @@ const strings = t(locale);
   <section class="py-12" data-pagefind-body>
     <div class="section-shell max-w-3xl">
       <h1 class="mb-6 text-4xl font-bold">{strings.searchTitle}</h1>
-      <div id="search"></div>
-      <div id="search-results"></div>
+      <SearchPanel locale={locale} />
     </div>
   </section>
-  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
-  <script is:inline src="/pagefind/pagefind-ui.js"></script>
-  <script is:inline>
-    window.addEventListener("DOMContentLoaded", function () {
-      if (typeof PagefindUI === "undefined") return;
-      new PagefindUI({ element: "#search", showSubResults: true, resetStyles: false });
-      document.querySelectorAll("[data-pagefind-filter]").forEach(function (el) {
-        if (!String(el.getAttribute("data-pagefind-filter")).includes("lang:en")) {
-          el.setAttribute("data-pagefind-ignore", "true");
-        }
-      });
-    });
-  </script>
 </BaseLayout>

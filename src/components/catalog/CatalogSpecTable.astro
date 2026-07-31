@@ -1,0 +1,126 @@
+---
+import type { FeatureGroup } from "../../lib/catalog";
+
+interface Props {
+  groups: FeatureGroup[];
+  title: string;
+}
+
+const { groups, title } = Astro.props;
+
+function pillClass(flag?: string, value?: string): string {
+  const v = (value ?? "").toUpperCase();
+  if (flag === "positive" || v === "YES" || v === "TRUE") return "spec-pill spec-pill--yes";
+  if (flag === "negative" || v === "NO" || v === "FALSE") return "spec-pill spec-pill--no";
+  if (flag === "experimental" || v.includes("EXPERIMENTAL")) return "spec-pill spec-pill--exp";
+  return "spec-pill spec-pill--neutral";
+}
+---
+
+<section class="spec-table">
+  <h2 class="spec-table__title">{title}</h2>
+  {
+    groups.map((group) => (
+      <div class="spec-table__group">
+        <h3 class="spec-table__group-title">{group.label}</h3>
+        <div class="spec-table__list">
+          {group.features.map((feat) => (
+            <div class="spec-table__row">
+              <span class="spec-table__label">{feat.label}</span>
+              <span class={pillClass(feat.flag, feat.value)}>{feat.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .spec-table {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: var(--color-card);
+  }
+
+  .spec-table__title {
+    margin: 0 0 1.25rem;
+    font-size: 1.35rem;
+  }
+
+  .spec-table__group + .spec-table__group {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .spec-table__group-title {
+    margin: 0 0 0.85rem;
+    font-size: 1rem;
+    color: var(--color-secondary);
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .spec-table__list {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+  }
+
+  .spec-table__row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .spec-table__label {
+    font-size: 0.92rem;
+    color: var(--color-text);
+  }
+
+  .spec-pill {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .spec-pill--yes {
+    background: color-mix(in srgb, #16a34a 18%, transparent);
+    color: #15803d;
+  }
+
+  .spec-pill--no {
+    background: color-mix(in srgb, #dc2626 15%, transparent);
+    color: #b91c1c;
+  }
+
+  .spec-pill--exp {
+    background: color-mix(in srgb, var(--btc) 20%, transparent);
+    color: var(--btc);
+  }
+
+  .spec-pill--neutral {
+    background: color-mix(in srgb, var(--color-secondary) 12%, transparent);
+    color: var(--color-secondary);
+  }
+
+  :root.dark .spec-pill--yes,
+  :root[data-theme="dark"] .spec-pill--yes {
+    color: #86efac;
+  }
+
+  :root.dark .spec-pill--no,
+  :root[data-theme="dark"] .spec-pill--no {
+    color: #fca5a5;
+  }
+</style>

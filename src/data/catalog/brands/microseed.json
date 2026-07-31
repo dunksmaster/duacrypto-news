@@ -1,0 +1,38 @@
+{
+  "brand": {
+    "value": "MicroSeed"
+  },
+  "description": {
+    "value": "MicroSeed offers a seed phrase backup kit that stamps an entire 24-word Bitcoin seed phrase onto one-inch stainless steel or titanium washers. The product is designed to be fireproof, waterproof, discreet and durable, using standard hardware-store washers and a precision alignment system. It positions itself as a compact alternative to paper backups and bulky metal storage."
+  },
+  "headquarters": {
+    "value": "USA",
+    "countryCode": "US"
+  },
+  "website": {
+    "value": "Microseed",
+    "url": "https://microseed.io/"
+  },
+  "blog": {
+    "value": "-"
+  },
+  "twitter": {
+    "value": "-"
+  },
+  "nostr": {
+    "value": "Daniel 21e15",
+    "url": "https://primal.net/p/npub1zp8k7l0nc5wff9qpx5cyxsrtca6c9ewu6mr4pc23ftf4wgst7jvsexkqsl"
+  },
+  "youtube": {
+    "value": "-"
+  },
+  "github": {
+    "value": "-"
+  },
+  "slack": {
+    "value": "-"
+  },
+  "discord": {
+    "value": "-"
+  }
+}
