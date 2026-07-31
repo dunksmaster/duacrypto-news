@@ -2,9 +2,11 @@
 import type { Locale } from "../../i18n/ui";
 import { t, localePath } from "../../i18n/ui";
 import {
+  brandPath,
   categoryBlurb,
   categoryLabel,
   categoryPath,
+  getBrands,
   getCategories,
   getSpotlightItems,
   itemPath,
@@ -20,22 +22,38 @@ const { locale = "sq" } = Astro.props;
 const strings = t(locale);
 const categories = getCategories();
 const spotlight = getSpotlightItems();
+const allBrands = getBrands();
+const brands = allBrands.slice(0, 12);
+const productCount = categories.reduce((n, c) => n + c.count, 0) + 1;
 ---
 
-<section class="catalog-hero-band">
-  <div class="section-shell catalog-hero-band__inner">
-    <p class="meta-mono catalog-hero-band__eyebrow">DuaCrypto</p>
-    <h1 class="catalog-hero-band__title">{strings.catalogHeroTitle}</h1>
-    <p class="catalog-hero-band__lead">{strings.catalogHeroSubtitle}</p>
+<section class="catalog-hero">
+  <div class="section-shell catalog-hero__inner">
+    <p class="catalog-hero__eyebrow">DuaCrypto · Self-Custody</p>
+    <h1 class="catalog-hero__title">{strings.catalogHeroTitle}</h1>
+    <p class="catalog-hero__lead">{strings.catalogHeroSubtitle}</p>
+    <div class="catalog-hero__stats">
+      <span class="catalog-hero__stat">
+        <strong>{productCount}+</strong> products
+      </span>
+      <span class="catalog-hero__stat">
+        <strong>{allBrands.length}</strong> brands
+      </span>
+      <span class="catalog-hero__stat">
+        <strong>{categories.length}</strong> categories
+      </span>
+    </div>
   </div>
 </section>
 
 <section class="catalog-section">
   <div class="section-shell">
-    <p class="meta-mono catalog-section__eyebrow">{strings.shopExploreEyebrow}</p>
-    <h2 class="catalog-section__title">{strings.shopExploreTitle}</h2>
-    <p class="catalog-section__lead">{strings.shopExploreLead}</p>
-    <div class="catalog-section__grid catalog-section__grid--cats">
+    <header class="catalog-section__head">
+      <p class="catalog-section__eyebrow">{strings.shopExploreEyebrow}</p>
+      <h2 class="catalog-section__title">{strings.shopExploreTitle}</h2>
+      <p class="catalog-section__lead">{strings.shopExploreLead}</p>
+    </header>
+    <div class="catalog-grid--cats">
       {
         categories.map((cat) => (
           <ShopCategoryCard
@@ -53,12 +71,14 @@ const spotlight = getSpotlightItems();
 
 {
   spotlight.length > 0 && (
-    <section class="catalog-section catalog-section--alt">
+    <section class="catalog-section catalog-section--muted">
       <div class="section-shell">
-        <p class="meta-mono catalog-section__eyebrow">{strings.catalogSpotlight}</p>
-        <h2 class="catalog-section__title">{strings.catalogSpotlight}</h2>
-        <p class="catalog-section__lead">{strings.catalogSpotlightLead}</p>
-        <div class="catalog-section__grid catalog-section__grid--spotlight">
+        <header class="catalog-section__head">
+          <p class="catalog-section__eyebrow">{strings.catalogSpotlight}</p>
+          <h2 class="catalog-section__title">{strings.catalogSpotlight}</h2>
+          <p class="catalog-section__lead">{strings.catalogSpotlightLead}</p>
+        </header>
+        <div class="catalog-grid--spotlight">
           {spotlight.map((item) => (
             <ShopSpotlightCard
               title={item.name}
@@ -75,120 +95,32 @@ const spotlight = getSpotlightItems();
 
 <section class="catalog-section">
   <div class="section-shell">
-    <p class="meta-mono catalog-section__eyebrow">{strings.catalogExploreBrands}</p>
-    <h2 class="catalog-section__title">{strings.catalogExploreBrands}</h2>
-    <p class="catalog-section__lead">{strings.catalogExploreBrandsLead}</p>
-    <a href={localePath("/brands/", locale)} class="catalog-section__link meta-mono">
-      {strings.viewAll} →
+    <header class="catalog-section__head">
+      <p class="catalog-section__eyebrow">{strings.catalogExploreBrands}</p>
+      <h2 class="catalog-section__title">{strings.catalogExploreBrands}</h2>
+      <p class="catalog-section__lead">{strings.catalogExploreBrandsLead}</p>
+    </header>
+    <div class="catalog-grid--brands">
+      {
+        brands.map((brand) => (
+          <a href={brandPath(brand.id, locale)} class="catalog-brand-chip" title={brand.name}>
+            {
+              brand.logo ? (
+                <img src={brand.logo} alt="" width="48" height="48" loading="lazy" />
+              ) : (
+                <span class="catalog-brand-chip__fallback">{brand.name.slice(0, 3)}</span>
+              )
+            }
+          </a>
+        ))
+      }
+    </div>
+    <a href={localePath("/brands/", locale)} class="catalog-section__cta">
+      {strings.viewAll} brands →
     </a>
   </div>
 </section>
 
-<style>
-  .catalog-hero-band {
-    padding: 3.5rem 0 3rem;
-    background: linear-gradient(
-      165deg,
-      color-mix(in srgb, var(--ink) 92%, var(--cyan)) 0%,
-      color-mix(in srgb, var(--ink) 96%, #0f172a) 100%
-    );
-    color: #f8fafc;
-  }
-
-  .catalog-hero-band__inner {
-    max-width: 42rem;
-  }
-
-  .catalog-hero-band__eyebrow {
-    margin: 0 0 0.75rem;
-    color: color-mix(in srgb, #f8fafc 65%, var(--cyan));
-  }
-
-  .catalog-hero-band__title {
-    margin: 0 0 0.85rem;
-    font-size: clamp(2rem, 4vw, 2.85rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-  }
-
-  .catalog-hero-band__lead {
-    margin: 0;
-    color: color-mix(in srgb, #f8fafc 78%, transparent);
-    font-size: 1.08rem;
-    line-height: 1.55;
-  }
-
-  .catalog-section {
-    padding: 2.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .catalog-section--alt {
-    background: color-mix(in srgb, var(--color-page) 92%, var(--color-card));
-  }
-
-  .catalog-section__eyebrow {
-    margin: 0 0 0.45rem;
-    color: var(--color-secondary);
-  }
-
-  .catalog-section__title {
-    margin: 0 0 0.5rem;
-    font-size: clamp(1.65rem, 3vw, 2.1rem);
-  }
-
-  .catalog-section__lead {
-    margin: 0 0 1.5rem;
-    max-width: 38rem;
-    color: var(--color-secondary);
-    line-height: 1.5;
-  }
-
-  .catalog-section__grid--cats {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 640px) {
-    .catalog-section__grid--cats {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 960px) {
-    .catalog-section__grid--cats {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .catalog-section__grid--spotlight {
-    display: grid;
-    gap: 0.75rem;
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 720px) {
-    .catalog-section__grid--spotlight {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .catalog-section__grid--spotlight {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .catalog-section__link {
-    display: inline-block;
-    color: var(--color-link);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-  }
-
-  .catalog-section__link:hover {
-    text-decoration: underline;
-  }
+<style is:global>
+  @import "../../styles/catalog.css";
 </style>

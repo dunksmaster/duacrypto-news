@@ -12,23 +12,23 @@ const { item, locale = "sq" } = Astro.props;
 const href = itemPath(item.category, item.id, locale);
 ---
 
-<a href={href} class="catalog-grid-card">
+<a href={href} class="product-card">
   {
     item.thumb && (
-      <span class="catalog-grid-card__media">
+      <span class="product-card__media">
         <img src={item.thumb} alt="" width="120" height="180" loading="lazy" />
       </span>
     )
   }
-  <span class="catalog-grid-card__body">
-    <span class="catalog-grid-card__title">{item.name}</span>
-    {item.author && <span class="catalog-grid-card__meta">{item.author}</span>}
-    {item.shortDescription && <span class="catalog-grid-card__desc">{item.shortDescription}</span>}
+  <span class="product-card__body">
+    <span class="product-card__title">{item.name}</span>
+    {item.author && <span class="product-card__meta">{item.author}</span>}
+    {item.shortDescription && <span class="product-card__desc">{item.shortDescription}</span>}
   </span>
 </a>
 
 <style>
-  .catalog-grid-card {
+  .product-card {
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
@@ -37,57 +37,71 @@ const href = itemPath(item.category, item.id, locale);
     border-radius: 0.85rem;
     background: var(--color-card);
     text-decoration: none;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    color: inherit;
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--ink) 4%, transparent);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     height: 100%;
   }
 
-  .catalog-grid-card:hover {
-    border-color: color-mix(in srgb, var(--cyan) 35%, var(--color-border));
-    box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 8%, transparent);
+  .product-card:hover {
+    border-color: color-mix(in srgb, var(--btc) 35%, var(--color-border));
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 9%, transparent);
     transform: translateY(-2px);
   }
 
-  .catalog-grid-card__media {
+  .product-card__media {
     display: block;
     margin: 0 auto;
-    max-width: 8rem;
-    border-radius: 0.4rem;
+    max-width: 7.5rem;
+    border-radius: 0.45rem;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    background: var(--color-page);
+    background: color-mix(in srgb, var(--color-page) 80%, var(--color-card));
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--ink) 8%, transparent);
   }
 
-  .catalog-grid-card__media img {
+  .product-card__media img {
     display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 2 / 3;
     object-fit: cover;
+    transition: transform 0.25s ease;
   }
 
-  .catalog-grid-card__body {
+  .product-card:hover .product-card__media img {
+    transform: scale(1.03);
+  }
+
+  .product-card__body {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     min-width: 0;
+    text-align: center;
   }
 
-  .catalog-grid-card__title {
-    font-weight: 700;
-    color: var(--color-text);
-    line-height: 1.25;
+  .product-card__title {
+    font-weight: 800;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
-  .catalog-grid-card__meta {
+  .product-card:hover .product-card__title {
+    color: var(--color-link);
+  }
+
+  .product-card__meta {
     color: var(--color-secondary);
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
   }
 
-  .catalog-grid-card__desc {
+  .product-card__desc {
     color: var(--color-secondary);
-    font-size: 0.88rem;
+    font-size: 0.84rem;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;

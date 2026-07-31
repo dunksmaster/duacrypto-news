@@ -45,24 +45,25 @@ const isMining = categoryId === "mining";
     label: strings.readInEnglish,
   }}
 >
-  <section class="cat-page" data-pagefind-body>
+  <section class="catalog-section" data-pagefind-body>
     <div class="section-shell">
-      <nav class="cat-page__crumbs meta-mono" aria-label="Breadcrumb">
+      <nav class="cat-page__crumbs" aria-label="Breadcrumb">
         <a href={localePath("/", locale)}>{strings.home}</a>
         <span aria-hidden="true">/</span>
         <span>{label}</span>
       </nav>
 
-      <header class="cat-page__head">
-        <h1>{isMining ? strings.catalogMiningTitle : label}</h1>
-        <p>{isMining ? strings.catalogMiningLead : blurb}</p>
+      <header class="catalog-section__head">
+        <p class="catalog-section__eyebrow">{strings.allCategories}</p>
+        <h1 class="catalog-section__title">{isMining ? strings.catalogMiningTitle : label}</h1>
+        <p class="catalog-section__lead">{isMining ? strings.catalogMiningLead : blurb}</p>
       </header>
 
       {
         isMining ? (
           <div class="cat-page__mining-cta">
             <p>{strings.shopBody}</p>
-            <a href={site.telegramUrl} class="btn-primary" target="_blank" rel="noopener noreferrer">
+            <a href={site.telegramUrl} class="catalog-section__cta" target="_blank" rel="noopener noreferrer">
               {strings.shopCta}
             </a>
           </div>
@@ -79,17 +80,16 @@ const isMining = categoryId === "mining";
 </BaseLayout>
 
 <style>
-  .cat-page {
-    padding: 2.5rem 0 4rem;
-  }
-
   .cat-page__crumbs {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1.25rem;
     color: var(--color-secondary);
-    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .cat-page__crumbs a {
@@ -97,22 +97,10 @@ const isMining = categoryId === "mining";
     text-decoration: none;
   }
 
-  .cat-page__head h1 {
-    margin: 0 0 0.5rem;
-    font-size: clamp(1.75rem, 3vw, 2.35rem);
-  }
-
-  .cat-page__head p {
-    margin: 0 0 1.75rem;
-    max-width: 40rem;
-    color: var(--color-secondary);
-    line-height: 1.55;
-  }
-
   .cat-page__grid {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
   .cat-page__mining-cta {
@@ -121,6 +109,7 @@ const isMining = categoryId === "mining";
     border-radius: 1rem;
     background: var(--color-card);
     max-width: 36rem;
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--ink) 4%, transparent);
   }
 
   .cat-page__mining-cta p {

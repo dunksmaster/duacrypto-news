@@ -1,14 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CatalogHomeSections from "../../components/catalog/CatalogHomeSections.astro";
-import BlogGridCard from "../../components/BlogGridCard.astro";
+import HomeBlogSection from "../../components/catalog/HomeBlogSection.astro";
 import { getPublishedPostsForLocale } from "../../lib/posts";
 import { t, localePath } from "../../i18n/ui";
 
 const locale = "en" as const;
 const strings = t(locale);
 const posts = await getPublishedPostsForLocale(locale);
-const latest = posts.slice(0, 3);
 ---
 
 <BaseLayout
@@ -22,76 +21,7 @@ const latest = posts.slice(0, 3);
     available: true,
     label: strings.readInAlbanian,
   }}
-  showTrustBar={true}
 >
   <CatalogHomeSections locale={locale} />
-
-  {
-    latest.length > 0 && (
-      <section class="latest-blog" data-pagefind-body>
-        <div class="section-shell">
-          <p class="meta-mono latest-blog__eyebrow">{strings.fromTheBlog}</p>
-          <h2 class="latest-blog__title">{strings.latestPosts}</h2>
-          <p class="latest-blog__lead">{strings.latestPostsLead}</p>
-          <div class="latest-blog__grid">
-            {latest.map((post) => (
-              <BlogGridCard post={post} locale={locale} />
-            ))}
-          </div>
-          <a href={localePath("/blog/", locale)} class="latest-blog__more meta-mono">
-            {strings.viewAllPosts}
-          </a>
-        </div>
-      </section>
-    )
-  }
+  <HomeBlogSection posts={posts} locale={locale} />
 </BaseLayout>
-
-<style>
-  .latest-blog {
-    padding: 2.75rem 0 3rem;
-  }
-
-  .latest-blog__eyebrow {
-    margin: 0 0 0.45rem;
-    color: var(--color-secondary);
-  }
-
-  .latest-blog__title {
-    margin: 0 0 0.5rem;
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
-  }
-
-  .latest-blog__lead {
-    margin: 0 0 1.5rem;
-    max-width: 36rem;
-    color: var(--color-secondary);
-    line-height: 1.5;
-  }
-
-  .latest-blog__grid {
-    display: grid;
-    gap: 1.15rem;
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 720px) {
-    .latest-blog__grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .latest-blog__more {
-    display: inline-block;
-    margin-top: 1.35rem;
-    color: var(--color-secondary);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-  }
-
-  .latest-blog__more:hover {
-    color: var(--color-link);
-    text-decoration: underline;
-  }
-</style>

@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BlogGridCard from "../BlogGridCard.astro";
+import { t, localePath, type Locale } from "../../i18n/ui";
+
+interface Props {
+  posts: CollectionEntry<"posts">[];
+  locale?: Locale;
+  limit?: number;
+}
+
+const { posts, locale = "sq", limit = 3 } = Astro.props;
+const strings = t(locale);
+const latest = posts.slice(0, limit);
+
+if (latest.length === 0) return null;
+---
+
+<section class="catalog-section catalog-section--muted" data-pagefind-body>
+  <div class="section-shell">
+    <header class="catalog-section__head">
+      <p class="catalog-section__eyebrow">{strings.fromTheBlog}</p>
+      <h2 class="catalog-section__title">{strings.latestPosts}</h2>
+      <p class="catalog-section__lead">{strings.latestPostsLead}</p>
+    </header>
+    <div class="home-blog__grid">
+      {latest.map((post) => (
+        <BlogGridCard post={post} locale={locale} />
+      ))}
+    </div>
+    <a href={localePath("/blog/", locale)} class="catalog-section__link">
+      {strings.viewAllPosts} →
+    </a>
+  </div>
+</section>
+
+<style>
+  .home-blog__grid {
+    display: grid;
+    gap: 1.15rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .home-blog__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<style is:global>
+  @import "../../styles/catalog.css";
+</style>
