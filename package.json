@@ -43,5 +43,9 @@
     "nostr-tools": "^2.10.4",
     "pagefind": "^1.5.2",
     "wrangler": "^4.100.0"
+  },
+  "overrides": {
+    "brace-expansion": "^5.0.8",
+    "minimatch": "^10.2.1"
   }
 }
