@@ -102,7 +102,7 @@ const TitleTag = `h${headingLevel}` as "h1" | "h2" | "h3";
     gap: 1.75rem;
     padding: 1.5rem;
     border: 1px solid var(--color-border);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     background: var(--color-card);
     box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 7%, transparent);
   }
@@ -125,7 +125,7 @@ const TitleTag = `h${headingLevel}` as "h1" | "h2" | "h3";
     width: min(100%, 280px);
     padding: 0.75rem;
     border: 1px solid var(--color-border);
-    border-radius: 0.85rem;
+    border-radius: 0.5rem;
     background: color-mix(in srgb, var(--color-page) 80%, var(--color-card));
   }
 
@@ -159,9 +159,10 @@ const TitleTag = `h${headingLevel}` as "h1" | "h2" | "h3";
 
   .catalog-hero__title {
     margin: 0 0 0.5rem;
-    font-size: clamp(1.75rem, 3vw, 2.35rem);
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
   }
 
   .catalog-hero__subtitle {
