@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import CatalogGridCard from "../../components/catalog/CatalogGridCard.astro";
+import CatalogFilterBar from "../../components/catalog/CatalogFilterBar.astro";
 import {
   catalogCategoryPaths,
   categoryBlurb,
@@ -68,11 +68,7 @@ const isMining = categoryId === "mining";
             </a>
           </div>
         ) : (
-          <div class="cat-page__grid">
-            {items.map((item) => (
-              <CatalogGridCard item={item} locale={locale} />
-            ))}
-          </div>
+          <CatalogFilterBar categoryId={categoryId} items={items} locale={locale} />
         )
       }
     </div>
@@ -95,12 +91,6 @@ const isMining = categoryId === "mining";
   .cat-page__crumbs a {
     color: var(--color-link);
     text-decoration: none;
-  }
-
-  .cat-page__grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
   .cat-page__mining-cta {

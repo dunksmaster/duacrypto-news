@@ -248,15 +248,6 @@ export function getBrands(): CatalogBrandSummary[] {
   return catalogIndex.brands as CatalogBrandSummary[];
 }
 
-/** Two-letter monogram for logo-less brand chips (intentional fallback, not a missing image). */
-export function brandMonogram(name: string): string {
-  const words = name.trim().split(/\s+/).filter(Boolean);
-  if (words.length >= 2) {
-    return `${words[0]![0] ?? ""}${words[1]![0] ?? ""}`.toUpperCase();
-  }
-  return name.slice(0, 2).toUpperCase();
-}
-
 export function getBrand(id: string): CatalogBrandSummary | undefined {
   return getBrands().find((b) => b.id === id);
 }
@@ -449,6 +440,127 @@ export function itemAuthor(item: CatalogItemFull | CatalogItemSummary): string {
 
 export function itemBuyLink(item: CatalogItemSummary): string | null {
   return item.buyLink ?? null;
+}
+
+export function getCategoryBrandCount(categoryId: CatalogCategoryId): number {
+  const brands = new Set(
+    getItems(categoryId)
+      .map((i) => i.brand?.toLowerCase())
+      .filter(Boolean),
+  );
+  return brands.size;
+}
+
+export type CategoryFilterFacet = {
+  id: string;
+  label: Partial<Record<Locale, string>>;
+};
+
+/**
+ * MVP filter facets per category. Full 90-field TBH sidebar needs owner scoping
+ * before expanding — see docs/CURSOR-MASTER-TASKLIST.md Task C.
+ */
+const CATEGORY_FILTER_FACETS: Partial<Record<CatalogCategoryId, CategoryFilterFacet[]>> = {
+  "hardware-wallets": [
+    { id: "air-gapped", label: { en: "Air-gapped", sq: "Air-gapped" } },
+    {
+      id: "bitcoin-only-firmware",
+      label: { en: "Bitcoin-only firmware", sq: "Firmware vetëm Bitcoin" },
+    },
+    { id: "purchasable", label: { en: "Available to buy", sq: "Në shitje" } },
+  ],
+  "software-wallets": [
+    { id: "bitcoin-only", label: { en: "Bitcoin-only", sq: "Vetëm Bitcoin" } },
+    { id: "open-source", label: { en: "Open source", sq: "Open source" } },
+    { id: "purchasable", label: { en: "Available to buy", sq: "Në shitje" } },
+  ],
+  books: [
+    { id: "purchasable", label: { en: "Available to buy", sq: "Në shitje" } },
+    { id: "paperback", label: { en: "Paperback", sq: "Paperback" } },
+    { id: "ebook", label: { en: "E-book", sq: "E-book" } },
+  ],
+  "bitcoin-nodes": [
+    { id: "bitcoin-only", label: { en: "Bitcoin-only", sq: "Vetëm Bitcoin" } },
+    { id: "purchasable", label: { en: "Available to buy", sq: "Në shitje" } },
+  ],
+  "seed-backup": [
+    { id: "purchasable", label: { en: "Available to buy", sq: "Në shitje" } },
+    {
+      id: "include-all-tools",
+      label: { en: "Includes all tools", sq: "Përfshin të gjitha mjetet" },
+    },
+    { id: "fire-proof", label: { en: "Fireproof", sq: "Rezistent ndaj zjarrit" } },
+  ],
+  inheritance: [
+    { id: "bitcoin-only", label: { en: "Bitcoin-only", sq: "Vetëm Bitcoin" } },
+    { id: "purchasable", label: { en: "Available to buy", sq: "Në shitje" } },
+  ],
+};
+
+export function getCategoryFilterFacets(categoryId: CatalogCategoryId): CategoryFilterFacet[] {
+  return CATEGORY_FILTER_FACETS[categoryId] ?? [];
+}
+
+function findNestedField(item: CatalogItemFull, fieldKey: string): CatalogField | undefined {
+  for (const [groupKey, groupVal] of Object.entries(item)) {
+    if (SKIP_FEATURE_KEYS.has(groupKey)) continue;
+    if (groupVal == null || typeof groupVal !== "object" || Array.isArray(groupVal)) continue;
+    if (fieldKey in (groupVal as Record<string, unknown>)) {
+      return (groupVal as Record<string, CatalogField>)[fieldKey];
+    }
+  }
+  return undefined;
+}
+
+function isFieldActive(field: CatalogField | undefined): boolean {
+  if (!field) return false;
+  if (field.supported === true) return true;
+  const value = (field.value ?? "").trim().toUpperCase();
+  return value.startsWith("YES");
+}
+
+function hasOpenSource(item: CatalogItemFull): boolean {
+  for (const [groupKey, groupVal] of Object.entries(item)) {
+    if (SKIP_FEATURE_KEYS.has(groupKey)) continue;
+    if (groupVal == null || typeof groupVal !== "object" || Array.isArray(groupVal)) continue;
+    for (const [featKey, featVal] of Object.entries(groupVal as Record<string, CatalogField>)) {
+      if (!featKey.includes("open-source")) continue;
+      if (isFieldActive(featVal)) return true;
+    }
+  }
+  return false;
+}
+
+export function getItemFilterFlags(
+  categoryId: CatalogCategoryId,
+  item: CatalogItemSummary,
+): Record<string, boolean> {
+  const facets = getCategoryFilterFacets(categoryId);
+  const full = getItemFull(categoryId, item.id);
+  const flags: Record<string, boolean> = {};
+
+  for (const facet of facets) {
+    if (facet.id === "purchasable") {
+      flags[facet.id] = item.purchasable === true;
+    } else if (facet.id === "open-source") {
+      flags[facet.id] = full ? hasOpenSource(full) : false;
+    } else if (full) {
+      flags[facet.id] = isFieldActive(findNestedField(full, facet.id));
+    } else {
+      flags[facet.id] = false;
+    }
+  }
+
+  return flags;
+}
+
+export function getItemYear(categoryId: CatalogCategoryId, id: string): number {
+  const full = getItemFull(categoryId, id);
+  const yearStr = fieldValue(
+    (full?.["basic-information"] as Record<string, CatalogField> | undefined)?.year,
+  );
+  const year = yearStr ? Number.parseInt(yearStr, 10) : 0;
+  return Number.isFinite(year) ? year : 0;
 }
 
 export function catalogStaticPaths(): { params: { category: string; id: string } }[] {

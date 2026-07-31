@@ -1,0 +1,269 @@
+---
+import CatalogGridCard from "./CatalogGridCard.astro";
+import type { Locale } from "../../i18n/ui";
+import { t } from "../../i18n/ui";
+import {
+  getCategoryBrandCount,
+  getCategoryFilterFacets,
+  getItemFilterFlags,
+  getItemYear,
+  type CatalogCategoryId,
+  type CatalogItemSummary,
+} from "../../lib/catalog";
+
+interface Props {
+  categoryId: CatalogCategoryId;
+  items: CatalogItemSummary[];
+  locale?: Locale;
+}
+
+const { categoryId, items, locale = "sq" } = Astro.props;
+const strings = t(locale);
+const brandCount = getCategoryBrandCount(categoryId);
+const facets = getCategoryFilterFacets(categoryId);
+const productCount = items.length;
+---
+
+<div class="cat-filter-bar" data-cat-filter-bar>
+  <p class="cat-filter-bar__stats meta-mono">
+    {productCount} {strings.catalogProductsLabel.toUpperCase()} · {brandCount}{" "}
+    {strings.catalogBrandsLabel.toUpperCase()}
+  </p>
+
+  {
+    facets.length > 0 && (
+      <div class="cat-filter-bar__controls">
+        <fieldset class="cat-filter-bar__filters">
+          <legend>{strings.catalogFilters}</legend>
+          <div class="cat-filter-bar__filter-list">
+            {facets.map((facet) => (
+              <label class="cat-filter-bar__filter">
+                <input type="checkbox" name="filter" value={facet.id} data-filter-input />
+                <span>{facet.label[locale] ?? facet.label.en ?? facet.id}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label class="cat-filter-bar__sort">
+          <span>{strings.catalogSortBy}</span>
+          <select data-sort-select>
+            <option value="name">{strings.catalogSortName}</option>
+            <option value="newest">{strings.catalogSortNewest}</option>
+          </select>
+        </label>
+      </div>
+    )
+  }
+
+  <p class="cat-filter-bar__result meta-mono" data-result-count hidden>
+    {strings.catalogShowing} <span data-visible-count>{productCount}</span> {strings.catalogOf}{" "}
+    {productCount}
+  </p>
+
+  <div class="cat-page__grid" data-filter-grid>
+    {
+      items.map((item) => (
+        <div
+          class="cat-filter-bar__item"
+          data-name={item.name.toLowerCase()}
+          data-year={getItemYear(categoryId, item.id)}
+          data-filters={JSON.stringify(getItemFilterFlags(categoryId, item))}
+        >
+          <CatalogGridCard item={item} locale={locale} />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  function initCatalogFilterBar(root: HTMLElement) {
+    const grid = root.querySelector<HTMLElement>("[data-filter-grid]");
+    const sortSelect = root.querySelector<HTMLSelectElement>("[data-sort-select]");
+    const filterInputs = root.querySelectorAll<HTMLInputElement>("[data-filter-input]");
+    const resultLine = root.querySelector<HTMLElement>("[data-result-count]");
+    const visibleCountEl = root.querySelector<HTMLElement>("[data-visible-count]");
+    if (!grid) return;
+
+    const cards = [...grid.querySelectorAll<HTMLElement>(".cat-filter-bar__item")];
+
+    function readUrlState() {
+      const params = new URLSearchParams(window.location.search);
+      const sort = params.get("sort") === "newest" ? "newest" : "name";
+      const filters = (params.get("filter") ?? "")
+        .split(",")
+        .map((f) => f.trim())
+        .filter(Boolean);
+      return { sort, filters };
+    }
+
+    function writeUrlState(sort: string, filters: string[]) {
+      const params = new URLSearchParams(window.location.search);
+      if (sort === "name") params.delete("sort");
+      else params.set("sort", sort);
+      if (filters.length === 0) params.delete("filter");
+      else params.set("filter", filters.join(","));
+      const query = params.toString();
+      const next = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+      window.history.replaceState({}, "", next);
+    }
+
+    function parseFilters(el: HTMLElement): Record<string, boolean> {
+      try {
+        return JSON.parse(el.dataset.filters ?? "{}") as Record<string, boolean>;
+      } catch {
+        return {};
+      }
+    }
+
+    function apply() {
+      const sort = sortSelect?.value ?? "name";
+      const activeFilters = [...filterInputs]
+        .filter((input) => input.checked)
+        .map((input) => input.value);
+
+      writeUrlState(sort, activeFilters);
+
+      const visible: HTMLElement[] = [];
+      for (const card of cards) {
+        const flags = parseFilters(card);
+        const matches =
+          activeFilters.length === 0 || activeFilters.every((filterId) => flags[filterId] === true);
+        card.hidden = !matches;
+        if (matches) visible.push(card);
+      }
+
+      visible.sort((a, b) => {
+        if (sort === "newest") {
+          return Number(b.dataset.year ?? 0) - Number(a.dataset.year ?? 0);
+        }
+        return (a.dataset.name ?? "").localeCompare(b.dataset.name ?? "", undefined, {
+          sensitivity: "base",
+        });
+      });
+
+      for (const card of visible) grid.appendChild(card);
+
+      if (resultLine && visibleCountEl) {
+        const filtered = activeFilters.length > 0;
+        resultLine.hidden = !filtered;
+        visibleCountEl.textContent = String(visible.length);
+      }
+    }
+
+    const initial = readUrlState();
+    if (sortSelect) sortSelect.value = initial.sort;
+    for (const input of filterInputs) {
+      input.checked = initial.filters.includes(input.value);
+    }
+
+    sortSelect?.addEventListener("change", apply);
+    for (const input of filterInputs) {
+      input.addEventListener("change", apply);
+    }
+
+    apply();
+  }
+
+  for (const root of document.querySelectorAll<HTMLElement>("[data-cat-filter-bar]")) {
+    initCatalogFilterBar(root);
+  }
+</script>
+
+<style>
+  .cat-filter-bar__stats {
+    margin: 0 0 1.25rem;
+    color: var(--color-secondary);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .cat-filter-bar__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-card);
+  }
+
+  .cat-filter-bar__filters {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  .cat-filter-bar__filters legend {
+    margin-bottom: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+  }
+
+  .cat-filter-bar__filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1rem;
+  }
+
+  .cat-filter-bar__filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .cat-filter-bar__filter input {
+    accent-color: var(--btc);
+  }
+
+  .cat-filter-bar__sort {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+  }
+
+  .cat-filter-bar__sort select {
+    min-width: 10rem;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.45rem;
+    background: var(--color-page);
+    color: var(--color-text);
+    font-size: 0.88rem;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .cat-filter-bar__result {
+    margin: 0 0 0.85rem;
+    color: var(--color-secondary);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+
+  .cat-filter-bar__item[hidden] {
+    display: none;
+  }
+
+  .cat-page__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+</style>
