@@ -35,7 +35,7 @@ const TitleTag = `h${headingLevel}` as "h1" | "h2" | "h3";
   {
     image && (
       <div class="catalog-hero__media">
-        <img src={image} alt={title} width="420" height="630" loading="lazy" />
+        <img src={image} alt={title} width="500" height="500" loading="lazy" />
       </div>
     )
   }
@@ -133,8 +133,8 @@ const TitleTag = `h${headingLevel}` as "h1" | "h2" | "h3";
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
     border-radius: 0.5rem;
   }
 

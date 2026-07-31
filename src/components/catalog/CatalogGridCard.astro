@@ -16,7 +16,7 @@ const href = itemPath(item.category, item.id, locale);
   {
     item.thumb && (
       <span class="product-card__media">
-        <img src={item.thumb} alt="" width="120" height="180" loading="lazy" />
+        <img src={item.thumb} alt="" width="120" height="120" loading="lazy" />
       </span>
     )
   }
@@ -64,8 +64,8 @@ const href = itemPath(item.category, item.id, locale);
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
     transition: transform 0.25s ease;
   }
 
