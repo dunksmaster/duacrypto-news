@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-31T15:07:21.215Z",
+  "syncedAt": "2026-07-31T22:39:07.147Z",
   "source": "thebitcoinhole/database",
   "categories": [
     {
@@ -3221,7 +3221,7 @@
       "id": "atlas-21",
       "name": "Atlas 21",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/atlas-21.webp"
     },
     {
       "id": "bitbar",
@@ -3233,7 +3233,7 @@
       "id": "bitbox",
       "name": "BitBox",
       "headquarters": "Switzerland",
-      "logo": null
+      "logo": "/catalog/img/brands/bitbox.webp"
     },
     {
       "id": "bitcoin-core-project",
@@ -3245,13 +3245,13 @@
       "id": "bitcoin-knots",
       "name": "Bitcoin Knots",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/bitcoin-knots.webp"
     },
     {
       "id": "bitcoin-safe",
       "name": "Bitcoin Safe",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/bitcoin-safe.webp"
     },
     {
       "id": "bithyve",
@@ -3275,19 +3275,19 @@
       "id": "block",
       "name": "Block",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/block.webp"
     },
     {
       "id": "blockstream",
       "name": "Blockstream",
       "headquarters": "Canada",
-      "logo": null
+      "logo": "/catalog/img/brands/blockstream.webp"
     },
     {
       "id": "bluewallet-services",
       "name": "Bluewallet Services",
       "headquarters": "Spain",
-      "logo": null
+      "logo": "/catalog/img/brands/bluewallet-services.webp"
     },
     {
       "id": "cardware-wallet",
@@ -3299,7 +3299,7 @@
       "id": "casa",
       "name": "Casa",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/casa.webp"
     },
     {
       "id": "citadel",
@@ -3317,19 +3317,19 @@
       "id": "coinkite",
       "name": "Coinkite",
       "headquarters": "Canada",
-      "logo": null
+      "logo": "/catalog/img/brands/coinkite.webp"
     },
     {
       "id": "coinspace",
       "name": "CoinSpace",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/coinspace.webp"
     },
     {
       "id": "composecure",
       "name": "CompoSecure",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/composecure.webp"
     },
     {
       "id": "coolbitx",
@@ -3347,25 +3347,25 @@
       "id": "cryptotag",
       "name": "Cryptotag",
       "headquarters": "Netherlands",
-      "logo": null
+      "logo": "/catalog/img/brands/cryptotag.webp"
     },
     {
       "id": "cypher-stack",
       "name": "Cypher Stack",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/cypher-stack.webp"
     },
     {
       "id": "cypherock",
       "name": "Cypherock",
       "headquarters": "Singapore",
-      "logo": null
+      "logo": "/catalog/img/brands/cypherock.webp"
     },
     {
       "id": "dcent",
       "name": "D'CENT",
       "headquarters": "Korea",
-      "logo": null
+      "logo": "/catalog/img/brands/dcent.webp"
     },
     {
       "id": "electrum",
@@ -3383,13 +3383,13 @@
       "id": "foundation-devices",
       "name": "Foundation Devices",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/foundation-devices.webp"
     },
     {
       "id": "frostsnap-tech",
       "name": "Frostsnap Tech",
       "headquarters": "Australia",
-      "logo": null
+      "logo": "/catalog/img/brands/frostsnap-tech.webp"
     },
     {
       "id": "grid-plus",
@@ -3407,7 +3407,7 @@
       "id": "impressart",
       "name": "ImpressArt",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/impressart.webp"
     },
     {
       "id": "infraops",
@@ -3419,19 +3419,19 @@
       "id": "jan3",
       "name": "Jan3",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/jan3.webp"
     },
     {
       "id": "jinca",
       "name": "Jinca",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/jinca.webp"
     },
     {
       "id": "keepkey",
       "name": "KeepKey",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/keepkey.webp"
     },
     {
       "id": "keevo",
@@ -3443,7 +3443,7 @@
       "id": "keycard",
       "name": "Keycard",
       "headquarters": "Germany",
-      "logo": null
+      "logo": "/catalog/img/brands/keycard.webp"
     },
     {
       "id": "keystone",
@@ -3455,7 +3455,7 @@
       "id": "ledger",
       "name": "Ledger",
       "headquarters": "France",
-      "logo": null
+      "logo": "/catalog/img/brands/ledger.webp"
     },
     {
       "id": "microseed",
@@ -3479,37 +3479,37 @@
       "id": "muun",
       "name": "Muun",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/muun.webp"
     },
     {
       "id": "mynode",
       "name": "MyNode",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/mynode.webp"
     },
     {
       "id": "ngrave",
       "name": "NGrave",
       "headquarters": "Belgium",
-      "logo": null
+      "logo": "/catalog/img/brands/ngrave.webp"
     },
     {
       "id": "nodl",
       "name": "nodl",
       "headquarters": "France",
-      "logo": null
+      "logo": "/catalog/img/brands/nodl.webp"
     },
     {
       "id": "nunchuk",
       "name": "Nunchuk",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/nunchuk.webp"
     },
     {
       "id": "onekey",
       "name": "OneKey",
       "headquarters": "Hong Kong",
-      "logo": null
+      "logo": "/catalog/img/brands/onekey.webp"
     },
     {
       "id": "pandora-prime-sa",
@@ -3527,25 +3527,25 @@
       "id": "privacy-pros",
       "name": "Privacy Pros",
       "headquarters": "?",
-      "logo": null
+      "logo": "/catalog/img/brands/privacy-pros.webp"
     },
     {
       "id": "prokey-optimum",
       "name": "Prokey Optimum",
       "headquarters": "Malaysia",
-      "logo": null
+      "logo": "/catalog/img/brands/prokey-optimum.webp"
     },
     {
       "id": "proton",
       "name": "Proton",
       "headquarters": "Switzerland",
-      "logo": null
+      "logo": "/catalog/img/brands/proton.webp"
     },
     {
       "id": "raspiblitz",
       "name": "RaspiBlitz",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/raspiblitz.webp"
     },
     {
       "id": "raspibolt",
@@ -3569,7 +3569,7 @@
       "id": "safepal",
       "name": "SafePal",
       "headquarters": "Singapore",
-      "logo": null
+      "logo": "/catalog/img/brands/safepal.webp"
     },
     {
       "id": "satochip",
@@ -3593,7 +3593,7 @@
       "id": "seedhammer",
       "name": "SeedHammer",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/seedhammer.webp"
     },
     {
       "id": "seedor",
@@ -3647,7 +3647,7 @@
       "id": "tangem",
       "name": "Tangem",
       "headquarters": "Switzerland",
-      "logo": null
+      "logo": "/catalog/img/brands/tangem.webp"
     },
     {
       "id": "theya",
@@ -3659,43 +3659,43 @@
       "id": "trezor",
       "name": "Trezor",
       "headquarters": "Czech Republic",
-      "logo": null
+      "logo": "/catalog/img/brands/trezor.webp"
     },
     {
       "id": "twentytwo",
       "name": "TwentyTwo",
       "headquarters": "Italy",
-      "logo": null
+      "logo": "/catalog/img/brands/twentytwo.webp"
     },
     {
       "id": "umbrel",
       "name": "Umbrel",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/umbrel.webp"
     },
     {
       "id": "unchained-capital",
       "name": "Unchained Capital",
       "headquarters": "USA",
-      "logo": null
+      "logo": "/catalog/img/brands/unchained-capital.webp"
     },
     {
       "id": "wasabi-wallet",
       "name": "Wasabi Wallet",
       "headquarters": "-",
-      "logo": null
+      "logo": "/catalog/img/brands/wasabi-wallet.webp"
     },
     {
       "id": "wizardsardine",
       "name": "Wizardsardine",
       "headquarters": "Portugal",
-      "logo": null
+      "logo": "/catalog/img/brands/wizardsardine.webp"
     },
     {
       "id": "zengo",
       "name": "Zengo",
       "headquarters": "Israel",
-      "logo": null
+      "logo": "/catalog/img/brands/zengo.webp"
     }
   ]
 }

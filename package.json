@@ -17,6 +17,7 @@
     "generate:localize": "node scripts/generate-post.mjs --localize",
     "generate:md-mirrors": "node scripts/generate-md-mirrors.mjs",
     "ping:indexnow": "node scripts/ping-indexnow.mjs",
+    "fetch:brand-logos": "node scripts/fetch-brand-logos.mjs",
     "smoke": "node scripts/smoke-test-news.mjs",
     "verify:engagement": "node scripts/verify-engagement.mjs",
     "test:e2e": "playwright test",
@@ -42,6 +43,7 @@
     "lighthouse": "^12.6.0",
     "nostr-tools": "^2.10.4",
     "pagefind": "^1.5.2",
+    "sharp": "^0.34.5",
     "wrangler": "^4.100.0"
   },
   "overrides": {

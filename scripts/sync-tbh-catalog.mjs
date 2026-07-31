@@ -91,12 +91,15 @@ function syncBrands(source) {
     const raw = readJson(path.join(brandsDir, file));
     fs.writeFileSync(path.join(OUT_BRANDS, file), JSON.stringify(raw, null, 2));
 
+    const logoDest = path.join(OUT_IMG, "brands", `${id}.webp`);
     const logoSrc = path.join(source, "brands", "img", `${id}.webp`);
     let logo = null;
     if (fs.existsSync(logoSrc)) {
-      const logoDest = path.join(OUT_IMG, "brands", `${id}.webp`);
       ensureDir(path.dirname(logoDest));
       fs.copyFileSync(logoSrc, logoDest);
+      logo = `/catalog/img/brands/${id}.webp`;
+    } else if (fs.existsSync(logoDest)) {
+      // Keep logos fetched by scripts/fetch-brand-logos.mjs across catalog syncs
       logo = `/catalog/img/brands/${id}.webp`;
     }
 
@@ -157,8 +160,11 @@ function main() {
   const source = resolveSource();
   console.log(`Syncing TBH catalog from ${source}`);
 
-  rmDir(OUT_IMG);
-  ensureDir(OUT_IMG);
+  // Wipe product images only — preserve public/catalog/img/brands/ (fetched favicons)
+  for (const category of TBH_CATEGORIES) {
+    rmDir(path.join(OUT_IMG, category));
+  }
+  ensureDir(path.join(OUT_IMG, "brands"));
 
   const items = syncItems(source);
   const brands = syncBrands(source);
