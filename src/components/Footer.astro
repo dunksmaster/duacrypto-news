@@ -1,6 +1,7 @@
 ---
 import site from "../data/site.json";
 import { localePath, t, type Locale } from "../i18n/ui";
+import { categoryLabel, categoryPath, getCategories } from "../lib/catalog";
 
 interface Props {
   locale?: Locale;
@@ -9,102 +10,138 @@ interface Props {
 const { locale = "sq" } = Astro.props;
 const strings = t(locale);
 const MAIN_SITE = site.mainSite;
-const newsHome = localePath("/", locale);
 const rssHref = locale === "en" ? "/en/rss.xml" : "/rss.xml";
+const categories = getCategories();
 ---
 
-<footer class="bg-surface pt-12">
+<footer class="site-footer bg-surface pt-12">
   <div class="section-shell pb-10">
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-      <div class="md:col-span-2">
-        <div class="mb-3 flex items-center gap-3">
-          <img
-            src="/img/duacrypto-logo.png"
-            alt="DuaCrypto"
-            width="379"
-            height="378"
-            class="h-10 w-auto shrink-0"
-          />
-          <p class="mb-0 text-secondary">
-            {locale === "sq"
-              ? "DuaCrypto, e themeluar në 2020, është komuniteti i parë kripto në Shqipëri."
-              : "DuaCrypto, founded in 2020, is proud to be the first crypto community in Albania."}
-          </p>
-        </div>
-        <ul class="space-y-2 text-secondary">
-          <li>
-            {locale === "sq"
-              ? "Jemi të hapur për bashkëpunime dhe ide kreative."
-              : "We're open to collaborations, partnerships, and creative ideas."}
-          </li>
-        </ul>
+    <div class="site-footer__grid">
+      <div>
+        <h2 class="site-footer__heading">{strings.footerCatalogHeading}</h2>
+        <nav class="site-footer__nav" aria-label={strings.footerCatalogHeading}>
+          {
+            categories.map((cat) => (
+              <a href={categoryPath(cat.id, locale)}>{categoryLabel(cat.id, locale)}</a>
+            ))
+          }
+          <a href={localePath("/brands/", locale)}>{strings.catalogExploreBrands}</a>
+          <a href={localePath("/blog/", locale)}>{strings.blog}</a>
+        </nav>
       </div>
 
       <div>
-        <h3 class="mb-4 font-semibold">{locale === "sq" ? "Kontakt" : "Get In Touch"}</h3>
-        <p class="mb-2 text-secondary">Tirana, Albania</p>
-        <p class="mb-2 break-words">
-          <a href="mailto:usdc@duacrypto.com" class="break-all text-link hover:underline"
-            >usdc@duacrypto.com</a
-          >
-        </p>
+        <h2 class="site-footer__heading">{strings.footerSiteHeading}</h2>
+        <nav class="site-footer__nav" aria-label={strings.footerSiteHeading}>
+          <a href={localePath("/about/", locale)}>{strings.footerAbout}</a>
+          <a href={localePath("/search/", locale)}>{strings.search}</a>
+          <a href={rssHref}>RSS</a>
+        </nav>
+        <p class="site-footer__trust">{strings.catalogTrustLine}</p>
       </div>
 
       <div>
-        <h3 class="mb-4 font-semibold">{locale === "sq" ? "Lidhje" : "Quick Links"}</h3>
-        <a class="footer-link" href={`${MAIN_SITE}/about.html`}>{locale === "sq" ? "Rreth nesh" : "About Us"}</a>
-        <a class="footer-link" href={`${MAIN_SITE}/contact.html`}>{locale === "sq" ? "Kontakt" : "Contact Us"}</a>
-        <a class="footer-link" href={`${MAIN_SITE}/service.html`}>{locale === "sq" ? "Shërbimet" : "Our Services"}</a>
-        <a class="footer-link" href={`${MAIN_SITE}/bitcoin-for-corporations.html`}
-          >Bitcoin for Corporations</a
-        >
-        <a class="footer-link" href={localePath("/blog/", locale)}>{strings.blog}</a>
-        <a class="footer-link" href={`${MAIN_SITE}/donation.html`}>{locale === "sq" ? "Dhuroni libër" : "Donate a Book"}</a>
-        <a class="footer-link" href={`${MAIN_SITE}/newsletter.html`}>Newsletter</a>
-        <a class="footer-link" href={`${MAIN_SITE}/privacy.html`}>{locale === "sq" ? "Privatësia" : "Privacy"}</a>
-        <a class="footer-link" href={`${MAIN_SITE}/terms.html`}>{locale === "sq" ? "Kushtet" : "Terms"}</a>
+        <h2 class="site-footer__heading">{strings.footerCommunityHeading}</h2>
+        <nav class="site-footer__nav" aria-label={strings.footerCommunityHeading}>
+          <a href={MAIN_SITE} target="_blank" rel="noopener noreferrer">{strings.footerMainSite}</a>
+          <a href="https://t.me/dua_crypto" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href={`${MAIN_SITE}/newsletter.html`} target="_blank" rel="noopener noreferrer">Newsletter</a>
+        </nav>
       </div>
-    </div>
-
-    <div class="mt-10 rounded-lg border border-border bg-card p-6">
-      <h3 class="mb-2 font-semibold">
-        {locale === "sq" ? "Qëndro përpara në kripto" : "Stay Ahead in the Crypto Game"}
-      </h3>
-      <p class="footer-signup__body">
-        {locale === "sq"
-          ? "Regjistrohu — mos mbet pas në revolucionin kripto!"
-          : "Join now! Don't get left behind in the crypto revolution!"}
-      </p>
-      <form action="https://formspree.io/f/xnnpkkqo" method="POST" class="flex flex-col gap-3 sm:flex-row">
-        <input
-          class="w-full rounded-md border border-border bg-page px-4 py-3 text-dark"
-          type="email"
-          name="email"
-          placeholder={locale === "sq" ? "Email-i juaj" : "Your email"}
-          aria-label={locale === "sq" ? "Email-i juaj" : "Your email"}
-          required
-        />
-        <button type="submit" class="btn-primary shrink-0">{locale === "sq" ? "Regjistrohu" : "Sign Up"}</button>
-      </form>
     </div>
   </div>
 
-  <div class="border-t border-border py-6">
-    <div class="section-shell flex flex-col items-center justify-between gap-3 text-sm text-secondary md:flex-row">
+  <div class="site-footer__bar border-t border-border py-6">
+    <div class="section-shell site-footer__bar-inner">
       <p>
-        &copy; <a href={MAIN_SITE} class="text-link hover:underline">DuaCrypto {new Date().getFullYear()}</a>, All Right
-        Reserved.
+        &copy; <a href={MAIN_SITE} class="text-link hover:underline">DuaCrypto {new Date().getFullYear()}</a>, {strings.footerAllRightsReserved}
       </p>
-      <p class="text-center md:text-right">
+      <p class="site-footer__credit">
         {strings.catalogTbhCredit}{" "}
         <a href="https://thebitcoinhole.com/" class="text-link hover:underline" target="_blank" rel="noopener noreferrer"
           >The Bitcoin Hole</a
         >
         {" "}(MIT).
       </p>
-      <p>
-        <a href={rssHref} class="text-link hover:underline">RSS</a>
-      </p>
     </div>
   </div>
 </footer>
+
+<style>
+  .site-footer__grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .site-footer__heading {
+    margin: 0 0 0.85rem;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .site-footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .site-footer__nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-secondary);
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .site-footer__nav a:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  .site-footer__nav a:hover {
+    color: var(--color-link);
+  }
+
+  .site-footer__trust {
+    margin: 1rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+  }
+
+  .site-footer__bar-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .site-footer__bar-inner {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    .site-footer__credit {
+      text-align: right;
+    }
+  }
+</style>
