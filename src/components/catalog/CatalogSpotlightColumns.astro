@@ -1,0 +1,56 @@
+---
+import type { Locale } from "../../i18n/ui";
+import { t } from "../../i18n/ui";
+import type { SpotlightColumns } from "../../lib/catalog";
+import { itemPath } from "../../lib/catalog";
+
+interface Props {
+  columns: SpotlightColumns;
+  locale?: Locale;
+}
+
+const { columns, locale = "sq" } = Astro.props;
+const strings = t(locale);
+
+const columnDefs = [
+  { key: "topRated" as const, title: strings.catalogSpotlightTopRated, items: columns.topRated },
+  { key: "mostReviewed" as const, title: strings.catalogSpotlightMostReviewed, items: columns.mostReviewed },
+  { key: "newReleases" as const, title: strings.catalogSpotlightNewReleases, items: columns.newReleases },
+].filter((col) => col.items.length > 0);
+---
+
+{
+  columnDefs.length > 0 && (
+    <section class="catalog-section catalog-section--muted">
+      <div class="section-shell">
+        <header class="catalog-section__head">
+          <p class="catalog-section__eyebrow">{strings.catalogSpotlight}</p>
+          <h2 class="catalog-section__title">{strings.catalogSpotlight}</h2>
+          <p class="catalog-section__lead">{strings.catalogSpotlightLead}</p>
+        </header>
+        <div class="catalog-spotlight-columns">
+          {columnDefs.map((col) => (
+            <div class="catalog-spotlight-col">
+              <h3 class="catalog-spotlight-col__title">{col.title}</h3>
+              <ul class="catalog-spotlight-col__list">
+                {col.items.map((item) => (
+                  <li class="catalog-spotlight-col__item">
+                    <a
+                      href={itemPath(item.category, item.id, locale)}
+                      class="catalog-spotlight-col__link"
+                    >
+                      <span class="catalog-spotlight-col__name">{item.name}</span>
+                      {item.author && (
+                        <span class="catalog-spotlight-col__author">{item.author}</span>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

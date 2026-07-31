@@ -1,0 +1,31 @@
+---
+import type { Locale } from "../../i18n/ui";
+import { t } from "../../i18n/ui";
+import type { PromoCard } from "../../lib/catalog";
+
+interface Props {
+  hotDeals: PromoCard;
+  newReleases: PromoCard;
+  locale?: Locale;
+}
+
+const { hotDeals, newReleases, locale = "sq" } = Astro.props;
+const strings = t(locale);
+---
+
+<section class="catalog-section">
+  <div class="section-shell">
+    <div class="catalog-promo">
+      <a href={hotDeals.href} class="catalog-promo__card">
+        <span class="catalog-promo__label">{strings.catalogHotDeals}</span>
+        <h3 class="catalog-promo__title">{hotDeals.title}</h3>
+        <p class="catalog-promo__desc">{hotDeals.description}</p>
+      </a>
+      <a href={newReleases.href} class="catalog-promo__card">
+        <span class="catalog-promo__label">{strings.catalogNewReleases}</span>
+        <h3 class="catalog-promo__title">{newReleases.title}</h3>
+        <p class="catalog-promo__desc">{newReleases.description}</p>
+      </a>
+    </div>
+  </div>
+</section>

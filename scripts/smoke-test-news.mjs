@@ -3,6 +3,13 @@
  * Smoke-test news/catalog site + main-site blog redirects.
  * Usage: node scripts/smoke-test-news.mjs
  */
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const distDir = path.join(__dirname, "..", "dist");
+
 const checks = [
   // Catalog homepage + core routes
   { url: "https://dc-news-9n3.pages.dev/", expect: 200 },
@@ -49,6 +56,17 @@ const checks = [
   },
 ];
 
+const localContentChecks = [
+  {
+    file: "index.html",
+    needles: ["Independent · Not sponsored", "Libra më të vlerësuar", "NODE SHOWDOWN"],
+  },
+  {
+    file: path.join("books", "the-genesis-book", "index.html"),
+    needles: ["Autorësia", "share-row", "Authors"],
+  },
+];
+
 let failed = 0;
 
 for (const { url, expect, location, optional } of checks) {
@@ -72,6 +90,23 @@ for (const { url, expect, location, optional } of checks) {
     } else {
       failed += 1;
       console.log(`FAIL ${url} — ${err.message}`);
+    }
+  }
+}
+
+for (const { file, needles } of localContentChecks) {
+  const fullPath = path.join(distDir, file);
+  if (!fs.existsSync(fullPath)) {
+    console.log(`SKIP (no dist) ${file}`);
+    continue;
+  }
+  const html = fs.readFileSync(fullPath, "utf8");
+  for (const needle of needles) {
+    if (html.includes(needle)) {
+      console.log(`OK  dist ${file} contains "${needle}"`);
+    } else {
+      failed += 1;
+      console.log(`FAIL dist ${file} missing "${needle}"`);
     }
   }
 }

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { brandPath, getBrandItems, getBrands } from "../../lib/catalog";
+import { brandMonogram, brandPath, getBrandItems, getBrands } from "../../lib/catalog";
 import { t, localePath } from "../../i18n/ui";
 
 const locale = "sq" as const;
@@ -43,7 +43,7 @@ const brands = getBrands();
                   brand.logo ? (
                     <img src={brand.logo} alt="" width="64" height="64" loading="lazy" />
                   ) : (
-                    <span class="brand-card__placeholder">{brand.name.slice(0, 2)}</span>
+                    <span class="brand-card__monogram" aria-hidden="true">{brandMonogram(brand.name)}</span>
                   )
                 }
                 <span class="brand-card__name">{brand.name}</span>
@@ -120,15 +120,20 @@ const brands = getBrands();
     object-fit: contain;
   }
 
-  .brand-card__placeholder {
+  .brand-card__monogram {
     display: grid;
     place-items: center;
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 999px;
-    background: color-mix(in srgb, var(--cyan) 15%, var(--color-page));
-    font-weight: 700;
-    color: var(--color-secondary);
+    background: color-mix(in srgb, var(--btc) 14%, var(--color-page));
+    border: 1px solid color-mix(in srgb, var(--btc) 28%, var(--color-border));
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-transform: uppercase;
   }
 
   .brand-card__name {

@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import CatalogProductHero from "../../../components/catalog/CatalogProductHero.astro";
+import CatalogAuthorship from "../../../components/catalog/CatalogAuthorship.astro";
 import CatalogSpecTable from "../../../components/catalog/CatalogSpecTable.astro";
 import ShopSpotlightCard from "../../../components/ShopSpotlightCard.astro";
+import ShareRow from "../../../components/ShareRow.astro";
 import {
   catalogStaticPaths,
   categoryLabel,
@@ -46,6 +48,7 @@ const pages = full["basic-information"]?.pages?.value;
 const description = typeof full.description === "string" ? full.description : "";
 const featureGroups = extractFeatureGroups(full);
 const related = getRelatedItems(categoryId, id);
+const shareUrl = `${Astro.site}en/${categoryId}/${id}/`;
 ---
 
 <BaseLayout
@@ -83,6 +86,16 @@ const related = getRelatedItems(categoryId, id);
         locale={locale}
         headingLevel={1}
       />
+
+      <div class="item-page__share">
+        <ShareRow locale={locale} shareUrl={shareUrl} shareTitle={summary.name} compact={false} includePopover={false} />
+      </div>
+
+      {
+        full.authorship && (
+          <CatalogAuthorship authorship={full.authorship} locale={locale} />
+        )
+      }
 
       {
         description && (
@@ -139,6 +152,10 @@ const related = getRelatedItems(categoryId, id);
   .item-page__crumbs a {
     color: var(--color-link);
     text-decoration: none;
+  }
+
+  .item-page__share {
+    margin-top: 1.25rem;
   }
 
   .item-page__desc {

@@ -1,0 +1,45 @@
+---
+import type { Locale } from "../../i18n/ui";
+import type { FeaturedComparison } from "../../lib/catalog";
+
+interface Props {
+  data: FeaturedComparison;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="catalog-section catalog-featured">
+  <div class="section-shell">
+    <div class="catalog-featured__card">
+      <p class="catalog-featured__eyebrow">{data.eyebrow}</p>
+      <h2 class="catalog-featured__title">{data.title}</h2>
+      <p class="catalog-featured__lead">{data.lead}</p>
+      <a href={data.ctaHref} class="catalog-featured__cta">{data.ctaLabel}</a>
+
+      <div class="catalog-featured__vs">
+        <a href={data.left.href} class="catalog-featured__side">
+          {
+            data.left.image && (
+              <img src={data.left.image} alt="" width="96" height="96" loading="lazy" />
+            )
+          }
+          <span class="catalog-featured__side-name">{data.left.name}</span>
+          <span class="catalog-featured__side-tag">{data.left.tagline}</span>
+        </a>
+
+        <div class="catalog-featured__badge" aria-hidden="true">VS</div>
+
+        <a href={data.right.href} class="catalog-featured__side">
+          {
+            data.right.image && (
+              <img src={data.right.image} alt="" width="96" height="96" loading="lazy" />
+            )
+          }
+          <span class="catalog-featured__side-name">{data.right.name}</span>
+          <span class="catalog-featured__side-tag">{data.right.tagline}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

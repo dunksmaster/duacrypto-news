@@ -37,5 +37,84 @@
     "hardware-wallets/bitbox02-btconly",
     "hardware-wallets/trezor-safe-5",
     "hardware-wallets/coldcard-mk4"
-  ]
+  ],
+  "spotlightColumns": {
+    "topRated": [
+      "books/the-genesis-book",
+      "books/broken-money",
+      "books/bitcoin-hard-money-you-cant-fck-with",
+      "books/the-bullish-case-for-bitcoin",
+      "books/catching-up-to-crypto"
+    ],
+    "mostReviewed": [
+      "books/american-kingpin",
+      "books/the-bitcoin-standard",
+      "books/bitcoin-billionaires",
+      "books/the-internet-of-money",
+      "books/digital-gold"
+    ],
+    "newReleases": [
+      "hardware-wallets/trezor-safe-5",
+      "hardware-wallets/bitbox02-btconly",
+      "bitcoin-nodes/umbrel-pro",
+      "bitcoin-nodes/start9-server-one",
+      "books/bitcoin-supercycle"
+    ]
+  },
+  "featuredComparison": {
+    "eyebrow": "NODE SHOWDOWN · 2026",
+    "title": {
+      "sq": "Umbrel vs Start9: cila nyje Bitcoin fiton?",
+      "en": "Umbrel vs Start9: which Bitcoin node wins?"
+    },
+    "lead": {
+      "sq": "Krahasim i dy OS-ve kryesore plug-and-play: çmim, hardware, aplikacione dhe privatësi.",
+      "en": "A feature-by-feature breakdown of the two leading plug-and-play node OSes: pricing, hardware, apps and privacy."
+    },
+    "ctaHref": "/bitcoin-nodes/",
+    "ctaLabel": {
+      "sq": "Lexo krahasimin →",
+      "en": "Read our comparison →"
+    },
+    "left": {
+      "category": "bitcoin-nodes",
+      "id": "umbrel-home",
+      "tagline": {
+        "sq": "Më e lehtë për t'u nisur",
+        "en": "Easiest to run"
+      }
+    },
+    "right": {
+      "category": "bitcoin-nodes",
+      "id": "start9-server-one",
+      "tagline": {
+        "sq": "Privatësi e parë",
+        "en": "Privacy-first"
+      }
+    }
+  },
+  "promoCards": {
+    "hotDeals": {
+      "href": "/hardware-wallets/",
+      "title": {
+        "sq": "Ofertat më të mira",
+        "en": "Hot Deals"
+      },
+      "description": {
+        "sq": "Zbritje dhe oferta në portofole hardware.",
+        "en": "Find the best deals across hardware wallets."
+      }
+    },
+    "newReleases": {
+      "href": "/books/",
+      "title": {
+        "sq": "Botime të reja",
+        "en": "New Releases"
+      },
+      "description": {
+        "sq": "Libra dhe pajisje të reja në katalog.",
+        "en": "Fresh launches, tracked as they drop."
+      }
+    }
+  }
 }

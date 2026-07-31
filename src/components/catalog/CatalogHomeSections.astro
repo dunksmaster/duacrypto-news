@@ -8,11 +8,15 @@ import {
   categoryPath,
   getBrands,
   getCategories,
-  getSpotlightItems,
-  itemPath,
+  getFeaturedComparison,
+  getPromoCards,
+  getSpotlightColumns,
 } from "../../lib/catalog";
 import ShopCategoryCard from "../ShopCategoryCard.astro";
-import ShopSpotlightCard from "../ShopSpotlightCard.astro";
+import CatalogBrandChip from "./CatalogBrandChip.astro";
+import CatalogFeaturedComparison from "./CatalogFeaturedComparison.astro";
+import CatalogPromoCards from "./CatalogPromoCards.astro";
+import CatalogSpotlightColumns from "./CatalogSpotlightColumns.astro";
 
 interface Props {
   locale?: Locale;
@@ -21,10 +25,11 @@ interface Props {
 const { locale = "sq" } = Astro.props;
 const strings = t(locale);
 const categories = getCategories();
-const spotlight = getSpotlightItems();
 const allBrands = getBrands();
-const brands = allBrands.slice(0, 12);
 const productCount = categories.reduce((n, c) => n + c.count, 0) + 1;
+const featuredComparison = getFeaturedComparison(locale);
+const promoCards = getPromoCards(locale);
+const spotlightColumns = getSpotlightColumns();
 ---
 
 <section class="catalog-hero">
@@ -32,6 +37,17 @@ const productCount = categories.reduce((n, c) => n + c.count, 0) + 1;
     <p class="catalog-hero__eyebrow">DuaCrypto · Self-Custody</p>
     <h1 class="catalog-hero__title">{strings.catalogHeroTitle}</h1>
     <p class="catalog-hero__lead">{strings.catalogHeroSubtitle}</p>
+
+    <nav class="catalog-hero__pills" aria-label={strings.catalogCategoryPillsLabel}>
+      {
+        categories.map((cat) => (
+          <a href={categoryPath(cat.id, locale)} class="catalog-hero__pill">
+            {categoryLabel(cat.id, locale)}
+          </a>
+        ))
+      }
+    </nav>
+
     <div class="catalog-hero__stats">
       <span class="catalog-hero__stat">
         <strong>{productCount}+</strong> products
@@ -43,8 +59,15 @@ const productCount = categories.reduce((n, c) => n + c.count, 0) + 1;
         <strong>{categories.length}</strong> categories
       </span>
     </div>
+    <p class="catalog-hero__trust">{strings.catalogTrustLine}</p>
   </div>
 </section>
+
+{featuredComparison && <CatalogFeaturedComparison data={featuredComparison} />}
+
+{promoCards && (
+  <CatalogPromoCards hotDeals={promoCards.hotDeals} newReleases={promoCards.newReleases} locale={locale} />
+)}
 
 <section class="catalog-section">
   <div class="section-shell">
@@ -69,29 +92,7 @@ const productCount = categories.reduce((n, c) => n + c.count, 0) + 1;
   </div>
 </section>
 
-{
-  spotlight.length > 0 && (
-    <section class="catalog-section catalog-section--muted">
-      <div class="section-shell">
-        <header class="catalog-section__head">
-          <p class="catalog-section__eyebrow">{strings.catalogSpotlight}</p>
-          <h2 class="catalog-section__title">{strings.catalogSpotlight}</h2>
-          <p class="catalog-section__lead">{strings.catalogSpotlightLead}</p>
-        </header>
-        <div class="catalog-grid--spotlight">
-          {spotlight.map((item) => (
-            <ShopSpotlightCard
-              title={item.name}
-              author={item.author}
-              image={item.thumb ?? item.image ?? "/img/duacrypto-logo.png"}
-              href={itemPath(item.category, item.id, locale)}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+<CatalogSpotlightColumns columns={spotlightColumns} locale={locale} />
 
 <section class="catalog-section">
   <div class="section-shell">
@@ -101,19 +102,9 @@ const productCount = categories.reduce((n, c) => n + c.count, 0) + 1;
       <p class="catalog-section__lead">{strings.catalogExploreBrandsLead}</p>
     </header>
     <div class="catalog-grid--brands">
-      {
-        brands.map((brand) => (
-          <a href={brandPath(brand.id, locale)} class="catalog-brand-chip" title={brand.name}>
-            {
-              brand.logo ? (
-                <img src={brand.logo} alt="" width="48" height="48" loading="lazy" />
-              ) : (
-                <span class="catalog-brand-chip__fallback">{brand.name.slice(0, 3)}</span>
-              )
-            }
-          </a>
-        ))
-      }
+      {allBrands.map((brand) => (
+        <CatalogBrandChip brand={brand} locale={locale} />
+      ))}
     </div>
     <a href={localePath("/brands/", locale)} class="catalog-section__cta">
       {strings.viewAll} brands →

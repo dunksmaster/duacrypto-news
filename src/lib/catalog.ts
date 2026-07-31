@@ -248,6 +248,15 @@ export function getBrands(): CatalogBrandSummary[] {
   return catalogIndex.brands as CatalogBrandSummary[];
 }
 
+/** Two-letter monogram for logo-less brand chips (intentional fallback, not a missing image). */
+export function brandMonogram(name: string): string {
+  const words = name.trim().split(/\s+/).filter(Boolean);
+  if (words.length >= 2) {
+    return `${words[0]![0] ?? ""}${words[1]![0] ?? ""}`.toUpperCase();
+  }
+  return name.slice(0, 2).toUpperCase();
+}
+
 export function getBrand(id: string): CatalogBrandSummary | undefined {
   return getBrands().find((b) => b.id === id);
 }
@@ -269,6 +278,113 @@ export function getSpotlightItems(): CatalogItemSummary[] {
       return getItem(category, id);
     })
     .filter((i): i is CatalogItemSummary => Boolean(i));
+}
+
+export type SpotlightColumns = {
+  topRated: CatalogItemSummary[];
+  mostReviewed: CatalogItemSummary[];
+  newReleases: CatalogItemSummary[];
+};
+
+function resolveSpotlightKeys(keys: string[] | undefined): CatalogItemSummary[] {
+  return (keys ?? [])
+    .map((key) => {
+      const [category, id] = key.split("/");
+      if (!category || !id || !isCatalogCategory(category)) return undefined;
+      return getItem(category, id);
+    })
+    .filter((i): i is CatalogItemSummary => Boolean(i));
+}
+
+export function getSpotlightColumns(): SpotlightColumns {
+  const cols = customOverlay.spotlightColumns ?? {};
+  return {
+    topRated: resolveSpotlightKeys(cols.topRated),
+    mostReviewed: resolveSpotlightKeys(cols.mostReviewed),
+    newReleases: resolveSpotlightKeys(cols.newReleases),
+  };
+}
+
+export type FeaturedComparisonSide = {
+  name: string;
+  tagline: string;
+  image: string | null;
+  href: string;
+};
+
+export type FeaturedComparison = {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  ctaHref: string;
+  ctaLabel: string;
+  left: FeaturedComparisonSide;
+  right: FeaturedComparisonSide;
+};
+
+export function getFeaturedComparison(locale: Locale = "sq"): FeaturedComparison | null {
+  const raw = customOverlay.featuredComparison;
+  if (!raw) return null;
+
+  const leftItem = getItem(raw.left.category as CatalogCategoryId, raw.left.id);
+  const rightItem = getItem(raw.right.category as CatalogCategoryId, raw.right.id);
+  if (!leftItem || !rightItem) return null;
+
+  const loc = locale === "en" ? "en" : "sq";
+  const pick = (v: string | Record<string, string> | undefined, fallback = "") =>
+    typeof v === "string" ? v : v?.[loc] ?? v?.sq ?? fallback;
+
+  const prefix = locale === "en" ? "/en" : "";
+
+  return {
+    eyebrow: raw.eyebrow,
+    title: pick(raw.title),
+    lead: pick(raw.lead),
+    ctaHref: `${prefix}${raw.ctaHref.replace(/^\//, "/")}`,
+    ctaLabel: pick(raw.ctaLabel, "Read comparison →"),
+    left: {
+      name: leftItem.name,
+      tagline: pick(raw.left.tagline),
+      image: leftItem.thumb ?? leftItem.image,
+      href: itemPath(leftItem.category, leftItem.id, locale),
+    },
+    right: {
+      name: rightItem.name,
+      tagline: pick(raw.right.tagline),
+      image: rightItem.thumb ?? rightItem.image,
+      href: itemPath(rightItem.category, rightItem.id, locale),
+    },
+  };
+}
+
+export type PromoCard = {
+  href: string;
+  title: string;
+  description: string;
+};
+
+export function getPromoCards(locale: Locale = "sq"): { hotDeals: PromoCard; newReleases: PromoCard } | null {
+  const raw = customOverlay.promoCards;
+  if (!raw) return null;
+
+  const loc = locale === "en" ? "en" : "sq";
+  const pick = (v: string | Record<string, string> | undefined, fallback = "") =>
+    typeof v === "string" ? v : v?.[loc] ?? v?.sq ?? fallback;
+
+  const prefix = locale === "en" ? "/en" : "";
+
+  return {
+    hotDeals: {
+      href: `${prefix}${raw.hotDeals.href.replace(/^\//, "/")}`,
+      title: pick(raw.hotDeals.title),
+      description: pick(raw.hotDeals.description),
+    },
+    newReleases: {
+      href: `${prefix}${raw.newReleases.href.replace(/^\//, "/")}`,
+      title: pick(raw.newReleases.title),
+      description: pick(raw.newReleases.description),
+    },
+  };
 }
 
 export function getRelatedItems(category: CatalogCategoryId, id: string, limit = 6): CatalogItemSummary[] {
