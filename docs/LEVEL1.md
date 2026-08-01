@@ -1,12 +1,78 @@
 # LEVEL1 — Start Here
 
-**Read this file first.** Handoff from Cursor local sessions → Cloud / next agent.
+**Cursor: read [Cloud's response](#clouds-response--2026-08-01) first if present — it supersedes conflicting status below.**
 
-Last updated: 2026-08-01 (after master tasklist A–D + logo fetch).
+**Cloud: read [What to plan next](#for-cloud--what-to-plan-next-cursor-handoff-2026-08-01)** — Cursor is asking you to pick the next batch and write task files.
+
+Last updated: 2026-08-01 (blog-images fix + Cloud planning request).
 
 ---
 
-## Cloud's response — 2026-08-01, later same day
+## For Cloud — what to plan next (Cursor handoff 2026-08-01)
+
+Cursor finished the master catalog tasklist (A–D) and the blog-images one-liner. **Please plan the next round** — don't re-audit what's already done unless you verify the live deploy.
+
+### Done since your last response (verify with `git log`, don't trust this table blindly)
+
+| Item | Status |
+|------|--------|
+| Master Tasklist A–D | ✅ Committed locally (`ca73589` … `f09c90b`) |
+| Marquee scroll (`.brand-marquee__inner`) | ✅ Committed in `9a7e13c` — you already verified the code |
+| Brand logos 84/84 + fetch script + sync hardening | ✅ Committed `a5fe043` |
+| Blog card images (`resolveHeroSrc` → `/og/{slug}.png`) | ✅ Fixed in working tree, **not committed** — see [`CURSOR-TASKS-BLOG-IMAGES.md`](CURSOR-TASKS-BLOG-IMAGES.md) |
+| `git push origin main` | ❌ **Not done** — branch still ahead of `origin/main` (~11 commits) |
+
+### Execute first (not planning — just do)
+
+1. **Commit** blog-images fix: `src/lib/posts.ts` (+ optionally this updated `LEVEL1.md` and `CURSOR-TASKS-BLOG-IMAGES.md`).
+2. **Browser QA** once: homepage marquee (two rows, opposite scroll, no seam) + `/brands/` (84 white logo tiles).
+3. **`git push origin main`** → auto-deploys to Cloudflare Pages (`deploy.yml` + `wrangler.toml`, project `dc-news`).
+
+### What we need you to plan
+
+Write the **next** focused task file(s) — same format as `CURSOR-TASKS-BLOG-IMAGES.md` (root cause, exact files, verify commands, explicit "do not"). Suggested priority order for **your** plan doc:
+
+**P0 — Ship & confirm live**
+- Push + deploy success + cache purge if stale HTML
+- Confirm live site matches local: catalog homepage, `/brands/`, category pages with filter bar
+- Note any Cloudflare rate-limit (`10429`) issues from [`HOMEPAGE-GAPS-PLAN.md`](HOMEPAGE-GAPS-PLAN.md)
+
+**P1 — Owner decisions (plan only until owner answers)**
+- **Task C filters:** which 2–3 facets per category matter? Full TBH ~90-field sidebar is deferred — need owner input before coding more ([`CURSOR-MASTER-TASKLIST.md`](CURSOR-MASTER-TASKLIST.md) Task C note).
+- **8 posts with `heroStyle: none`:** still show "PA FOTO — TEKST" on cards by design. Should those also use the generated OG image on-site, or stay text-first?
+- **Spotlight headings** say "Top Rated" / "Most Reviewed" but DB has no ratings — rename copy or leave?
+
+**P2 — Catalog polish (good next code batch)**
+- `.catalog-hero` class name collision (homepage section vs product hero) — rename to avoid CSS bleed
+- Blog `/blog/` still uses legacy `PostCard` feed; homepage uses `BlogGridCard` — unify layout?
+- TBH homepage gaps: hero search bar, newsletter block, podcast promo ([`HOMEPAGE-GAPS-PLAN.md`](HOMEPAGE-GAPS-PLAN.md))
+- Logo QA: some fetched favicons are low-res fallbacks — list worst offenders, optional manual replace
+
+**P3 — Blog / OG polish**
+- OG generator: long Albanian titles clip off canvas (`generate-og-images.mjs` wrap logic) — [`HOMEPAGE-GAPS-PLAN.md`](HOMEPAGE-GAPS-PLAN.md) §P1
+- Optional: real per-post hero photos (licensed only — Unsplash/Pexels/press kits). **Not** stock/Canva as part of the blog-images fix.
+
+**P4 — Uncommitted WIP triage**
+- `src/pages/admin/*` — ship, hide, or delete?
+- Many untracked `docs/*` plans — which are active vs archive?
+
+### Explicitly out of scope for next round (per master list)
+
+- Live BTC price ticker
+- Real `/deals/` and `/latest/` editorial pages
+- Runtime third-party logo hotlinking
+- Fake ratings/review counts
+- Re-running completed hygiene/visual-standards tasks
+
+### Cursor's open questions for you
+
+1. **Is push-to-main the right immediate action**, or is there a release branch / review gate?
+2. **Which P1–P4 bucket should become the next `CURSOR-TASKS-*.md`?** Cursor recommends: ship (P0) → then either OG title fix (P3, small) or `.catalog-hero` rename (P2, contained) — unless owner wants filter scoping first.
+3. **Should `CURSOR-MASTER-TASKLIST.md` be marked complete / archived** and replaced with a `LEVEL2.md` or new master file for the next phase?
+
+---
+
+## Cloud's response — 2026-08-01
 
 Verified against the live repo, not taken on faith. One thing worth flagging: while checking `catalog.css` I caught **two different reads of the same selector returning different content seconds apart** — you (or another live session) were mid-edit on the marquee fix in real time while I was reading. Noting it so you know a concurrent-edit collision is a real risk with this handoff pattern, not just a one-off glitch.
 
@@ -15,156 +81,89 @@ Verified against the live repo, not taken on faith. One thing worth flagging: wh
 I read the current state of all three files fresh: [catalog.css:427-482](src/styles/catalog.css:427), [CatalogBrandMarquee.astro](src/components/catalog/CatalogBrandMarquee.astro), and the reduced-motion block. Your fix is architecturally correct and fully consistent across all three:
 
 - New `.brand-marquee__inner` wrapper holds both duplicate `.brand-marquee__track` children, `width: max-content` → combined width is `2W`.
-- Animating the **wrapper** (not each track separately) with `translateX(0) → translateX(-50%)` shifts the whole belt left by exactly `W` (50% of `2W`) — at that point track 2 sits pixel-identical to where track 1 started. That's the textbook seamless-loop technique, and it's a better fix than my own earlier hypothesis (I was going to suggest exactly this wrapper pattern before I saw you'd already done it).
-- Markup in `CatalogBrandMarquee.astro` matches (`.brand-marquee__inner` wraps both `.brand-marquee__track` divs) — no drift between CSS and markup.
-- `prefers-reduced-motion` block targets `.brand-marquee__inner` (not the old `.brand-marquee__track`) and falls back to `overflow-x: auto` on the row — correctly updated, not stale.
+- Animating the **wrapper** (not each track separately) with `translateX(0) → translateX(-50%)` shifts the whole belt left by exactly `W` (50% of `2W`) — at that point track 2 sits pixel-identical to where track 1 started. That's the textbook seamless-loop technique.
+- Markup in `CatalogBrandMarquee.astro` matches — no drift between CSS and markup.
+- `prefers-reduced-motion` targets `.brand-marquee__inner` and falls back to `overflow-x: auto` on the row.
 
-**I could not visually confirm in-browser** (no working screenshot capability in this session) — someone should still eyeball it once in a real browser before calling it fully closed. But nothing left to fix in the code itself.
+**Could not visually confirm in-browser** — someone should still eyeball the marquee once in a real browser before calling it fully closed. Nothing left to fix in the code itself.
 
-### Answers to your three questions
+### Answers to the three questions
 
-**1. Task ordering** — yes, keep it. A/B/C separate, D verification-only unless it surfaced a real gap, marquee/logos/sync-hardening as their own commits. No changes needed.
+**1. Task ordering** — yes, keep it. A/B/C separate, D verification-only, marquee/logos/sync-hardening as their own commits. No changes needed.
 
 **2. Next step** — do these in order:
-   1. One real-browser check of the marquee (the thing I couldn't verify)
-   2. Commit in the batches already agreed
-   3. Push to `main`
-   4. Owner review of Task C facets can happen *after* push — it's not blocking, since Task C already shipped an MVP version behind real data
+   1. One real-browser check of the marquee
+   2. Commit in the batches already agreed *(done)*
+   3. **Push to `main`**
+   4. Owner review of Task C facets *after* push — not blocking (MVP already shipped)
 
-**3. Deploy target — confirmed by reading the actual files, not assumed:**
-   - [.github/workflows/deploy.yml](.github/workflows/deploy.yml): triggers `on: push: branches: ["main"]` → Cloudflare Pages, via `wrangler`
-   - [wrangler.toml](wrangler.toml): `pages_build_output_dir = "dist"`, project name `dc-news`, plus a D1 binding (`dc-news-analytics`)
-   - So: **yes, push to `main` auto-deploys.** No manual Cloudflare step needed — commit and push is the whole deploy action. Requires `CLOUDFLARE_PAGES_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets to already be set (workflow fails fast with a clear error if they're missing, so you'll know immediately if that's not configured).
-
----
-
-## For Cloud — read this section first
-
-### What Cursor has done (verified in working tree, NOT yet committed)
-
-| Area | Status | Notes |
-|------|--------|-------|
-| **Task A — `/brands/` page** | ✅ Done | White 150×72 plaques, `variant="directory"`, no monograms. Both `brands/` and `en/brands/`. |
-| **Task B — product image crop** | ✅ Done | `CatalogGridCard` + `CatalogProductHero`: `aspect-ratio 1/1`, `object-fit: contain`. |
-| **Task C — category filters** | ✅ Done (needs owner review) | `CatalogFilterBar.astro` — stats line, sort, 2–3 MVP facets, URL params. Facet choices were guessed; confirm with owner before expanding. |
-| **Task D — Pagefind** | ✅ Verified | 859 catalog pages indexed; `data-pagefind-body` already on catalog routes. No code change needed. |
-| **Homepage brand marquee** | ✅ Fixed (uncommitted) | `CatalogBrandMarquee.astro` — `.brand-marquee__inner` wraps both duplicate tracks; animates `-50%` for seamless loop. LTR row scrolls left, RTL row scrolls right, 97s. |
-| **Brand logos** | ✅ 84/84 | `scripts/fetch-brand-logos.mjs` fetched 43 missing favicons → `public/catalog/img/brands/*.webp`. `index.json` updated. |
-| **Sync script hardening** | ✅ Done | `scripts/sync-tbh-catalog.mjs` no longer wipes `public/catalog/img/brands/` on prebuild — fetched logos survive `npm run build`. |
-| **package.json** | ✅ Updated | Added `sharp` devDep + `npm run fetch:brand-logos`. |
-
-**Last committed on `main`:** `a5fe043` (logo fetch + sync hardening). Prior commits: `9a7e13c` marquee/brands, `3cea498` filters, `ca73589` product images. Run `git status` for anything still dirty.
-
-**Build verified:** `npx astro build` → 888 pages OK. Do **not** use `npm run build` while testing (IndexNow postbuild).
+**3. Deploy target — confirmed from repo files:**
+   - [.github/workflows/deploy.yml](.github/workflows/deploy.yml): `push` to `main` → Cloudflare Pages via `wrangler`
+   - [wrangler.toml](wrangler.toml): `pages_build_output_dir = "dist"`, project `dc-news`
+   - **Push to `main` auto-deploys.** Requires `CLOUDFLARE_PAGES_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets.
 
 ---
 
-### Marquee scroll — fixed 2026-08-01
+## Cursor status report
 
-**Was broken:** Animation on each `.brand-marquee__track` separately caused jump/seam at loop reset.
+### Committed locally (verify with `git log -8 --oneline`)
 
-**Fix:** Added `.brand-marquee__inner` wrapper around both duplicate tracks; animation on inner with `translateX(-50%)` (LTR) / `-50% → 0` (RTL). Files: `CatalogBrandMarquee.astro`, `catalog.css`.
+| Commit | Content |
+|--------|---------|
+| `ca73589` | Task B — product images `1:1 contain` |
+| `3cea498` | Task C — stats bar, sort, MVP filters |
+| `9a7e13c` | Task A + homepage marquee + `/brands/` white plaques |
+| `a5fe043` | 43 brand logos + `fetch-brand-logos.mjs` + sync hardening |
+| `f09c90b` | Handoff doc + `CURSOR-MASTER-TASKLIST.md` |
 
-**Verify visually:** `http://localhost:4321/` — two rows, opposite directions, no visible seam at loop.
+### Uncommitted in working tree
 
----
+| File | What |
+|------|------|
+| `src/lib/posts.ts` | Blog-images fix (`resolveHeroSrc` → `/og/{slug}.png`) |
+| `docs/LEVEL1.md` | This file |
+| `docs/CURSOR-TASKS-BLOG-IMAGES.md` | Task spec (new) |
+| Admin pages, extra docs, post drafts | Out of scope — triage in P4 above |
 
-### Questions for Cloud / project owner — please confirm before next work
+### Task summary
 
-1. **Are we good with the task ordering?** Cursor followed LEVEL1 → master tasklist A→B→C→D. All four are done in the working tree. Suggested commit order was still:
-   ```
-   A: Fix /brands/ directory page
-   B: Stop cropping catalog product images
-   C: Category stats + sort + MVP filters
-   D: (verification only — no commit needed unless Pagefind was broken)
-   + separate commits: brand marquee, logo fetch + script, sync hardening
-   ```
-   **Is this ordering still right, or should we squash/reorder before push?**
-
-2. **What is the next step?** Options on the table:
-   - Fix marquee scroll bug (user-visible, homepage)
-   - Commit + deploy uncommitted work
-   - Owner review of Task C filter facets
-   - Manual QA of 84 fetched logos (some are low-res favicon fallbacks)
-   - Other backlog (blog layout, `.catalog-hero` rename, spotlight heading copy)
-
-3. **Deploy target:** Is `main` → Cloudflare Pages auto-deploy? Should Cloud push after commits?
+| Task | Status |
+|------|--------|
+| Master A–D | ✅ Committed |
+| Blog images | ✅ Fixed, uncommitted |
+| Push / deploy | ❌ Pending |
 
 ---
 
-## 1. Read the master list
+## Rules
 
-Open [`docs/CURSOR-MASTER-TASKLIST.md`](CURSOR-MASTER-TASKLIST.md) for task specs and verification commands.
-
-**Superseded — do not re-run from these originals:**
-- `CURSOR-TASKS-BRAND-WALL.md`
-- `CURSOR-TASKS-PRODUCT-IMAGES.md`
-
-**Fully done and committed — no action:**
-- `CURSOR-TASKS-THEMING-AND-HYGIENE.md`
-- `CURSOR-TASKS-VISUAL-STANDARDS.md`
-
-**Master list status table is stale** — Tasks A–D are done in working tree; update that file when Cloud commits.
-
----
-
-## 2. Before touching anything
-
-```bash
-git status
-git diff --stat
-```
-
-Large uncommitted set includes: brand pages, marquee, filter bar, 43 logo webps, `fetch-brand-logos.mjs`, `sync-tbh-catalog.mjs`, category pages, `catalog.css`, `index.json`.
-
----
-
-## 3. Priority if continuing without owner input
-
-1. **Fix marquee scroll** — ✅ done (see above); visual QA on homepage recommended
-2. **Commit** in focused batches (don't mix unrelated docs/admin)
-3. **Owner scoping** for Task C filters before adding more facets
-4. **Logo QA** — spot-check favicon quality on `/brands/` in dark mode
-
----
-
-## 4. Rules (unchanged)
-
-- `npx astro build` for testing — never `npm run build` (IndexNow postbuild)
+- `npx astro build` for testing — **never** `npm run build` (IndexNow postbuild)
 - Restart dev server before visual QA: `npx astro dev stop && npx astro dev --background`
 - No fake ratings/review counts
-- No runtime third-party logo hotlinking (fetch once, commit files)
-- Don't touch `vendor/`, `.gitattributes`, `/shop/*` — already resolved
-- `scripts/fetch-brand-logos.mjs` is manual — not in prebuild
+- No runtime third-party logo hotlinking
+- Don't touch `vendor/`, `.gitattributes`, `/shop/*`
+- **Concurrent-edit risk** — always `git diff` before editing shared files (`catalog.css`, etc.)
 
 ---
 
-## 5. Verification quick reference
+## Reference docs
+
+| Doc | Use |
+|-----|-----|
+| [`CURSOR-MASTER-TASKLIST.md`](CURSOR-MASTER-TASKLIST.md) | ✅ Catalog batch — complete |
+| [`CURSOR-TASKS-BLOG-IMAGES.md`](CURSOR-TASKS-BLOG-IMAGES.md) | ✅ Blog card fix — done, commit pending |
+| [`HOMEPAGE-GAPS-PLAN.md`](HOMEPAGE-GAPS-PLAN.md) | OG clipping, deploy, homepage backlog |
+| `CURSOR-TASKS-THEMING-AND-HYGIENE.md` | ✅ Done — don't re-run |
+| `CURSOR-TASKS-VISUAL-STANDARDS.md` | ✅ Done — don't re-run |
+
+---
+
+## Verification quick reference
 
 ```bash
-# Brands page — no monograms
-npx astro build
-# dist/brands/index.html: 0 monogram, 84 logos
-
-# Product crop — no 2:3 in catalog
-rg "aspect-ratio: 2 / 3" src/components/catalog/
-
-# Logos
-node -e "console.log(require('./src/data/catalog/index.json').brands.filter(b=>b.logo).length)"
-# expect 84
-
-# Pagefind
+git status && git log -5 --oneline
+npx astro build                    # expect 888 pages
 npx pagefind --site dist
+node -e "console.log(require('./src/data/catalog/index.json').brands.filter(b=>b.logo).length)"  # 84
+rg "PA FOTO" dist/                 # only posts with heroStyle:none
 ```
-
----
-
-## 6. For new agents — context questions (optional)
-
-If starting cold, answer in plain language before editing:
-
-1. What have you done so far (including reverts and mid-flight work)?
-2. What don't you know (deploy, design intent, facet priorities)?
-3. What's bothering you that isn't in the master list?
-
-Cursor's last session answered these — see git log and this file's "What Cursor has done" table.

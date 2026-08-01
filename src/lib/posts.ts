@@ -68,7 +68,7 @@ export function isGenericHeroImage(image: string | undefined): boolean {
   return !image || image === DEFAULT_OG;
 }
 
-/** In-page hero src, or null for text-first (OG/social uses resolveOgImagePath). */
+/** In-page hero src; falls back to branded OG PNG unless heroStyle is none. */
 export function resolveHeroSrc(
   image: string | undefined,
   slug: string,
@@ -77,7 +77,7 @@ export function resolveHeroSrc(
   if (heroStyle === "none") return null;
   if (heroStyle === "screenshot" && image && !isGenericHeroImage(image)) return image;
   if (image && !isGenericHeroImage(image)) return image;
-  return null;
+  return `/og/${slug}.png`;
 }
 
 /** Branded build-time OG PNG unless the post has a custom hero image. */
