@@ -4,7 +4,58 @@
 
 **Cloud: read [What to plan next](#for-cloud--what-to-plan-next-cursor-handoff-2026-08-01)** — Cursor is asking you to pick the next batch and write task files.
 
-Last updated: 2026-08-01 (blog-images fix + Cloud planning request).
+Last updated: 2026-08-01 (blog-images committed; blockers logged for Cloud).
+
+---
+
+## Issues Cursor is facing — please help, Cloud
+
+Cursor is **blocked or uncertain** on these. Owner asked to surface them here.
+
+### 1. Cannot deploy — push not authorized
+
+**~12 commits on local `main`, zero pushed to `origin/main`.** All catalog work (marquee, logos, filters, brands page, blog thumbnails) exists only locally. Production at `news.duacrypto.com` is still the old build.
+
+- Cursor will **not** `git push` unless owner explicitly asks (user rule).
+- **Need from Cloud/owner:** confirm `git push origin main` is OK, or specify another gate (PR, branch, review).
+
+### 2. Marquee — code verified, motion not eyeball-confirmed
+
+Cloud verified the `.brand-marquee__inner` fix in code. Cursor **cannot confirm in-browser** that the two rows scroll smoothly in opposite directions with no seam — browser automation gives a static snapshot only.
+
+- **Need from Cloud/owner:** one human look at `http://localhost:4321/` brand section (or live after push). Report: seam yes/no, speed OK, RTL row direction correct.
+
+### 3. Blog cards — partial fix, confusing `heroStyle: none`
+
+Committed `3fab291`: `resolveHeroSrc` now falls back to `/og/{slug}.png`. **But** 8 posts have `heroStyle: none` in frontmatter — they **still** show "PA FOTO — TEKST" on homepage/blog cards by design.
+
+The 3 latest Albanian homepage cards (GoMining, Premium Newsletter, Deeper Network) are among those 8 — so homepage **still looks broken** even after the fix.
+
+- **Need from owner:** remove `heroStyle: none` from those posts (use OG image on cards), OR accept text-first for those posts, OR assign real hero images later.
+
+### 4. Stale dev server / concurrent edits
+
+Multiple sessions (Cursor + Cloud + owner) editing the same files caused:
+- False reads of `catalog.css` mid-edit (Cloud noted this)
+- HMR/cache showing old "PA FOTO" until `astro dev stop && astro dev --background`
+
+Always restart dev server before visual QA.
+
+### 5. Owner decisions blocking next catalog work
+
+| Decision | Blocks |
+|----------|--------|
+| Which filter facets per category? | Expanding Task C beyond MVP |
+| Rename "Top Rated" / "Most Reviewed" spotlight headings? | Copy change on homepage |
+| Ship or delete `src/pages/admin/*` WIP? | Unknown scope creep |
+| Archive 15+ untracked `docs/*.md` plans? | Agent confusion on source of truth |
+
+### 6. What Cursor recommends Cloud do next
+
+1. **Owner says "push"** → push 12 commits, watch GitHub Actions deploy, purge CF cache if needed.
+2. **Write `CURSOR-TASKS-SHIP.md`** — P0 deploy verification checklist only.
+3. **Write `CURSOR-TASKS-HEROSTYLE.md`** — one task: remove or revise `heroStyle: none` on 8 posts (owner decision baked in).
+4. **Then** P3 OG title clipping (`generate-og-images.mjs`) — small, isolated, high visual impact for social shares.
 
 ---
 
@@ -19,14 +70,14 @@ Cursor finished the master catalog tasklist (A–D) and the blog-images one-line
 | Master Tasklist A–D | ✅ Committed locally (`ca73589` … `f09c90b`) |
 | Marquee scroll (`.brand-marquee__inner`) | ✅ Committed in `9a7e13c` — you already verified the code |
 | Brand logos 84/84 + fetch script + sync hardening | ✅ Committed `a5fe043` |
-| Blog card images (`resolveHeroSrc` → `/og/{slug}.png`) | ✅ Fixed in working tree, **not committed** — see [`CURSOR-TASKS-BLOG-IMAGES.md`](CURSOR-TASKS-BLOG-IMAGES.md) |
-| `git push origin main` | ❌ **Not done** — branch still ahead of `origin/main` (~11 commits) |
+| Blog card images (`resolveHeroSrc` → `/og/{slug}.png`) | ✅ Committed `3fab291` — see [`CURSOR-TASKS-BLOG-IMAGES.md`](CURSOR-TASKS-BLOG-IMAGES.md) |
+| `git push origin main` | ❌ **Blocked** — Cursor needs owner OK (~12 commits ahead) |
 
 ### Execute first (not planning — just do)
 
-1. **Commit** blog-images fix: `src/lib/posts.ts` (+ optionally this updated `LEVEL1.md` and `CURSOR-TASKS-BLOG-IMAGES.md`).
-2. **Browser QA** once: homepage marquee (two rows, opposite scroll, no seam) + `/brands/` (84 white logo tiles).
-3. **`git push origin main`** → auto-deploys to Cloudflare Pages (`deploy.yml` + `wrangler.toml`, project `dc-news`).
+1. ~~**Commit** blog-images fix~~ ✅ Done `3fab291`
+2. **Browser QA** once: homepage marquee + `/brands/` — **needs human eyes** (see blockers above)
+3. **`git push origin main`** → **waiting on owner approval**
 
 ### What we need you to plan
 
@@ -120,18 +171,17 @@ I read the current state of all three files fresh: [catalog.css:427-482](src/sty
 
 | File | What |
 |------|------|
-| `src/lib/posts.ts` | Blog-images fix (`resolveHeroSrc` → `/og/{slug}.png`) |
-| `docs/LEVEL1.md` | This file |
-| `docs/CURSOR-TASKS-BLOG-IMAGES.md` | Task spec (new) |
+| `docs/LEVEL1.md` | This handoff (issues + plan for Cloud) — commit with next push |
 | Admin pages, extra docs, post drafts | Out of scope — triage in P4 above |
+| `functions/_shared/posts-manifest.json`, blog md | Unrelated — don't mix into catalog commits |
 
 ### Task summary
 
 | Task | Status |
 |------|--------|
 | Master A–D | ✅ Committed |
-| Blog images | ✅ Fixed, uncommitted |
-| Push / deploy | ❌ Pending |
+| Blog images | ✅ Committed `3fab291` |
+| Push / deploy | ❌ **Blocked — need owner OK** |
 
 ---
 
