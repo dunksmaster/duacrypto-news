@@ -15,7 +15,6 @@ tags: [cex, bitcoin, sq, affiliate, karte, ballkan]
 lang: sq
 draft: false
 aiGenerated: false
-heroStyle: none
 faq:
   - question: "A pranon CEX.io kartë nga Shqipëria ose Kosova?"
     answer: "Shumë lexues në rajon e përdorin me KYC standard, por disponueshmëria dhe limitet ndryshojnë — kontrollo gjendjen aktuale në faqen zyrtare dhe me bankën tënde."

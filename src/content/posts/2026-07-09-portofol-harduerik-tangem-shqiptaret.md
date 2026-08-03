@@ -14,7 +14,6 @@ lang: sq
 translationKey: tangem-wallet-albania-2026
 draft: false
 aiGenerated: false
-heroStyle: none
 ---
 
 **Portofol harduerik** — dy fjalë që shpesh i frikësojnë fillestarët shqiptarë. Ke dëgjuar për Bitcoin, ndoshta ke blerë pak në një exchange, por tani pyetja e madhe është: *ku i mbaj?* Në telefon? Në exchange? Në një pajisje që duket si kartë krediti?

@@ -12,7 +12,6 @@ lang: en
 tags: [tangem, hardware-wallet, self-custody, affiliate, albania, bitcoin]
 draft: false
 aiGenerated: false
-heroStyle: none
 faq:
   - question: "Is Tangem good for beginners in Albania?"
     answer: "Yes for savers who want simple card-style self-custody — but learn seed backup basics first and start with small amounts."

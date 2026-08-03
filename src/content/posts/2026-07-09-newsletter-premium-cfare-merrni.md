@@ -13,7 +13,7 @@ tags: [newsletter, premium, sq, affiliate, gumroad]
 lang: sq
 draft: false
 aiGenerated: false
-heroStyle: none
+image: /img/posts/2026-07-09-newsletter-premium-cfare-merrni-hero.png
 ---
 
 **DuaCrypto Premium Newsletter** nuk është “një tjetër listë email-i me linqe”. Është produkti ynë kryesor — $10/muaj në Gumroad — dhe e ndërtuam sepse lexuesit tanë në Shqipëri dhe diasporë kërkonin **më shumë thellësi** se sa mund të publikojmë falas çdo ditë: analiza pas meetup-eve, shënime mbi self-custody, përmbledhje të lajmeve Ballkan, dhe rekomandime të filtruara (Tangem, Bitget, CEX.io, Deeper — gjithmonë me zbulim transparent).

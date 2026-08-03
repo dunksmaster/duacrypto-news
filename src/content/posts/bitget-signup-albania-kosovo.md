@@ -12,7 +12,6 @@ lang: en
 tags: [bitget, exchange, affiliate, bitcoin, albania, kosovo, diaspora]
 draft: false
 aiGenerated: false
-heroStyle: none
 faq:
   - question: "Does Bitget work from Albania?"
     answer: "Many Albanian and Kosovar readers use Bitget with standard KYC. Availability can change — always use the official app and check current terms."

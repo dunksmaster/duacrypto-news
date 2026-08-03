@@ -16,7 +16,6 @@ lang: sq
 translationKey: bitget-signup-albania-2026
 draft: false
 aiGenerated: false
-heroStyle: none
 faq:
   - question: "A funksionon Bitget nga Shqipëria?"
     answer: "Shumë lexues në Shqipëri dhe Kosovë e përdorin me KYC standard. Kontrollo gjithmonë termat aktuale në app dhe mbështetjen për vendin tënd."
