@@ -82,7 +82,10 @@ const { title, description, href, image, visual } = Astro.props;
     max-height: 8.5rem;
     height: auto;
     object-fit: contain;
-    border-radius: 0.35rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
     box-shadow: 0 10px 24px color-mix(in srgb, var(--ink) 20%, transparent);
     transition: transform 0.25s ease;
   }
