@@ -157,6 +157,11 @@ function syncItems(source) {
 }
 
 function main() {
+  if (process.env.SKIP_TBH_SYNC === "1" && fs.existsSync(OUT_INDEX)) {
+    console.log("SKIP_TBH_SYNC=1 — using committed src/data/catalog/index.json");
+    return;
+  }
+
   const source = resolveSource();
   console.log(`Syncing TBH catalog from ${source}`);
 
