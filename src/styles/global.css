@@ -11,6 +11,7 @@
   --btc: #f7931a;
   --btc-ink: #1a1005;
   --btc-dark: #d97706;
+  --btc-label: #b45309;
   --warn-bg: #fff7e8;
   --warn-edge: #d97706;
   --link-text: #045962;
@@ -48,6 +49,7 @@
   --btc: #f7931a;
   --btc-ink: #1a1005;
   --btc-dark: #fbbf24;
+  --btc-label: var(--btc);
   --warn-bg: #241a08;
   --warn-edge: #fbbf24;
   --link-text: #4dd9f0;

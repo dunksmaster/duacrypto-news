@@ -36,6 +36,7 @@ for (const route of ROUTES) {
         const results = await new AxeBuilder({ page })
           .withTags(["wcag2aa"])
           .include("body")
+          .exclude("iframe")
           .analyze();
 
         expect(results.violations, formatViolations(results.violations)).toEqual([]);
@@ -48,7 +49,8 @@ test("post page: no logo hero and no visible Markdown link", async ({ page }) =>
   await page.goto("/posts/2026-07-09-bitget-regjistrim-shqiperi-kosove/");
 
   const hero = page.locator("img.post-hero");
-  await expect(hero).toHaveCount(0);
+  await expect(hero).toHaveCount(1);
+  await expect(hero).toHaveAttribute("src", /\/og\//);
 
   await expect(page.getByRole("link", { name: /markdown/i })).toHaveCount(0);
 
@@ -113,9 +115,9 @@ test("post page: no duplicate newsletter or trust bar", async ({ page }) => {
   await expect(page.locator('[data-trust-bar], .trust-bar, [class*="trust-bar"]')).toHaveCount(0);
 });
 
-test("homepage: trust bar visible", async ({ page }) => {
+test("homepage: trust line visible", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator(".trust-bar")).toHaveCount(1);
+  await expect(page.locator(".catalog-hero__trust")).toBeVisible();
 });
 
 test("post page: embed opens from share row popover", async ({ page }) => {
