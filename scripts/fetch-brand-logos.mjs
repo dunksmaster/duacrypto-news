@@ -18,6 +18,13 @@ const ROOT = path.resolve(__dirname, "..");
 const BRANDS_DIR = path.join(ROOT, "src", "data", "catalog", "brands");
 const INDEX_PATH = path.join(ROOT, "src", "data", "catalog", "index.json");
 const OUT_DIR = path.join(ROOT, "public", "catalog", "img", "brands");
+const WORDMARK_FALLBACK_PATH = path.join(
+  ROOT,
+  "src",
+  "data",
+  "catalog",
+  "brand-logo-wordmark-fallback.json",
+);
 
 const UA = "DuaCrypto-BrandLogoFetcher/1.0 (+https://news.duacrypto.com)";
 const args = process.argv.slice(2);
@@ -204,6 +211,34 @@ async function saveLogo(id, buf, sourceUrl = "") {
   return `/catalog/img/brands/${id}.webp`;
 }
 
+async function auditWordmarkFallbacks() {
+  const index = readJson(INDEX_PATH);
+  const ids = [];
+  for (const brand of index.brands ?? []) {
+    if (!brand.logo) continue;
+    const fp = path.join(ROOT, "public", brand.logo.replace(/^\//, ""));
+    if (!fs.existsSync(fp)) continue;
+    try {
+      const { data, info } = await sharp(fp).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      let lum = 0;
+      let n = 0;
+      for (let i = 0; i < data.length; i += info.channels) {
+        if (data[i + 3] < 40) continue;
+        lum += 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+        n += 1;
+      }
+      const cov = n / (info.width * info.height);
+      const avg = n ? lum / n : 0;
+      if (avg > 160 && cov > 0.05) ids.push(brand.id);
+    } catch {
+      /* skip unreadable assets */
+    }
+  }
+  ids.sort();
+  writeJson(WORDMARK_FALLBACK_PATH, ids);
+  console.log(`Wordmark fallbacks: ${ids.length} (light logos on white plaque)`);
+}
+
 async function main() {
   const index = readJson(INDEX_PATH);
   const brands = index.brands ?? [];
@@ -273,6 +308,8 @@ async function main() {
     console.log("\nFailed (need manual logo):");
     for (const r of results.failed) console.log(`  ✗ ${r.id} — ${r.reason}`);
   }
+
+  await auditWordmarkFallbacks();
 }
 
 main().catch((err) => {

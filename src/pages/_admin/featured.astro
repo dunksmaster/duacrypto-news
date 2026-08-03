@@ -1,0 +1,307 @@
+---
+import { getCollection } from "astro:content";
+
+// Get all posts
+const allPosts = await getCollection("posts");
+const posts = allPosts
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const featured = posts.filter((p) => p.data.featured);
+const notFeatured = posts.filter((p) => !p.data.featured);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Featured Posts - DuaCrypto Admin</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .header {
+      background: white;
+      border-bottom: 1px solid #ddd;
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: #f7931a;
+      flex: 1;
+    }
+
+    .back-btn {
+      padding: 8px 16px;
+      background: #ddd;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #ccc;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-counter {
+      display: inline-block;
+      background: #f7931a;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .posts-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .post-item {
+      display: flex;
+      gap: 15px;
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .post-item:hover {
+      border-color: #f7931a;
+      background: #fffaf5;
+    }
+
+    .post-thumbnail {
+      width: 80px;
+      height: 60px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 12px;
+    }
+
+    .post-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .post-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .post-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .post-meta {
+      font-size: 13px;
+      color: #999;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-action {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-feature {
+      background: #f7931a;
+      color: white;
+    }
+
+    .btn-feature:hover {
+      background: #e68419;
+    }
+
+    .btn-unfeature {
+      background: #ddd;
+      color: #333;
+    }
+
+    .btn-unfeature:hover {
+      background: #ccc;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+    }
+
+    .empty-state p {
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: #f0f8ff;
+      border-left: 3px solid #2196f3;
+      padding: 15px;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📌 Manage Featured Posts</h1>
+    <a href="/admin/dashboard" class="back-btn">← Back to Dashboard</a>
+  </div>
+
+  <div class="container">
+    <div class="info-box">
+      ℹ️ <strong>Featured posts</strong> appear in the "NË FOKUS" section at the top of your homepage. Select
+      the posts you want to highlight.
+    </div>
+
+    {
+      featured.length > 0 && (
+        <div class="section">
+          <h2>
+            ⭐ Currently Featured ({featured.length})
+            <span class="section-counter">{featured.length}</span>
+          </h2>
+          <div class="posts-list">
+            {featured.map((post) => (
+              <div class="post-item">
+                <div class="post-thumbnail">
+                  {post.data.image ? (
+                    <img src={post.data.image} alt="" />
+                  ) : (
+                    <span>NO IMAGE</span>
+                  )}
+                </div>
+                <div class="post-info">
+                  <div class="post-title">{post.data.title}</div>
+                  <div class="post-meta">
+                    {post.data.category} • {post.data.pubDate.toLocaleDateString()}
+                  </div>
+                </div>
+                <div class="post-actions">
+                  <button class="btn-action btn-unfeature" onclick="unfeature('${post.id}')">
+                    ✕ Unfeature
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <div class="section">
+      <h2>
+        📝 Available Posts ({notFeatured.length})
+        <span class="section-counter">{notFeatured.length}</span>
+      </h2>
+      {notFeatured.length > 0 ? (
+        <div class="posts-list">
+          {
+            notFeatured.map((post) => (
+              <div class="post-item">
+                <div class="post-thumbnail">
+                  {post.data.image ? (
+                    <img src={post.data.image} alt="" />
+                  ) : (
+                    <span>NO IMAGE</span>
+                  )}
+                </div>
+                <div class="post-info">
+                  <div class="post-title">{post.data.title}</div>
+                  <div class="post-meta">
+                    {post.data.category} • {post.data.pubDate.toLocaleDateString()}
+                  </div>
+                </div>
+                <div class="post-actions">
+                  <button class="btn-action btn-feature" onclick="feature('${post.id}')">
+                    ⭐ Feature
+                  </button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      ) : (
+        <div class="empty-state">
+          <p>All published posts are already featured!</p>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <script>
+    function feature(postId) {
+      // TODO: Implement feature functionality
+      alert(`Feature functionality coming soon!\n\nPost ID: ${postId}`);
+    }
+
+    function unfeature(postId) {
+      // TODO: Implement unfeature functionality
+      alert(`Unfeature functionality coming soon!\n\nPost ID: ${postId}`);
+    }
+  </script>
+</body>
+</html>

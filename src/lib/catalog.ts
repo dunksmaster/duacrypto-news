@@ -1,5 +1,6 @@
 import catalogIndex from "../data/catalog/index.json";
 import customOverlay from "../data/catalog/custom.json";
+import brandLogoWordmarkFallback from "../data/catalog/brand-logo-wordmark-fallback.json";
 import type { Locale } from "../i18n/ui";
 import { t } from "../i18n/ui";
 
@@ -68,6 +69,13 @@ export type CatalogBrandSummary = {
   headquarters?: string;
   logo: string | null;
 };
+
+const BRAND_LOGO_WORDMARK_IDS = new Set(brandLogoWordmarkFallback as string[]);
+
+/** Light favicon-style logos that disappear on the fixed #fff brand plaque. */
+export function brandLogoNeedsWordmark(id: string): boolean {
+  return BRAND_LOGO_WORDMARK_IDS.has(id);
+}
 
 export type CatalogBrandFull = {
   brand?: CatalogField;

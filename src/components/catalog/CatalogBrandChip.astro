@@ -1,6 +1,6 @@
 ---
 import type { Locale } from "../../i18n/ui";
-import { brandPath, type CatalogBrandSummary } from "../../lib/catalog";
+import { brandLogoNeedsWordmark, brandPath, type CatalogBrandSummary } from "../../lib/catalog";
 
 interface Props {
   brand: CatalogBrandSummary;
@@ -13,14 +13,16 @@ const chipClass =
   variant === "marquee" || variant === "directory"
     ? "catalog-brand-chip catalog-brand-chip--marquee"
     : "catalog-brand-chip";
+const showWordmark = !brand.logo || brandLogoNeedsWordmark(brand.id);
+const imgLoading = variant === "marquee" ? "eager" : "lazy";
 ---
 
 <a href={brandPath(brand.id, locale)} class={chipClass} aria-label={brand.name}>
   {
-    brand.logo ? (
-      <img src={brand.logo} alt="" width="48" height="48" loading="lazy" />
-    ) : (
+    showWordmark ? (
       <span class="catalog-brand-chip__name" aria-hidden="true">{brand.name}</span>
+    ) : (
+      <img src={brand.logo!} alt="" width="48" height="48" loading={imgLoading} />
     )
   }
 </a>

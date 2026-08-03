@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CatalogBrandChip from "../../components/catalog/CatalogBrandChip.astro";
-import { brandPath, getBrandItems, getBrands } from "../../lib/catalog";
+import { brandLogoNeedsWordmark, brandPath, getBrandItems, getBrands } from "../../lib/catalog";
 import { t, localePath } from "../../i18n/ui";
 
 const locale = "sq" as const;
@@ -45,7 +45,7 @@ const brands = getBrands();
             return (
               <article class="brand-tile">
                 <CatalogBrandChip brand={brand} locale={locale} variant="directory" />
-                {brand.logo && <p class="brand-tile__name">{brand.name}</p>}
+                {brand.logo && !brandLogoNeedsWordmark(brand.id) && <p class="brand-tile__name">{brand.name}</p>}
                 {
                   (brand.headquarters || count > 0) && (
                     <p class="brand-tile__meta">
